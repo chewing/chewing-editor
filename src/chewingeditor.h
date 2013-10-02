@@ -4,17 +4,17 @@
 #include <QMainWindow>
 
 namespace Ui {
-class ChewingEditor;
+    class ChewingEditor;
 }
 
 class ChewingEditor : public QMainWindow
 {
     Q_OBJECT
-    
+
 public:
     explicit ChewingEditor(QWidget *parent = 0);
     ~ChewingEditor();
-    
+
 private:
     Ui::ChewingEditor *ui;
 };
