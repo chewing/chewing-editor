@@ -2,8 +2,10 @@ language: c
 compiler: gcc
 
 before_install:
-  - sudo add-apt-repository --yes ppa:chewing/chewing
-  - sudo apt-get install -qq libchewing3-dev
+    - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+    - sudo add-apt-repository --yes ppa:chewing/chewing
+    - sudo apt-get update
+    - sudo apt-get install -qq libchewing3-dev g++-4.8
 
 script:
-  - cmake . ; make
+    - cmake .; make
