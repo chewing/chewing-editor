@@ -1,7 +1,11 @@
 #ifndef CHEWINGEDITOR_H
 #define CHEWINGEDITOR_H
 
+#include <memory>
+
 #include <QMainWindow>
+
+#include <chewing.h>
 
 namespace Ui {
     class ChewingEditor;
@@ -17,6 +21,7 @@ public:
 
 private:
     Ui::ChewingEditor *ui;
+    std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> chewing_context_;
 };
 
 #endif // CHEWINGEDITOR_H
