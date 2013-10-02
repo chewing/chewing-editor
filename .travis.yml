@@ -1,4 +1,9 @@
 language: c
 compiler: gcc
+
+before_install:
+  - sudo add-apt-repository --yes ppa:chewing/chewing
+  - sudo apt-get install -qq libchewing3-dev
+
 script:
   - cmake . ; make
