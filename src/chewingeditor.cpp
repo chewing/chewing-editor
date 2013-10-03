@@ -3,13 +3,13 @@
 
 ChewingEditor::ChewingEditor(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::ChewingEditor),
+    ui_(new Ui::ChewingEditor),
     chewing_context_(chewing_new(), chewing_delete)
 {
-    ui->setupUi(this);
+    ui_.get()->setupUi(this);
+    // FIXME:: Handle chewing_new() fail here. Popup might be a good idea.
 }
 
 ChewingEditor::~ChewingEditor()
 {
-    delete ui;
 }

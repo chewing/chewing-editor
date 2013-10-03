@@ -20,7 +20,7 @@ public:
     ~ChewingEditor();
 
 private:
-    Ui::ChewingEditor *ui;
+    std::unique_ptr<Ui::ChewingEditor> ui_;
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> chewing_context_;
 };
 
