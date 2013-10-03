@@ -6,6 +6,8 @@ before_install:
     - sudo add-apt-repository --yes ppa:chewing/chewing
     - sudo apt-get update
     - sudo apt-get install -qq libchewing3-dev gcc-4.8 g++-4.8
+    - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 999
+    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 999
     - gcc --version
     - g++ --version
 
