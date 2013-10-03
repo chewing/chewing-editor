@@ -14,18 +14,18 @@ find_library(CHEWING_LIBRARY NAMES chewing)
 set(CHEWING_INCLUDE_DIR "/usr/include/chewing")
 
 set(SOURCES
-    ${PROJECT_SOURCE_DIR}/src/chewingeditor.cpp
-    ${PROJECT_SOURCE_DIR}/src/chewinguserphrasemodel.cpp
+    ${PROJECT_SOURCE_DIR}/src/ChewingEditor.cpp
+    ${PROJECT_SOURCE_DIR}/src/ChewingUserphraseModel.cpp
     ${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 
 set(HEADERS
-    ${PROJECT_SOURCE_DIR}/src/chewingeditor.h
-    ${PROJECT_SOURCE_DIR}/src/chewinguserphrasemodel.h
+    ${PROJECT_SOURCE_DIR}/src/ChewingEditor.h
+    ${PROJECT_SOURCE_DIR}/src/ChewingUserphraseModel.h
 )
 
 set(FORMS
-    ${PROJECT_SOURCE_DIR}/src/chewingeditor.ui
+    ${PROJECT_SOURCE_DIR}/src/ChewingEditor.ui
 )
 
 qt4_wrap_cpp(HEADERS_MOC ${HEADERS})

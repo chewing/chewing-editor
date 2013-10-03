@@ -1,4 +1,4 @@
-#include "chewingeditor.h"
+#include "ChewingEditor.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

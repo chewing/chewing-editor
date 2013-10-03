@@ -4,7 +4,7 @@
 
 #include <QMainWindow>
 
-#include "chewinguserphrasemodel.h"
+#include "ChewingUserphraseModel.h"
 
 namespace Ui {
     class ChewingEditor;

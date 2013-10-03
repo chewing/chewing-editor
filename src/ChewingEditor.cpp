@@ -1,5 +1,5 @@
-#include "chewingeditor.h"
-#include "ui_chewingeditor.h"
+#include "ChewingEditor.h"
+#include "ui_ChewingEditor.h"
 
 #include <QtGui>
 

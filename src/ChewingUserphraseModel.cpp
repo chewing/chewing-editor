@@ -1,4 +1,4 @@
-#include "chewinguserphrasemodel.h"
+#include "ChewingUserphraseModel.h"
 
 ChewingUserphraseModel::ChewingUserphraseModel() :
     ctx_(chewing_new(), chewing_delete)
