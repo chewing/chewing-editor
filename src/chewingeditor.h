@@ -1,11 +1,10 @@
-#ifndef CHEWINGEDITOR_H
-#define CHEWINGEDITOR_H
+#pragma once
 
 #include <memory>
 
 #include <QMainWindow>
 
-#include <chewing.h>
+#include "chewinguserphrasemodel.h"
 
 namespace Ui {
     class ChewingEditor;
@@ -21,7 +20,5 @@ public:
 
 private:
     std::unique_ptr<Ui::ChewingEditor> ui_;
-    std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
+    std::unique_ptr<ChewingUserphraseModel> model_;
 };
-
-#endif // CHEWINGEDITOR_H

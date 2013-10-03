@@ -15,11 +15,13 @@ set(CHEWING_INCLUDE_DIR "/usr/include/chewing")
 
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/chewingeditor.cpp
+    ${PROJECT_SOURCE_DIR}/src/chewinguserphrasemodel.cpp
     ${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 
 set(HEADERS
     ${PROJECT_SOURCE_DIR}/src/chewingeditor.h
+    ${PROJECT_SOURCE_DIR}/src/chewinguserphrasemodel.h
 )
 
 set(FORMS
