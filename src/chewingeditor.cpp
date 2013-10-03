@@ -4,7 +4,7 @@
 ChewingEditor::ChewingEditor(QWidget *parent) :
     QMainWindow(parent),
     ui_(new Ui::ChewingEditor),
-    chewing_context_(chewing_new(), chewing_delete)
+    ctx_(chewing_new(), chewing_delete)
 {
     ui_.get()->setupUi(this);
     // FIXME:: Handle chewing_new() fail here. Popup might be a good idea.
