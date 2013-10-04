@@ -22,7 +22,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QColumnView" name="userphraseView"/>
+     <widget class="QListView" name="userphraseView"/>
     </item>
    </layout>
   </widget>

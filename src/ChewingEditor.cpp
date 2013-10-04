@@ -9,7 +9,7 @@ ChewingEditor::ChewingEditor(QWidget *parent) :
     model_(new ChewingUserphraseModel)
 {
     ui_.get()->setupUi(this);
-    // ui_.get()->userphraseView->setModel(model_.get());
+    ui_.get()->userphraseView->setModel(model_.get());
 }
 
 ChewingEditor::~ChewingEditor()

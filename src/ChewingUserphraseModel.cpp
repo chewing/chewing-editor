@@ -1,10 +1,33 @@
 #include "ChewingUserphraseModel.h"
 
+#include <cstdio>
+
+#include <QDebug>
+
+static void logger(void *data, int level, const char *fmt, ...)
+{
+    va_list list;
+    int len;
+
+    va_start(list, fmt);
+    len = std::vsnprintf(NULL, 0, fmt, list);
+    va_end(list);
+
+    std::vector<char> buf(len);
+
+    va_start(list, fmt);
+    len = std::vsnprintf(&buf[0], buf.size(), fmt, list);
+    va_end(list);
+
+    qDebug() << QString::fromUtf8(&buf[0]);
+}
+
 ChewingUserphraseModel::ChewingUserphraseModel() :
     ctx_(chewing_new(), chewing_delete)
 {
     // FIXME:: Handle chewing_new() fail here. Popup might be a good idea.
-    refresh();
+    chewing_set_logger(ctx_.get(), logger, nullptr);
+    update_userphrase();
 }
 
 ChewingUserphraseModel::~ChewingUserphraseModel()
@@ -13,43 +36,58 @@ ChewingUserphraseModel::~ChewingUserphraseModel()
 
 int ChewingUserphraseModel::rowCount(const QModelIndex &parent) const
 {
-    return data_.size();
-}
-
-int ChewingUserphraseModel::columnCount(const QModelIndex &parent) const
-{
-    return 2;
+    return userphrase_.size();
 }
 
 QVariant ChewingUserphraseModel::data(const QModelIndex &index, int role) const
 {
+    auto& current_userphrase = userphrase_[index.row()];
+
+    switch (role) {
+    case Qt::DisplayRole:
+        return current_userphrase.display;
+        break;
+    case Qt::WhatsThisRole: // FIXME: Provide "What's This?"
+        break;
+    default:
+        break;
+    }
+
+    return QVariant{};
 }
 
 void ChewingUserphraseModel::refresh()
 {
-    std::vector<ChewingUserphrase> new_data;
+    update_userphrase();
+    // FIXME: notify view
+}
+
+void ChewingUserphraseModel::update_userphrase()
+{
+    std::vector<ChewingUserphrase> new_userphrase;
     unsigned int phrase_len;
     unsigned int bopomofo_len;
-    int ret;
 
     chewing_userphrase_enumerate(ctx_.get());
     while (chewing_userphrase_has_next(ctx_.get(), &phrase_len, &bopomofo_len)) {
-        std::vector<char> phrase_buf(phrase_len);
-        std::vector<char> bopomofo_buf(bopomofo_len);
+        ChewingUserphrase current_userphrase;
+        current_userphrase.phrase.resize(phrase_len);
+        current_userphrase.bopomofo.resize(bopomofo_len);
 
-        ret = chewing_userphrase_get(ctx_.get(),
-            &phrase_buf[0], phrase_buf.size(),
-            &bopomofo_buf[0], bopomofo_buf.size());
+        int ret = chewing_userphrase_get(ctx_.get(),
+            &current_userphrase.phrase[0], current_userphrase.phrase.size(),
+            &current_userphrase.bopomofo[0], current_userphrase.bopomofo.size());
         if (ret == -1) {
-            // FIXME: log error here.
+            qDebug() << "chewing_userphrase_get() returns " << ret;
             continue;
         }
 
-        new_data.push_back(ChewingUserphrase{
-            std::move(phrase_buf),
-            std::move(bopomofo_buf)
-        });
+        current_userphrase.display = QString("%1 (%2)")
+            .arg(QString::fromUtf8(&current_userphrase.phrase[0]))
+            .arg(QString::fromUtf8(&current_userphrase.bopomofo[0]));
+
+        new_userphrase.push_back(std::move(current_userphrase));
     }
 
-    data_.swap(new_data);
+    userphrase_.swap(new_userphrase);
 }
