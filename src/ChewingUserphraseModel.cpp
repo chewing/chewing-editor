@@ -10,13 +10,13 @@ static void logger(void *data, int level, const char *fmt, ...)
     int len;
 
     va_start(list, fmt);
-    len = std::vsnprintf(NULL, 0, fmt, list);
+    len = vsnprintf(NULL, 0, fmt, list);
     va_end(list);
 
     std::vector<char> buf(len);
 
     va_start(list, fmt);
-    len = std::vsnprintf(&buf[0], buf.size(), fmt, list);
+    len = vsnprintf(&buf[0], buf.size(), fmt, list);
     va_end(list);
 
     qDebug() << QString::fromUtf8(&buf[0]);
@@ -53,7 +53,7 @@ QVariant ChewingUserphraseModel::data(const QModelIndex &index, int role) const
         break;
     }
 
-    return QVariant{};
+    return QVariant();
 }
 
 void ChewingUserphraseModel::refresh()
