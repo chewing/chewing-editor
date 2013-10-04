@@ -17,3 +17,5 @@ chewing-editor can be built by the following commands:
     make
 
 However, `CHEWING_LIBRARY` and `CHEWING_INCLUDE_DIR` must be provided if CMake cannot find location of chewing library and chewing header.
+
+If cmake cannot find Qt5, environment variable `CMAKE_PREFIX_PATH` shall be set to Qt5 location. For example, `C:\Qt\Qt5.1.1\5.1.1\msvc2012_64`.
