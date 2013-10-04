@@ -4,10 +4,10 @@
 Cross platform chewing user phrase editor.
 
 # Development Tool Requirements
-*   [CMake](http://www.cmake.org/) >= 2.8
-*   gcc >= 4.8
+*   [CMake](http://www.cmake.org/) >= 2.8.9
+*   gcc >= 4.8 or Visual Studio Express 2012
 *   libchewing (current master branch)
-*   Qt >= 4
+*   Qt = 5
 *   Editor with [EditorConfig](http://editorconfig.org/) supported
 
 # How to Build
