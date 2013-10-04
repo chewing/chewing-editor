@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(chewing-editor)
 
+cmake_policy(SET CMP0020 NEW)
+
 if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "-std=c++11 -g -O2 ${CMAKE_CXX_FLAGS}")
 endif()
