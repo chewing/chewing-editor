@@ -42,6 +42,8 @@ add_executable(chewing-editor
     ${PROJECT_SOURCE_DIR}/src/ChewingUserphraseModel.cpp
     ${PROJECT_SOURCE_DIR}/src/ChewingUserphraseModel.h
     ${PROJECT_SOURCE_DIR}/src/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/UserphraseModel.cpp
+    ${PROJECT_SOURCE_DIR}/src/UserphraseModel.h
     ${UI}
 )
 
