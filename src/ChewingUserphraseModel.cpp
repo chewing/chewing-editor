@@ -22,55 +22,24 @@ static void logger(void *data, int level, const char *fmt, ...)
     qDebug() << QString::fromUtf8(&buf[0]);
 }
 
-ChewingUserphraseModel::ChewingUserphraseModel() :
-    ctx_(chewing_new(), chewing_delete)
+ChewingUserphraseModel::ChewingUserphraseModel(const char* path) :
+    ctx_(chewing_new2(nullptr, path, logger, nullptr), chewing_delete)
 {
-    // FIXME:: Handle chewing_new() fail here. Popup might be a good idea.
-    chewing_set_logger(ctx_.get(), logger, nullptr);
-    update_userphrase();
-}
-
-ChewingUserphraseModel::~ChewingUserphraseModel()
-{
-}
-
-int ChewingUserphraseModel::rowCount(const QModelIndex &parent) const
-{
-    return userphrase_.size();
-}
-
-QVariant ChewingUserphraseModel::data(const QModelIndex &index, int role) const
-{
-    auto& current_userphrase = userphrase_[index.row()];
-
-    switch (role) {
-    case Qt::DisplayRole:
-        return current_userphrase.display;
-        break;
-    case Qt::WhatsThisRole: // FIXME: Provide "What's This?"
-        break;
-    default:
-        break;
+    if (!ctx_) {
+        // FIXME:: Handle chewing_new() fail here. Popup might be a good idea.
     }
-
-    return QVariant();
+    refresh();
 }
 
 void ChewingUserphraseModel::refresh()
 {
-    update_userphrase();
-    // FIXME: notify view
-}
-
-void ChewingUserphraseModel::update_userphrase()
-{
-    std::vector<ChewingUserphrase> new_userphrase;
+    std::vector<ChewingUserphraseModel::Userphrase> new_userphrase;
     unsigned int phrase_len;
     unsigned int bopomofo_len;
 
     chewing_userphrase_enumerate(ctx_.get());
     while (chewing_userphrase_has_next(ctx_.get(), &phrase_len, &bopomofo_len)) {
-        ChewingUserphrase current_userphrase;
+        ChewingUserphraseModel::Userphrase current_userphrase;
         current_userphrase.phrase.resize(phrase_len);
         current_userphrase.bopomofo.resize(bopomofo_len);
 
@@ -90,4 +59,8 @@ void ChewingUserphraseModel::update_userphrase()
     }
 
     userphrase_.swap(new_userphrase);
+}
+
+void ChewingUserphraseModel::save()
+{
 }
