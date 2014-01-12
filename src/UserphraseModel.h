@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include <QAbstractListModel>
@@ -28,3 +29,5 @@ protected:
 
     std::vector<Userphrase> userphrase_;
 };
+
+std::unique_ptr<UserphraseModel> UserphraseModelFactory(const char* path = nullptr);

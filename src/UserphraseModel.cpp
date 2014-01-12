@@ -1,4 +1,5 @@
 #include "UserphraseModel.h"
+#include "ChewingUserphraseModel.h"
 
 int UserphraseModel::rowCount(const QModelIndex &parent) const
 {
@@ -20,4 +21,10 @@ QVariant UserphraseModel::data(const QModelIndex &index, int role) const
     }
 
     return QVariant();
+}
+
+std::unique_ptr<UserphraseModel> UserphraseModelFactory(const char* path)
+{
+    // TODO: Create properly UserphraseMode for this file type.
+    return std::unique_ptr<UserphraseModel>(new ChewingUserphraseModel(path));
 }

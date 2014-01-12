@@ -6,12 +6,11 @@
 ChewingEditor::ChewingEditor(QWidget *parent) :
     QMainWindow(parent),
     ui_(new Ui::ChewingEditor),
-    model_(new ChewingUserphraseModel)
+    model_(UserphraseModelFactory())
 {
     ui_.get()->setupUi(this);
     ui_.get()->userphraseView->setModel(model_.get());
 }
 
 ChewingEditor::~ChewingEditor()
-{
-}
+{}
