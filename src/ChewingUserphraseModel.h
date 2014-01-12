@@ -12,8 +12,8 @@ class ChewingUserphraseModel : public UserphraseModel
 
 public:
     ChewingUserphraseModel(const char* path = nullptr);
-    ChewingUserphraseModel(const ChewingUserphraseModel& x) = default;
-    ChewingUserphraseModel& operator=(const ChewingUserphraseModel& x) = default;
+    ChewingUserphraseModel(const ChewingUserphraseModel& x) = delete;
+    ChewingUserphraseModel& operator=(const ChewingUserphraseModel& x) = delete;
     virtual ~ChewingUserphraseModel() = default;
 
     virtual void refresh();
