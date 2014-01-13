@@ -10,6 +10,11 @@ ChewingEditor::ChewingEditor(QWidget *parent) :
 {
     ui_.get()->setupUi(this);
     ui_.get()->userphraseView->setModel(model_.get());
+
+    connect(
+        ui_.get()->userphraseView, SIGNAL(pressed(const QModelIndex &)),
+        model_.get(), SLOT(remove(const QModelIndex &))
+    );
 }
 
 ChewingEditor::~ChewingEditor()

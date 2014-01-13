@@ -1,5 +1,7 @@
 #include "UserphraseModel.h"
 
+#include <QDebug>
+
 UserphraseModel::UserphraseModel(UserphraseData *data)
 :data_(data)
 {
@@ -29,4 +31,9 @@ QVariant UserphraseModel::data(const QModelIndex &index, int role) const
     }
 
     return QVariant();
+}
+
+void UserphraseModel::remove(const QModelIndex &index)
+{
+    qDebug() << "TODO: Implement" << __func__;
 }
