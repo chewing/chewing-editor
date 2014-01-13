@@ -19,3 +19,7 @@ chewing-editor can be built by the following commands:
 However, `CHEWING_LIBRARY` and `CHEWING_INCLUDE_DIR` must be provided if CMake cannot find location of chewing library and chewing header.
 
 If cmake cannot find Qt5, environment variable `CMAKE_PREFIX_PATH` shall be set to Qt5 location. For example, `C:\Qt\Qt5.1.1\5.1.1\msvc2012_64`.
+
+# License
+*   This project is licensed under [GPL-2.0](http://opensource.org/licenses/GPL-2.0)
+*   [Google C++ Mocking Framework](https://code.google.com/p/googlemock/) is licensed under [New BSD License](http://opensource.org/licenses/BSD-3-Clause)

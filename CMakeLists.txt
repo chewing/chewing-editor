@@ -53,3 +53,15 @@ add_executable(chewing-editor
 )
 target_link_libraries(chewing-editor ${CHEWING_LIBRARY})
 qt5_use_modules(chewing-editor Widgets)
+
+enable_testing()
+add_subdirectory(gmock)
+
+add_executable(run-test
+    ${PROJECT_SOURCE_DIR}/test/testmain.cpp
+
+    ${PROJECT_SOURCE_DIR}/test/testUserphrase.cpp
+)
+target_link_libraries(run-test gmock)
+
+add_test(test run-test)

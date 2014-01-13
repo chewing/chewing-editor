@@ -13,4 +13,4 @@ before_install:
     - g++ --version
 
 script:
-    - cmake .; make
+    - cmake .; make ; make test
