@@ -30,18 +30,19 @@ find_package(Qt5Widgets REQUIRED)
 include_directories(
     ${CHEWING_INCLUDE_DIR}
     ${Qt5Widgets_INCLUDES}
+    ${PROJECT_SOURCE_DIR}/src/ui
     ${PROJECT_SOURCE_DIR}/src/userphrase
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include
 )
 
 qt5_wrap_ui(UI
-    ${PROJECT_SOURCE_DIR}/src/ChewingEditor.ui
+    ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.ui
 )
 
 add_executable(chewing-editor
-    ${PROJECT_SOURCE_DIR}/src/ChewingEditor.cpp
-    ${PROJECT_SOURCE_DIR}/src/ChewingEditor.h
     ${PROJECT_SOURCE_DIR}/src/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.cpp
+    ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.h
     ${PROJECT_SOURCE_DIR}/src/userphrase/DefaultUserphraseData.cpp
     ${PROJECT_SOURCE_DIR}/src/userphrase/DefaultUserphraseData.h
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseData.cpp
