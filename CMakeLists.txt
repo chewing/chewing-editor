@@ -31,6 +31,7 @@ include_directories(
     ${CHEWING_INCLUDE_DIR}
     ${Qt5Widgets_INCLUDES}
     ${PROJECT_SOURCE_DIR}/src/userphrase
+    ${PROJECT_SOURCE_DIR}/gmock/gtest/include
 )
 
 qt5_wrap_ui(UI
