@@ -30,6 +30,7 @@ find_package(Qt5Widgets REQUIRED)
 include_directories(
     ${CHEWING_INCLUDE_DIR}
     ${Qt5Widgets_INCLUDES}
+    ${PROJECT_SOURCE_DIR}/src/userphrase
 )
 
 qt5_wrap_ui(UI
@@ -39,13 +40,16 @@ qt5_wrap_ui(UI
 add_executable(chewing-editor
     ${PROJECT_SOURCE_DIR}/src/ChewingEditor.cpp
     ${PROJECT_SOURCE_DIR}/src/ChewingEditor.h
-    ${PROJECT_SOURCE_DIR}/src/ChewingUserphraseModel.cpp
-    ${PROJECT_SOURCE_DIR}/src/ChewingUserphraseModel.h
     ${PROJECT_SOURCE_DIR}/src/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/UserphraseModel.cpp
-    ${PROJECT_SOURCE_DIR}/src/UserphraseModel.h
+    ${PROJECT_SOURCE_DIR}/src/userphrase/DefaultUserphraseData.cpp
+    ${PROJECT_SOURCE_DIR}/src/userphrase/DefaultUserphraseData.h
+    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseData.cpp
+    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseData.h
+    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModel.cpp
+    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModel.h
+    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModelFactory.cpp
+    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModelFactory.h
     ${UI}
 )
-
 target_link_libraries(chewing-editor ${CHEWING_LIBRARY})
 qt5_use_modules(chewing-editor Widgets)
