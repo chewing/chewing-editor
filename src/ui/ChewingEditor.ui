@@ -21,8 +21,19 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QListView" name="userphraseView">
+      <property name="selectionMode">
+       <enum>QAbstractItemView::MultiSelection</enum>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
-     <widget class="QListView" name="userphraseView"/>
+     <widget class="QPushButton" name="removeButton">
+      <property name="text">
+       <string>remove</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
