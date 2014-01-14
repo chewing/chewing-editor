@@ -6,7 +6,7 @@
 
 #include "UserphraseData.h"
 
-class UserphraseModel: public QAbstractListModel {
+class UserphraseModel final: public QAbstractListModel {
     Q_OBJECT
 
 public:
@@ -18,8 +18,7 @@ public:
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-public slots:
-    void remove(const QModelIndex &index);
+    void remove(int index);
 
 protected:
     std::unique_ptr<UserphraseData> data_;

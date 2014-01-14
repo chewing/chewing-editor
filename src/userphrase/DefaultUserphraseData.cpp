@@ -69,3 +69,18 @@ void DefaultUserphraseData::refresh_impl()
 void DefaultUserphraseData::save_impl()
 {
 }
+
+void DefaultUserphraseData::remove_impl(size_t index)
+{
+    auto item = userphrase_.begin() + index;
+
+    int ret = chewing_userphrase_remove(
+        ctx_.get(),
+        item->phrase_.c_str(),
+        item->bopomofo_.c_str());
+
+    qDebug() << "chewing_userphrase_remove returns = " << ret;
+    // TODO: Report remove fail
+
+    userphrase_.erase(item);
+}

@@ -1,5 +1,7 @@
 #include "UserphraseData.h"
 
+#include <QDebug>
+
 size_t UserphraseData::size() const
 {
     return userphrase_.size();
@@ -20,7 +22,8 @@ void UserphraseData::add(std::string &&phrase_, std::string &&bopomofo_)
 
 void UserphraseData::remove(size_t index)
 {
-    userphrase_.erase(userphrase_.begin() + index);
+    qDebug() << __func__ << "index = " << index;
+    remove_impl(index);
 }
 
 void UserphraseData::swap(std::vector<Userphrase> &userphrase)

@@ -28,6 +28,7 @@ public:
 protected:
     virtual void refresh_impl() = 0;
     virtual void save_impl() = 0;
+    virtual void remove_impl(size_t index) = 0;
 
     std::vector<Userphrase> userphrase_;
 };
