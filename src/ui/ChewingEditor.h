@@ -30,6 +30,4 @@ private:
     std::unique_ptr<Ui::ChewingEditor> ui_;
     std::unique_ptr<UserphraseModel> model_;
     std::unique_ptr<RemoveUserphraseDialog> removeUserphraseDialog_;
-
-    int selectedIndex_;
 };
