@@ -70,3 +70,5 @@ add_executable(run-test
 target_link_libraries(run-test gmock)
 
 add_test(test run-test)
+
+install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION bin)
