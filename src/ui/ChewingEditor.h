@@ -5,7 +5,6 @@
 #include <QMainWindow>
 
 #include "UserphraseModelFactory.h"
-#include "RemoveUserphraseDialog.h"
 
 namespace Ui {
     class ChewingEditor;
@@ -22,12 +21,11 @@ public:
     ~ChewingEditor(); // = default;
 
 public slots:
-    void finishRemoveUserphraseDialog(int result);
+    void remove();
 
 private:
     void setupConnect();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
     std::unique_ptr<UserphraseModel> model_;
-    std::unique_ptr<RemoveUserphraseDialog> removeUserphraseDialog_;
 };

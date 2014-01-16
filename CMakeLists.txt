@@ -37,15 +37,12 @@ include_directories(
 
 qt5_wrap_ui(UI
     ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.ui
-    ${PROJECT_SOURCE_DIR}/src/ui/RemoveUserphraseDialog.ui
 )
 
 add_executable(chewing-editor
     ${PROJECT_SOURCE_DIR}/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.cpp
     ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.h
-    ${PROJECT_SOURCE_DIR}/src/ui/RemoveUserphraseDialog.cpp
-    ${PROJECT_SOURCE_DIR}/src/ui/RemoveUserphraseDialog.h
     ${PROJECT_SOURCE_DIR}/src/userphrase/DefaultUserphraseData.cpp
     ${PROJECT_SOURCE_DIR}/src/userphrase/DefaultUserphraseData.h
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseData.cpp

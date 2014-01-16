@@ -8,7 +8,6 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     :QMainWindow(parent)
     ,ui_(new Ui::ChewingEditor)
     ,model_(UserphraseModelFactory())
-    ,removeUserphraseDialog_(new RemoveUserphraseDialog(parent))
 {
     ui_.get()->setupUi(this);
     ui_.get()->userphraseView->setModel(model_.get());
@@ -20,15 +19,23 @@ ChewingEditor::~ChewingEditor()
 {
 }
 
-void ChewingEditor::finishRemoveUserphraseDialog(int result)
+void ChewingEditor::remove()
 {
-    qDebug() << __func__ << "result = " << result;
-
     auto selectionModel = ui_.get()->userphraseView->selectionModel();
 
-    if (result == QDialog::Accepted && selectionModel->hasSelection()) {
-        // TODO: Start to remove item.
+    if (selectionModel->hasSelection()) {
+        bool success = true;
+
+        foreach (auto index, selectionModel->selectedIndexes()) {
+            if (!model_->remove(index.row())) {
+                success = false;
+            }
+        }
         selectionModel->reset();
+
+        if (!success) {
+            // TODO: notify user about failure
+        }
     }
 }
 
@@ -36,11 +43,6 @@ void ChewingEditor::setupConnect()
 {
     connect(
         ui_.get()->removeButton, SIGNAL(pressed()),
-        removeUserphraseDialog_.get(), SLOT(exec())
-    );
-
-    connect(
-        removeUserphraseDialog_.get(), SIGNAL(finished(int)),
-        this, SLOT(finishRemoveUserphraseDialog(int))
+        this, SLOT(remove())
     );
 }

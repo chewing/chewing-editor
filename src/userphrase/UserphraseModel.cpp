@@ -33,7 +33,7 @@ QVariant UserphraseModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void UserphraseModel::remove(int index)
+bool UserphraseModel::remove(size_t index)
 {
-    data_.get()->remove(index);
+    return data_.get()->remove(index);
 }

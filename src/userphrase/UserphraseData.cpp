@@ -20,10 +20,9 @@ void UserphraseData::add(std::string &&phrase_, std::string &&bopomofo_)
     });
 }
 
-void UserphraseData::remove(size_t index)
+bool UserphraseData::remove(size_t index)
 {
-    qDebug() << __func__ << "index = " << index;
-    remove_impl(index);
+    return remove_impl(index);
 }
 
 void UserphraseData::swap(std::vector<Userphrase> &userphrase)
