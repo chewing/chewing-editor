@@ -20,7 +20,7 @@ void UserphraseData::add(std::string &&phrase_, std::string &&bopomofo_)
     });
 }
 
-bool UserphraseData::remove(size_t index)
+bool UserphraseData::remove(const std::vector<size_t> &index)
 {
     return remove_impl(index);
 }

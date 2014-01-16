@@ -24,15 +24,15 @@ void ChewingEditor::remove()
     auto selectionModel = ui_.get()->userphraseView->selectionModel();
 
     if (selectionModel->hasSelection()) {
+        std::vector<size_t> index;
         bool success = true;
 
-        foreach (auto index, selectionModel->selectedIndexes()) {
-            if (!model_->remove(index.row())) {
-                success = false;
-            }
+        foreach (auto selected, selectionModel->selectedIndexes()) {
+            index.push_back(selected.row());
         }
-        selectionModel->reset();
 
+        success = model_->remove(index);
+        selectionModel->reset();
         if (!success) {
             // TODO: notify user about failure
         }

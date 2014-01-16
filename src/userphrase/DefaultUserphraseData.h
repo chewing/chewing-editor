@@ -16,7 +16,7 @@ public:
 private:
     virtual void refresh_impl() override;
     virtual void save_impl() override;
-    virtual bool remove_impl(size_t index) override;
+    virtual bool remove_impl(const std::vector<size_t> &index) override;
 
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
 };

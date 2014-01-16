@@ -18,7 +18,7 @@ public:
     size_t size() const;
     const Userphrase& get(size_t index);
     void add(std::string &&phrase_, std::string &&bopomofo_);
-    bool remove(size_t index);
+    bool remove(const std::vector<size_t> &index);
 
     void swap(std::vector<Userphrase> &userphrase);
 
@@ -28,7 +28,7 @@ public:
 protected:
     virtual void refresh_impl() = 0;
     virtual void save_impl() = 0;
-    virtual bool remove_impl(size_t index) = 0;
+    virtual bool remove_impl(const std::vector<size_t> &index) = 0;
 
     std::vector<Userphrase> userphrase_;
     std::vector<Userphrase> undo_;

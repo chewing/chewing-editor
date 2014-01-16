@@ -70,20 +70,23 @@ void DefaultUserphraseData::save_impl()
 {
 }
 
-bool DefaultUserphraseData::remove_impl(size_t index)
+bool DefaultUserphraseData::remove_impl(const std::vector<size_t> &index)
 {
-    auto item = userphrase_.begin() + index;
+    bool success = true;
+    for (auto i: index) {
+        auto item = userphrase_.begin() + i;
 
-    int ret = chewing_userphrase_remove(
-        ctx_.get(),
-        item->phrase_.c_str(),
-        item->bopomofo_.c_str());
-    qDebug() << "chewing_userphrase_remove returns = " << ret;
+        int ret = chewing_userphrase_remove(
+            ctx_.get(),
+            item->phrase_.c_str(),
+            item->bopomofo_.c_str());
+        qDebug() << "chewing_userphrase_remove returns = " << ret;
 
-    if (ret == -1) {
-        return false;
+        if (ret == -1) {
+            success = false;
+        }
     }
+    refresh();
 
-    userphrase_.erase(item);
-    return true;
+    return success;
 }
