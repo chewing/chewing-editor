@@ -91,18 +91,17 @@ void DefaultUserphraseData::saveImpl()
 
 bool DefaultUserphraseData::removeImpl(size_t index)
 {
-    auto item = userphrase_[index];
-
     auto ret = chewing_userphrase_remove(
         ctx_.get(),
-        item.phrase_.c_str(),
-        item.bopomofo_.c_str());
+        userphrase_[index].phrase_.c_str(),
+        userphrase_[index].bopomofo_.c_str());
     qDebug() << "chewing_userphrase_remove returns = " << ret;
 
     if (ret == 0) {
         // FIXME: std::vector::erase is an inefficient operation.
         userphrase_.erase(userphrase_.begin() + index);
     }
+    // FIXME: Handle chewing_userphrase_remove fails.
 
     return ret == 0;
 }

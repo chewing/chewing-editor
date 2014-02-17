@@ -22,6 +22,8 @@
 #include <string>
 #include <vector>
 
+#include <QModelIndex>
+
 struct Userphrase final {
     std::string phrase_;
     std::string bopomofo_;

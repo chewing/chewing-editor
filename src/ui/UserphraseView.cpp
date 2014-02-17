@@ -26,8 +26,7 @@ void UserphraseView::remove()
     auto m = dynamic_cast<UserphraseModel*>(model());
 
     foreach(auto selected, selection->selectedIndexes()) {
-        if (m->remove(selected.row())) {
-        }
+        m->remove(selected);
     }
 
     selection->reset();
