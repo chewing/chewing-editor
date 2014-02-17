@@ -14,9 +14,9 @@ public:
     virtual ~DefaultUserphraseData() = default;
 
 private:
-    virtual void refresh_impl() override;
-    virtual void save_impl() override;
-    virtual bool remove_impl(const std::vector<size_t> &index) override;
+    virtual void refreshImpl() override;
+    virtual void saveImpl() override;
+    virtual bool removeImpl(const std::vector<size_t> &index) override;
 
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
 };

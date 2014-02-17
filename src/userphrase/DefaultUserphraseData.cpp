@@ -33,7 +33,7 @@ DefaultUserphraseData::DefaultUserphraseData(const char* path)
 }
 
 
-void DefaultUserphraseData::refresh_impl()
+void DefaultUserphraseData::refreshImpl()
 {
     std::vector<Userphrase> userphrase;
 
@@ -66,11 +66,11 @@ void DefaultUserphraseData::refresh_impl()
     userphrase_.swap(userphrase);
 }
 
-void DefaultUserphraseData::save_impl()
+void DefaultUserphraseData::saveImpl()
 {
 }
 
-bool DefaultUserphraseData::remove_impl(const std::vector<size_t> &index)
+bool DefaultUserphraseData::removeImpl(const std::vector<size_t> &index)
 {
     bool success = true;
     for (auto i: index) {

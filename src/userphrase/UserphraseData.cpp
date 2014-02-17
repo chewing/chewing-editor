@@ -20,22 +20,7 @@ void UserphraseData::add(std::string &&phrase_, std::string &&bopomofo_)
     });
 }
 
-bool UserphraseData::remove(const std::vector<size_t> &index)
-{
-    return remove_impl(index);
-}
-
 void UserphraseData::swap(std::vector<Userphrase> &userphrase)
 {
     userphrase_.swap(userphrase);
-}
-
-void UserphraseData::refresh()
-{
-    refresh_impl();
-}
-
-void UserphraseData::save()
-{
-    save_impl();
 }
