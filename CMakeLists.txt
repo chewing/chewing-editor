@@ -70,6 +70,8 @@ add_executable(chewing-editor
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModel.h
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModelFactory.cpp
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModelFactory.h
+    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseSortFilterProxyModel.cpp
+    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseSortFilterProxyModel.h
     ${UI}
 )
 target_link_libraries(chewing-editor ${CHEWING_LIBRARY})
