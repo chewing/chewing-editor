@@ -52,9 +52,13 @@ QVariant UserphraseModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool UserphraseModel::remove(const QModelIndex &index)
+bool UserphraseModel::remove(QModelIndexList &&indexList)
 {
-    if (data_.get()->remove(index.row())) {
-        emit dataChanged(index, index);
+    qSort(indexList.begin(), indexList.end(), qGreater<QModelIndex>());
+
+    foreach(auto index, indexList) {
+        data_.get()->remove(index.row());
     }
+
+    emit dataChanged(indexList.first(), indexList.last());
 }

@@ -37,7 +37,7 @@ public:
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-    bool remove(const QModelIndex &index);
+    bool remove(QModelIndexList &&indexList);
 
 protected:
     std::unique_ptr<UserphraseData> data_;
