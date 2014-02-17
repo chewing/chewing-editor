@@ -22,7 +22,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
-     <widget class="QListView" name="userphraseView">
+     <widget class="UserphraseView" name="userphraseView" native="true">
       <property name="selectionMode">
        <enum>QAbstractItemView::MultiSelection</enum>
       </property>
@@ -67,6 +67,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>UserphraseView</class>
+   <extends>QWidget</extends>
+   <header>UserphraseView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
