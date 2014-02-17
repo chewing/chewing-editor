@@ -70,23 +70,20 @@ void DefaultUserphraseData::saveImpl()
 {
 }
 
-bool DefaultUserphraseData::removeImpl(const std::vector<size_t> &index)
+bool DefaultUserphraseData::removeImpl(size_t index)
 {
-    bool success = true;
-    for (auto i: index) {
-        auto item = userphrase_.begin() + i;
+    auto item = userphrase_[index];
 
-        int ret = chewing_userphrase_remove(
-            ctx_.get(),
-            item->phrase_.c_str(),
-            item->bopomofo_.c_str());
-        qDebug() << "chewing_userphrase_remove returns = " << ret;
+    auto ret = chewing_userphrase_remove(
+        ctx_.get(),
+        item.phrase_.c_str(),
+        item.bopomofo_.c_str());
+    qDebug() << "chewing_userphrase_remove returns = " << ret;
 
-        if (ret == -1) {
-            success = false;
-        }
+    if (ret == 0) {
+        // FIXME: std::vector::erase is an inefficient operation.
+        userphrase_.erase(userphrase_.begin() + index);
     }
-    refresh();
 
-    return success;
+    return ret == 0;
 }

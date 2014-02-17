@@ -20,9 +20,6 @@ public:
     ChewingEditor& operator=(const ChewingEditor&) = delete;
     ~ChewingEditor(); // = default;
 
-public slots:
-    void remove();
-
 private:
     void setupConnect();
 

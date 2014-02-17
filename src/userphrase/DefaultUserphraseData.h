@@ -16,7 +16,7 @@ public:
 private:
     virtual void refreshImpl() override;
     virtual void saveImpl() override;
-    virtual bool removeImpl(const std::vector<size_t> &index) override;
+    virtual bool removeImpl(size_t index) override;
 
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
 };

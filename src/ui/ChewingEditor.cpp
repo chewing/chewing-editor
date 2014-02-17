@@ -19,30 +19,10 @@ ChewingEditor::~ChewingEditor()
 {
 }
 
-void ChewingEditor::remove()
-{
-    auto selectionModel = ui_.get()->userphraseView->selectionModel();
-
-    if (selectionModel->hasSelection()) {
-        std::vector<size_t> index;
-        bool success = true;
-
-        foreach (auto selected, selectionModel->selectedIndexes()) {
-            index.push_back(selected.row());
-        }
-
-        success = model_->remove(index);
-        selectionModel->reset();
-        if (!success) {
-            // TODO: notify user about failure
-        }
-    }
-}
-
 void ChewingEditor::setupConnect()
 {
     connect(
         ui_.get()->removeButton, SIGNAL(pressed()),
-        this, SLOT(remove())
+        ui_.get()->userphraseView, SLOT(remove())
     );
 }
