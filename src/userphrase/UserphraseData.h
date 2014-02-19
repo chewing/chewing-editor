@@ -52,5 +52,4 @@ protected:
     virtual bool removeImpl(size_t index) = 0;
 
     std::vector<Userphrase> userphrase_;
-    std::vector<Userphrase> undo_;
 };
