@@ -21,11 +21,6 @@
 
 #include <QDebug>
 
-UserphraseModel::UserphraseModel(UserphraseData *data)
-:data_(data)
-{
-}
-
 int UserphraseModel::rowCount(const QModelIndex &parent) const
 {
     return data_.get()->size();

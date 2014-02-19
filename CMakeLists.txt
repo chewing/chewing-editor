@@ -68,8 +68,6 @@ add_executable(chewing-editor
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseData.h
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModel.cpp
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModel.h
-    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModelFactory.cpp
-    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModelFactory.h
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseSortFilterProxyModel.cpp
     ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseSortFilterProxyModel.h
     ${UI}

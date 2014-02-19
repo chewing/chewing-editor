@@ -23,7 +23,6 @@
 
 #include <QMainWindow>
 
-#include "UserphraseModelFactory.h"
 #include "UserphraseSortFilterProxyModel.h"
 
 namespace Ui {
@@ -44,6 +43,6 @@ private:
     void setupConnect();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
-    std::unique_ptr<UserphraseModel> model_;
+    UserphraseModel *model_;
     UserphraseSortFilterProxyModel *proxyModel_;
 };
