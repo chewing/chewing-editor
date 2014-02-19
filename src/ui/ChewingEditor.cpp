@@ -27,9 +27,12 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     :QMainWindow(parent)
     ,ui_(new Ui::ChewingEditor)
     ,model_(UserphraseModelFactory())
+    ,proxyModel_(new UserphraseSortFilterProxyModel(this))
 {
     ui_.get()->setupUi(this);
-    ui_.get()->userphraseView->setModel(model_.get());
+
+    proxyModel_->setSourceModel(model_.get());
+    ui_.get()->userphraseView->setModel(proxyModel_);
 
     setupConnect();
 }

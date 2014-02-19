@@ -18,3 +18,23 @@
  */
 
 #include "UserphraseSortFilterProxyModel.h"
+
+#include <utility>
+
+#include <QDebug>
+
+bool UserphraseSortFilterProxyModel::remove(QModelIndexList &&indexList)
+{
+    QModelIndexList sourceIndexList;
+    QModelIndex first = indexList.first();
+    QModelIndex last = indexList.first();
+
+    for (auto i = indexList.constBegin(); i != indexList.constEnd(); ++i) {
+        sourceIndexList.push_back(*i);
+        if (*i < first) { first = *i; }
+        if (last < *i) { last = *i; }
+    }
+
+    sourceModel()->remove(std::move(sourceIndexList));
+    emit dataChanged(first, last);
+}

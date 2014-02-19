@@ -59,6 +59,4 @@ bool UserphraseModel::remove(QModelIndexList &&indexList)
     foreach(auto index, indexList) {
         data_.get()->remove(index.row());
     }
-
-    emit dataChanged(indexList.first(), indexList.last());
 }

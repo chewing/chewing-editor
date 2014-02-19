@@ -23,7 +23,7 @@
 void UserphraseView::remove()
 {
     auto selection = selectionModel();
-    auto m = dynamic_cast<UserphraseModel*>(model());
+    auto m = model();
 
     m->remove(selection->selectedIndexes());
     selection->reset();

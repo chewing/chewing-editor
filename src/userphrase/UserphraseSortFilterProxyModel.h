@@ -21,12 +21,25 @@
 
 #include <QSortFilterProxyModel>
 
+#include "UserphraseModel.h"
+
 class UserphraseSortFilterProxyModel final : public QSortFilterProxyModel {
     Q_OBJECT
 
 public:
-    UserphraseSortFilterProxyModel() = default;
+    explicit UserphraseSortFilterProxyModel(QObject * parent = 0):QSortFilterProxyModel(parent) {}
     UserphraseSortFilterProxyModel(const UserphraseSortFilterProxyModel& x) = delete;
     UserphraseSortFilterProxyModel& operator=(const UserphraseSortFilterProxyModel& x) = delete;
     virtual ~UserphraseSortFilterProxyModel() = default;
+
+
+    virtual void setSourceModel(UserphraseModel* model) {
+        QSortFilterProxyModel::setSourceModel(model);
+    }
+
+    UserphraseModel* sourceModel () const {
+        return dynamic_cast<UserphraseModel*>(QSortFilterProxyModel::sourceModel());
+    }
+
+    bool remove(QModelIndexList &&indexList);
 };

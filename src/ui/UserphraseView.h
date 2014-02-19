@@ -21,6 +21,8 @@
 
 #include <QListView>
 
+#include "UserphraseSortFilterProxyModel.h"
+
 class UserphraseView final : public QListView {
     Q_OBJECT
 
@@ -29,7 +31,15 @@ public:
     UserphraseView(const UserphraseView&) = delete;
     UserphraseView& operator=(const UserphraseView&) = delete;
     virtual ~UserphraseView() = default;
+    virtual void setModel(UserphraseSortFilterProxyModel *model) {
+        QListView::setModel(model);
+    }
 
 public slots:
     void remove();
+
+protected:
+    UserphraseSortFilterProxyModel* model() const {
+        return dynamic_cast<UserphraseSortFilterProxyModel*>(QListView::model());
+    }
 };
