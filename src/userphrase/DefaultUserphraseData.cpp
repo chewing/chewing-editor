@@ -25,20 +25,25 @@
 
 static void logger(void *data, int level, const char *fmt, ...)
 {
-    va_list list;
-    int len;
+    va_list ap;
 
-    va_start(list, fmt);
-    len = vsnprintf(NULL, 0, fmt, list);
-    va_end(list);
+    va_start(ap, fmt);
+    size_t len = vsnprintf(NULL, 0, fmt, ap);
+    va_end(ap);
 
-    std::vector<char> buf(len);
+    std::vector<char> buffer(len + 1);
 
-    va_start(list, fmt);
-    len = vsnprintf(&buf[0], buf.size(), fmt, list);
-    va_end(list);
+    va_start(ap, fmt);
+    vsnprintf(&buffer[0], buffer.size(), fmt, ap);
+    va_end(ap);
 
-    qDebug() << QString::fromUtf8(&buf[0]);
+    if (level <= CHEWING_LOG_INFO) {
+        qDebug() << &buffer[0];
+    } else if (level <= CHEWING_LOG_WARN) {
+        qWarning() << &buffer[0];
+    } else if (level <= CHEWING_LOG_ERROR) {
+        qCritical() << &buffer[0];
+    }
 }
 
 DefaultUserphraseData::DefaultUserphraseData(const char* path)
@@ -46,7 +51,7 @@ DefaultUserphraseData::DefaultUserphraseData(const char* path)
 {
     if (!ctx_) {
         // FIXME: Report error here
-        qDebug() << "chewing_new2 fails";
+        qCritical() << "chewing_new2() fails";
     }
     refresh();
 }
@@ -71,7 +76,7 @@ void DefaultUserphraseData::refreshImpl()
             &phrase[0], phrase.size(),
             &bopomofo[0], bopomofo.size());
         if (ret == -1) {
-            qDebug() << "chewing_userphrase_get() returns " << ret;
+            qWarning() << "chewing_userphrase_get() returns" << ret;
             continue;
         }
 
@@ -95,11 +100,12 @@ bool DefaultUserphraseData::removeImpl(size_t index)
         ctx_.get(),
         userphrase_[index].phrase_.c_str(),
         userphrase_[index].bopomofo_.c_str());
-    qDebug() << "chewing_userphrase_remove returns = " << ret;
 
     if (ret == 0) {
         // FIXME: std::vector::erase is an inefficient operation.
         userphrase_.erase(userphrase_.begin() + index);
+    } else {
+        qWarning() << "chewing_userphrase_remove() returns" << ret;
     }
     // FIXME: Handle chewing_userphrase_remove fails.
 
