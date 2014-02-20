@@ -21,13 +21,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="UserphraseView" name="userphraseView" native="true">
-      <property name="selectionMode">
-       <enum>QAbstractItemView::MultiSelection</enum>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="removeButton">
       <property name="text">
@@ -35,36 +28,18 @@
       </property>
      </widget>
     </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit"/>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="UserphraseView" name="userphraseView" native="true">
+      <property name="selectionMode">
+       <enum>QAbstractItemView::MultiSelection</enum>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpenDefaultUserDictionary"/>
-    <addaction name="actionOpenUserDictionary"/>
-   </widget>
-   <addaction name="menuFile"/>
-  </widget>
-  <action name="actionOpenDefaultUserDictionary">
-   <property name="text">
-    <string>Open Default User Dictionary</string>
-   </property>
-  </action>
-  <action name="actionOpenUserDictionary">
-   <property name="text">
-    <string>Open User Dictionary</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
