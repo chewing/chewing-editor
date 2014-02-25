@@ -56,20 +56,13 @@ qt5_wrap_ui(UI
     ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.ui
 )
 
+file(GLOB_RECURSE chewing-editor_src
+    src/*.cpp
+    src/*.h
+)
+
 add_executable(chewing-editor
-    ${PROJECT_SOURCE_DIR}/src/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.cpp
-    ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.h
-    ${PROJECT_SOURCE_DIR}/src/ui/UserphraseView.cpp
-    ${PROJECT_SOURCE_DIR}/src/ui/UserphraseView.h
-    ${PROJECT_SOURCE_DIR}/src/userphrase/DefaultUserphraseData.cpp
-    ${PROJECT_SOURCE_DIR}/src/userphrase/DefaultUserphraseData.h
-    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseData.cpp
-    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseData.h
-    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModel.cpp
-    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseModel.h
-    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseSortFilterProxyModel.cpp
-    ${PROJECT_SOURCE_DIR}/src/userphrase/UserphraseSortFilterProxyModel.h
+    ${chewing-editor_src}
     ${UI}
 )
 target_link_libraries(chewing-editor ${CHEWING_LIBRARY})
@@ -78,10 +71,12 @@ qt5_use_modules(chewing-editor Widgets)
 enable_testing()
 add_subdirectory(gmock)
 
-add_executable(run-test
-    ${PROJECT_SOURCE_DIR}/test/testmain.cpp
+file(GLOB_RECURSE run-test_src
+    test/*.cpp
+)
 
-    ${PROJECT_SOURCE_DIR}/test/testUserphrase.cpp
+add_executable(run-test
+    ${run-test_src}
 )
 target_link_libraries(run-test gmock)
 
