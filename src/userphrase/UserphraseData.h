@@ -19,19 +19,22 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
 #include <QModelIndex>
+
+#include <chewing.h>
 
 struct Userphrase final {
     std::string phrase_;
     std::string bopomofo_;
 };
 
-class UserphraseData {
+class UserphraseData final {
 public:
-    UserphraseData() = default;
+    explicit UserphraseData(const char* path = nullptr);
     UserphraseData(const UserphraseData&) = delete;
     UserphraseData& operator=(const UserphraseData&) = delete;
     virtual ~UserphraseData() = default;
@@ -39,17 +42,11 @@ public:
     size_t size() const;
     const Userphrase& get(size_t index);
     void add(std::string &&phrase_, std::string &&bopomofo_);
-    void remove(size_t index) { return removeImpl(index); }
-
-    void swap(std::vector<Userphrase> &userphrase);
-
-    void refresh() { return refreshImpl(); }
-    void save() { return saveImpl(); }
+    void remove(size_t index);
+    void refresh();
 
 protected:
-    virtual void refreshImpl() = 0;
-    virtual void saveImpl() = 0;
-    virtual void removeImpl(size_t index) = 0;
 
+    std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
     std::vector<Userphrase> userphrase_;
 };

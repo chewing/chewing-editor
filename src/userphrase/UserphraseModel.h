@@ -23,14 +23,14 @@
 
 #include <QAbstractListModel>
 
-#include "DefaultUserphraseData.h"
+#include "UserphraseData.h"
 
 class UserphraseModel final: public QAbstractListModel {
     Q_OBJECT
 
 public:
     UserphraseModel(QObject * parent = 0)
-        :QAbstractListModel(parent), data_(new DefaultUserphraseData()) {}
+        :QAbstractListModel(parent), data_(new UserphraseData()) {}
     UserphraseModel(const UserphraseModel& x) = delete;
     UserphraseModel& operator=(const UserphraseModel& x) = delete;
     virtual ~UserphraseModel() = default;
