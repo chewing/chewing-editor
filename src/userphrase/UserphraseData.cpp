@@ -75,6 +75,10 @@ void UserphraseData::add(std::string &&phrase_, std::string &&bopomofo_)
 void UserphraseData::remove(size_t index)
 {
     qDebug() << FUNC_NAME << index;
+
+    qDebug() << "Remove" << userphrase_[index].phrase_.c_str()
+        << userphrase_[index].bopomofo_.c_str();
+
     auto ret = chewing_userphrase_remove(
         ctx_.get(),
         userphrase_[index].phrase_.c_str(),

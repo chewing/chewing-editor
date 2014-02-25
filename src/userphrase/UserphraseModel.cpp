@@ -62,7 +62,6 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
     auto last = indexList.first().row();
 
     emit beginRemoveRows(indexList.first().parent(), first, last);
-    qDebug() << FUNC_NAME << "emit beginRemoveRows" << first << last;
 
     foreach(auto index, indexList) {
         data_.get()->remove(index.row());
