@@ -23,18 +23,25 @@
 
 #include <QDebug>
 
-bool UserphraseSortFilterProxyModel::remove(QModelIndexList &&indexList)
+void UserphraseSortFilterProxyModel::remove(QModelIndexList &&indexList)
 {
+    if (indexList.empty()) {
+        qDebug() << FUNC_NAME << "indexList is empty";
+        return;
+    }
+
     QModelIndexList sourceIndexList;
     QModelIndex first = indexList.first();
     QModelIndex last = indexList.first();
 
     for (auto i = indexList.constBegin(); i != indexList.constEnd(); ++i) {
-        sourceIndexList.push_back(*i);
+        sourceIndexList.push_back(mapToSource(*i));
         if (*i < first) { first = *i; }
         if (last < *i) { last = *i; }
     }
 
     sourceModel()->remove(std::move(sourceIndexList));
+
+    qDebug() << FUNC_NAME << "emit dataChanged" << first.row() << last.row();
     emit dataChanged(first, last);
 }

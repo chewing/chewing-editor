@@ -47,4 +47,9 @@ void ChewingEditor::setupConnect()
         ui_.get()->removeButton, SIGNAL(pressed()),
         ui_.get()->userphraseView, SLOT(remove())
     );
+
+    connect(
+        ui_.get()->userphraseFilter, SIGNAL(textEdited(const QString&)),
+        ui_.get()->userphraseView, SLOT(setFilterString(const QString&))
+    );
 }

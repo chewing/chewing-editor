@@ -47,8 +47,13 @@ QVariant UserphraseModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool UserphraseModel::remove(QModelIndexList &&indexList)
+void UserphraseModel::remove(QModelIndexList &&indexList)
 {
+    if (indexList.empty()) {
+        qDebug() << FUNC_NAME << "indexList is empty";
+        return;
+    }
+
     qSort(indexList.begin(), indexList.end(), qGreater<QModelIndex>());
 
     foreach(auto index, indexList) {

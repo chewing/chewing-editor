@@ -94,8 +94,9 @@ void DefaultUserphraseData::saveImpl()
 {
 }
 
-bool DefaultUserphraseData::removeImpl(size_t index)
+void DefaultUserphraseData::removeImpl(size_t index)
 {
+    qDebug() << FUNC_NAME << index;
     auto ret = chewing_userphrase_remove(
         ctx_.get(),
         userphrase_[index].phrase_.c_str(),
@@ -108,6 +109,4 @@ bool DefaultUserphraseData::removeImpl(size_t index)
         qWarning() << "chewing_userphrase_remove() returns" << ret;
     }
     // FIXME: Handle chewing_userphrase_remove fails.
-
-    return ret == 0;
 }

@@ -20,11 +20,18 @@
 #include "UserphraseView.h"
 #include "UserphraseModel.h"
 
+#include <QDebug>
+
 void UserphraseView::remove()
 {
+    qDebug() << FUNC_NAME;
     auto selection = selectionModel();
-    auto m = model();
-
-    m->remove(selection->selectedIndexes());
+    model()->remove(selection->selectedIndexes());
     selection->reset();
+}
+
+void UserphraseView::setFilterString(const QString& text)
+{
+    qDebug() << FUNC_NAME << text;
+    model()->setFilterWildcard(text);
 }
