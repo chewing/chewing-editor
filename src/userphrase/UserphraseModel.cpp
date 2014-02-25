@@ -56,7 +56,17 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
 
     qSort(indexList.begin(), indexList.end(), qGreater<QModelIndex>());
 
+    // XXX: indexList is in revsrsed order, so first is actual last, and vice
+    // verse.
+    auto first = indexList.last().row();
+    auto last = indexList.first().row();
+
+    emit beginRemoveRows(indexList.first().parent(), first, last);
+    qDebug() << FUNC_NAME << "emit beginRemoveRows" << first << last;
+
     foreach(auto index, indexList) {
         data_.get()->remove(index.row());
     }
+
+    emit endRemoveRows();
 }
