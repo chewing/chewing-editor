@@ -41,11 +41,6 @@ ChewingEditor::~ChewingEditor()
 {
 }
 
-void ChewingEditor::refresh()
-{
-    model_->refresh();
-}
-
 void ChewingEditor::setupConnect()
 {
     connect(
@@ -60,6 +55,6 @@ void ChewingEditor::setupConnect()
 
     connect(
         ui_.get()->refreshButton, SIGNAL(pressed()),
-        this, SLOT(refresh())
+        model_, SLOT(refresh())
     );
 }

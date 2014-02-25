@@ -39,6 +39,8 @@ public:
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void remove(QModelIndexList &&indexList);
+
+public slots:
     void refresh();
 
 protected:

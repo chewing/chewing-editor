@@ -39,9 +39,6 @@ public:
     ChewingEditor& operator=(const ChewingEditor&) = delete;
     ~ChewingEditor(); // = default;
 
-public slots:
-    void refresh();
-
 private:
     void setupConnect();
 
