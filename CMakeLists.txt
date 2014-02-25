@@ -22,6 +22,9 @@ cmake_policy(SET CMP0020 NEW)
 
 if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "-std=c++11 -g -O2 ${CMAKE_CXX_FLAGS}")
+    add_definitions(-DFUNC_NAME=__PRETTY_FUNCTION__)
+else()
+    add_definitions(-DFUNC_NAME=__func__)
 endif()
 
 if (NOT DEFINED CHEWING_LIBRARY)
