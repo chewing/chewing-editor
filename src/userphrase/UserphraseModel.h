@@ -39,6 +39,7 @@ public:
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void remove(QModelIndexList &&indexList);
+    void refresh();
 
 protected:
     std::unique_ptr<UserphraseData> data_;

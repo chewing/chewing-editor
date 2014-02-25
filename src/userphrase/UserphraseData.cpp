@@ -91,6 +91,7 @@ void UserphraseData::remove(size_t index)
 
 void UserphraseData::refresh()
 {
+    qDebug() << FUNC_NAME;
     std::vector<Userphrase> userphrase;
 
     std::vector<char> phrase;
@@ -112,6 +113,7 @@ void UserphraseData::refresh()
             continue;
         }
 
+        qDebug() << "Get userphrase:" << &phrase[0] << &bopomofo[0];
         userphrase.push_back(Userphrase{
             std::string(&phrase[0]),
             std::string(&bopomofo[0])
@@ -120,4 +122,5 @@ void UserphraseData::refresh()
     }
 
     userphrase_.swap(userphrase);
+    qDebug() << "Total userphrase" << userphrase_.size();
 }

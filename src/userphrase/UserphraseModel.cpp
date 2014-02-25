@@ -70,3 +70,11 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
 
     emit endRemoveRows();
 }
+
+
+void UserphraseModel::refresh()
+{
+    emit beginResetModel();
+    data_.get()->refresh();
+    emit endResetModel();
+}

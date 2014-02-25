@@ -41,6 +41,11 @@ ChewingEditor::~ChewingEditor()
 {
 }
 
+void ChewingEditor::refresh()
+{
+    model_->refresh();
+}
+
 void ChewingEditor::setupConnect()
 {
     connect(
@@ -51,5 +56,10 @@ void ChewingEditor::setupConnect()
     connect(
         ui_.get()->userphraseFilter, SIGNAL(textEdited(const QString&)),
         ui_.get()->userphraseView, SLOT(setFilterString(const QString&))
+    );
+
+    connect(
+        ui_.get()->refreshButton, SIGNAL(pressed()),
+        this, SLOT(refresh())
     );
 }
