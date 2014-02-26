@@ -46,7 +46,10 @@ void ChewingEditor::addNewPhrase(int result)
 {
     if (result != QDialog::Accepted) { return; }
 
-    qDebug() << FUNC_NAME << "accepted";
+    auto phrase = addNewPhraseDialog_->getPhrase();
+    auto bopomofo = addNewPhraseDialog_->getBopomofo();
+
+    qDebug() << FUNC_NAME << phrase << bopomofo;
 }
 
 void ChewingEditor::setupConnect()

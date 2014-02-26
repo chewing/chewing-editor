@@ -44,3 +44,13 @@ void AddNewPhraseDialog::setupConnect()
         this, SLOT(reject())
     );
 }
+
+QString AddNewPhraseDialog::getPhrase() const
+{
+    return ui_.get()->phrase->text();
+}
+
+QString AddNewPhraseDialog::getBopomofo() const
+{
+    return ui_.get()->bopomofo->text();
+}

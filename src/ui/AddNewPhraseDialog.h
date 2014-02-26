@@ -20,8 +20,6 @@
 #pragma once
 
 #include <memory>
-#include <string>
-
 #include <QDialog>
 
 namespace Ui {
@@ -37,6 +35,9 @@ public:
     AddNewPhraseDialog(const AddNewPhraseDialog&) = delete;
     AddNewPhraseDialog& operator=(const AddNewPhraseDialog&) = delete;
     ~AddNewPhraseDialog(); // = default;
+
+    QString getPhrase() const;
+    QString getBopomofo() const;
 
 private:
     void setupConnect();

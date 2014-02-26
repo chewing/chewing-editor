@@ -70,10 +70,15 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
     emit endRemoveRows();
 }
 
-
 void UserphraseModel::refresh()
 {
     emit beginResetModel();
     data_.get()->refresh();
     emit endResetModel();
+}
+
+bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
+{
+    std::string stdPhrase = phrase.toStdString();
+    std::string stdBopomofo = bopomofo.toStdString();
 }

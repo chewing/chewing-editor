@@ -39,6 +39,7 @@ public:
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void remove(QModelIndexList &&indexList);
+    bool add(const QString &phrase, const QString &bopomofo);
 
 public slots:
     void refresh();
