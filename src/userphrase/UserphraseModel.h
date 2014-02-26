@@ -23,14 +23,18 @@
 
 #include <QAbstractListModel>
 
-#include "UserphraseData.h"
+#include <chewing.h>
+
+struct Userphrase final {
+    std::string phrase_;
+    std::string bopomofo_;
+};
 
 class UserphraseModel final: public QAbstractListModel {
     Q_OBJECT
 
 public:
-    UserphraseModel(QObject * parent = 0)
-        :QAbstractListModel(parent), data_(new UserphraseData()) {}
+    UserphraseModel(QObject * parent = 0, const char *path = nullptr);
     UserphraseModel(const UserphraseModel& x) = delete;
     UserphraseModel& operator=(const UserphraseModel& x) = delete;
     virtual ~UserphraseModel() = default;
@@ -44,6 +48,7 @@ public:
 public slots:
     void refresh();
 
-protected:
-    std::unique_ptr<UserphraseData> data_;
+private:
+    std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
+    std::vector<Userphrase> userphrase_;
 };
