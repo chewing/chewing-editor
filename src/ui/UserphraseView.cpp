@@ -24,7 +24,6 @@
 
 void UserphraseView::remove()
 {
-    qDebug() << FUNC_NAME;
     auto selection = selectionModel();
     model()->remove(selection->selectedIndexes());
     selection->reset();
@@ -32,6 +31,5 @@ void UserphraseView::remove()
 
 void UserphraseView::setFilterString(const QString& text)
 {
-    qDebug() << FUNC_NAME << text;
     model()->setFilterWildcard(text);
 }

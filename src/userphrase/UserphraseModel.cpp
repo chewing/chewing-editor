@@ -101,6 +101,9 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
     foreach(auto item, indexList) {
         auto index = item.row();
 
+        qDebug() << FUNC_NAME
+            << userphrase_[index].phrase_.c_str()
+            << userphrase_[index].bopomofo_.c_str();
         auto ret = chewing_userphrase_remove(
             ctx_.get(),
             userphrase_[index].phrase_.c_str(),
