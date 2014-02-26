@@ -25,11 +25,6 @@
 
 #include <chewing.h>
 
-struct Userphrase final {
-    std::string phrase_;
-    std::string bopomofo_;
-};
-
 class UserphraseModel final: public QAbstractListModel {
     Q_OBJECT
 
@@ -49,6 +44,19 @@ public slots:
     void refresh();
 
 private:
+    class Userphrase final {
+    public:
+        Userphrase(std::string&& phrase, std::string&& bopomofo);
+        Userphrase(const Userphrase&) = default;
+        Userphrase& operator=(const Userphrase&) = default;
+        ~Userphrase() = default;
+
+        std::string phrase_;
+        std::string bopomofo_;
+        QString display_;
+    };
+
+
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
     std::vector<Userphrase> userphrase_;
 };

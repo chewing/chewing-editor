@@ -44,6 +44,16 @@ static void logger(void *data, int level, const char *fmt, ...)
     }
 }
 
+UserphraseModel::Userphrase::Userphrase(std::string&& phrase, std::string&& bopomofo)
+    :phrase_(phrase)
+    ,bopomofo_(bopomofo)
+    ,display_()
+{
+    display_ = QString("%1 (%2)")
+        .arg(QString::fromStdString(phrase_))
+        .arg(QString::fromStdString(bopomofo_));
+}
+
 UserphraseModel::UserphraseModel(QObject *parent, const char *path)
     :QAbstractListModel(parent)
     ,ctx_(chewing_new2(nullptr, path, logger, nullptr), chewing_delete)
@@ -63,16 +73,9 @@ int UserphraseModel::rowCount(const QModelIndex &parent) const
 
 QVariant UserphraseModel::data(const QModelIndex &index, int role) const
 {
-    const auto& phrase = userphrase_[index.row()];
-
-    // FIXME: QString shall be cached.
-    QString str = QString("%1 (%2)")
-            .arg(QString::fromStdString(phrase.phrase_))
-            .arg(QString::fromStdString(phrase.bopomofo_));
-
     switch (role) {
     case Qt::DisplayRole:
-        return str;
+        return userphrase_[index.row()].display_;
     case Qt::WhatsThisRole: // FIXME: Provide "What's This?"
         break;
     default:
