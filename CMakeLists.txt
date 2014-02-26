@@ -55,15 +55,13 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include
 )
 
-qt5_wrap_ui(UI
-    ${PROJECT_SOURCE_DIR}/src/ui/ChewingEditor.ui
-)
+file(GLOB_RECURSE UI_src src/ui/*.ui)
+qt5_wrap_ui(UI ${UI_src})
 
 file(GLOB_RECURSE chewing-editor_src
     src/*.cpp
     src/*.h
 )
-
 add_executable(chewing-editor
     ${chewing-editor_src}
     ${UI}
