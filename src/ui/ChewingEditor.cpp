@@ -50,6 +50,8 @@ void ChewingEditor::addNewPhrase(int result)
     auto bopomofo = addNewPhraseDialog_->getBopomofo();
 
     qDebug() << FUNC_NAME << phrase << bopomofo;
+
+    model_->add(phrase, bopomofo);
 }
 
 void ChewingEditor::setupConnect()

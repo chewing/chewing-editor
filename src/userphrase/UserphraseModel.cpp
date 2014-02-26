@@ -161,4 +161,22 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 {
     std::string stdPhrase = phrase.toStdString();
     std::string stdBopomofo = bopomofo.toStdString();
+
+    auto ret = chewing_userphrase_add(
+        ctx_.get(),
+        stdPhrase.c_str(),
+        stdBopomofo.c_str());
+
+    if (ret == 0) {
+        emit beginResetModel();
+        userphrase_.push_back(Userphrase{
+            std::move(stdPhrase),
+            std::move(stdBopomofo)
+        });
+        emit endResetModel();
+    } else {
+        qWarning() << "chewing_userphrase_add() returns" << ret;
+    }
+
+    return ret == 0;
 }
