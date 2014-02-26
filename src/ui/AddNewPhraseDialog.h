@@ -20,34 +20,25 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
-#include <QMainWindow>
-
-#include "AddNewPhraseDialog.h"
-#include "UserphraseSortFilterProxyModel.h"
+#include <QDialog>
 
 namespace Ui {
-    class ChewingEditor;
+    class AddNewPhraseDialog;
 }
 
-class ChewingEditor final: public QMainWindow
+class AddNewPhraseDialog final: public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ChewingEditor(QWidget *parent = 0);
-    ChewingEditor(const ChewingEditor&) = delete;
-    ChewingEditor& operator=(const ChewingEditor&) = delete;
-    ~ChewingEditor(); // = default;
-
-public slots:
-    void addNewPhrase(int result);
+    explicit AddNewPhraseDialog(QWidget *parent = 0);
+    AddNewPhraseDialog(const AddNewPhraseDialog&) = delete;
+    AddNewPhraseDialog& operator=(const AddNewPhraseDialog&) = delete;
+    ~AddNewPhraseDialog(); // = default;
 
 private:
     void setupConnect();
-
-    std::unique_ptr<Ui::ChewingEditor> ui_;
-    UserphraseModel *model_;
-    UserphraseSortFilterProxyModel *proxyModel_;
-    AddNewPhraseDialog *addNewPhraseDialog_;
+    std::unique_ptr<Ui::AddNewPhraseDialog> ui_;
 };

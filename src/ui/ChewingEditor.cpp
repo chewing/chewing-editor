@@ -28,6 +28,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ,ui_(new Ui::ChewingEditor)
     ,model_(new UserphraseModel(this))
     ,proxyModel_(new UserphraseSortFilterProxyModel(this))
+    ,addNewPhraseDialog_(new AddNewPhraseDialog(this))
 {
     ui_.get()->setupUi(this);
 
@@ -39,6 +40,13 @@ ChewingEditor::ChewingEditor(QWidget *parent)
 
 ChewingEditor::~ChewingEditor()
 {
+}
+
+void ChewingEditor::addNewPhrase(int result)
+{
+    if (result != QDialog::Accepted) { return; }
+
+    qDebug() << FUNC_NAME << "accepted";
 }
 
 void ChewingEditor::setupConnect()
@@ -56,5 +64,15 @@ void ChewingEditor::setupConnect()
     connect(
         ui_.get()->refreshButton, SIGNAL(pressed()),
         model_, SLOT(refresh())
+    );
+
+    connect(
+        ui_.get()->addButton, SIGNAL(pressed()),
+        addNewPhraseDialog_, SLOT(exec())
+    );
+
+    connect(
+        addNewPhraseDialog_, SIGNAL(finished(int)),
+        this, SLOT(addNewPhrase(int))
     );
 }

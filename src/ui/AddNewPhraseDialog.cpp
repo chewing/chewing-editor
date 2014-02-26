@@ -17,37 +17,30 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#pragma once
-
-#include <memory>
-
-#include <QMainWindow>
-
 #include "AddNewPhraseDialog.h"
-#include "UserphraseSortFilterProxyModel.h"
+#include "ui_AddNewPhraseDialog.h"
 
-namespace Ui {
-    class ChewingEditor;
+AddNewPhraseDialog::AddNewPhraseDialog(QWidget *parent)
+    :QDialog(parent)
+    ,ui_(new Ui::AddNewPhraseDialog)
+{
+    ui_.get()->setupUi(this);
+    setupConnect();
 }
 
-class ChewingEditor final: public QMainWindow
+AddNewPhraseDialog::~AddNewPhraseDialog()
 {
-    Q_OBJECT
+}
 
-public:
-    explicit ChewingEditor(QWidget *parent = 0);
-    ChewingEditor(const ChewingEditor&) = delete;
-    ChewingEditor& operator=(const ChewingEditor&) = delete;
-    ~ChewingEditor(); // = default;
+void AddNewPhraseDialog::setupConnect()
+{
+    connect(
+        ui_.get()->buttonBox, SIGNAL(accepted()),
+        this, SLOT(accept())
+    );
 
-public slots:
-    void addNewPhrase(int result);
-
-private:
-    void setupConnect();
-
-    std::unique_ptr<Ui::ChewingEditor> ui_;
-    UserphraseModel *model_;
-    UserphraseSortFilterProxyModel *proxyModel_;
-    AddNewPhraseDialog *addNewPhraseDialog_;
-};
+    connect(
+        ui_.get()->buttonBox, SIGNAL(rejected()),
+        this, SLOT(reject())
+    );
+}
