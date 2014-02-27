@@ -1,5 +1,6 @@
 language: c
 compiler: gcc
+env: CTEST_OUTPUT_ON_FAILURE=1
 
 before_install:
     - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
