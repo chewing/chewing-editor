@@ -75,6 +75,10 @@ file(GLOB_RECURSE importer_src ${PROJECT_SOURCE_DIR}/src/importer/*)
 add_library(importer STATIC ${importer_src})
 qt5_use_modules(importer Widgets)
 
+# ui
+file(GLOB ui_src ${PROJECT_SOURCE_DIR}/src/ui/*)
+qt5_wrap_ui(ui ${ui_src})
+
 # util
 file(GLOB util_src ${PROJECT_SOURCE_DIR}/src/util/*)
 add_library(util STATIC ${util_src})
@@ -86,6 +90,7 @@ file(GLOB chewing-editor_src
     ${PROJECT_SOURCE_DIR}/src/model/*
     ${PROJECT_SOURCE_DIR}/src/ui/*
     ${PROJECT_SOURCE_DIR}/src/view/*
+    ${ui}
 )
 add_executable(chewing-editor ${chewing-editor_src})
 target_link_libraries(chewing-editor
