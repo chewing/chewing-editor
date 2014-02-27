@@ -2,16 +2,27 @@ language: c
 compiler: gcc
 env: CTEST_OUTPUT_ON_FAILURE=1
 
+matrix:
+    include:
+        - env: CTEST_OUTPUT_ON_FAILURE=1 OPTION="-DENABLE_GCOV=yes" COVERALLS=yes
+
 before_install:
+    - sudo pip install cpp-coveralls --use-mirrors
     - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
     - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
     - sudo add-apt-repository --yes ppa:chewing/chewing
     - sudo add-apt-repository --yes ppa:chewing/travis-ci
     - sudo apt-get update
     - sudo apt-get install -qq cmake gcc-4.8 g++-4.8 libchewing3-dev qtbase5-dev
-    - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 48 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8 --slave /usr/share/man/man1/gcc.1.gz gcc.1 /usr/share/man/man1/gcc-4.8.1.gz --slave /usr/share/man/man1/g++.1.gz g++.1 /usr/share/man/man1/g++-4.8.1.gz
+    - sudo ln -fs /usr/bin/gcc-4.8 /usr/bin/gcc
     - gcc --version
+    - sudo ln -fs /usr/bin/g++-4.8 /usr/bin/g++
     - g++ --version
+    - sudo ln -fs /usr/bin/gcov-4.8 /usr/bin/gcov
+    - gcov --version
 
 script:
-    - cmake .; make ; make test
+    - cmake $OPTION .; make ; make test
+
+after_success:
+    - if [ x$COVERALLS == xyes ]; then coveralls --exclude gmock --exclude test --exclude-pattern 'CMake[^\.]*\.c(?:pp)?' --exclude-pattern '[^\.]*\.h'; fi

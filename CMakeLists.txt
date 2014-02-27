@@ -23,6 +23,11 @@ cmake_policy(SET CMP0020 NEW)
 if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "-std=c++11 -g -O2 ${CMAKE_CXX_FLAGS}")
 
+    option(ENABLE_GCOV "Coverage support" false)
+    if(ENABLE_GCOV)
+        set(CMAKE_CXX_FLAGS "-coverage ${CMAKE_CXX_FLAGS}")
+    endif()
+
     add_definitions(-DFUNC_NAME=__PRETTY_FUNCTION__)
 else()
     add_definitions(-DFUNC_NAME=__func__)
