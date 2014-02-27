@@ -42,10 +42,8 @@ std::vector<Userphrase> ChewingImporter::loadImpl()
         return result;
     }
 
-    QByteArray val = file.readAll();
     QJsonParseError err;
-
-    auto doc = QJsonDocument::fromJson(val, &err);
+    auto doc = QJsonDocument::fromJson(file.readAll(), &err);
     if (doc.isNull()) {
         qWarning() << FUNC_NAME << "parse json error:" << err.errorString();
         return result;
