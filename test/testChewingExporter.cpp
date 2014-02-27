@@ -78,3 +78,11 @@ TEST_F(ChewingExporterTest, WriteOneUserphrase)
         QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */)),
         obj["bopomofo"]);
 }
+
+TEST_F(ChewingExporterTest, PathError)
+{
+    ASSERT_TRUE(dir_.isValid());
+
+    ChewingExporter exporter("/NoSuchPath.json");
+    ASSERT_FALSE(exporter.save());
+}
