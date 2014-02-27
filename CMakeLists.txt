@@ -55,57 +55,48 @@ find_package(Qt5Widgets REQUIRED)
 
 include_directories(
     ${CHEWING_INCLUDE_DIR}
-    ${Qt5Widgets_INCLUDES}
+    ${PROJECT_SOURCE_DIR}/gmock/gtest/include
     ${PROJECT_SOURCE_DIR}/src/exporter
     ${PROJECT_SOURCE_DIR}/src/importer
+    ${PROJECT_SOURCE_DIR}/src/model
     ${PROJECT_SOURCE_DIR}/src/ui
-    ${PROJECT_SOURCE_DIR}/src/userphrase
-    ${PROJECT_SOURCE_DIR}/gmock/gtest/include
+    ${PROJECT_SOURCE_DIR}/src/util
+    ${PROJECT_SOURCE_DIR}/src/view
+    ${Qt5Widgets_INCLUDES}
 )
-
-# UI
-
-file(GLOB UI_src
-    ${PROJECT_SOURCE_DIR}/src/ui/*.ui
-)
-qt5_wrap_ui(UI ${UI_src})
 
 # exporter
-
-file(GLOB_RECURSE exporter_src
-    ${PROJECT_SOURCE_DIR}/src/exporter/*
-)
+file(GLOB_RECURSE exporter_src ${PROJECT_SOURCE_DIR}/src/exporter/*)
 add_library(exporter STATIC ${exporter_src})
 qt5_use_modules(exporter Widgets)
 
 # importer
-
-file(GLOB_RECURSE importer_src
-    ${PROJECT_SOURCE_DIR}/src/importer/*
-)
+file(GLOB_RECURSE importer_src ${PROJECT_SOURCE_DIR}/src/importer/*)
 add_library(importer STATIC ${importer_src})
 qt5_use_modules(importer Widgets)
 
-# chewing-editor
+# util
+file(GLOB util_src ${PROJECT_SOURCE_DIR}/src/util/*)
+add_library(util STATIC ${util_src})
+qt5_use_modules(util Widgets)
 
+# chewing-editor
 file(GLOB chewing-editor_src
     ${PROJECT_SOURCE_DIR}/src/*
-    ${PROJECT_SOURCE_DIR}/src/userphrase/*
+    ${PROJECT_SOURCE_DIR}/src/model/*
     ${PROJECT_SOURCE_DIR}/src/ui/*
+    ${PROJECT_SOURCE_DIR}/src/view/*
 )
-add_executable(chewing-editor
-    ${chewing-editor_src}
-    ${UI}
-)
+add_executable(chewing-editor ${chewing-editor_src})
 target_link_libraries(chewing-editor
+    ${CHEWING_LIBRARY}
     exporter
     importer
-    ${CHEWING_LIBRARY}
+    util
 )
 qt5_use_modules(chewing-editor Widgets)
 
 # testing
-
 enable_testing()
 add_subdirectory(gmock)
 
@@ -116,9 +107,10 @@ add_executable(run-test
     ${run-test_src}
 )
 target_link_libraries(run-test
+    gmock
+
     exporter
     importer
-    gmock
 )
 qt5_use_modules(run-test Widgets)
 
