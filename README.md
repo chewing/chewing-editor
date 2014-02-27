@@ -1,12 +1,13 @@
 # chewing-editor
 [![Build Status](https://travis-ci.org/chewing/chewing-editor.png?branch=master)](https://travis-ci.org/chewing/chewing-editor)
+[![Status-Icon](https://coveralls.io/repos/chewing/chewing-editor/badge.png?branch=master)](https://coveralls.io/r/chewing/chewing-editor)
 
 Cross platform chewing user phrase editor.
 
 # Development Tool Requirements
 *   [CMake](http://www.cmake.org/) >= 2.8.9
 *   gcc >= 4.8 or Visual Studio Express 2012
-*   libchewing (current master branch)
+*   [libchewing](https://github.com/chewing/libchewing)
 *   Qt = 5
 *   Editor with [EditorConfig](http://editorconfig.org/) supported
 
