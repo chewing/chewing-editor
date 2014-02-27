@@ -32,6 +32,7 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
 else()
     add_definitions(-DFUNC_NAME=__func__)
 endif()
+add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
 
 if (NOT DEFINED CHEWING_LIBRARY)
     find_library(CHEWING_LIBRARY NAMES chewing)
@@ -116,6 +117,7 @@ target_link_libraries(run-test
 
     exporter
     importer
+    util
 )
 qt5_use_modules(run-test Widgets)
 

@@ -25,6 +25,7 @@ ChewingExporterTest::ChewingExporterTest()
     ,path_()
 {
     path_ = QString("%1/chewing.json").arg(dir_.path());
+    //dir_.setAutoRemove(false);
 }
 
 TEST_F(ChewingExporterTest, WriteNoUserphrase)

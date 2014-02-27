@@ -28,3 +28,11 @@ Userphrase::Userphrase(std::string&& phrase, std::string&& bopomofo)
         .arg(QString::fromStdString(phrase_))
         .arg(QString::fromStdString(bopomofo_));
 }
+
+Userphrase::Userphrase(QString&& phrase, QString&& bopomofo)
+    :phrase_(phrase.toStdString())
+    ,bopomofo_(bopomofo.toStdString())
+    ,display_()
+{
+    display_ = QString("%1 (%2)").arg(phrase).arg(bopomofo);
+}

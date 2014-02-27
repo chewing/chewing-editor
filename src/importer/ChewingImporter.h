@@ -19,22 +19,15 @@
 
 #pragma once
 
-#include <vector>
+#include "UserphraseImporter.h"
 
-#include <QString>
-
-#include "Userphrase.h"
-
-class UserphraseImporter {
+class ChewingImporter final : public UserphraseImporter {
 public:
-    explicit UserphraseImporter(const QString& path);
-    UserphraseImporter(const UserphraseImporter&) = delete;
-    UserphraseImporter& operator=(const UserphraseImporter&) = delete;
-    virtual ~UserphraseImporter() = default;
-
-    std::vector<Userphrase> load();
+    explicit ChewingImporter(const QString& path);
+    ChewingImporter(const ChewingImporter&) = delete;
+    ChewingImporter& operator=(const ChewingImporter&) = delete;
+    virtual ~ChewingImporter() = default;
 
 protected:
-    virtual std::vector<Userphrase> loadImpl() = 0;
-    QString path_;
+    virtual std::vector<Userphrase> loadImpl();
 };

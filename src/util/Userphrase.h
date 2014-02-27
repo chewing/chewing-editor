@@ -26,6 +26,7 @@
 class Userphrase final {
 public:
     Userphrase(std::string&& phrase, std::string&& bopomofo);
+    Userphrase(QString&& phrase, QString&& bopomofo);
     Userphrase(const Userphrase&) = default;
     Userphrase& operator=(const Userphrase&) = default;
     ~Userphrase() = default;

@@ -17,24 +17,14 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#pragma once
+#include "UserphraseImporter.h"
 
-#include <vector>
+UserphraseImporter::UserphraseImporter(const QString& path)
+    :path_(path)
+{
+}
 
-#include <QString>
-
-#include "Userphrase.h"
-
-class UserphraseImporter {
-public:
-    explicit UserphraseImporter(const QString& path);
-    UserphraseImporter(const UserphraseImporter&) = delete;
-    UserphraseImporter& operator=(const UserphraseImporter&) = delete;
-    virtual ~UserphraseImporter() = default;
-
-    std::vector<Userphrase> load();
-
-protected:
-    virtual std::vector<Userphrase> loadImpl() = 0;
-    QString path_;
-};
+std::vector<Userphrase> UserphraseImporter::load()
+{
+    return loadImpl();
+}

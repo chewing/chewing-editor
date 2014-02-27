@@ -1,0 +1,56 @@
+/*
+ * chewing-editor: Chewing userphrase editor
+ * Copyright (C) 2014 ChangZhuo Chen
+
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+#include "gtest/gtest.h"
+
+#include <QDebug>
+
+#include "ChewingImporter.h"
+
+class ChewingImporterTest : public ::testing::Test {
+protected:
+    ChewingImporterTest() = default;
+    virtual ~ChewingImporterTest() = default;
+    virtual void SetUp() {}
+    virtual void TearDown() {}
+};
+
+TEST_F(ChewingImporterTest, ReadNoUserphrase)
+{
+    ChewingImporter importer{QString(TESTDATA "/import/chewing_empty.json")};
+
+    auto userphrase = importer.load();
+
+    ASSERT_EQ(0, userphrase.size());
+}
+
+TEST_F(ChewingImporterTest, ReadOneUserphrase)
+{
+    ChewingImporter importer{QString(TESTDATA "/import/chewing_one_phrase.json")};
+
+    auto userphrase = importer.load();
+
+    ASSERT_EQ(1, userphrase.size());
+    EXPECT_EQ(0, QString::compare(
+        QString("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */),
+        QString::fromStdString(userphrase[0].phrase_)));
+    EXPECT_EQ(0, QString::compare(
+        QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */),
+        QString::fromStdString(userphrase[0].bopomofo_)));
+}
