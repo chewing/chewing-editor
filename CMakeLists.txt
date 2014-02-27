@@ -50,36 +50,54 @@ find_package(Qt5Widgets REQUIRED)
 include_directories(
     ${CHEWING_INCLUDE_DIR}
     ${Qt5Widgets_INCLUDES}
+    ${PROJECT_SOURCE_DIR}/src/exporter
     ${PROJECT_SOURCE_DIR}/src/ui
     ${PROJECT_SOURCE_DIR}/src/userphrase
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include
 )
 
-file(GLOB_RECURSE UI_src src/ui/*.ui)
+# UI
+
+file(GLOB UI_src
+    ${PROJECT_SOURCE_DIR}/src/ui/*.ui
+)
 qt5_wrap_ui(UI ${UI_src})
 
-file(GLOB_RECURSE chewing-editor_src
-    src/*.cpp
-    src/*.h
+# exporter
+
+file(GLOB_RECURSE exporter_src
+    ${PROJECT_SOURCE_DIR}/src/exporter/*
+)
+add_library(exporter STATIC ${exporter_src})
+qt5_use_modules(exporter Widgets)
+
+# chewing-editor
+
+file(GLOB chewing-editor_src
+    ${PROJECT_SOURCE_DIR}/src/*
+    ${PROJECT_SOURCE_DIR}/src/userphrase/*
+    ${PROJECT_SOURCE_DIR}/src/ui/*
 )
 add_executable(chewing-editor
     ${chewing-editor_src}
     ${UI}
 )
-target_link_libraries(chewing-editor ${CHEWING_LIBRARY})
+target_link_libraries(chewing-editor exporter ${CHEWING_LIBRARY})
 qt5_use_modules(chewing-editor Widgets)
+
+# testing
 
 enable_testing()
 add_subdirectory(gmock)
 
-file(GLOB_RECURSE run-test_src
+file(GLOB run-test_src
     test/*.cpp
 )
-
 add_executable(run-test
     ${run-test_src}
 )
-target_link_libraries(run-test gmock)
+target_link_libraries(run-test exporter gmock)
+qt5_use_modules(run-test Widgets)
 
 add_test(test run-test)
 
