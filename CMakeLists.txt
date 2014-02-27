@@ -22,6 +22,7 @@ cmake_policy(SET CMP0020 NEW)
 
 if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "-std=c++11 -g -O2 ${CMAKE_CXX_FLAGS}")
+
     add_definitions(-DFUNC_NAME=__PRETTY_FUNCTION__)
 else()
     add_definitions(-DFUNC_NAME=__func__)
@@ -51,6 +52,7 @@ include_directories(
     ${CHEWING_INCLUDE_DIR}
     ${Qt5Widgets_INCLUDES}
     ${PROJECT_SOURCE_DIR}/src/exporter
+    ${PROJECT_SOURCE_DIR}/src/importer
     ${PROJECT_SOURCE_DIR}/src/ui
     ${PROJECT_SOURCE_DIR}/src/userphrase
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include
@@ -71,6 +73,14 @@ file(GLOB_RECURSE exporter_src
 add_library(exporter STATIC ${exporter_src})
 qt5_use_modules(exporter Widgets)
 
+# importer
+
+file(GLOB_RECURSE importer_src
+    ${PROJECT_SOURCE_DIR}/src/importer/*
+)
+add_library(importer STATIC ${importer_src})
+qt5_use_modules(importer Widgets)
+
 # chewing-editor
 
 file(GLOB chewing-editor_src
@@ -82,7 +92,11 @@ add_executable(chewing-editor
     ${chewing-editor_src}
     ${UI}
 )
-target_link_libraries(chewing-editor exporter ${CHEWING_LIBRARY})
+target_link_libraries(chewing-editor
+    exporter
+    importer
+    ${CHEWING_LIBRARY}
+)
 qt5_use_modules(chewing-editor Widgets)
 
 # testing
@@ -96,7 +110,11 @@ file(GLOB run-test_src
 add_executable(run-test
     ${run-test_src}
 )
-target_link_libraries(run-test exporter gmock)
+target_link_libraries(run-test
+    exporter
+    importer
+    gmock
+)
 qt5_use_modules(run-test Widgets)
 
 add_test(test run-test)
