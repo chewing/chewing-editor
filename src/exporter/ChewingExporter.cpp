@@ -55,7 +55,7 @@ bool ChewingExporter::saveImpl()
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
         return false;
     }
-    file.write(doc.toJson(QJsonDocument::Indented));
+    file.write(doc.toJson());
 
     return true;
 }
