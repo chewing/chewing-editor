@@ -28,13 +28,13 @@ public:
     UserphraseExporter& operator=(const UserphraseExporter&) = delete;
     virtual ~UserphraseExporter() = default;
 
-    bool addUserphrase(
+    void addUserphrase(
         const std::string& phrase,
         const std::string& bopomofo);
     bool save();
 
 protected:
-    virtual bool addUserphraseImpl(
+    virtual void addUserphraseImpl(
         const std::string& phrase,
         const std::string& bopomofo) = 0;
 

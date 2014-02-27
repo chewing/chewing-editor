@@ -21,7 +21,7 @@
 
 #include "UserphraseExporter.h"
 
-#include <QJsonDocument>
+#include <QJsonArray>
 
 class ChewingExporter final: public UserphraseExporter {
 public:
@@ -31,10 +31,11 @@ public:
     virtual ~ChewingExporter() = default;
 
 protected:
-    virtual bool addUserphraseImpl (
+    virtual void addUserphraseImpl (
         const std::string& phrase,
         const std::string& bopomofo) override;
     virtual bool saveImpl() override;
 
-    QJsonDocument json_;
+
+    QJsonArray array_;
 };

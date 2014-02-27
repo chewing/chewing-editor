@@ -19,19 +19,43 @@
 
 #include "ChewingExporter.h"
 
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+
 ChewingExporter::ChewingExporter(const char *path)
     :UserphraseExporter(path)
 {
 }
 
-bool ChewingExporter::addUserphraseImpl(
+void ChewingExporter::addUserphraseImpl(
     const std::string& phrase,
     const std::string& bopomofo)
 {
-    return true;
+    QJsonObject obj;
+
+    obj["phrase"] = QString(phrase.c_str());
+    obj["bopomofo"] = QString(bopomofo.c_str());
+
+    array_.append(obj);
+
+    return;
 }
 
 bool ChewingExporter::saveImpl()
 {
+    QJsonObject root;
+
+    root["userphrase"] = array_;
+
+    QJsonDocument doc(root);
+
+    QFile file{QString(path_.c_str())};
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
+        return false;
+    }
+    file.write(doc.toJson(QJsonDocument::Indented));
+
     return true;
 }

@@ -24,11 +24,11 @@ UserphraseExporter::UserphraseExporter(const char *path)
 {
 }
 
-bool UserphraseExporter::addUserphrase(
+void UserphraseExporter::addUserphrase(
     const std::string& phrase,
     const std::string& bopomofo) {
 
-    return addUserphraseImpl(phrase, bopomofo);
+    addUserphraseImpl(phrase, bopomofo);
 }
 
 bool UserphraseExporter::save() {
