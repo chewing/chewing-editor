@@ -44,16 +44,6 @@ static void logger(void *data, int level, const char *fmt, ...)
     }
 }
 
-UserphraseModel::Userphrase::Userphrase(std::string&& phrase, std::string&& bopomofo)
-    :phrase_(phrase)
-    ,bopomofo_(bopomofo)
-    ,display_()
-{
-    display_ = QString("%1 (%2)")
-        .arg(QString::fromStdString(phrase_))
-        .arg(QString::fromStdString(bopomofo_));
-}
-
 UserphraseModel::UserphraseModel(QObject *parent, const char *path)
     :QAbstractListModel(parent)
     ,ctx_(chewing_new2(nullptr, path, logger, nullptr), chewing_delete)
