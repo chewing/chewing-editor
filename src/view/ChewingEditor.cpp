@@ -29,6 +29,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ,model_(new UserphraseModel(this))
     ,proxyModel_(new UserphraseSortFilterProxyModel(this))
     ,addNewPhraseDialog_(new AddNewPhraseDialog(this))
+    ,importDialog_(new ImportDialog(this))
 {
     ui_.get()->setupUi(this);
 
@@ -36,6 +37,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ui_.get()->userphraseView->setModel(proxyModel_);
 
     setupConnect();
+    setupImport();
 }
 
 ChewingEditor::~ChewingEditor()
@@ -56,6 +58,7 @@ void ChewingEditor::addNewPhrase(int result)
 
 void ChewingEditor::setupConnect()
 {
+    // FIXME: separate to setupAdd, setupFilter, setupRefresh ...
     connect(
         ui_.get()->removeButton, SIGNAL(pressed()),
         ui_.get()->userphraseView, SLOT(remove())
@@ -79,5 +82,18 @@ void ChewingEditor::setupConnect()
     connect(
         addNewPhraseDialog_, SIGNAL(finished(int)),
         this, SLOT(addNewPhrase(int))
+    );
+}
+
+void ChewingEditor::setupImport()
+{
+    connect(
+        ui_.get()->importButton, SIGNAL(pressed()),
+        importDialog_, SLOT(exec())
+    );
+
+    connect(
+        importDialog_, SIGNAL(import(UserphraseImporter&)),
+        model_, SLOT(import(UserphraseImporter&))
     );
 }

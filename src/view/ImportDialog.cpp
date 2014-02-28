@@ -17,42 +17,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#pragma once
-
-#include <memory>
-
-#include <QMainWindow>
-
-#include "AddNewPhraseDialog.h"
 #include "ImportDialog.h"
-#include "UserphraseSortFilterProxyModel.h"
 
-namespace Ui {
-    class ChewingEditor;
+#include <QDebug>
+
+#include "ChewingImporter.h"
+
+ImportDialog::ImportDialog(QWidget* parent)
+    :QFileDialog(parent)
+{
+    connect(
+        this, SIGNAL(fileSelected(const QString&)),
+        this, SLOT(import(const QString&))
+    );
 }
 
-class ChewingEditor final: public QMainWindow
+void ImportDialog::import(const QString& file)
 {
-    Q_OBJECT
-
-public:
-    explicit ChewingEditor(QWidget *parent = 0);
-    ChewingEditor(const ChewingEditor&) = delete;
-    ChewingEditor& operator=(const ChewingEditor&) = delete;
-    ~ChewingEditor(); // = default;
-
-public slots:
-    void addNewPhrase(int result);
-
-private:
-    void setupConnect();
-    void setupImport();
-
-    std::unique_ptr<Ui::ChewingEditor> ui_;
-
-    UserphraseModel *model_;
-    UserphraseSortFilterProxyModel *proxyModel_;
-
-    AddNewPhraseDialog *addNewPhraseDialog_;
-    ImportDialog *importDialog_;
-};
+    // TODO: Find a suitable importer
+    ChewingImporter importer(file);
+    emit import(importer);
+}

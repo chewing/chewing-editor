@@ -26,6 +26,7 @@
 #include <chewing.h>
 
 #include "Userphrase.h"
+#include "UserphraseImporter.h"
 
 class UserphraseModel final: public QAbstractListModel {
     Q_OBJECT
@@ -44,6 +45,7 @@ public:
 
 public slots:
     void refresh();
+    void import(UserphraseImporter& importer);
 
 private:
 

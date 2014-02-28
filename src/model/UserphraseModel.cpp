@@ -161,6 +161,8 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         phrase.toUtf8().constData(),
         bopomofo.toUtf8().constData());
 
+    // FIXME: How to know a NEW userphrase is added? Maybe it is already in
+    // userphrase_?
     if (ret == 0) {
         emit beginResetModel();
         userphrase_.push_back(Userphrase{
@@ -173,4 +175,13 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
     }
 
     return ret == 0;
+}
+
+void UserphraseModel::import(UserphraseImporter& importer)
+{
+    qDebug() << FUNC_NAME;
+    for (auto& i: importer.load()) {
+        // FIXME: UserphraseModel shall provide a API to support Userphrase directly.
+        add(i.phrase_, i.bopomofo_);
+    }
 }

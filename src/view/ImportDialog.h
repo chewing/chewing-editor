@@ -19,40 +19,21 @@
 
 #pragma once
 
-#include <memory>
+#include <QFileDialog>
 
-#include <QMainWindow>
+#include "UserphraseImporter.h"
 
-#include "AddNewPhraseDialog.h"
-#include "ImportDialog.h"
-#include "UserphraseSortFilterProxyModel.h"
-
-namespace Ui {
-    class ChewingEditor;
-}
-
-class ChewingEditor final: public QMainWindow
-{
+class ImportDialog final : public QFileDialog {
     Q_OBJECT
-
 public:
-    explicit ChewingEditor(QWidget *parent = 0);
-    ChewingEditor(const ChewingEditor&) = delete;
-    ChewingEditor& operator=(const ChewingEditor&) = delete;
-    ~ChewingEditor(); // = default;
+    explicit ImportDialog(QWidget* parent = 0);
+    ImportDialog(const ImportDialog&) = delete;
+    ImportDialog& operator=(const ImportDialog&) = delete;
+    virtual ~ImportDialog() = default;
 
 public slots:
-    void addNewPhrase(int result);
+    void import(const QString& file);
 
-private:
-    void setupConnect();
-    void setupImport();
-
-    std::unique_ptr<Ui::ChewingEditor> ui_;
-
-    UserphraseModel *model_;
-    UserphraseSortFilterProxyModel *proxyModel_;
-
-    AddNewPhraseDialog *addNewPhraseDialog_;
-    ImportDialog *importDialog_;
+signals:
+    void import(UserphraseImporter& importer);
 };
