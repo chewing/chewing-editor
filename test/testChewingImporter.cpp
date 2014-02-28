@@ -20,6 +20,7 @@
 #include "gtest/gtest.h"
 
 #include <QDebug>
+#include <QDir>
 
 #include "ChewingImporter.h"
 
@@ -33,16 +34,18 @@ protected:
 
 TEST_F(ChewingImporterTest, ReadNoUserphrase)
 {
-    ChewingImporter importer{QString(TESTDATA "/import/chewing_empty.json")};
+    auto list = QDir{TESTDATA "/import/broken"}.entryList();
 
-    auto userphrase = importer.load();
-
-    ASSERT_EQ(0, userphrase.size());
+    foreach(auto path, list) {
+        ChewingImporter importer{path};
+        auto userphrase = importer.load();
+        ASSERT_EQ(0, userphrase.size());
+    }
 }
 
 TEST_F(ChewingImporterTest, ReadOneUserphrase)
 {
-    ChewingImporter importer{QString(TESTDATA "/import/chewing_one_phrase.json")};
+    ChewingImporter importer{QString(TESTDATA "/import/chewing_one_valid_phrase.json")};
 
     auto userphrase = importer.load();
 
@@ -53,4 +56,13 @@ TEST_F(ChewingImporterTest, ReadOneUserphrase)
     EXPECT_EQ(0, QString::compare(
         QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */),
         userphrase[0].bopomofo_));
+}
+
+TEST_F(ChewingImporterTest, PathError)
+{
+    ChewingImporter importer{TESTDATA "/NoSuchPath/chewing.json"};
+
+    auto userphrase = importer.load();
+
+    ASSERT_EQ(0, userphrase.size());
 }

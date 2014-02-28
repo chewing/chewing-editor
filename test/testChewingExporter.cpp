@@ -103,6 +103,6 @@ TEST_F(ChewingExporterTest, PathError)
 {
     ASSERT_TRUE(dir_.isValid());
 
-    ChewingExporter exporter("/NoSuchPath.json");
+    ChewingExporter exporter{TESTDATA "/NoSuchPath/chewing.json"};
     ASSERT_FALSE(exporter.save());
 }
