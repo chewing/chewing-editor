@@ -19,19 +19,9 @@
 
 #include "Userphrase.h"
 
-Userphrase::Userphrase(std::string&& phrase, std::string&& bopomofo)
+Userphrase::Userphrase(const QString& phrase, const QString& bopomofo)
     :phrase_(phrase)
     ,bopomofo_(bopomofo)
-    ,display_()
-{
-    display_ = QString("%1 (%2)")
-        .arg(QString::fromStdString(phrase_))
-        .arg(QString::fromStdString(bopomofo_));
-}
-
-Userphrase::Userphrase(QString&& phrase, QString&& bopomofo)
-    :phrase_(phrase.toStdString())
-    ,bopomofo_(bopomofo.toStdString())
     ,display_()
 {
     display_ = QString("%1 (%2)").arg(phrase).arg(bopomofo);

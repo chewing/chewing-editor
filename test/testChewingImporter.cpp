@@ -49,8 +49,8 @@ TEST_F(ChewingImporterTest, ReadOneUserphrase)
     ASSERT_EQ(1, userphrase.size());
     EXPECT_EQ(0, QString::compare(
         QString("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */),
-        QString::fromStdString(userphrase[0].phrase_)));
+        userphrase[0].phrase_));
     EXPECT_EQ(0, QString::compare(
         QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */),
-        QString::fromStdString(userphrase[0].bopomofo_)));
+        userphrase[0].bopomofo_));
 }

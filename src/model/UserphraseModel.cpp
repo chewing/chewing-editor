@@ -95,12 +95,12 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
         auto index = item.row();
 
         qDebug() << FUNC_NAME
-            << userphrase_[index].phrase_.c_str()
-            << userphrase_[index].bopomofo_.c_str();
+            << userphrase_[index].phrase_
+            << userphrase_[index].bopomofo_;
         auto ret = chewing_userphrase_remove(
             ctx_.get(),
-            userphrase_[index].phrase_.c_str(),
-            userphrase_[index].bopomofo_.c_str());
+            userphrase_[index].phrase_.toUtf8().constData(),
+            userphrase_[index].bopomofo_.toUtf8().constData());
         if (ret == 0) {
             // FIXME: std::vector::erase is an inefficient operation.
             userphrase_.erase(userphrase_.begin() + index);
@@ -140,8 +140,8 @@ void UserphraseModel::refresh()
 
         qDebug() << "Get userphrase:" << &phrase[0] << &bopomofo[0];
         userphrase.push_back(Userphrase{
-            std::string(&phrase[0]),
-            std::string(&bopomofo[0])
+            QString::fromUtf8(&phrase[0]),
+            QString::fromUtf8(&bopomofo[0])
         });
 
     }
@@ -155,19 +155,17 @@ void UserphraseModel::refresh()
 
 bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 {
-    std::string stdPhrase = phrase.toStdString();
-    std::string stdBopomofo = bopomofo.toStdString();
 
     auto ret = chewing_userphrase_add(
         ctx_.get(),
-        stdPhrase.c_str(),
-        stdBopomofo.c_str());
+        phrase.toUtf8().constData(),
+        bopomofo.toUtf8().constData());
 
     if (ret == 0) {
         emit beginResetModel();
         userphrase_.push_back(Userphrase{
-            std::move(stdPhrase),
-            std::move(stdBopomofo)
+            phrase,
+            bopomofo
         });
         emit endResetModel();
     } else {

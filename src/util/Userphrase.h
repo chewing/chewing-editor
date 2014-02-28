@@ -19,19 +19,16 @@
 
 #pragma once
 
-#include <string>
-
 #include <QString>
 
 class Userphrase final {
 public:
-    Userphrase(std::string&& phrase, std::string&& bopomofo);
-    Userphrase(QString&& phrase, QString&& bopomofo);
+    Userphrase(const QString& phrase, const QString& bopomofo);
     Userphrase(const Userphrase&) = default;
     Userphrase& operator=(const Userphrase&) = default;
     ~Userphrase() = default;
 
-    std::string phrase_;
-    std::string bopomofo_;
+    QString phrase_;
+    QString bopomofo_;
     QString display_;
 };
