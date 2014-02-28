@@ -19,14 +19,14 @@
 
 #include "UserphraseExporter.h"
 
-UserphraseExporter::UserphraseExporter(const char *path)
+UserphraseExporter::UserphraseExporter(const QString& path)
     :path_(path)
 {
 }
 
 void UserphraseExporter::addUserphrase(
-    const std::string& phrase,
-    const std::string& bopomofo) {
+    const QString& phrase,
+    const QString& bopomofo) {
 
     addUserphraseImpl(phrase, bopomofo);
 }

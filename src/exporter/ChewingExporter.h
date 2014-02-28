@@ -22,18 +22,19 @@
 #include "UserphraseExporter.h"
 
 #include <QJsonArray>
+#include <QString>
 
 class ChewingExporter final: public UserphraseExporter {
 public:
-    explicit ChewingExporter(const char *path);
+    explicit ChewingExporter(const QString& path);
     ChewingExporter(const ChewingExporter&) = delete;
     ChewingExporter& operator=(const ChewingExporter&) = delete;
     virtual ~ChewingExporter() = default;
 
 protected:
     virtual void addUserphraseImpl (
-        const std::string& phrase,
-        const std::string& bopomofo) override;
+        const QString& phrase,
+        const QString& bopomofo) override;
     virtual bool saveImpl() override;
 
 

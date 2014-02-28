@@ -19,26 +19,26 @@
 
 #pragma once
 
-#include <string>
+#include <QString>
 
 class UserphraseExporter {
 public:
-    explicit UserphraseExporter(const char *path);
+    explicit UserphraseExporter(const QString& path);
     UserphraseExporter(const UserphraseExporter&) = delete;
     UserphraseExporter& operator=(const UserphraseExporter&) = delete;
     virtual ~UserphraseExporter() = default;
 
     void addUserphrase(
-        const std::string& phrase,
-        const std::string& bopomofo);
+        const QString& phrase,
+        const QString& bopomofo);
     bool save();
 
 protected:
     virtual void addUserphraseImpl(
-        const std::string& phrase,
-        const std::string& bopomofo) = 0;
+        const QString& phrase,
+        const QString& bopomofo) = 0;
 
     virtual bool saveImpl() = 0;
 
-    std::string path_;
+    QString path_;
 };

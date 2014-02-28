@@ -23,19 +23,19 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-ChewingExporter::ChewingExporter(const char *path)
+ChewingExporter::ChewingExporter(const QString& path)
     :UserphraseExporter(path)
 {
 }
 
 void ChewingExporter::addUserphraseImpl(
-    const std::string& phrase,
-    const std::string& bopomofo)
+    const QString& phrase,
+    const QString& bopomofo)
 {
     QJsonObject obj;
 
-    obj["phrase"] = QString(phrase.c_str());
-    obj["bopomofo"] = QString(bopomofo.c_str());
+    obj["phrase"] = phrase;
+    obj["bopomofo"] = bopomofo;
 
     array_.append(obj);
 
@@ -50,7 +50,7 @@ bool ChewingExporter::saveImpl()
 
     QJsonDocument doc(root);
 
-    QFile file{QString(path_.c_str())};
+    QFile file{path_};
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
         return false;

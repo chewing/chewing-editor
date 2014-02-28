@@ -51,7 +51,7 @@ TEST_F(ChewingExporterTest, WriteNoUserphrase)
 {
     ASSERT_TRUE(dir_.isValid());
 
-    ChewingExporter exporter(path_.toStdString().c_str());
+    ChewingExporter exporter(path_);
     ASSERT_TRUE(exporter.save());
 
     QFile file{QString(path_)};
@@ -72,13 +72,13 @@ TEST_F(ChewingExporterTest, WriteOneUserphrase)
 
     ChewingExporter exporter(path_.toStdString().c_str());
     exporter.addUserphrase(
-        std::string("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */),
-        std::string("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */)
+        QString("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */),
+        QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */)
     );
 
     ASSERT_TRUE(exporter.save());
 
-    QFile file{QString(path_)};
+    QFile file{path_};
     ASSERT_TRUE(file.open(QIODevice::ReadOnly | QIODevice::Text));
 
     auto root = QJsonDocument::fromJson(file.readAll()).object();
