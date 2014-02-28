@@ -123,4 +123,7 @@ qt5_use_modules(run-test Widgets)
 
 add_test(test run-test)
 
+add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
+add_dependencies(check run-test)
+
 install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION bin)
