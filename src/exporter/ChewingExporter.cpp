@@ -19,6 +19,7 @@
 
 #include "ChewingExporter.h"
 
+#include <QDebug>
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -53,6 +54,7 @@ bool ChewingExporter::saveImpl()
     QFile file{path_};
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
+        qDebug() << FUNC_NAME << "Cannot open" << path_;
         return false;
     }
     file.write(doc.toJson());
