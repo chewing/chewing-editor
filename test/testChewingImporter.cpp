@@ -36,7 +36,8 @@ TEST_F(ChewingImporterTest, ReadNoUserphrase)
 {
     auto list = QDir{TESTDATA "/import/broken"}.entryList();
 
-    foreach(auto path, list) {
+    foreach(auto file, list) {
+        auto path = QString("%1/%2").arg(TESTDATA "/import/broken").arg(file);
         ChewingImporter importer{path};
         auto userphrase = importer.load();
         ASSERT_EQ(0, userphrase.size());

@@ -45,31 +45,31 @@ std::vector<Userphrase> ChewingImporter::loadImpl()
     QJsonParseError err;
     auto doc = QJsonDocument::fromJson(file.readAll(), &err);
     if (doc.isNull()) {
-        qWarning() << FUNC_NAME << "parse json error:" << err.errorString();
+        qWarning() << FUNC_NAME << "parse json error in " << path_ << err.errorString();
         return result;
     }
 
     if (!doc.isObject()) {
-        qWarning() << FUNC_NAME << "root is not an object";
+        qWarning() << FUNC_NAME << "root is not an object in" << path_;
         return result;
     }
 
     auto root = doc.object();
     if (!root["userphrase"].isArray()) {
-        qWarning() << FUNC_NAME << "userphrase is not an array";
+        qWarning() << FUNC_NAME << "userphrase is not an array in " << path_;
         return result;
     }
 
     auto array = root["userphrase"].toArray();
     for (auto i = array.begin(); i != array.end(); ++i) {
         if (!(*i).isObject()) {
-            qWarning() << FUNC_NAME << "skip non object";
+            qWarning() << FUNC_NAME << "skip non object in " << path_;
             continue;
         }
 
         auto obj = (*i).toObject();
         if (!obj["phrase"].isString() || !obj["bopomofo"].isString()) {
-            qWarning() << FUNC_NAME << "phrase or bopomofo is not a string";
+            qWarning() << FUNC_NAME << "phrase or bopomofo is not a string in" << path_;
             continue;
         }
 
