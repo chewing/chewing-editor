@@ -26,8 +26,3 @@ Userphrase::Userphrase(const QString& phrase, const QString& bopomofo)
 {
     display_ = QString("%1 (%2)").arg(phrase).arg(bopomofo);
 }
-
-bool Userphrase::operator<(const Userphrase& userphrase) const
-{
-    return display_ < userphrase.display_;
-}
