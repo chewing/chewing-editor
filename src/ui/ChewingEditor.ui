@@ -60,6 +60,9 @@
      <widget class="QLineEdit" name="userphraseFilter"/>
     </item>
     <item row="1" column="0" colspan="6">
+     <widget class="Notification" name="notification" native="true"/>
+    </item>
+    <item row="2" column="0" colspan="6">
      <widget class="UserphraseView" name="userphraseView" native="true">
       <property name="selectionMode">
        <enum>QAbstractItemView::MultiSelection</enum>
@@ -71,6 +74,11 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
+  <customwidget>
+   <class>Notification</class>
+   <extends>QLabel</extends>
+   <header>Notification.h</header>
+  </customwidget>
   <customwidget>
    <class>UserphraseView</class>
    <extends>QListView</extends>

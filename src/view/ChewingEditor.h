@@ -25,6 +25,7 @@
 #include <QMainWindow>
 
 #include "AddNewPhraseDialog.h"
+#include "Notification.h"
 #include "UserphraseSortFilterProxyModel.h"
 
 namespace Ui {
@@ -59,4 +60,5 @@ private:
     AddNewPhraseDialog *addNewPhraseDialog_;
     QFileDialog *importDialog_;
     QFileDialog *exportDialog_;
+    Notification *notification_;
 };

@@ -34,6 +34,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ,addNewPhraseDialog_(new AddNewPhraseDialog(this))
     ,importDialog_(new QFileDialog(this))
     ,exportDialog_(new QFileDialog(this))
+    ,notification_(new Notification(this))
 {
     ui_.get()->setupUi(this);
 
