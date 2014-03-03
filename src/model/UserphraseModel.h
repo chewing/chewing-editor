@@ -26,6 +26,7 @@
 #include <chewing.h>
 
 #include "Userphrase.h"
+#include "UserphraseExporter.h"
 #include "UserphraseImporter.h"
 #include "UserphraseSet.h"
 
@@ -44,7 +45,8 @@ public:
     void remove(QModelIndexList &&indexList);
     bool add(const QString &phrase, const QString &bopomofo);
 
-    void import(UserphraseImporter& importer);
+    void importUserphrase(UserphraseImporter& importer);
+    void exportUserphrase(UserphraseExporter& exporter);
 
 public slots:
     void refresh();

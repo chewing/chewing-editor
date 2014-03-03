@@ -24,6 +24,7 @@
 #include <QDebug>
 
 #include "ChewingImporter.h"
+#include "ChewingExporter.h"
 
 ChewingEditor::ChewingEditor(QWidget *parent)
     :QMainWindow(parent)
@@ -32,6 +33,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ,proxyModel_(new UserphraseSortFilterProxyModel(this))
     ,addNewPhraseDialog_(new AddNewPhraseDialog(this))
     ,importDialog_(new QFileDialog(this))
+    ,exportDialog_(new QFileDialog(this))
 {
     ui_.get()->setupUi(this);
 
@@ -40,6 +42,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
 
     setupConnect();
     setupImport();
+    setupExport();
 }
 
 ChewingEditor::~ChewingEditor()
@@ -58,11 +61,21 @@ void ChewingEditor::addNewPhrase(int result)
     model_->add(phrase, bopomofo);
 }
 
-void ChewingEditor::import(const QString& file)
+void ChewingEditor::importUserphrase(const QString& file)
 {
     // TODO: Find a suitable importer
     ChewingImporter importer(file);
-    model_->import(importer);
+    model_->importUserphrase(importer);
+}
+
+void ChewingEditor::exportUserphrase(const QString& file)
+{
+    // TODO: Find a suitable exporter
+    ChewingExporter exporter(file);
+    model_->exportUserphrase(exporter);
+
+    // FIXME: report export fail by return code
+    exporter.save();
 }
 
 void ChewingEditor::setupConnect()
@@ -96,7 +109,8 @@ void ChewingEditor::setupConnect()
 
 void ChewingEditor::setupImport()
 {
-    importDialog_->setFileMode(QFileDialog::ExistingFile);
+    importDialog_->setAcceptMode(QFileDialog::AcceptOpen);
+    exportDialog_->setFileMode(QFileDialog::ExistingFile);
 
     connect(
         ui_.get()->importButton, SIGNAL(pressed()),
@@ -105,6 +119,23 @@ void ChewingEditor::setupImport()
 
     connect(
         importDialog_, SIGNAL(fileSelected(const QString&)),
-        this, SLOT(import(const QString&))
+        this, SLOT(importUserphrase(const QString&))
+    );
+}
+
+void ChewingEditor::setupExport()
+{
+    exportDialog_->setAcceptMode(QFileDialog::AcceptSave);
+    exportDialog_->setFileMode(QFileDialog::AnyFile);
+    exportDialog_->setConfirmOverwrite(true);
+
+    connect(
+        ui_.get()->exportButton, SIGNAL(pressed()),
+        exportDialog_, SLOT(exec())
+    );
+
+    connect(
+        exportDialog_, SIGNAL(fileSelected(const QString&)),
+        this, SLOT(exportUserphrase(const QString&))
     );
 }

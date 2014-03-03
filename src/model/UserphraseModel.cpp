@@ -175,11 +175,19 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
     return ret == 0;
 }
 
-void UserphraseModel::import(UserphraseImporter& importer)
+void UserphraseModel::importUserphrase(UserphraseImporter& importer)
 {
     qDebug() << FUNC_NAME;
     for (auto& i: importer.load()) {
         // FIXME: UserphraseModel shall provide a API to support Userphrase directly.
         add(i.phrase_, i.bopomofo_);
+    }
+}
+
+void UserphraseModel::exportUserphrase(UserphraseExporter& exporter)
+{
+    qDebug() << FUNC_NAME;
+    for (auto& i: userphrase_) {
+        exporter.addUserphrase(i.phrase_, i.bopomofo_);
     }
 }

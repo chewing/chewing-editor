@@ -43,11 +43,13 @@ public:
 
 public slots:
     void addNewPhrase(int result);
-    void import(const QString& file);
+    void importUserphrase(const QString& file);
+    void exportUserphrase(const QString& file);
 
 private:
     void setupConnect();
     void setupImport();
+    void setupExport();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
 
@@ -56,4 +58,5 @@ private:
 
     AddNewPhraseDialog *addNewPhraseDialog_;
     QFileDialog *importDialog_;
+    QFileDialog *exportDialog_;
 };
