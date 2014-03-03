@@ -17,17 +17,34 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#pragma once
+
+#include <set>
+#include <vector>
+
+#include <QString>
+
 #include "Userphrase.h"
 
-Userphrase::Userphrase(const QString& phrase, const QString& bopomofo)
-    :phrase_(phrase)
-    ,bopomofo_(bopomofo)
-    ,display_()
-{
-    display_ = QString("%1 (%2)").arg(phrase).arg(bopomofo);
-}
+class UserphraseSet {
+public:
+    UserphraseSet() = default;
+    UserphraseSet(const UserphraseSet&) = default;
+    UserphraseSet& operator=(const UserphraseSet&) = default;
+    virtual ~UserphraseSet() = default;
 
-bool Userphrase::operator<(const Userphrase& userphrase) const
-{
-    return display_ < userphrase.display_;
-}
+    typedef std::vector<Userphrase>::iterator iterator;
+
+    bool insert(Userphrase&& userphrase);
+    void erase(iterator it);
+
+    iterator begin();
+    iterator end();
+    size_t size();
+
+    Userphrase& operator[](size_t index);
+
+private:
+    std::vector<Userphrase> userphrase_;
+    std::set<QString> dedup_;
+};

@@ -28,6 +28,8 @@ public:
     Userphrase& operator=(const Userphrase&) = default;
     ~Userphrase() = default;
 
+    bool operator<(const Userphrase& userphrase) const;
+
     QString phrase_;
     QString bopomofo_;
     QString display_;

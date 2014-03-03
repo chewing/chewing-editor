@@ -17,17 +17,42 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "Userphrase.h"
+#include "UserphraseSet.h"
 
-Userphrase::Userphrase(const QString& phrase, const QString& bopomofo)
-    :phrase_(phrase)
-    ,bopomofo_(bopomofo)
-    ,display_()
+bool UserphraseSet::insert(Userphrase&& userphrase)
 {
-    display_ = QString("%1 (%2)").arg(phrase).arg(bopomofo);
+    auto ret = dedup_.insert(userphrase.display_);
+    if (!ret.second) {
+        // Duplicate item shall not be stored.
+        return false;
+    }
+
+    userphrase_.push_back(std::move(userphrase));
+    return true;
 }
 
-bool Userphrase::operator<(const Userphrase& userphrase) const
+void UserphraseSet::erase(iterator it)
 {
-    return display_ < userphrase.display_;
+    dedup_.erase(it->display_);
+    userphrase_.erase(it);
+}
+
+UserphraseSet::iterator UserphraseSet::begin()
+{
+    return userphrase_.begin();
+}
+
+UserphraseSet::iterator UserphraseSet::end()
+{
+    return userphrase_.end();
+}
+
+size_t UserphraseSet::size()
+{
+    return userphrase_.size();
+}
+
+Userphrase& UserphraseSet::operator[](size_t index)
+{
+    return userphrase_[index];
 }
