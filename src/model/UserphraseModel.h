@@ -44,9 +44,10 @@ public:
     void remove(QModelIndexList &&indexList);
     bool add(const QString &phrase, const QString &bopomofo);
 
+    void import(UserphraseImporter& importer);
+
 public slots:
     void refresh();
-    void import(UserphraseImporter& importer);
 
 private:
 

@@ -23,13 +23,15 @@
 #include <QtGui>
 #include <QDebug>
 
+#include "ChewingImporter.h"
+
 ChewingEditor::ChewingEditor(QWidget *parent)
     :QMainWindow(parent)
     ,ui_(new Ui::ChewingEditor)
     ,model_(new UserphraseModel(this))
     ,proxyModel_(new UserphraseSortFilterProxyModel(this))
     ,addNewPhraseDialog_(new AddNewPhraseDialog(this))
-    ,importDialog_(new ImportDialog(this))
+    ,importDialog_(new QFileDialog(this))
 {
     ui_.get()->setupUi(this);
 
@@ -54,6 +56,13 @@ void ChewingEditor::addNewPhrase(int result)
     qDebug() << FUNC_NAME << phrase << bopomofo;
 
     model_->add(phrase, bopomofo);
+}
+
+void ChewingEditor::import(const QString& file)
+{
+    // TODO: Find a suitable importer
+    ChewingImporter importer(file);
+    model_->import(importer);
 }
 
 void ChewingEditor::setupConnect()
@@ -87,13 +96,15 @@ void ChewingEditor::setupConnect()
 
 void ChewingEditor::setupImport()
 {
+    importDialog_->setFileMode(QFileDialog::ExistingFile);
+
     connect(
         ui_.get()->importButton, SIGNAL(pressed()),
         importDialog_, SLOT(exec())
     );
 
     connect(
-        importDialog_, SIGNAL(import(UserphraseImporter&)),
-        model_, SLOT(import(UserphraseImporter&))
+        importDialog_, SIGNAL(fileSelected(const QString&)),
+        this, SLOT(import(const QString&))
     );
 }

@@ -21,10 +21,10 @@
 
 #include <memory>
 
+#include <QFileDialog>
 #include <QMainWindow>
 
 #include "AddNewPhraseDialog.h"
-#include "ImportDialog.h"
 #include "UserphraseSortFilterProxyModel.h"
 
 namespace Ui {
@@ -43,6 +43,7 @@ public:
 
 public slots:
     void addNewPhrase(int result);
+    void import(const QString& file);
 
 private:
     void setupConnect();
@@ -54,5 +55,5 @@ private:
     UserphraseSortFilterProxyModel *proxyModel_;
 
     AddNewPhraseDialog *addNewPhraseDialog_;
-    ImportDialog *importDialog_;
+    QFileDialog *importDialog_;
 };
