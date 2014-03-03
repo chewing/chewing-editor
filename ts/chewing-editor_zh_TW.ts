@@ -52,4 +52,14 @@
         <translation>更新</translation>
     </message>
 </context>
+<context>
+    <name>Notification</name>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="33"/>
+        <source>Refresh completed. Total %1 user phrase(s).</source>
+        <translation>
+            <numerusform>更新完成，目前共有 %1 個詞彙。</numerusform>
+        </translation>
+    </message>
+</context>
 </TS>

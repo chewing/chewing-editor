@@ -48,6 +48,9 @@ public:
     void importUserphrase(UserphraseImporter& importer);
     void exportUserphrase(UserphraseExporter& exporter);
 
+signals:
+    void refreshCompleted(size_t count);
+
 public slots:
     void refresh();
 

@@ -53,7 +53,6 @@ UserphraseModel::UserphraseModel(QObject *parent, const char *path)
         // FIXME: Report error here
         qCritical() << "chewing_new2() fails";
     }
-    refresh();
 }
 
 int UserphraseModel::rowCount(const QModelIndex &parent) const
@@ -151,6 +150,7 @@ void UserphraseModel::refresh()
     emit endResetModel();
 
     qDebug() << "Total userphrase" << userphrase_.size();
+    emit refreshCompleted(userphrase_.size());
 }
 
 bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)

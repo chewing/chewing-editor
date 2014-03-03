@@ -34,7 +34,6 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ,addNewPhraseDialog_(new AddNewPhraseDialog(this))
     ,importDialog_(new QFileDialog(this))
     ,exportDialog_(new QFileDialog(this))
-    ,notification_(new Notification(this))
 {
     ui_.get()->setupUi(this);
 
@@ -44,6 +43,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     setupConnect();
     setupImport();
     setupExport();
+    setupRefresh();
 }
 
 ChewingEditor::~ChewingEditor()
@@ -93,11 +93,6 @@ void ChewingEditor::setupConnect()
     );
 
     connect(
-        ui_.get()->refreshButton, SIGNAL(pressed()),
-        model_, SLOT(refresh())
-    );
-
-    connect(
         ui_.get()->addButton, SIGNAL(pressed()),
         addNewPhraseDialog_, SLOT(exec())
     );
@@ -139,4 +134,19 @@ void ChewingEditor::setupExport()
         exportDialog_, SIGNAL(fileSelected(const QString&)),
         this, SLOT(exportUserphrase(const QString&))
     );
+}
+
+void ChewingEditor::setupRefresh()
+{
+    connect(
+        ui_.get()->refreshButton, SIGNAL(pressed()),
+        model_, SLOT(refresh())
+    );
+
+    connect(
+        model_, SIGNAL(refreshCompleted(size_t)),
+        ui_.get()->notification, SLOT(notifyRefreshCompleted(size_t))
+    );
+
+    model_->refresh();
 }

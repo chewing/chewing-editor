@@ -29,4 +29,7 @@ public:
     Notification(const Notification&) = delete;
     Notification& operator=(const Notification&) = delete;
     virtual ~Notification() = default;
+
+public slots:
+    void notifyRefreshCompleted(size_t count);
 };

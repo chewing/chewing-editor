@@ -51,6 +51,7 @@ private:
     void setupConnect();
     void setupImport();
     void setupExport();
+    void setupRefresh();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
 
@@ -60,5 +61,4 @@ private:
     AddNewPhraseDialog *addNewPhraseDialog_;
     QFileDialog *importDialog_;
     QFileDialog *exportDialog_;
-    Notification *notification_;
 };
