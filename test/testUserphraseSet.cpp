@@ -50,6 +50,16 @@ TEST_F(UserphraseSetTest, InsertDuplicated)
     COMPARE_USERPHRASE(set_.begin(), "測試", "ㄘㄜˋ ㄕˋ");
 }
 
+TEST_F(UserphraseSetTest, IndexOperator)
+{
+    ASSERT_TRUE(set_.insert(Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")}));
+
+    ASSERT_EQ(1, set_.size());
+
+    EXPECT_EQ(0, QString::compare("測試", set_[0].phrase_));
+    EXPECT_EQ(0, QString::compare("ㄘㄜˋ ㄕˋ", set_[0].bopomofo_));
+}
+
 TEST_F(UserphraseSetTest, Enumerate)
 {
     Userphrase data[] = {
