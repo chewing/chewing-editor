@@ -115,7 +115,7 @@ add_custom_target(i18n
     COMMAND ${CMAKE_COMMAND} -E make_directory ${QM_DIR}
 )
 
-foreach(TRANSLATION zh_TW)
+foreach(TRANSLATION en_US zh_TW)
     set(TS_FILE "${TS_DIR}/chewing-editor_${TRANSLATION}.ts")
     set(QM_FILE "${QM_DIR}/chewing-editor_${TRANSLATION}.qm")
 
