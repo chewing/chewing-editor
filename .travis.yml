@@ -25,4 +25,4 @@ script:
     - cmake $OPTION .; make check
 
 after_success:
-    - if [ x$COVERALLS == xyes ]; then coveralls --exclude gmock --exclude test --exclude-pattern 'CMake[^\.]*\.c(?:pp)?' --exclude-pattern '[^\.]*\.h'; fi
+    - if [ x$COVERALLS == xyes ]; then coveralls --exclude gmock --exclude test --exclude-pattern '.*CMake[^/]+\.c(?:pp)?' --exclude-pattern '.*_automoc.cpp'; fi
