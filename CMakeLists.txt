@@ -107,15 +107,12 @@ find_program(LUPDATE lupdate)
 if (LUPDATE)
     foreach(ui_file ${ui})
         get_filename_component(ui_file_name "${ui_file}" NAME_WE)
-
         foreach(tr "zh_TW")
-            set(ts "${PROJECT_SOURCE_DIR}/ts/${tr}/${ui_file_name}.ts")
-
+            set(ts_dir "${PROJECT_SOURCE_DIR}/ts/${tr}")
             add_custom_command(TARGET chewing-editor POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/ts/${tr}
-                COMMAND ${LUPDATE} ${ui_file} -ts ${ts}
+                COMMAND ${CMAKE_COMMAND} -E make_directory ${ts_dir}
+                COMMAND ${LUPDATE} ${ui_file} -ts ${ts_dir}/${ui_file_name}.ts
             )
-
         endforeach()
     endforeach()
 endif()
