@@ -5,7 +5,7 @@
     <name>AddNewPhraseDialog</name>
     <message>
         <location filename="../src/ui/AddNewPhraseDialog.ui" line="26"/>
-        <source>AddNewPhraseDialog</source>
+        <source>Add new user phrase</source>
         <translation>新增詞彙</translation>
     </message>
     <message>
@@ -23,7 +23,7 @@
     <name>ChewingEditor</name>
     <message>
         <location filename="../src/ui/ChewingEditor.ui" line="20"/>
-        <source>ChewingEditor</source>
+        <source>Chewing user phrase editor</source>
         <translation>新酷音詞庫編輯器</translation>
     </message>
     <message>

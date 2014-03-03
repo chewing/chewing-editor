@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>AddNewPhraseDialog</string>
+   <string>Add new user phrase</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="geometry">
