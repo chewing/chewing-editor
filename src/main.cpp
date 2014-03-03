@@ -18,13 +18,25 @@
  */
 
 #include "ChewingEditor.h"
+
 #include <QApplication>
+#include <QLibraryInfo>
+#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(&qtTranslator);
+
+    QTranslator chewingTranslator;
+    chewingTranslator.load("chewing-editor_" + QLocale::system().name(), TRANSLATION_PATH);
+    app.installTranslator(&chewingTranslator);
+
     ChewingEditor w;
     w.show();
 
-    return a.exec();
+    return app.exec();
 }
