@@ -39,20 +39,9 @@ else()
 endif()
 add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
 
-if (NOT DEFINED CHEWING_LIBRARY)
-    find_library(CHEWING_LIBRARY NAMES chewing)
-endif()
-if (NOT CHEWING_LIBRARY)
-    message(SEND_ERROR "Please set CHEWING_LIBRARY to location of chewing library.")
-endif()
-
-if (NOT DEFINED CHEWING_INCLUDE_DIR)
-    # FIXME: How to find chewing header?
-    set(CHEWING_INCLUDE_DIR "/usr/include/chewing")
-endif()
-if (NOT CHEWING_INCLUDE_DIR)
-    message(SEND_ERROR "Please set CHEWING_INCLUDE_DIR to location of chewing header.")
-endif()
+find_package(PkgConfig)
+# FIXME: Change to chewing>=0.4.0 after official release
+pkg_check_modules(CHEWING REQUIRED chewing>=0.3.5)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -70,7 +59,7 @@ if (NOT LRELEASE)
 endif()
 
 include_directories(
-    ${CHEWING_INCLUDE_DIR}
+    ${CHEWING_INCLUDE_DIRS}
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include
     ${PROJECT_SOURCE_DIR}/src/exporter
     ${PROJECT_SOURCE_DIR}/src/importer
@@ -110,7 +99,7 @@ file(GLOB chewing-editor_src
 )
 add_executable(chewing-editor ${chewing-editor_src})
 target_link_libraries(chewing-editor
-    ${CHEWING_LIBRARY}
+    ${CHEWING_LIBRARIES}
     exporter
     importer
     util
