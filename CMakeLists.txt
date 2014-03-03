@@ -102,6 +102,24 @@ target_link_libraries(chewing-editor
 )
 qt5_use_modules(chewing-editor Widgets)
 
+# i18n
+find_program(LUPDATE lupdate)
+if (LUPDATE)
+    foreach(ui_file ${ui})
+        get_filename_component(ui_file_name "${ui_file}" NAME_WE)
+
+        foreach(tr "zh_TW")
+            set(ts "${PROJECT_SOURCE_DIR}/ts/${tr}/${ui_file_name}.ts")
+
+            add_custom_command(TARGET chewing-editor POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/ts/${tr}
+                COMMAND ${LUPDATE} ${ui_file} -ts ${ts}
+            )
+
+        endforeach()
+    endforeach()
+endif()
+
 # testing
 enable_testing()
 add_subdirectory(gmock)
