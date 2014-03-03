@@ -54,6 +54,16 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5Widgets REQUIRED)
 
+find_program(LUPDATE lupdate)
+if (NOT LUPDATE)
+    message(SEND_ERROR "Cannot find lupdate")
+endif()
+
+find_program(LRELEASE lrelease)
+if (NOT LRELEASE)
+    message(SEND_ERROR "Cannot find lrelease")
+endif()
+
 include_directories(
     ${CHEWING_INCLUDE_DIR}
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include
@@ -103,19 +113,24 @@ target_link_libraries(chewing-editor
 qt5_use_modules(chewing-editor Widgets)
 
 # i18n
-find_program(LUPDATE lupdate)
-if (LUPDATE)
-    foreach(ui_file ${ui})
-        get_filename_component(ui_file_name "${ui_file}" NAME_WE)
-        foreach(tr "zh_TW")
-            set(ts_dir "${PROJECT_SOURCE_DIR}/ts/${tr}")
-            add_custom_command(TARGET chewing-editor POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E make_directory ${ts_dir}
-                COMMAND ${LUPDATE} ${ui_file} -ts ${ts_dir}/${ui_file_name}.ts
-            )
-        endforeach()
-    endforeach()
-endif()
+set(TS_DIR "${PROJECT_SOURCE_DIR}/ts")
+set(QM_DIR "${PROJECT_BINARY_DIR}/qm")
+
+add_custom_target(i18n
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${TS_DIR}
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${QM_DIR}
+)
+
+foreach(TRANSLATION zh_TW)
+    set(TS_FILE "${TS_DIR}/chewing-editor_${TRANSLATION}.ts")
+    set(QM_FILE "${QM_DIR}/chewing-editor_${TRANSLATION}.qm")
+
+    add_custom_target(${TRANSLATION} ALL
+        COMMAND ${LUPDATE} ${PROJECT_SOURCE_DIR}/src -ts ${TS_FILE}
+        COMMAND ${LRELEASE} ${TS_FILE} -qm ${QM_FILE}
+        DEPENDS i18n
+    )
+endforeach()
 
 # testing
 enable_testing()
