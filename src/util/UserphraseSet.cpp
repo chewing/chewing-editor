@@ -19,11 +19,16 @@
 
 #include "UserphraseSet.h"
 
+#include <QDebug>
+
 bool UserphraseSet::insert(Userphrase&& userphrase)
 {
     auto ret = dedup_.insert(userphrase.display_);
     if (!ret.second) {
         // Duplicate item shall not be stored.
+        qDebug() << FUNC_NAME
+            << "Duplicate phrase:" << userphrase.phrase_
+            << "bopomofo:" << userphrase.bopomofo_;
         return false;
     }
 
@@ -47,12 +52,18 @@ UserphraseSet::iterator UserphraseSet::end()
     return userphrase_.end();
 }
 
-size_t UserphraseSet::size()
+size_t UserphraseSet::size() const
 {
     return userphrase_.size();
 }
 
-Userphrase& UserphraseSet::operator[](size_t index)
+const Userphrase& UserphraseSet::operator[](size_t index) const
 {
     return userphrase_[index];
+}
+
+void UserphraseSet::swap(UserphraseSet& set) noexcept
+{
+    userphrase_.swap(set.userphrase_);
+    dedup_.swap(set.dedup_);
 }

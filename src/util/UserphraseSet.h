@@ -40,9 +40,11 @@ public:
 
     iterator begin();
     iterator end();
-    size_t size();
+    size_t size() const;
 
-    Userphrase& operator[](size_t index);
+    const Userphrase& operator[](size_t index) const;
+
+    void swap(UserphraseSet& set) noexcept;
 
 private:
     std::vector<Userphrase> userphrase_;

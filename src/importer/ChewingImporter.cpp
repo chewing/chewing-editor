@@ -32,9 +32,9 @@ ChewingImporter::ChewingImporter(const QString& path)
 {
 }
 
-std::vector<Userphrase> ChewingImporter::loadImpl()
+UserphraseSet ChewingImporter::loadImpl()
 {
-    std::vector<Userphrase> result;
+    UserphraseSet result;
 
     QFile file(path_);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -73,7 +73,7 @@ std::vector<Userphrase> ChewingImporter::loadImpl()
             continue;
         }
 
-        result.push_back(Userphrase{
+        result.insert(Userphrase{
             obj["phrase"].toString(),
             obj["bopomofo"].toString()
         });

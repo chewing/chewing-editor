@@ -117,7 +117,7 @@ void UserphraseModel::refresh()
 {
     qDebug() << FUNC_NAME;
 
-    std::vector<Userphrase> userphrase;
+    UserphraseSet userphrase;
 
     std::vector<char> phrase;
     unsigned int phrase_len;
@@ -139,7 +139,7 @@ void UserphraseModel::refresh()
         }
 
         qDebug() << "Get userphrase:" << &phrase[0] << &bopomofo[0];
-        userphrase.push_back(Userphrase{
+        userphrase.insert(Userphrase{
             QString::fromUtf8(&phrase[0]),
             QString::fromUtf8(&bopomofo[0])
         });
@@ -161,11 +161,9 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         phrase.toUtf8().constData(),
         bopomofo.toUtf8().constData());
 
-    // FIXME: How to know a NEW userphrase is added? Maybe it is already in
-    // userphrase_?
     if (ret == 0) {
         emit beginResetModel();
-        userphrase_.push_back(Userphrase{
+        userphrase_.insert(Userphrase{
             phrase,
             bopomofo
         });

@@ -125,3 +125,15 @@ TEST_F(UserphraseSetTest, DifferentPhraseSameBopomofo)
 
     COMPARE_USERPHRASE(set_.begin(), "測試", "ㄘㄜˋ ㄕˋ");
 }
+
+TEST_F(UserphraseSetTest, Swap)
+{
+    ASSERT_TRUE(set_.insert(Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")}));
+    ASSERT_EQ(1, set_.size());
+
+    UserphraseSet set;
+    set.swap(set_);
+
+    EXPECT_EQ(0, set_.size());
+    EXPECT_EQ(1, set.size());
+}

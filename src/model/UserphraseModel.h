@@ -27,6 +27,7 @@
 
 #include "Userphrase.h"
 #include "UserphraseImporter.h"
+#include "UserphraseSet.h"
 
 class UserphraseModel final: public QAbstractListModel {
     Q_OBJECT
@@ -50,5 +51,5 @@ public slots:
 private:
 
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
-    std::vector<Userphrase> userphrase_;
+    UserphraseSet userphrase_;
 };

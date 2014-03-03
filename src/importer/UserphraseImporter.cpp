@@ -24,7 +24,7 @@ UserphraseImporter::UserphraseImporter(const QString& path)
 {
 }
 
-std::vector<Userphrase> UserphraseImporter::load()
+UserphraseSet UserphraseImporter::load()
 {
     return loadImpl();
 }

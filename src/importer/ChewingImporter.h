@@ -29,5 +29,5 @@ public:
     virtual ~ChewingImporter() = default;
 
 protected:
-    virtual std::vector<Userphrase> loadImpl();
+    virtual UserphraseSet loadImpl();
 };

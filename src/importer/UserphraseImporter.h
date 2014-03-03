@@ -23,7 +23,7 @@
 
 #include <QString>
 
-#include "Userphrase.h"
+#include "UserphraseSet.h"
 
 class UserphraseImporter {
 public:
@@ -32,9 +32,9 @@ public:
     UserphraseImporter& operator=(const UserphraseImporter&) = delete;
     virtual ~UserphraseImporter() = default;
 
-    std::vector<Userphrase> load();
+    UserphraseSet load();
 
 protected:
-    virtual std::vector<Userphrase> loadImpl() = 0;
+    virtual UserphraseSet loadImpl() = 0;
     QString path_;
 };
