@@ -19,6 +19,8 @@
 
 #include "UserphraseImporter.h"
 
+#include <QFileInfo>
+
 UserphraseImporter::UserphraseImporter(const QString& path)
     :path_(path)
 {
@@ -27,4 +29,10 @@ UserphraseImporter::UserphraseImporter(const QString& path)
 UserphraseSet UserphraseImporter::load()
 {
     return loadImpl();
+}
+
+const QString UserphraseImporter::getPath()
+{
+    QFileInfo info(path_);
+    return info.fileName();
 }

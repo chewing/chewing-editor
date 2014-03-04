@@ -178,10 +178,17 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 void UserphraseModel::importUserphrase(UserphraseImporter& importer)
 {
     qDebug() << FUNC_NAME;
+    size_t old_count = userphrase_.size();
+
     for (auto& i: importer.load()) {
         // FIXME: UserphraseModel shall provide a API to support Userphrase directly.
         add(i.phrase_, i.bopomofo_);
     }
+
+    size_t new_count = userphrase_.size();
+
+    // FIXME: How to know if import file is supported?
+    emit importCompleted(true, importer.getPath(), new_count - old_count, new_count);
 }
 
 void UserphraseModel::exportUserphrase(UserphraseExporter& exporter)

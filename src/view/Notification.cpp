@@ -28,16 +28,16 @@ Notification::Notification(QWidget* parent)
 
 void Notification::notifyImportCompleted(
     bool result,
-    const QFile& file,
+    const QString& path,
     size_t imported,
     size_t total)
 {
-    qDebug() << FUNC_NAME << result << file.fileName() << imported << total;
+    qDebug() << FUNC_NAME << result << path << imported << total;
 
     if (result) {
         setText(
             tr("%1 %2 %3")
-                .arg(tr("Import %1 success.").arg(file.fileName()))
+                .arg(tr("Import %1 success.").arg(path))
                 .arg(tr("%1 phrase(s) are imported.", 0, result).arg(result))
                 .arg(tr("Total %1 user phrase(s).", 0, total).arg(total)));
     } else {

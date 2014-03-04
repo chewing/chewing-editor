@@ -22,6 +22,7 @@
 #include <memory>
 
 #include <QAbstractListModel>
+#include <QString>
 
 #include <chewing.h>
 
@@ -50,6 +51,11 @@ public:
 
 signals:
     void refreshCompleted(size_t count);
+    void importCompleted(
+        bool result,
+        const QString& file,
+        size_t imported,
+        size_t total);
 
 public slots:
     void refresh();

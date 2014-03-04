@@ -19,8 +19,8 @@
 
 #pragma once
 
-#include <QFile>
 #include <QLabel>
+#include <QString>
 
 class Notification final: public QLabel {
     Q_OBJECT
@@ -33,5 +33,5 @@ public:
 
 public slots:
     void notifyRefreshCompleted(size_t count);
-    void notifyImportCompleted(bool result, const QFile& file, size_t imported, size_t total);
+    void notifyImportCompleted(bool result, const QString& path, size_t imported, size_t total);
 };

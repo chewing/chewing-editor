@@ -33,6 +33,7 @@ public:
     virtual ~UserphraseImporter() = default;
 
     UserphraseSet load();
+    const QString getPath();
 
 protected:
     virtual UserphraseSet loadImpl() = 0;

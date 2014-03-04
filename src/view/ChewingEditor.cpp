@@ -117,6 +117,11 @@ void ChewingEditor::setupImport()
         importDialog_, SIGNAL(fileSelected(const QString&)),
         this, SLOT(importUserphrase(const QString&))
     );
+
+    connect(
+        model_, SIGNAL(importCompleted(bool, const QString&, size_t, size_t)),
+        ui_.get()->notification, SLOT(notifyImportCompleted(bool, const QString&, size_t, size_t))
+    );
 }
 
 void ChewingEditor::setupExport()
