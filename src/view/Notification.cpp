@@ -30,5 +30,5 @@ void Notification::notifyRefreshCompleted(size_t count)
 {
     qDebug() << FUNC_NAME << count;
 
-    emit setText(tr("Refresh completed. Total %1 user phrase(s).", 0, count).arg(count));
+    setText(tr("Refresh completed. Total %1 user phrase(s).", 0, count).arg(count));
 }
