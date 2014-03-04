@@ -18,6 +18,8 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(chewing-editor)
 
+set(TRANSLATION_LIST en_US zh_TW)
+
 cmake_policy(SET CMP0020 NEW)
 
 if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
@@ -111,23 +113,38 @@ install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_
 set(TS_DIR "${PROJECT_SOURCE_DIR}/ts")
 set(QM_DIR "${PROJECT_BINARY_DIR}/qm")
 
-add_custom_target(i18n
+add_custom_target(prepare_lupdate
     COMMAND ${CMAKE_COMMAND} -E make_directory ${TS_DIR}
+)
+add_custom_target(lupdate)
+
+add_custom_target(prepare_lrelease
     COMMAND ${CMAKE_COMMAND} -E make_directory ${QM_DIR}
 )
 
-foreach(TRANSLATION en_US zh_TW)
+foreach(TRANSLATION ${TRANSLATION_LIST})
     set(TS_FILE "${TS_DIR}/chewing-editor_${TRANSLATION}.ts")
     set(QM_FILE "${QM_DIR}/chewing-editor_${TRANSLATION}.qm")
 
-    add_custom_target(${TRANSLATION} ALL
+    add_custom_target("${TRANSLATION}-ts"
         COMMAND ${LUPDATE} ${PROJECT_SOURCE_DIR}/src -ts ${TS_FILE}
-        COMMAND ${LRELEASE} ${TS_FILE} -qm ${QM_FILE}
-        DEPENDS i18n
+        DEPENDS prepare_lupdate
     )
+    add_dependencies(lupdate "${TRANSLATION}-ts")
 
-    install(FILES ${QM_FILE} DESTINATION ${TRANSLATION_PATH})
+    add_custom_command(
+        OUTPUT
+            ${QM_FILE}
+        COMMAND ${LRELEASE} ${TS_FILE} -qm ${QM_FILE}
+        DEPENDS
+            prepare_lrelease
+            ${TS_FILE}
+    )
+    list(APPEND QM_FILES ${QM_FILE})
 endforeach()
+
+add_custom_target(lrelease ALL DEPENDS ${QM_FILES})
+install(FILES ${QM_FILES} DESTINATION ${TRANSLATION_PATH})
 
 # testing
 enable_testing()
