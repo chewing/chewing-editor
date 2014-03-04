@@ -28,7 +28,7 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
         set(CMAKE_CXX_FLAGS "-coverage ${CMAKE_CXX_FLAGS}")
     endif()
 
-    set(TRANSLATION_PATH ${CMAKE_INSTALL_PREFIX}/usr/share/chewing-editor/translations)
+    set(TRANSLATION_PATH ${CMAKE_INSTALL_PREFIX}/share/chewing-editor/translations)
 
     add_definitions(-DFUNC_NAME=__PRETTY_FUNCTION__)
     add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
@@ -105,7 +105,7 @@ target_link_libraries(chewing-editor
     util
 )
 qt5_use_modules(chewing-editor Widgets)
-install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION bin)
+install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 # i18n
 set(TS_DIR "${PROJECT_SOURCE_DIR}/ts")
