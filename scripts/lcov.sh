@@ -32,15 +32,15 @@ if ! which genhtml; then
     exit 1;
 fi
 
-echo -n "Check directory...."
-if [ ! -e "src" ]; then
-    echo "not found";
-    exit 1;
-fi
-echo "ok"
+#echo -n "Check directory...."
+#if [ ! -e "src" ]; then
+#    echo "not found";
+#    exit 1;
+#fi
+#echo "ok"
 
 ABSPATH=$(cd "$(dirname "$0")/.."; pwd)
 lcov --directory $PWD --capture --output-file coverage.info --no-checksum --compat-libtool
-lcov --remove coverage.info "/usr/include/*" --output-file coverage.info
+lcov --remove coverage.info "/usr/include/*" "$ABSPATH/gmock/*" --output-file coverage.info
 LANG=C genhtml --prefix $ABSPATH --output-directory coveragereport \
     --title "Code Coverage" --legend --show-details coverage.info
