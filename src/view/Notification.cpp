@@ -38,7 +38,7 @@ void Notification::notifyImportCompleted(
         setText(
             tr("%1 %2 %3")
                 .arg(tr("Import %1 success.").arg(path))
-                .arg(tr("%1 phrase(s) are imported.", 0, result).arg(result))
+                .arg(tr("%1 phrase(s) are imported.", 0, imported).arg(imported))
                 .arg(tr("Total %1 user phrase(s).", 0, total).arg(total)));
     } else {
         setText(tr("Import %1 failed."));
