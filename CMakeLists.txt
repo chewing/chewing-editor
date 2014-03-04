@@ -105,6 +105,7 @@ target_link_libraries(chewing-editor
     util
 )
 qt5_use_modules(chewing-editor Widgets)
+install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION bin)
 
 # i18n
 set(TS_DIR "${PROJECT_SOURCE_DIR}/ts")
@@ -152,4 +153,14 @@ add_test(test run-test)
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
 add_dependencies(check chewing-editor run-test)
 
-install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION bin)
+# package
+set(CPACK_SOURCE_GENERATOR TGZ)
+set(CPACK_SOURCE_IGNORE_FILES
+    "^${PROJECT_SOURCE_DIR}/.git"
+)
+
+set(CPACK_PACKAGE_VERSION_MAJOR "0")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
+
+include(CPack)
