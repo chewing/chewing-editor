@@ -54,11 +54,40 @@
 </context>
 <context>
     <name>Notification</name>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="39"/>
+        <source>%1 %2 %3</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="40"/>
+        <source>Import %1 success.</source>
+        <translation>成功匯入 %1。</translation>
+    </message>
     <message numerus="yes">
-        <location filename="../src/view/Notification.cpp" line="33"/>
+        <location filename="../src/view/Notification.cpp" line="41"/>
+        <source>%1 phrase(s) are imported.</source>
+        <translation>
+            <numerusform>匯入 %1 個詞彙。</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="42"/>
+        <source>Total %1 user phrase(s).</source>
+        <translation>
+            <numerusform>目前共有 %1 個詞彙。</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="44"/>
+        <source>Import %1 failed.</source>
+        <translation>無法匯入 %1。</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="52"/>
         <source>Refresh completed. Total %1 user phrase(s).</source>
         <translation>
-            <numerusform>更新完成，目前共有 %1 個詞彙。</numerusform>
+            <numerusform>更新完成。目前共有 %1 個詞彙。</numerusform>
         </translation>
     </message>
 </context>

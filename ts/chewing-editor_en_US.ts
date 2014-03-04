@@ -54,8 +54,39 @@
 </context>
 <context>
     <name>Notification</name>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="39"/>
+        <source>%1 %2 %3</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="40"/>
+        <source>Import %1 success.</source>
+        <translation></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../src/view/Notification.cpp" line="33"/>
+        <location filename="../src/view/Notification.cpp" line="41"/>
+        <source>%1 phrase(s) are imported.</source>
+        <translation>
+            <numerusform>%1 phrase is imported.</numerusform>
+            <numerusform>%1 phrases are imported.</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="42"/>
+        <source>Total %1 user phrase(s).</source>
+        <translation>
+            <numerusform>Total %1 user phrase.</numerusform>
+            <numerusform>Total %1 user phrases.</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="44"/>
+        <source>Import %1 failed.</source>
+        <translation></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="52"/>
         <source>Refresh completed. Total %1 user phrase(s).</source>
         <translation>
             <numerusform>Refresh completed. Total %1 user phrase.</numerusform>

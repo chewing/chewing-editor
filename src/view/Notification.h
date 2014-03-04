@@ -19,6 +19,7 @@
 
 #pragma once
 
+#include <QFile>
 #include <QLabel>
 
 class Notification final: public QLabel {
@@ -32,4 +33,5 @@ public:
 
 public slots:
     void notifyRefreshCompleted(size_t count);
+    void notifyImportCompleted(bool result, const QFile& file, size_t imported, size_t total);
 };
