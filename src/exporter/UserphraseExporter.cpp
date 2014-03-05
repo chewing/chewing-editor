@@ -19,6 +19,8 @@
 
 #include "UserphraseExporter.h"
 
+#include <QFileInfo>
+
 UserphraseExporter::UserphraseExporter(const QString& path)
     :path_(path)
 {
@@ -33,4 +35,9 @@ void UserphraseExporter::addUserphrase(
 
 bool UserphraseExporter::save() {
     return saveImpl();
+}
+
+const QString UserphraseExporter::getPath()
+{
+    return QFileInfo(path_).fileName();
 }

@@ -33,6 +33,8 @@ public:
         const QString& bopomofo);
     bool save();
 
+    const QString getPath();
+
 protected:
     virtual void addUserphraseImpl(
         const QString& phrase,

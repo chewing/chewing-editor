@@ -40,11 +40,12 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     proxyModel_->setSourceModel(model_);
     ui_.get()->userphraseView->setModel(proxyModel_);
 
-    setupConnect();
     setupImport();
     setupExport();
     setupAdd();
+    setupRemove();
     setupRefresh();
+    setupFilter();
 }
 
 ChewingEditor::~ChewingEditor()
@@ -75,24 +76,6 @@ void ChewingEditor::exportUserphrase(const QString& file)
     // TODO: Find a suitable exporter
     ChewingExporter exporter(file);
     model_->exportUserphrase(exporter);
-
-    // FIXME: report export fail by return code
-    exporter.save();
-}
-
-void ChewingEditor::setupConnect()
-{
-    // FIXME: separate to setupAdd, setupFilter, setupRefresh ...
-    connect(
-        ui_.get()->removeButton, SIGNAL(pressed()),
-        ui_.get()->userphraseView, SLOT(remove())
-    );
-
-    connect(
-        ui_.get()->userphraseFilter, SIGNAL(textEdited(const QString&)),
-        ui_.get()->userphraseView, SLOT(setFilterString(const QString&))
-    );
-
 }
 
 void ChewingEditor::setupImport()
@@ -131,6 +114,11 @@ void ChewingEditor::setupExport()
         exportDialog_, SIGNAL(fileSelected(const QString&)),
         this, SLOT(exportUserphrase(const QString&))
     );
+
+    connect(
+        model_, SIGNAL(exportCompleted(bool, const QString&, size_t)),
+        ui_.get()->notification, SLOT(notifyExportCompleted(bool, const QString&, size_t))
+    );
 }
 
 void ChewingEditor::setupAdd()
@@ -151,6 +139,19 @@ void ChewingEditor::setupAdd()
     );
 }
 
+void ChewingEditor::setupRemove()
+{
+    connect(
+        ui_.get()->removeButton, SIGNAL(pressed()),
+        ui_.get()->userphraseView, SLOT(remove())
+    );
+
+    connect(
+        model_, SIGNAL(removePhraseCompleted(size_t)),
+        ui_.get()->notification, SLOT(notifyRemovePhraseCompleted(size_t))
+    );
+}
+
 void ChewingEditor::setupRefresh()
 {
     connect(
@@ -164,4 +165,12 @@ void ChewingEditor::setupRefresh()
     );
 
     model_->refresh();
+}
+
+void ChewingEditor::setupFilter()
+{
+    connect(
+        ui_.get()->userphraseFilter, SIGNAL(textEdited(const QString&)),
+        ui_.get()->userphraseView, SLOT(setFilterString(const QString&))
+    );
 }

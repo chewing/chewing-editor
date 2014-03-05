@@ -50,13 +50,19 @@ public:
     void exportUserphrase(UserphraseExporter& exporter);
 
 signals:
-    void refreshCompleted(size_t count);
+
     void importCompleted(
         bool result,
         const QString& file,
         size_t imported,
         size_t total);
+    void exportCompleted(
+        bool result,
+        const QString& file,
+        size_t exported);
     void addNewPhraseCompleted(const Userphrase& userphrase);
+    void removePhraseCompleted(size_t count);
+    void refreshCompleted(size_t count);
 
 public slots:
     void refresh();

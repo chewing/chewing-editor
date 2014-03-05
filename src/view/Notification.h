@@ -37,6 +37,6 @@ public slots:
     void notifyImportCompleted(bool result, const QString& path, size_t imported, size_t total);
     void notifyExportCompleted(bool result, const QString& path, size_t exported);
     void notifyAddNewPhraseCompleted(const Userphrase& userphrase);
-    void notifyRemovePhraseCompleted(const Userphrase& userphrase);
+    void notifyRemovePhraseCompleted(size_t count);
     void notifyRefreshCompleted(size_t count);
 };

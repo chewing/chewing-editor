@@ -110,6 +110,8 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
     }
 
     emit endRemoveRows();
+
+    emit removePhraseCompleted(indexList.size());
 }
 
 void UserphraseModel::refresh()
@@ -195,7 +197,14 @@ void UserphraseModel::importUserphrase(UserphraseImporter& importer)
 void UserphraseModel::exportUserphrase(UserphraseExporter& exporter)
 {
     qDebug() << FUNC_NAME;
+
+    size_t exported = userphrase_.size();
+
     for (auto& i: userphrase_) {
         exporter.addUserphrase(i.phrase_, i.bopomofo_);
     }
+
+    bool result = exporter.save();
+
+    emit exportCompleted(result, exporter.getPath(), exported);
 }

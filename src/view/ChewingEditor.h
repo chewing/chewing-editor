@@ -48,11 +48,12 @@ public slots:
     void exportUserphrase(const QString& file);
 
 private:
-    void setupConnect();
     void setupImport();
     void setupExport();
     void setupAdd();
+    void setupRemove();
     void setupRefresh();
+    void setupFilter();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
 

@@ -54,7 +54,7 @@ void Notification::notifyExportCompleted(
 
     if (result) {
         setText(
-            tr("%1 %2 %3")
+            tr("%1 %2")
                 .arg(tr("Export %1 success.").arg(path))
                 .arg(tr("%1 phrase(s) are exported.", 0, exported).arg(exported)));
     } else {
@@ -70,11 +70,11 @@ void Notification::notifyAddNewPhraseCompleted(const Userphrase& userphrase)
 }
 
 
-void Notification::notifyRemovePhraseCompleted(const Userphrase& userphrase)
+void Notification::notifyRemovePhraseCompleted(size_t count)
 {
-    qDebug() << FUNC_NAME << userphrase.display_;
+    qDebug() << FUNC_NAME << count;
 
-    setText(tr("Remove phrase %1 success.").arg(userphrase.display_));
+    setText(tr("Remove %1 phrase(s) success", 0, count).arg(count));
 }
 
 void Notification::notifyRefreshCompleted(size_t count)
