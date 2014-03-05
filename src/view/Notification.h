@@ -34,7 +34,9 @@ public:
     virtual ~Notification() = default;
 
 public slots:
-    void notifyRefreshCompleted(size_t count);
     void notifyImportCompleted(bool result, const QString& path, size_t imported, size_t total);
+    void notifyExportCompleted(bool result, const QString& path, size_t exported);
     void notifyAddNewPhraseCompleted(const Userphrase& userphrase);
+    void notifyRemovePhraseCompleted(const Userphrase& userphrase);
+    void notifyRefreshCompleted(size_t count);
 };
