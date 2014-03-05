@@ -51,6 +51,7 @@ private:
     void setupConnect();
     void setupImport();
     void setupExport();
+    void setupAdd();
     void setupRefresh();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;

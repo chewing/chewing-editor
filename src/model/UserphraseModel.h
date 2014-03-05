@@ -56,6 +56,7 @@ signals:
         const QString& file,
         size_t imported,
         size_t total);
+    void addNewPhraseCompleted(const Userphrase& userphrase);
 
 public slots:
     void refresh();

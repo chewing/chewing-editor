@@ -168,6 +168,7 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
             bopomofo
         });
         emit endResetModel();
+        emit addNewPhraseCompleted(userphrase_[userphrase_.size()-1]);
     } else {
         qWarning() << "chewing_userphrase_add() returns" << ret;
     }

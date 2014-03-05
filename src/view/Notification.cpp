@@ -51,3 +51,10 @@ void Notification::notifyRefreshCompleted(size_t count)
 
     setText(tr("Refresh completed. Total %1 user phrase(s).", 0, count).arg(count));
 }
+
+void Notification::notifyAddNewPhraseCompleted(const Userphrase& userphrase)
+{
+    qDebug() << FUNC_NAME << userphrase.display_;
+
+    setText(tr("Add new phrase %1 success.").arg(userphrase.display_));
+}

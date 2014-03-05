@@ -43,6 +43,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     setupConnect();
     setupImport();
     setupExport();
+    setupAdd();
     setupRefresh();
 }
 
@@ -92,15 +93,6 @@ void ChewingEditor::setupConnect()
         ui_.get()->userphraseView, SLOT(setFilterString(const QString&))
     );
 
-    connect(
-        ui_.get()->addButton, SIGNAL(pressed()),
-        addNewPhraseDialog_, SLOT(exec())
-    );
-
-    connect(
-        addNewPhraseDialog_, SIGNAL(finished(int)),
-        this, SLOT(addNewPhrase(int))
-    );
 }
 
 void ChewingEditor::setupImport()
@@ -138,6 +130,24 @@ void ChewingEditor::setupExport()
     connect(
         exportDialog_, SIGNAL(fileSelected(const QString&)),
         this, SLOT(exportUserphrase(const QString&))
+    );
+}
+
+void ChewingEditor::setupAdd()
+{
+    connect(
+        ui_.get()->addButton, SIGNAL(pressed()),
+        addNewPhraseDialog_, SLOT(exec())
+    );
+
+    connect(
+        addNewPhraseDialog_, SIGNAL(finished(int)),
+        this, SLOT(addNewPhrase(int))
+    );
+
+    connect(
+        model_, SIGNAL(addNewPhraseCompleted(const Userphrase&)),
+        ui_.get()->notification, SLOT(notifyAddNewPhraseCompleted(const Userphrase&))
     );
 }
 
