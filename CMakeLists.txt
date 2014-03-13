@@ -43,7 +43,21 @@ add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
 
 find_package(PkgConfig)
 # FIXME: Change to chewing>=0.4.0 after official release
-pkg_check_modules(CHEWING REQUIRED chewing>=0.3.5)
+
+set(CMAKE_AUTOMOC ON)
+
+
+set(CHEWING_LIBRARIES )
+set(CHEWING_INCLUDE_DIRS )
+
+#if (NOT CHEWING_INCLUDE_DIRS AND NOT CHEWING_LIBRARIES)
+if (CHEWING_INCLUDE_DIRS AND CHEWING_LIBRARIES)
+    # if all listed variables are TRUE
+    find_package_handle_standard_args(chewing DEFAULT_MSG CHEWING_LIBRARIES CHEWING_INCLUDE_DIRS)
+    mark_as_advanced(CHEWING_LIBRARIES CHEWING_INCLUDE_DIRS)
+else()
+    pkg_check_modules(CHEWING REQUIRED chewing>=0.3.5)
+endif()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
