@@ -54,6 +54,21 @@ Please use the following steps to add a new translation:
 *   ts files will be updated by `lupdate`
 *   Use `linguist` to edit ts files
 
+# Known Issue
+
+## Bopomofo cannot Display Correctly
+Qt5 before v5.3.0 has problem displaying bopomofo with HarfBuzz-NG. If you
+encounter this issue, please upgrade your Qt5 to v5.3.0, or run chewing-editor
+with QT_HARFBUZZ=old.
+
+See also:
+*   <https://github.com/chewing/chewing-editor/issues/7>
+*   <https://codereview.qt-project.org/80505>
+*   <https://qt.gitorious.org/qt/qtbase/commit/b7f013bf1919486dab56a4436a17a3878341a1d5>
+
+# Bugs & Feature Request
+Please report any bug & featureq request to <https://github.com/chewing/chewing-editor/issues>
+
 # License
 *   This project is licensed under [GPL-2.0](http://opensource.org/licenses/GPL-2.0)
 *   [Google C++ Mocking Framework](https://code.google.com/p/googlemock/) is licensed under [New BSD License](http://opensource.org/licenses/BSD-3-Clause)
