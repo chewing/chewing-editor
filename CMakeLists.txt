@@ -44,9 +44,6 @@ add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
 find_package(PkgConfig)
 # FIXME: Change to chewing>=0.4.0 after official release
 
-set(CMAKE_AUTOMOC ON)
-
-
 set(CHEWING_LIBRARIES )
 set(CHEWING_INCLUDE_DIRS )
 
