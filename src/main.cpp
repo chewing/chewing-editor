@@ -29,21 +29,21 @@ void emptyMessageHandler(QtMsgType, const QMessageLogContext&, const QString&)
 
 void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
 {
-    auto msg = message.toUtf8().constData();
-    auto file = QFileInfo(context.file).fileName().toUtf8().constData();
+    auto msg = message.toUtf8();
+    auto file = QFileInfo(context.file).fileName().toUtf8();
 
     switch(type) {
     case QtDebugMsg:
-        fprintf(stdout, "Debug: %s (%s %s:%d)\n", msg, context.function, file, context.line);
+        fprintf(stdout, "Debug: %s (%s %s:%d)\n", msg.constData(), context.function, file.constData(), context.line);
         break;
     case QtWarningMsg:
-        fprintf(stderr, "Warning: %s (%s %s:%d)\n", msg, context.function, file, context.line);
+        fprintf(stderr, "Warning: %s (%s %s:%d)\n", msg.constData(), context.function, file.constData(), context.line);
         break;
     case QtCriticalMsg:
-        fprintf(stderr, "Critical: %s (%s %s:%d)\n", msg, context.function, file, context.line);
+        fprintf(stderr, "Critical: %s (%s %s:%d)\n", msg.constData(), context.function, file.constData(), context.line);
         break;
     case QtFatalMsg:
-        fprintf(stderr, "Fatal: %s (%s %s:%d)\n", msg, context.function, file, context.line);
+        fprintf(stderr, "Fatal: %s (%s %s:%d)\n", msg.constData(), context.function, file.constData(), context.line);
         abort();
         break;
     default:
