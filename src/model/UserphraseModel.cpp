@@ -45,9 +45,9 @@ static void logger(void *data, int level, const char *fmt, ...)
 }
 
 UserphraseModel::UserphraseModel(QObject *parent, const char *path)
-    :QAbstractListModel(parent)
-    ,ctx_(chewing_new2(nullptr, path, logger, nullptr), chewing_delete)
-    ,userphrase_()
+    :QAbstractListModel{parent}
+    ,ctx_{chewing_new2(nullptr, path, logger, nullptr), chewing_delete}
+    ,userphrase_{}
 {
     if (!ctx_) {
         // FIXME: Report error here

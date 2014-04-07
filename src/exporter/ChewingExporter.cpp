@@ -25,7 +25,7 @@
 #include <QJsonObject>
 
 ChewingExporter::ChewingExporter(const QString& path)
-    :UserphraseExporter(path)
+    :UserphraseExporter{path}
 {
 }
 
@@ -49,7 +49,7 @@ bool ChewingExporter::saveImpl()
 
     root["userphrase"] = array_;
 
-    QJsonDocument doc(root);
+    QJsonDocument doc{root};
 
     QFile file{path_};
 

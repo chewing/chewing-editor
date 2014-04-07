@@ -21,8 +21,8 @@
 #include "ui_AddNewPhraseDialog.h"
 
 AddNewPhraseDialog::AddNewPhraseDialog(QWidget *parent)
-    :QDialog(parent)
-    ,ui_(new Ui::AddNewPhraseDialog)
+    :QDialog{parent}
+    ,ui_{new Ui::AddNewPhraseDialog}
 {
     ui_.get()->setupUi(this);
     setupConnect();

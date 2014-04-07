@@ -20,9 +20,9 @@
 #include "Userphrase.h"
 
 Userphrase::Userphrase(const QString& phrase, const QString& bopomofo)
-    :phrase_(phrase)
-    ,bopomofo_(bopomofo)
-    ,display_()
+    :phrase_{phrase}
+    ,bopomofo_{bopomofo}
+    ,display_{}
 {
     display_ = QString("%1 (%2)").arg(phrase).arg(bopomofo);
 }

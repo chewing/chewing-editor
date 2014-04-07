@@ -28,7 +28,7 @@
 #include <QJsonParseError>
 
 ChewingImporter::ChewingImporter(const QString& path)
-    :UserphraseImporter(path)
+    :UserphraseImporter{path}
 {
 }
 
@@ -36,7 +36,7 @@ UserphraseSet ChewingImporter::loadImpl()
 {
     UserphraseSet result;
 
-    QFile file(path_);
+    QFile file{path_};
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << FUNC_NAME << "Cannot open file" << path_;
         return result;

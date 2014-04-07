@@ -22,7 +22,7 @@
 #include <QFileInfo>
 
 UserphraseImporter::UserphraseImporter(const QString& path)
-    :path_(path)
+    :path_{path}
 {
 }
 
@@ -33,6 +33,6 @@ UserphraseSet UserphraseImporter::load()
 
 const QString UserphraseImporter::getPath()
 {
-    QFileInfo info(path_);
+    QFileInfo info{path_};
     return info.fileName();
 }

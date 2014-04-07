@@ -27,13 +27,13 @@
 #include "ChewingExporter.h"
 
 ChewingEditor::ChewingEditor(QWidget *parent)
-    :QMainWindow(parent)
-    ,ui_(new Ui::ChewingEditor)
-    ,model_(new UserphraseModel(this))
-    ,proxyModel_(new UserphraseSortFilterProxyModel(this))
-    ,addNewPhraseDialog_(new AddNewPhraseDialog(this))
-    ,importDialog_(new QFileDialog(this))
-    ,exportDialog_(new QFileDialog(this))
+    :QMainWindow{parent}
+    ,ui_{new Ui::ChewingEditor}
+    ,model_{new UserphraseModel{this}}
+    ,proxyModel_{new UserphraseSortFilterProxyModel{this}}
+    ,addNewPhraseDialog_{new AddNewPhraseDialog{this}}
+    ,importDialog_{new QFileDialog{this}}
+    ,exportDialog_{new QFileDialog{this}}
 {
     ui_.get()->setupUi(this);
 

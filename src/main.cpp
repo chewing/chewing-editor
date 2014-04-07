@@ -31,7 +31,7 @@ void emptyMessageHandler(QtMsgType, const QMessageLogContext&, const QString&)
 void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
 {
     auto msg = message.toUtf8();
-    auto file = QFileInfo(context.file).fileName().toUtf8();
+    auto file = QFileInfo{context.file}.fileName().toUtf8();
 
     switch(type) {
     case QtDebugMsg:
@@ -56,8 +56,8 @@ void loadTranslation(QApplication &app)
 {
     QTranslator qtTranslator;
 
-    QString qtFileName("qt_" + QLocale::system().name());
-    QString qtDirectory(QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    QString qtFileName{"qt_" + QLocale::system().name()};
+    QString qtDirectory{QLibraryInfo::location(QLibraryInfo::TranslationsPath)};
 
     qDebug() << "Load " << qtFileName << qtDirectory;
     qtTranslator.load(qtFileName, qtDirectory);
@@ -66,8 +66,8 @@ void loadTranslation(QApplication &app)
 
 
     QTranslator chewingTranslator;
-    QString chewingFileName("chewing-editor_" + QLocale::system().name());
-    QString chewingDirectory(TRANSLATION_PATH);
+    QString chewingFileName{"chewing-editor_" + QLocale::system().name()};
+    QString chewingDirectory{TRANSLATION_PATH};
 
     qDebug() << "Load " << chewingFileName << chewingDirectory;
     chewingTranslator.load(chewingFileName, chewingDirectory);
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 {
     qInstallMessageHandler(emptyMessageHandler);
 
-    QApplication app(argc, argv);
+    QApplication app{argc, argv};
 
     readArgument(app);
     loadTranslation(app);

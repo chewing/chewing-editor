@@ -22,7 +22,7 @@
 #include <QFileInfo>
 
 UserphraseExporter::UserphraseExporter(const QString& path)
-    :path_(path)
+    :path_{path}
 {
 }
 
@@ -39,5 +39,5 @@ bool UserphraseExporter::save() {
 
 const QString UserphraseExporter::getPath()
 {
-    return QFileInfo(path_).fileName();
+    return QFileInfo{path_}.fileName();
 }
