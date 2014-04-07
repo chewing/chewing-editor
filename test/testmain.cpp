@@ -16,10 +16,37 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+#include <QApplication>
+#include <QFileInfo>
 
 #include "gtest/gtest.h"
 
+void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
+{
+    auto msg = message.toUtf8();
+    auto file = QFileInfo{context.file}.fileName().toUtf8();
+
+    switch(type) {
+    case QtDebugMsg:
+        fprintf(stdout, "Debug: %s (%s %s:%d)\n", msg.constData(), context.function, file.constData(), context.line);
+        break;
+    case QtWarningMsg:
+        fprintf(stderr, "Warning: %s (%s %s:%d)\n", msg.constData(), context.function, file.constData(), context.line);
+        break;
+    case QtCriticalMsg:
+        fprintf(stderr, "Critical: %s (%s %s:%d)\n", msg.constData(), context.function, file.constData(), context.line);
+        break;
+    case QtFatalMsg:
+        fprintf(stderr, "Fatal: %s (%s %s:%d)\n", msg.constData(), context.function, file.constData(), context.line);
+        abort();
+        break;
+    default:
+        break;
+    }
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
+    qInstallMessageHandler(debugMessageHandler);
     return RUN_ALL_TESTS();
 }
