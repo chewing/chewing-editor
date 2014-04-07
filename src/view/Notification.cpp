@@ -32,7 +32,7 @@ void Notification::notifyImportCompleted(
     size_t imported,
     size_t total)
 {
-    qDebug() << FUNC_NAME << result << path << imported << total;
+    qDebug() << result << path << imported << total;
 
     if (result) {
         setText(
@@ -50,7 +50,7 @@ void Notification::notifyExportCompleted(
     const QString& path,
     size_t exported)
 {
-    qDebug() << FUNC_NAME << result << path << exported;
+    qDebug() << result << path << exported;
 
     if (result) {
         setText(
@@ -64,7 +64,7 @@ void Notification::notifyExportCompleted(
 
 void Notification::notifyAddNewPhraseCompleted(const Userphrase& userphrase)
 {
-    qDebug() << FUNC_NAME << userphrase.display_;
+    qDebug() << userphrase.display_;
 
     setText(tr("Add new phrase %1 success.").arg(userphrase.display_));
 }
@@ -72,14 +72,14 @@ void Notification::notifyAddNewPhraseCompleted(const Userphrase& userphrase)
 
 void Notification::notifyRemovePhraseCompleted(size_t count)
 {
-    qDebug() << FUNC_NAME << count;
+    qDebug() << count;
 
     setText(tr("Remove %1 phrase(s) success", 0, count).arg(count));
 }
 
 void Notification::notifyRefreshCompleted(size_t count)
 {
-    qDebug() << FUNC_NAME << count;
+    qDebug() << count;
 
     setText(tr("Refresh completed. Total %1 user phrase(s).", 0, count).arg(count));
 }

@@ -26,7 +26,7 @@
 void UserphraseSortFilterProxyModel::remove(QModelIndexList &&indexList)
 {
     if (indexList.empty()) {
-        qDebug() << FUNC_NAME << "indexList is empty";
+        qDebug() << "indexList is empty";
         return;
     }
 

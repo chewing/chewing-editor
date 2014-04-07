@@ -32,10 +32,8 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
 
     set(TRANSLATION_PATH ${CMAKE_INSTALL_PREFIX}/share/chewing-editor/translations)
 
-    add_definitions(-DFUNC_NAME=__PRETTY_FUNCTION__)
     add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
 else()
-    add_definitions(-DFUNC_NAME=__func__)
     # FIXME: Windows TRANSLATION_PATH path is?
     #add_definitions(-DTRANSLATION_PATH="???")
 endif()

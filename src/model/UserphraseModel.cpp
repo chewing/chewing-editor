@@ -77,7 +77,7 @@ QVariant UserphraseModel::data(const QModelIndex &index, int role) const
 void UserphraseModel::remove(QModelIndexList &&indexList)
 {
     if (indexList.empty()) {
-        qDebug() << FUNC_NAME << "indexList is empty";
+        qDebug() << "indexList is empty";
         return;
     }
 
@@ -93,9 +93,8 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
     foreach(auto item, indexList) {
         auto index = item.row();
 
-        qDebug() << FUNC_NAME
-            << userphrase_[index].phrase_
-            << userphrase_[index].bopomofo_;
+        qDebug() << userphrase_[index].phrase_
+                 << userphrase_[index].bopomofo_;
         auto ret = chewing_userphrase_remove(
             ctx_.get(),
             userphrase_[index].phrase_.toUtf8().constData(),
@@ -116,8 +115,6 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
 
 void UserphraseModel::refresh()
 {
-    qDebug() << FUNC_NAME;
-
     UserphraseSet userphrase;
 
     std::vector<char> phrase;
@@ -157,7 +154,6 @@ void UserphraseModel::refresh()
 
 bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 {
-
     auto ret = chewing_userphrase_add(
         ctx_.get(),
         phrase.toUtf8().constData(),
@@ -180,7 +176,6 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 
 void UserphraseModel::importUserphrase(UserphraseImporter& importer)
 {
-    qDebug() << FUNC_NAME;
     size_t old_count = userphrase_.size();
 
     for (auto& i: importer.load()) {
@@ -196,8 +191,6 @@ void UserphraseModel::importUserphrase(UserphraseImporter& importer)
 
 void UserphraseModel::exportUserphrase(UserphraseExporter& exporter)
 {
-    qDebug() << FUNC_NAME;
-
     size_t exported = userphrase_.size();
 
     for (auto& i: userphrase_) {

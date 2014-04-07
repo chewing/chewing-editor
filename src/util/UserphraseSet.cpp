@@ -26,9 +26,8 @@ bool UserphraseSet::insert(Userphrase&& userphrase)
     auto ret = dedup_.insert(userphrase.display_);
     if (!ret.second) {
         // Duplicate item shall not be stored.
-        qDebug() << FUNC_NAME
-            << "Duplicate phrase:" << userphrase.phrase_
-            << "bopomofo:" << userphrase.bopomofo_;
+        qDebug() << "Duplicate phrase:" << userphrase.phrase_
+                 << "bopomofo:" << userphrase.bopomofo_;
         return false;
     }
 

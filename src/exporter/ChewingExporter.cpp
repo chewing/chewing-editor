@@ -54,7 +54,7 @@ bool ChewingExporter::saveImpl()
     QFile file{path_};
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
-        qDebug() << FUNC_NAME << "Cannot open" << path_;
+        qDebug() << "Cannot open" << path_;
         return false;
     }
     file.write(doc.toJson());
