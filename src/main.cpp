@@ -23,6 +23,34 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 
+void emptyMessageHandler(QtMsgType, const QMessageLogContext&, const QString&)
+{
+}
+
+void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
+{
+    auto msg = message.toUtf8().constData();
+    auto file = QFileInfo(context.file).fileName().toUtf8().constData();
+
+    switch(type) {
+    case QtDebugMsg:
+        fprintf(stdout, "Debug: %s (%s %s:%d)\n", msg, context.function, file, context.line);
+        break;
+    case QtWarningMsg:
+        fprintf(stderr, "Warning: %s (%s %s:%d)\n", msg, context.function, file, context.line);
+        break;
+    case QtCriticalMsg:
+        fprintf(stderr, "Critical: %s (%s %s:%d)\n", msg, context.function, file, context.line);
+        break;
+    case QtFatalMsg:
+        fprintf(stderr, "Fatal: %s (%s %s:%d)\n", msg, context.function, file, context.line);
+        abort();
+        break;
+    default:
+        break;
+    }
+}
+
 void loadTranslation(QApplication &app)
 {
     QTranslator qtTranslator;
@@ -34,10 +62,22 @@ void loadTranslation(QApplication &app)
     app.installTranslator(&chewingTranslator);
 }
 
+void readArgument(QApplication &app)
+{
+    foreach (QString arg, QCoreApplication::arguments()) {
+        if (arg.compare("-d") == 0) {
+            qInstallMessageHandler(debugMessageHandler);
+        }
+    }
+}
+
 int main(int argc, char *argv[])
 {
+    qInstallMessageHandler(emptyMessageHandler);
+
     QApplication app(argc, argv);
 
+    readArgument(app);
     loadTranslation(app);
 
     ChewingEditor w;
