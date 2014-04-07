@@ -52,10 +52,8 @@ void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
     }
 }
 
-void loadTranslation(QApplication &app)
+void loadTranslation(QApplication &app, QTranslator &qtTranslator, QTranslator &chewingTranslator)
 {
-    QTranslator qtTranslator;
-
     QString qtFileName{"qt_" + QLocale::system().name()};
     QString qtDirectory{QLibraryInfo::location(QLibraryInfo::TranslationsPath)};
 
@@ -64,8 +62,6 @@ void loadTranslation(QApplication &app)
 
     app.installTranslator(&qtTranslator);
 
-
-    QTranslator chewingTranslator;
     QString chewingFileName{"chewing-editor_" + QLocale::system().name()};
     QString chewingDirectory{TRANSLATION_PATH};
 
@@ -89,9 +85,11 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(emptyMessageHandler);
 
     QApplication app{argc, argv};
+    QTranslator qtTranslator;
+    QTranslator chewingTranslator;
 
+    loadTranslation(app, qtTranslator, chewingTranslator);
     readArgument(app);
-    loadTranslation(app);
 
     ChewingEditor w;
     w.show();
