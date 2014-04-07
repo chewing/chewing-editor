@@ -61,21 +61,21 @@
     </message>
     <message>
         <location filename="../src/view/Notification.cpp" line="40"/>
-        <source>Import %1 success.</source>
-        <translation>成功匯入 %1。</translation>
+        <source>Import %1 successful.</source>
+        <translation>匯入 「%1」成功。</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/view/Notification.cpp" line="41"/>
-        <source>%1 phrase(s) are imported.</source>
+        <source>%n phrase(s) are imported.</source>
         <translation>
-            <numerusform>匯入 %1 個詞彙。</numerusform>
+            <numerusform>匯入 %n 個詞彙。</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/view/Notification.cpp" line="42"/>
-        <source>Total %1 user phrase(s).</source>
+        <source>Total %n user phrase(s).</source>
         <translation>
-            <numerusform>目前共有 %1 個詞彙。</numerusform>
+            <numerusform>目前共有 %n 個詞彙。</numerusform>
         </translation>
     </message>
     <message>
@@ -83,11 +83,45 @@
         <source>Import %1 failed.</source>
         <translation>無法匯入 %1。</translation>
     </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="57"/>
+        <source>%1 %2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="58"/>
+        <source>Export %1 successful.</source>
+        <translation>匯出 %1 成功。</translation>
+    </message>
     <message numerus="yes">
-        <location filename="../src/view/Notification.cpp" line="52"/>
-        <source>Refresh completed. Total %1 user phrase(s).</source>
+        <location filename="../src/view/Notification.cpp" line="59"/>
+        <source>%n phrase(s) are exported.</source>
         <translation>
-            <numerusform>更新完成。目前共有 %1 個詞彙。</numerusform>
+            <numerusform>有 %n 個詞彙被匯出。</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="61"/>
+        <source>Export %1 failed.</source>
+        <translation>匯出 %1 失敗。</translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="69"/>
+        <source>Add new phrase %1 successful.</source>
+        <translation>新增 「%1」成功。</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="77"/>
+        <source>Remove %n phrase(s) successful.</source>
+        <translation>
+            <numerusform>移除 %n 個詞彙成功。</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="84"/>
+        <source>Refresh completed. Total %n user phrase(s).</source>
+        <translation>
+            <numerusform>更新完成。共有 %n 個詞彙。</numerusform>
         </translation>
     </message>
 </context>

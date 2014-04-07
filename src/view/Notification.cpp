@@ -38,8 +38,8 @@ void Notification::notifyImportCompleted(
         setText(
             tr("%1 %2 %3")
                 .arg(tr("Import %1 successful.").arg(path))
-                .arg(tr("%1 phrase(s) are imported.", 0, imported).arg(imported))
-                .arg(tr("Total %1 user phrase(s).", 0, total).arg(total)));
+                .arg(tr("%n phrase(s) are imported.", 0, imported))
+                .arg(tr("Total %n user phrase(s).", 0, total)));
     } else {
         setText(tr("Import %1 failed.").arg(path));
     }
@@ -56,7 +56,7 @@ void Notification::notifyExportCompleted(
         setText(
             tr("%1 %2")
                 .arg(tr("Export %1 successful.").arg(path))
-                .arg(tr("%1 phrase(s) are exported.", 0, exported).arg(exported)));
+                .arg(tr("%n phrase(s) are exported.", 0, exported)));
     } else {
         setText(tr("Export %1 failed.").arg(path));
     }
@@ -66,7 +66,7 @@ void Notification::notifyAddNewPhraseCompleted(const Userphrase& userphrase)
 {
     qDebug() << userphrase.display_;
 
-    setText(tr("Add new phrase %1 success.").arg(userphrase.display_));
+    setText(tr("Add new phrase %1 successful.").arg(userphrase.display_));
 }
 
 
@@ -74,12 +74,12 @@ void Notification::notifyRemovePhraseCompleted(size_t count)
 {
     qDebug() << count;
 
-    setText(tr("Remove %1 phrase(s) success", 0, count).arg(count));
+    setText(tr("Remove %n phrase(s) successful.", 0, count));
 }
 
 void Notification::notifyRefreshCompleted(size_t count)
 {
     qDebug() << count;
 
-    setText(tr("Refresh completed. Total %1 user phrase(s).", 0, count).arg(count));
+    setText(tr("Refresh completed. Total %n user phrase(s).", 0, count));
 }
