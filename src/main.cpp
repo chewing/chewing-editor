@@ -23,10 +23,8 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 
-int main(int argc, char *argv[])
+void loadTranslation(QApplication &app)
 {
-    QApplication app(argc, argv);
-
     QTranslator qtTranslator;
     qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app.installTranslator(&qtTranslator);
@@ -34,6 +32,13 @@ int main(int argc, char *argv[])
     QTranslator chewingTranslator;
     chewingTranslator.load("chewing-editor_" + QLocale::system().name(), TRANSLATION_PATH);
     app.installTranslator(&chewingTranslator);
+}
+
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+
+    loadTranslation(app);
 
     ChewingEditor w;
     w.show();
