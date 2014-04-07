@@ -37,11 +37,11 @@ void Notification::notifyImportCompleted(
     if (result) {
         setText(
             tr("%1 %2 %3")
-                .arg(tr("Import %1 success.").arg(path))
+                .arg(tr("Import %1 successful.").arg(path))
                 .arg(tr("%1 phrase(s) are imported.", 0, imported).arg(imported))
                 .arg(tr("Total %1 user phrase(s).", 0, total).arg(total)));
     } else {
-        setText(tr("Import %1 failed."));
+        setText(tr("Import %1 failed.").arg(path));
     }
 }
 
@@ -55,10 +55,10 @@ void Notification::notifyExportCompleted(
     if (result) {
         setText(
             tr("%1 %2")
-                .arg(tr("Export %1 success.").arg(path))
+                .arg(tr("Export %1 successful.").arg(path))
                 .arg(tr("%1 phrase(s) are exported.", 0, exported).arg(exported)));
     } else {
-        setText(tr("Export %1 failed."));
+        setText(tr("Export %1 failed.").arg(path));
     }
 }
 
