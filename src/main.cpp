@@ -59,8 +59,8 @@ void loadTranslation(QApplication &app)
     QString qtFileName{"qt_" + QLocale::system().name()};
     QString qtDirectory{QLibraryInfo::location(QLibraryInfo::TranslationsPath)};
 
-    qDebug() << "Load " << qtFileName << qtDirectory;
-    qtTranslator.load(qtFileName, qtDirectory);
+    bool qtLoaded = qtTranslator.load(qtFileName, qtDirectory);
+    qDebug() << "Load" << qtFileName << qtDirectory << qtLoaded;
 
     app.installTranslator(&qtTranslator);
 
@@ -69,8 +69,8 @@ void loadTranslation(QApplication &app)
     QString chewingFileName{"chewing-editor_" + QLocale::system().name()};
     QString chewingDirectory{TRANSLATION_PATH};
 
-    qDebug() << "Load " << chewingFileName << chewingDirectory;
-    chewingTranslator.load(chewingFileName, chewingDirectory);
+    bool chewingLoaded = chewingTranslator.load(chewingFileName, chewingDirectory);
+    qDebug() << "Load" << chewingFileName << chewingDirectory << chewingLoaded;
 
     app.installTranslator(&chewingTranslator);
 }
