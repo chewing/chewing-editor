@@ -77,7 +77,7 @@ void loadTranslation(QApplication &app)
 
 void readArgument(QApplication &app)
 {
-    foreach (QString arg, QCoreApplication::arguments()) {
+    foreach (auto &arg, QCoreApplication::arguments()) {
         if (arg.compare("-d") == 0) {
             qInstallMessageHandler(debugMessageHandler);
         }
