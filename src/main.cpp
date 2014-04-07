@@ -20,6 +20,7 @@
 #include "ChewingEditor.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QLibraryInfo>
 #include <QTranslator>
 
@@ -54,11 +55,23 @@ void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
 void loadTranslation(QApplication &app)
 {
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+
+    QString qtFileName("qt_" + QLocale::system().name());
+    QString qtDirectory(QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+
+    qDebug() << "Load " << qtFileName << qtDirectory;
+    qtTranslator.load(qtFileName, qtDirectory);
+
     app.installTranslator(&qtTranslator);
 
+
     QTranslator chewingTranslator;
-    chewingTranslator.load("chewing-editor_" + QLocale::system().name(), TRANSLATION_PATH);
+    QString chewingFileName("chewing-editor_" + QLocale::system().name());
+    QString chewingDirectory(TRANSLATION_PATH);
+
+    qDebug() << "Load " << chewingFileName << chewingDirectory;
+    chewingTranslator.load(chewingFileName, chewingDirectory);
+
     app.installTranslator(&chewingTranslator);
 }
 
