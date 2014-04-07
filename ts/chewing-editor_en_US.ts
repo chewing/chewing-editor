@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="en_US">
+<TS version="2.1" language="en_US">
 <context>
     <name>AddNewPhraseDialog</name>
     <message>
@@ -59,11 +59,6 @@
         <source>%1 %2 %3</source>
         <translation></translation>
     </message>
-    <message>
-        <location filename="../src/view/Notification.cpp" line="40"/>
-        <source>Import %1 success.</source>
-        <translation></translation>
-    </message>
     <message numerus="yes">
         <location filename="../src/view/Notification.cpp" line="41"/>
         <source>%1 phrase(s) are imported.</source>
@@ -85,8 +80,49 @@
         <source>Import %1 failed.</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="57"/>
+        <source>%1 %2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="40"/>
+        <source>Import %1 successful.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="58"/>
+        <source>Export %1 successful.</source>
+        <translation></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../src/view/Notification.cpp" line="52"/>
+        <location filename="../src/view/Notification.cpp" line="59"/>
+        <source>%1 phrase(s) are exported.</source>
+        <translation>
+            <numerusform>%1 phrase is exported.</numerusform>
+            <numerusform>%1 phrases are exported.</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="61"/>
+        <source>Export %1 failed.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="69"/>
+        <source>Add new phrase %1 success.</source>
+        <translation></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="77"/>
+        <source>Remove %1 phrase(s) success</source>
+        <translation>
+            <numerusform>Remove %1 userphrase successful.</numerusform>
+            <numerusform>Remove %1 userphrases successful.</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/view/Notification.cpp" line="84"/>
         <source>Refresh completed. Total %1 user phrase(s).</source>
         <translation>
             <numerusform>Refresh completed. Total %1 user phrase.</numerusform>
