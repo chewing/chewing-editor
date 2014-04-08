@@ -3,6 +3,6 @@ chewing-editor - chewing userphrase editor
 [SYNOPSIS]
 chewing-editor [-v|--version] [-h|--help] [-d|--debug]
 [AUTHOR]
-Written by chewing development team <chewing-devel@googlegroups.com>.
+Written by chewing development team <chewing-devel@googlegroups.com>
 [REPORTING BUGS]
-Report bug to https://github.com/chewing/chewing-editor/issues
+Report bug to <https://github.com/chewing/chewing-editor/issues>
