@@ -85,10 +85,11 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(emptyMessageHandler);
 
     QApplication app{argc, argv};
+
     QTranslator qtTranslator;
     QTranslator chewingTranslator;
-
     loadTranslation(app, qtTranslator, chewingTranslator);
+
     readArgument(app);
 
     ChewingEditor w;
