@@ -99,7 +99,7 @@ void UserphraseModel::remove(QModelIndexList &&indexList)
             ctx_.get(),
             userphrase_[index].phrase_.toUtf8().constData(),
             userphrase_[index].bopomofo_.toUtf8().constData());
-        if (ret == 0) {
+        if (ret > 0) {
             // FIXME: std::vector::erase is an inefficient operation.
             userphrase_.erase(userphrase_.begin() + index);
         } else {
@@ -159,7 +159,7 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         phrase.toUtf8().constData(),
         bopomofo.toUtf8().constData());
 
-    if (ret == 0) {
+    if (ret > 0) {
         emit beginResetModel();
         userphrase_.insert(Userphrase{
             phrase,
@@ -171,7 +171,7 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         qWarning() << "chewing_userphrase_add() returns" << ret;
     }
 
-    return ret == 0;
+    return ret > 0;
 }
 
 void UserphraseModel::importUserphrase(UserphraseImporter& importer)
