@@ -17,12 +17,14 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "ChewingEditor.h"
+#include "config.h"
 
 #include <QApplication>
 #include <QDebug>
 #include <QLibraryInfo>
 #include <QTranslator>
+
+#include "ChewingEditor.h"
 
 void emptyMessageHandler(QtMsgType, const QMessageLogContext&, const QString&)
 {
@@ -71,11 +73,48 @@ void loadTranslation(QApplication &app, QTranslator &qtTranslator, QTranslator &
     app.installTranslator(&chewingTranslator);
 }
 
+void printVersion(const QString &name)
+{
+    printf("%s version %d.%d.%d\n",
+        name.toUtf8().constData(),
+        CHEWING_EDITOR_MAJOR,
+        CHEWING_EDITOR_MINOR,
+        CHEWING_EDITOR_PATCH);
+}
+
+void printHelp(const QString &name)
+{
+    printf("Not implemented yet!\n");
+}
+
+void printUnknownArgs(const QString &unknown)
+{
+    printf("Unknown options: %s\n", unknown.toUtf8().constData());
+}
+
 void readArgument(QApplication &app)
 {
-    foreach (auto &arg, QCoreApplication::arguments()) {
-        if (arg.compare("-d") == 0) {
+    auto args = QCoreApplication::arguments();
+    auto name = QFileInfo{args.at(0)}.fileName();
+
+    for (int i = 1; i < args.size(); ++i) {
+        auto arg = args.at(i);
+
+        if (arg.compare("-d") == 0 || arg.compare("--debug") == 0) {
             qInstallMessageHandler(debugMessageHandler);
+
+        } else if (arg.compare("-v") == 0 || arg.compare("--version") == 0) {
+            printVersion(name);
+            exit(0);
+
+        } else if (arg.compare("-h") == 0 || arg.compare("--help") == 0) {
+            printHelp(name);
+            exit(0);
+
+        } else {
+            printUnknownArgs(arg);
+            printHelp(name);
+            exit(1);
         }
     }
 }
