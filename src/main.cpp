@@ -89,8 +89,9 @@ void printArg(const QString &arg, const QString description)
 void printHelp(const QString &name)
 {
     QString description{QCoreApplication::translate("main",
-        "%1 is a cross platform chewing userphrase editor. It provides a "
-        "user-friendly GUI to customize userphrase database.")
+        "chewing-editor is a cross platform chewing user phrase editor written "
+        "in Qt5. It provides a user friendly GUI to manage user phrase. With it,"
+        " user can customize user phrase to enhance chewing input performance.")
         .arg(PROJECT_NAME)};
 
     printf("%s\n\n", description.toUtf8().constData());
