@@ -73,13 +73,13 @@ void loadTranslation(QApplication &app, QTranslator &qtTranslator, QTranslator &
     app.installTranslator(&chewingTranslator);
 }
 
-void printVersion(const QString &name)
+void printVersion()
 {
-    printf("%s version %d.%d.%d\n",
-        name.toUtf8().constData(),
-        CHEWING_EDITOR_MAJOR,
-        CHEWING_EDITOR_MINOR,
-        CHEWING_EDITOR_PATCH);
+    QString msg{QCoreApplication::translate("main", "%1 version %2\n")
+        .arg(PROJECT_NAME)
+        .arg(PROJECT_VERSION)};
+
+    printf("%s", msg.toUtf8().constData());
 }
 
 void printHelp(const QString &name)
@@ -104,7 +104,7 @@ void readArgument(QApplication &app)
             qInstallMessageHandler(debugMessageHandler);
 
         } else if (arg.compare("-v") == 0 || arg.compare("--version") == 0) {
-            printVersion(name);
+            printVersion();
             exit(0);
 
         } else if (arg.compare("-h") == 0 || arg.compare("--help") == 0) {
