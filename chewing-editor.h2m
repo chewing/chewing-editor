@@ -1,0 +1,4 @@
+[NAME]
+chewing-editor - chewing userphrase editor
+[SYNOPSIS]
+chewing-editor [-v|--version] [-h|--help] [-d|--debug]

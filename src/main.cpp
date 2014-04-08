@@ -75,16 +75,37 @@ void loadTranslation(QApplication &app, QTranslator &qtTranslator, QTranslator &
 
 void printVersion()
 {
-    QString msg{QCoreApplication::translate("main", "%1 version %2\n")
-        .arg(PROJECT_NAME)
+    QString msg{QCoreApplication::translate("main", "%1\n")
         .arg(PROJECT_VERSION)};
 
     printf("%s", msg.toUtf8().constData());
 }
 
+void printArg(const QString &arg, const QString description)
+{
+    printf("%s\n\t%s\n\n", arg.toUtf8().constData(), description.toUtf8().constData());
+}
+
 void printHelp(const QString &name)
 {
-    printf("Not implemented yet!\n");
+    QString description{QCoreApplication::translate("main",
+        "%1 is a cross platform chewing userphrase editor. It provides a "
+        "user-friendly GUI to customize userphrase database.")
+        .arg(PROJECT_NAME)};
+
+    printf("%s\n\n", description.toUtf8().constData());
+
+    printArg(
+        QCoreApplication::translate("main", "-d, --debug"),
+        QCoreApplication::translate("main", "Enable debug message."));
+
+    printArg(
+        QCoreApplication::translate("main", "-v, --version"),
+        QCoreApplication::translate("main", "Print program version."));
+
+    printArg(
+        QCoreApplication::translate("main", "-h, --help"),
+        QCoreApplication::translate("main", "Print help message."));
 }
 
 void printUnknownArgs(const QString &unknown)

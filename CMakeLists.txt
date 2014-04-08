@@ -166,6 +166,30 @@ endforeach()
 add_custom_target(lrelease ALL DEPENDS ${QM_FILES})
 install(FILES ${QM_FILES} DESTINATION ${TRANSLATION_PATH})
 
+# manpage
+find_program(HELP2MAN help2man)
+
+if (HELP2MAN)
+    set(manpage ${PROJECT_BINARY_DIR}/chewing-editor.1)
+
+    add_custom_command(
+        OUTPUT
+            ${manpage}
+        COMMAND ${HELP2MAN}
+            --include=${PROJECT_SOURCE_DIR}/chewing-editor.h2m
+            --section=1
+            --no-info
+            ${PROJECT_BINARY_DIR}/chewing-editor > ${manpage}
+        DEPENDS
+            chewing-editor
+            ${PROJECT_SOURCE_DIR}/chewing-editor.h2m
+    )
+
+    add_custom_target(manpage ALL DEPENDS ${manpage})
+
+    # FIXME: How to install manpage
+endif()
+
 # testing
 enable_testing()
 add_subdirectory(gmock)
