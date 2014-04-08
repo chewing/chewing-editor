@@ -18,6 +18,10 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(chewing-editor)
 
+set(CHEWING_EDITOR_MAJOR "0")
+set(CHEWING_EDITOR_MINOR "0")
+set(CHEWING_EDITOR_PATCH "0")
+
 set(TRANSLATION_LIST en_US zh_TW)
 
 cmake_policy(SET CMP0020 NEW)
@@ -69,8 +73,14 @@ if (NOT LRELEASE)
     message(SEND_ERROR "Cannot find lrelease")
 endif()
 
+configure_file(
+    ${PROJECT_SOURCE_DIR}/cmake/config.h.in
+    ${PROJECT_BINARY_DIR}/include/config.h
+)
+
 include_directories(
     ${CHEWING_INCLUDE_DIRS}
+    ${PROJECT_BINARY_DIR}/include
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include
     ${PROJECT_SOURCE_DIR}/src/exporter
     ${PROJECT_SOURCE_DIR}/src/importer
@@ -185,8 +195,8 @@ set(CPACK_SOURCE_IGNORE_FILES
     "^${PROJECT_SOURCE_DIR}/.git"
 )
 
-set(CPACK_PACKAGE_VERSION_MAJOR "0")
-set(CPACK_PACKAGE_VERSION_MINOR "0")
-set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_PACKAGE_VERSION_MAJOR ${CHEWING_EDITOR_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${CHEWING_EDITOR_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${CHEWING_EDITOR_PATCH})
 
 include(CPack)
