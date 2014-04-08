@@ -171,19 +171,20 @@ find_program(HELP2MAN help2man)
 
 if (HELP2MAN)
     set(manpage ${PROJECT_BINARY_DIR}/chewing-editor.1)
+    set(h2m ${PROJECT_SOURCE_DIR}/chewing-editor.h2m)
 
     add_custom_command(
         OUTPUT
             ${manpage}
         COMMAND ${HELP2MAN}
-            --include=${PROJECT_SOURCE_DIR}/chewing-editor.h2m
+            --include=${h2m}
             --section=1
             --no-info
             --output=${manpage}
             ${PROJECT_BINARY_DIR}/chewing-editor
         DEPENDS
             chewing-editor
-            ${PROJECT_SOURCE_DIR}/chewing-editor.h2m
+            ${h2m}
     )
 
     add_custom_target(manpage ALL DEPENDS ${manpage})
