@@ -178,14 +178,20 @@ void UserphraseModel::importUserphrase(UserphraseImporter& importer)
 {
     size_t old_count = userphrase_.size();
 
-    for (auto& i: importer.load()) {
+    auto result = importer.load();
+
+    if (!result.first) {
+        emit importCompleted(false, importer.getPath(), 0, old_count);
+        return;
+    }
+
+    for (auto& i: result.second) {
         // FIXME: UserphraseModel shall provide a API to support Userphrase directly.
         add(i.phrase_, i.bopomofo_);
     }
 
     size_t new_count = userphrase_.size();
 
-    // FIXME: How to know if import file is supported?
     emit importCompleted(true, importer.getPath(), new_count - old_count, new_count);
 }
 

@@ -19,23 +19,31 @@
 
 #pragma once
 
+#include <utility>
 #include <vector>
 
+#include <QFileInfo>
 #include <QString>
 
 #include "UserphraseSet.h"
 
 class UserphraseImporter {
 public:
-    explicit UserphraseImporter(const QString& path);
+    explicit UserphraseImporter(const QString& path):path_{path} {}
     UserphraseImporter(const UserphraseImporter&) = delete;
     UserphraseImporter& operator=(const UserphraseImporter&) = delete;
     virtual ~UserphraseImporter() = default;
 
-    UserphraseSet load();
-    const QString getPath();
+    std::pair<bool, UserphraseSet> load() { return loadImpl(); }
+
+    const QString getPath() {
+        QFileInfo info{path_};
+        return info.fileName();
+    }
 
 protected:
-    virtual UserphraseSet loadImpl() = 0;
+    virtual std::pair<bool, UserphraseSet> loadImpl() = 0;
+
     QString path_;
+    bool supportedFormat_;
 };

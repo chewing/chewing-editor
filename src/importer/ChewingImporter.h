@@ -23,11 +23,11 @@
 
 class ChewingImporter final : public UserphraseImporter {
 public:
-    explicit ChewingImporter(const QString& path);
+    explicit ChewingImporter(const QString& path):UserphraseImporter{path} {}
     ChewingImporter(const ChewingImporter&) = delete;
     ChewingImporter& operator=(const ChewingImporter&) = delete;
     virtual ~ChewingImporter() = default;
 
 protected:
-    virtual UserphraseSet loadImpl();
+    virtual std::pair<bool, UserphraseSet> loadImpl();
 };

@@ -27,37 +27,33 @@
 #include <QJsonObject>
 #include <QJsonParseError>
 
-ChewingImporter::ChewingImporter(const QString& path)
-    :UserphraseImporter{path}
+std::pair<bool, UserphraseSet> ChewingImporter::loadImpl()
 {
-}
-
-UserphraseSet ChewingImporter::loadImpl()
-{
+    bool ok = false;
     UserphraseSet result;
 
     QFile file{path_};
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Cannot open file" << path_;
-        return result;
+        return std::make_pair(ok, std::move(result));
     }
 
     QJsonParseError err;
     auto doc = QJsonDocument::fromJson(file.readAll(), &err);
     if (doc.isNull()) {
         qWarning() << "parse json error in " << path_ << err.errorString();
-        return result;
+        return std::make_pair(ok, std::move(result));
     }
 
     if (!doc.isObject()) {
         qWarning() << "root is not an object in" << path_;
-        return result;
+        return std::make_pair(ok, std::move(result));
     }
 
     auto root = doc.object();
     if (!root["userphrase"].isArray()) {
         qWarning() << "userphrase is not an array in " << path_;
-        return result;
+        return std::make_pair(ok, std::move(result));
     }
 
     auto array = root["userphrase"].toArray();
@@ -79,5 +75,10 @@ UserphraseSet ChewingImporter::loadImpl()
         });
     }
 
-    return result;
+    // FIXME: empty import shall still set ok to true.
+    if (!result.empty()) {
+        ok = true;
+    }
+
+    return std::make_pair(ok, std::move(result));
 }
