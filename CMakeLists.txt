@@ -142,8 +142,8 @@ add_custom_target(prepare_lrelease
 )
 
 foreach(TRANSLATION ${TRANSLATION_LIST})
-    set(TS_FILE "${TS_DIR}/chewing-editor_${TRANSLATION}.ts")
-    set(QM_FILE "${QM_DIR}/chewing-editor_${TRANSLATION}.qm")
+    set(TS_FILE "${TS_DIR}/${CMAKE_PROJECT_NAME}_${TRANSLATION}.ts")
+    set(QM_FILE "${QM_DIR}/${CMAKE_PROJECT_NAME}_${TRANSLATION}.qm")
 
     add_custom_target("${TRANSLATION}-ts"
         COMMAND ${LUPDATE} ${PROJECT_SOURCE_DIR}/src -ts ${TS_FILE}
