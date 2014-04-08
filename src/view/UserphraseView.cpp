@@ -1,6 +1,6 @@
 /*
  * chewing-editor: Chewing userphrase editor
- * Copyright (C) 2014 ChangZhuo Chen
+ * Copyright (C) 2014 Chewing Development Team
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
