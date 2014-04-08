@@ -35,6 +35,10 @@ static void logger(void *data, int level, const char *fmt, ...)
     vsnprintf(&buffer[0], buffer.size(), fmt, ap);
     va_end(ap);
 
+    if (buffer[len - 1] == '\n') {
+        buffer[len - 1] = 0;
+    }
+
     if (level <= CHEWING_LOG_INFO) {
         qDebug() << &buffer[0];
     } else if (level <= CHEWING_LOG_WARN) {
