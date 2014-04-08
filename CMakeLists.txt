@@ -179,7 +179,8 @@ if (HELP2MAN)
             --include=${PROJECT_SOURCE_DIR}/chewing-editor.h2m
             --section=1
             --no-info
-            ${PROJECT_BINARY_DIR}/chewing-editor > ${manpage}
+            --output=${manpage}
+            ${PROJECT_BINARY_DIR}/chewing-editor
         DEPENDS
             chewing-editor
             ${PROJECT_SOURCE_DIR}/chewing-editor.h2m
