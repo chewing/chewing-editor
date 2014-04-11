@@ -35,6 +35,11 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
         set(CMAKE_CXX_FLAGS "-coverage ${CMAKE_CXX_FLAGS}")
     endif()
 
+    find_program(VALGRIND valgrind)
+    if (VALGRIND)
+        option(USE_VALGRIND "Use valgrind when testing" true)
+    endif()
+
     set(TRANSLATION_PATH ${CMAKE_INSTALL_PREFIX}/share/chewing-editor/translations)
 
     add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
@@ -212,6 +217,10 @@ target_link_libraries(run-test
 qt5_use_modules(run-test Widgets)
 
 add_test(test run-test)
+
+if (USE_VALGRIND)
+    add_test("valgrind-run-test" ${VALGRIND} --error-exitcode=255 --leak-check=full ${PROJECT_BINARY_DIR}/run-test)
+endif()
 
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
 add_dependencies(check chewing-editor run-test)
