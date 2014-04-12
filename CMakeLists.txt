@@ -55,7 +55,7 @@ if (CHEWING_INCLUDE_DIRS AND CHEWING_LIBRARIES)
     find_package_handle_standard_args(chewing DEFAULT_MSG CHEWING_LIBRARIES CHEWING_INCLUDE_DIRS)
     mark_as_advanced(CHEWING_LIBRARIES CHEWING_INCLUDE_DIRS)
 else()
-    pkg_check_modules(CHEWING REQUIRED chewing>=0.3.5)
+    pkg_check_modules(CHEWING REQUIRED chewing>=0.4.0)
 endif()
 
 
