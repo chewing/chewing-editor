@@ -80,7 +80,6 @@ configure_file(
 )
 
 include_directories(
-    ${CHEWING_INCLUDE_DIRS}
     ${PROJECT_BINARY_DIR}/include
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include
     ${PROJECT_SOURCE_DIR}/src/exporter
@@ -89,6 +88,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/src/ui
     ${PROJECT_SOURCE_DIR}/src/util
     ${PROJECT_SOURCE_DIR}/src/view
+    ${CHEWING_INCLUDE_DIRS}
     ${Qt5Widgets_INCLUDES}
 )
 
