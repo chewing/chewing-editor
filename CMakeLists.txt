@@ -27,6 +27,8 @@ set(TRANSLATION_LIST en_US zh_TW)
 
 cmake_policy(SET CMP0020 NEW)
 
+include(GNUInstallDirs)
+
 if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "-std=c++11 -g -O2 ${CMAKE_CXX_FLAGS}")
 
@@ -40,7 +42,7 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
         option(USE_VALGRIND "Use valgrind when testing" true)
     endif()
 
-    set(TRANSLATION_PATH ${CMAKE_INSTALL_PREFIX}/share/chewing-editor/translations)
+    set(TRANSLATION_PATH ${CMAKE_INSTALL_DATADIR}/chewing-editor/translations)
 
     add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
 else()
@@ -132,7 +134,7 @@ target_link_libraries(chewing-editor
     util
 )
 qt5_use_modules(chewing-editor Widgets)
-install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 # i18n
 set(TS_DIR "${PROJECT_SOURCE_DIR}/ts")
