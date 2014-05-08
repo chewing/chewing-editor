@@ -197,9 +197,8 @@ if (HELP2MAN)
 
     add_custom_target(manpage ALL DEPENDS ${manpage})
 
-    # FIXME: How to install manpage
     set(mandir ${CMAKE_INSTALL_PREFIX}/share/man)
-    install(FILES ${manpage} DESTINATION "${mandir}/man1")
+    install(FILES ${manpage} DESTINATION "${mandir}/man1/chewing-editor")
 endif()
 
 # testing
