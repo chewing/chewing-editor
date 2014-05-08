@@ -81,7 +81,7 @@ void printVersion()
     printf("%s", msg.toUtf8().constData());
 }
 
-void printArg(const QString &arg, const QString description)
+void printArg(const QString &arg, const QString &description)
 {
     printf("%s\n\t%s\n\n", arg.toUtf8().constData(), description.toUtf8().constData());
 }
