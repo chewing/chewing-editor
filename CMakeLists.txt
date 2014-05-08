@@ -177,7 +177,7 @@ install(FILES ${QM_FILES} DESTINATION ${TRANSLATION_PATH})
 find_program(HELP2MAN help2man)
 
 if (HELP2MAN)
-    set(manpage ${PROJECT_BINARY_DIR}/chewing-editor.1)
+    set(manpage ${PROJECT_BINARY_DIR}/chewing-editor.1.gz)
     set(h2m ${PROJECT_SOURCE_DIR}/chewing-editor.h2m)
 
     add_custom_command(
@@ -187,6 +187,7 @@ if (HELP2MAN)
             --include=${h2m}
             --section=1
             --no-info
+            --no-discard-stderr
             --output=${manpage}
             ${PROJECT_BINARY_DIR}/chewing-editor
         DEPENDS
@@ -197,6 +198,8 @@ if (HELP2MAN)
     add_custom_target(manpage ALL DEPENDS ${manpage})
 
     # FIXME: How to install manpage
+    set(mandir ${CMAKE_INSTALL_PREFIX}/share/man)
+    install(FILES ${manpage} DESTINATION "${mandir}/man1")
 endif()
 
 # testing
