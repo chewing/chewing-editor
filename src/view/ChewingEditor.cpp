@@ -46,6 +46,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     setupRemove();
     setupRefresh();
     setupFilter();
+    aboutWidget();
 }
 
 ChewingEditor::~ChewingEditor()
@@ -84,7 +85,7 @@ void ChewingEditor::setupImport()
     exportDialog_->setFileMode(QFileDialog::ExistingFile);
 
     connect(
-        ui_.get()->importButton, SIGNAL(pressed()),
+        ui_.get()->actionImport, SIGNAL(triggered()),
         importDialog_, SLOT(exec())
     );
 
@@ -106,7 +107,7 @@ void ChewingEditor::setupExport()
     exportDialog_->setConfirmOverwrite(true);
 
     connect(
-        ui_.get()->exportButton, SIGNAL(pressed()),
+        ui_.get()->actionExport, SIGNAL(triggered()),
         exportDialog_, SLOT(exec())
     );
 
@@ -124,7 +125,7 @@ void ChewingEditor::setupExport()
 void ChewingEditor::setupAdd()
 {
     connect(
-        ui_.get()->addButton, SIGNAL(pressed()),
+        ui_.get()->actionAdd_phrase, SIGNAL(triggered()),
         addNewPhraseDialog_, SLOT(exec())
     );
 
@@ -142,7 +143,7 @@ void ChewingEditor::setupAdd()
 void ChewingEditor::setupRemove()
 {
     connect(
-        ui_.get()->removeButton, SIGNAL(pressed()),
+        ui_.get()->actionRemove_phrase, SIGNAL(triggered()),
         ui_.get()->userphraseView, SLOT(remove())
     );
 
@@ -155,7 +156,7 @@ void ChewingEditor::setupRemove()
 void ChewingEditor::setupRefresh()
 {
     connect(
-        ui_.get()->refreshButton, SIGNAL(pressed()),
+        ui_.get()->actionRefresh, SIGNAL(triggered()),
         model_, SLOT(refresh())
     );
 
@@ -173,4 +174,11 @@ void ChewingEditor::setupFilter()
         ui_.get()->userphraseFilter, SIGNAL(textEdited(const QString&)),
         ui_.get()->userphraseView, SLOT(setFilterString(const QString&))
     );
+}
+
+void ChewingEditor::aboutWidget()
+{
+   connect(
+        ui_.get()->actionAbout_Qt, SIGNAL( triggered() ), qApp, SLOT( aboutQt() )
+   );
 }
