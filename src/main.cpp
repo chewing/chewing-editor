@@ -91,8 +91,7 @@ void printHelp(const QString &name)
     QString description{QCoreApplication::translate("main",
         "chewing-editor is a cross platform chewing user phrase editor written "
         "in Qt5. It provides a user friendly GUI to manage user phrase. With it,"
-        " user can customize user phrase to enhance chewing input performance.")
-        .arg(PROJECT_NAME)};
+        " user can customize user phrase to enhance chewing input performance.")};
 
     printf("%s\n\n", description.toUtf8().constData());
 
