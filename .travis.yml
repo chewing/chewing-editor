@@ -1,9 +1,8 @@
 language: c
-compiler: gcc
-env: CTEST_OUTPUT_ON_FAILURE=1
 
 matrix:
     include:
+        - env: CTEST_OUTPUT_ON_FAILURE=1
         - env: CTEST_OUTPUT_ON_FAILURE=1 OPTION='-DCMAKE_CXX_FLAGS=-O0 -DENABLE_GCOV=yes' COVERALLS=yes
 
 before_install:
