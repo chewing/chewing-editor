@@ -5,6 +5,9 @@ matrix:
         - env: CTEST_OUTPUT_ON_FAILURE=1
         - env: CTEST_OUTPUT_ON_FAILURE=1 OPTION='-DCMAKE_CXX_FLAGS=-O0 -DENABLE_GCOV=yes' COVERALLS=yes
 
+git:
+  depth: 1
+
 before_install:
     - sudo pip install cpp-coveralls --use-mirrors
     - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
