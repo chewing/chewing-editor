@@ -33,3 +33,9 @@ void UserphraseView::setFilterString(const QString& text)
 {
     model()->setFilterWildcard(text);
 }
+
+void UserphraseView::resetSelection()
+{
+    auto selection = selectionModel();
+    selection->reset();
+}
