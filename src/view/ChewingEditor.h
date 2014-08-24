@@ -27,6 +27,7 @@
 #include "AddNewPhraseDialog.h"
 #include "Notification.h"
 #include "UserphraseSortFilterProxyModel.h"
+#include "CommitHistoryModel.h"
 
 namespace Ui {
     class ChewingEditor;
@@ -54,12 +55,15 @@ private:
     void setupRemove();
     void setupRefresh();
     void setupFilter();
+    void setupReset();
     void aboutWidget();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
 
     UserphraseModel *model_;
     UserphraseSortFilterProxyModel *proxyModel_;
+
+    CommitHistoryModel *commitHistoryModel_;
 
     AddNewPhraseDialog *addNewPhraseDialog_;
     QFileDialog *importDialog_;
