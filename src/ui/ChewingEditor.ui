@@ -19,29 +19,48 @@
   <property name="windowTitle">
    <string>Chewing user phrase editor</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="userphraseFilter"/>
-    </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="Notification" name="notification"/>
-    </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="UserphraseView" name="userphraseView">
-      <property name="selectionMode">
-       <enum>QAbstractItemView::MultiSelection</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Filter</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+  <widget class="QTabWidget" name="tabWidget">
+   <widget class="QWidget" name="userphraseTab">
+    <attribute name="title">
+     <string>Userphrase</string>
+    </attribute>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="userphraseFilter"/>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="Notification" name="notification"/>
+     </item>
+     <item row="2" column="0" colspan="2">
+      <widget class="UserphraseView" name="userphraseView">
+       <property name="selectionMode">
+        <enum>QAbstractItemView::MultiSelection</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Filter</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="commitHistoryTab">
+    <attribute name="title">
+     <string>Commit History</string>
+    </attribute>
+    <layout class="QGridLayout" name="gridLayout2">
+     <item row="0" column="0">
+      <widget class="CommitHistoryView" name="commitHistoryView">
+       <property name="selectionMode">
+        <enum>QAbstractItemView::MultiSelection</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -125,6 +144,11 @@
    <class>UserphraseView</class>
    <extends>QListView</extends>
    <header>UserphraseView.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CommitHistoryView</class>
+   <extends>QListView</extends>
+   <header>CommitHistoryView.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
