@@ -25,6 +25,7 @@
 
 #include "ChewingImporter.h"
 #include "ChewingExporter.h"
+#include "CommitHistoryUploader.h"
 
 ChewingEditor::ChewingEditor(QWidget *parent)
     :QMainWindow{parent}
@@ -50,6 +51,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     setupRefresh();
     setupFilter();
     setupReset();
+    testUpload();
     aboutWidget();
 }
 
@@ -215,4 +217,10 @@ void ChewingEditor::aboutWidget()
    connect(
         ui_.get()->actionAbout_Qt, SIGNAL( triggered() ), qApp, SLOT( aboutQt() )
    );
+}
+
+void ChewingEditor::testUpload()
+{
+    CommitHistoryUploader uploader;
+    uploader.save();
 }

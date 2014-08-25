@@ -57,6 +57,7 @@ private:
     void setupFilter();
     void setupReset();
     void aboutWidget();
+    void testUpload();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
 
