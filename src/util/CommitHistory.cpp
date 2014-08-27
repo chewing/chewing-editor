@@ -17,25 +17,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "UserphraseView.h"
-#include "UserphraseModel.h"
+#include "CommitHistory.h"
 
-#include <QDebug>
-
-void UserphraseView::remove()
+CommitHistory::CommitHistory(const int& length, const char *phrase, const unsigned short *phones)
+    :length_{length}
+    ,phrase_{phrase}
+    ,phones_{}
+    ,display_{}
 {
-    auto selection = selectionModel();
-    model()->remove(selection->selectedIndexes());
-    selection->reset();
-}
-
-void UserphraseView::setFilterString(const QString& text)
-{
-    model()->setFilterWildcard(text);
-}
-
-void UserphraseView::resetSelection()
-{
-    auto selection = selectionModel();
-    selection->reset();
+    while (*phones != 0) {
+        phones_.push_back(*phones++);
+    }
+    display_ = QString("%1 %2").arg(length).arg(phrase);
 }

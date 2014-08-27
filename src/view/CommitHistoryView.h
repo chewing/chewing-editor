@@ -17,25 +17,30 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "UserphraseView.h"
-#include "UserphraseModel.h"
+#pragma once
 
-#include <QDebug>
+#include <QListView>
 
-void UserphraseView::remove()
-{
-    auto selection = selectionModel();
-    model()->remove(selection->selectedIndexes());
-    selection->reset();
-}
+#include "CommitHistoryModel.h"
 
-void UserphraseView::setFilterString(const QString& text)
-{
-    model()->setFilterWildcard(text);
-}
+class CommitHistoryView final : public QListView {
+    Q_OBJECT
 
-void UserphraseView::resetSelection()
-{
-    auto selection = selectionModel();
-    selection->reset();
-}
+public:
+    explicit CommitHistoryView(QWidget *parent = 0) :QListView(parent) {}
+    CommitHistoryView(const CommitHistoryView&) = delete;
+    CommitHistoryView& operator=(const CommitHistoryView&) = delete;
+    virtual ~CommitHistoryView() = default;
+    virtual void setModel(CommitHistoryModel *model) {
+        QListView::setModel(model);
+    }
+
+public slots:
+    void remove();
+    void resetSelection();
+
+protected:
+    CommitHistoryModel* model() const {
+        return dynamic_cast<CommitHistoryModel*>(QListView::model());
+    }
+};

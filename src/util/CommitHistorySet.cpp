@@ -1,5 +1,5 @@
 /*
- * chewing-editor: Chewing userphrase editor
+ * chewing-editor: Chewing commitHistory editor
  * Copyright (C) 2014 Chewing Development Team
 
  * This program is free software; you can redistribute it and/or modify
@@ -17,25 +17,42 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "UserphraseView.h"
-#include "UserphraseModel.h"
+#include "CommitHistorySet.h"
 
 #include <QDebug>
 
-void UserphraseView::remove()
+bool CommitHistorySet::insert(CommitHistory&& commitHistory)
 {
-    auto selection = selectionModel();
-    model()->remove(selection->selectedIndexes());
-    selection->reset();
+    commitHistory_.push_back(std::move(commitHistory));
+    return true;
 }
 
-void UserphraseView::setFilterString(const QString& text)
+void CommitHistorySet::erase(iterator it)
 {
-    model()->setFilterWildcard(text);
+    commitHistory_.erase(it);
 }
 
-void UserphraseView::resetSelection()
+CommitHistorySet::iterator CommitHistorySet::begin()
 {
-    auto selection = selectionModel();
-    selection->reset();
+    return commitHistory_.begin();
+}
+
+CommitHistorySet::iterator CommitHistorySet::end()
+{
+    return commitHistory_.end();
+}
+
+size_t CommitHistorySet::size() const
+{
+    return commitHistory_.size();
+}
+
+const CommitHistory& CommitHistorySet::operator[](size_t index) const
+{
+    return commitHistory_[index];
+}
+
+void CommitHistorySet::swap(CommitHistorySet& set) noexcept
+{
+    commitHistory_.swap(set.commitHistory_);
 }

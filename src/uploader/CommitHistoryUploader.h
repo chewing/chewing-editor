@@ -17,25 +17,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "UserphraseView.h"
-#include "UserphraseModel.h"
+#pragma once
 
-#include <QDebug>
+#include <memory>
 
-void UserphraseView::remove()
-{
-    auto selection = selectionModel();
-    model()->remove(selection->selectedIndexes());
-    selection->reset();
-}
+#include <QTemporaryFile>
+#include <QString>
 
-void UserphraseView::setFilterString(const QString& text)
-{
-    model()->setFilterWildcard(text);
-}
+#include <chewing.h>
 
-void UserphraseView::resetSelection()
-{
-    auto selection = selectionModel();
-    selection->reset();
-}
+class CommitHistoryUploader {
+public:
+    explicit CommitHistoryUploader();
+    CommitHistoryUploader(const CommitHistoryUploader&) = delete;
+    CommitHistoryUploader& operator=(const CommitHistoryUploader&) = delete;
+    virtual ~CommitHistoryUploader() = default;
+
+    bool save();
+
+private:
+    std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
+};

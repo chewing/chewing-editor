@@ -17,25 +17,36 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "UserphraseView.h"
-#include "UserphraseModel.h"
+#pragma once
 
-#include <QDebug>
+#include <set>
+#include <vector>
 
-void UserphraseView::remove()
-{
-    auto selection = selectionModel();
-    model()->remove(selection->selectedIndexes());
-    selection->reset();
-}
+#include <QString>
 
-void UserphraseView::setFilterString(const QString& text)
-{
-    model()->setFilterWildcard(text);
-}
+#include "CommitHistory.h"
 
-void UserphraseView::resetSelection()
-{
-    auto selection = selectionModel();
-    selection->reset();
-}
+class CommitHistorySet {
+public:
+    CommitHistorySet() = default;
+    CommitHistorySet(const CommitHistorySet&) = default;
+    CommitHistorySet& operator=(const CommitHistorySet&) = default;
+    virtual ~CommitHistorySet() = default;
+
+    typedef std::vector<CommitHistory>::iterator iterator;
+
+    bool insert(CommitHistory&& commitHistory);
+    void erase(iterator it);
+
+    iterator begin();
+    iterator end();
+    size_t size() const;
+    bool empty() { return commitHistory_.empty(); }
+
+    const CommitHistory& operator[](size_t index) const;
+
+    void swap(CommitHistorySet& set) noexcept;
+
+private:
+    std::vector<CommitHistory> commitHistory_;
+};

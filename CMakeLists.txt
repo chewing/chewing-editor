@@ -94,6 +94,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/src/ui
     ${PROJECT_SOURCE_DIR}/src/util
     ${PROJECT_SOURCE_DIR}/src/view
+    ${PROJECT_SOURCE_DIR}/src/uploader
     ${CHEWING_INCLUDE_DIRS}
     ${Qt5Widgets_INCLUDES}
 )
@@ -107,6 +108,11 @@ qt5_use_modules(exporter Widgets)
 file(GLOB_RECURSE importer_src ${PROJECT_SOURCE_DIR}/src/importer/*)
 add_library(importer STATIC ${importer_src})
 qt5_use_modules(importer Widgets)
+
+# uploader
+file(GLOB_RECURSE uploader_src ${PROJECT_SOURCE_DIR}/src/uploader/*)
+add_library(uploader STATIC ${uploader_src})
+qt5_use_modules(uploader Network)
 
 # ui
 file(GLOB ui_src ${PROJECT_SOURCE_DIR}/src/ui/*)
@@ -130,7 +136,9 @@ target_link_libraries(chewing-editor
     ${CHEWING_LIBRARIES}
     exporter
     importer
+    uploader
     util
+    ${QT_QTNETWORK_LIBRARIES}
 )
 qt5_use_modules(chewing-editor Widgets)
 install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})

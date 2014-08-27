@@ -38,6 +38,7 @@ public:
 public slots:
     void remove();
     void setFilterString(const QString& text);
+    void resetSelection();
 
 protected:
     UserphraseSortFilterProxyModel* model() const {

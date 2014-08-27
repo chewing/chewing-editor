@@ -25,12 +25,14 @@
 
 #include "ChewingImporter.h"
 #include "ChewingExporter.h"
+#include "CommitHistoryUploader.h"
 
 ChewingEditor::ChewingEditor(QWidget *parent)
     :QMainWindow{parent}
     ,ui_{new Ui::ChewingEditor}
     ,model_{new UserphraseModel{this}}
     ,proxyModel_{new UserphraseSortFilterProxyModel{this}}
+    ,commitHistoryModel_{new CommitHistoryModel{this}}
     ,addNewPhraseDialog_{new AddNewPhraseDialog{this}}
     ,importDialog_{new QFileDialog{this}}
     ,exportDialog_{new QFileDialog{this}}
@@ -40,12 +42,16 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     proxyModel_->setSourceModel(model_);
     ui_.get()->userphraseView->setModel(proxyModel_);
 
+    ui_.get()->commitHistoryView->setModel(commitHistoryModel_);
+
     setupImport();
     setupExport();
     setupAdd();
     setupRemove();
     setupRefresh();
     setupFilter();
+    setupReset();
+    testUpload();
     aboutWidget();
 }
 
@@ -151,6 +157,17 @@ void ChewingEditor::setupRemove()
         model_, SIGNAL(removePhraseCompleted(size_t)),
         ui_.get()->notification, SLOT(notifyRemovePhraseCompleted(size_t))
     );
+
+    // FIXME: change the action name
+    connect(
+        ui_.get()->actionRemove_phrase, SIGNAL(triggered()),
+        ui_.get()->commitHistoryView, SLOT(remove())
+    );
+
+    connect(
+        commitHistoryModel_, SIGNAL(removeCommitHistoryCompleted()),
+        commitHistoryModel_, SLOT(refresh())
+    );
 }
 
 void ChewingEditor::setupRefresh()
@@ -161,11 +178,17 @@ void ChewingEditor::setupRefresh()
     );
 
     connect(
+        ui_.get()->actionRefresh, SIGNAL(triggered()),
+        commitHistoryModel_, SLOT(refresh())
+    );
+
+    connect(
         model_, SIGNAL(refreshCompleted(size_t)),
         ui_.get()->notification, SLOT(notifyRefreshCompleted(size_t))
     );
 
     model_->refresh();
+    commitHistoryModel_->refresh();
 }
 
 void ChewingEditor::setupFilter()
@@ -176,9 +199,28 @@ void ChewingEditor::setupFilter()
     );
 }
 
+void ChewingEditor::setupReset()
+{
+    connect(
+        ui_.get()->tabWidget, SIGNAL(currentChanged(int)),
+        ui_.get()->userphraseView, SLOT(resetSelection())
+    );
+
+    connect(
+        ui_.get()->tabWidget, SIGNAL(currentChanged(int)),
+        ui_.get()->commitHistoryView, SLOT(resetSelection())
+    );
+}
+
 void ChewingEditor::aboutWidget()
 {
    connect(
         ui_.get()->actionAbout_Qt, SIGNAL( triggered() ), qApp, SLOT( aboutQt() )
    );
+}
+
+void ChewingEditor::testUpload()
+{
+    CommitHistoryUploader uploader;
+    uploader.save();
 }
