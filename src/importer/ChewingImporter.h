@@ -23,7 +23,7 @@
 
 class ChewingImporter final : public UserphraseImporter {
 public:
-    explicit ChewingImporter(const QString& path):UserphraseImporter{path} {}
+    explicit ChewingImporter(const QString& path);
     ChewingImporter(const ChewingImporter&) = delete;
     ChewingImporter& operator=(const ChewingImporter&) = delete;
     virtual ~ChewingImporter() = default;

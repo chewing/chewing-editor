@@ -27,6 +27,15 @@
 #include <QJsonObject>
 #include <QJsonParseError>
 
+ChewingImporter::ChewingImporter(const QString& path)
+:UserphraseImporter{path}
+{
+    UserphraseSet userphrase;
+
+    std::swap(userphrase_, userphrase);
+    supportedFormat_ = true;
+}
+
 std::pair<bool, UserphraseSet> ChewingImporter::loadImpl()
 {
     bool ok = false;
