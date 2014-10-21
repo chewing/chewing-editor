@@ -19,6 +19,7 @@
 
 #pragma once
 
+#include <memory>
 #include <utility>
 #include <vector>
 
@@ -51,3 +52,5 @@ protected:
     bool supportedFormat_;
     UserphraseSet userphrase_;
 };
+
+std::unique_ptr<UserphraseImporter> createUserphraseImporter(const QString& path);
