@@ -29,7 +29,7 @@
 HashImporter::HashImporter(const QString& path)
 :UserphraseImporter{path}
 {
-    QFile file(path);
+    QFile file{path};
     int ret;
 
     if (!file.open(QIODevice::ReadOnly)) {
@@ -37,7 +37,7 @@ HashImporter::HashImporter(const QString& path)
         return;
     }
 
-    QDataStream data(&file);
+    QDataStream data{&file};
 
     std::vector<char> buffer(150);
 
