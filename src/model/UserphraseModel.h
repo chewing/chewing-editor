@@ -46,7 +46,7 @@ public:
     void remove(QModelIndexList &&indexList);
     bool add(const QString &phrase, const QString &bopomofo);
 
-    void importUserphrase(UserphraseImporter& importer);
+    void importUserphrase(std::unique_ptr<UserphraseImporter> importer);
     void exportUserphrase(UserphraseExporter& exporter);
 
 signals:

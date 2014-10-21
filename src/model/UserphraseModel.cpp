@@ -178,25 +178,24 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
     return ret > 0;
 }
 
-void UserphraseModel::importUserphrase(UserphraseImporter& importer)
+void UserphraseModel::importUserphrase(std::unique_ptr<UserphraseImporter> importer)
 {
     size_t old_count = userphrase_.size();
 
-    auto result = importer.load();
-
-    if (!result.first) {
-        emit importCompleted(false, importer.getPath(), 0, old_count);
+    if (!importer.get()->isSupportedFormat()) {
+        emit importCompleted(false, importer.get()->getPath(), 0, old_count);
         return;
     }
 
-    for (auto& i: result.second) {
-        // FIXME: UserphraseModel shall provide a API to support Userphrase directly.
+    auto result = importer.get()->getUserphraseSet();
+
+    for (auto& i: result) {
         add(i.phrase_, i.bopomofo_);
     }
 
     size_t new_count = userphrase_.size();
 
-    emit importCompleted(true, importer.getPath(), new_count - old_count, new_count);
+    emit importCompleted(true, importer.get()->getPath(), new_count - old_count, new_count);
 }
 
 void UserphraseModel::exportUserphrase(UserphraseExporter& exporter)
