@@ -45,7 +45,7 @@ public:
     const_iterator begin() const;
     const_iterator end() const;
     size_t size() const;
-    bool empty() { return userphrase_.empty(); }
+    bool empty() const { return userphrase_.empty(); }
 
     const Userphrase& operator[](size_t index) const;
 
