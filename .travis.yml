@@ -15,7 +15,8 @@ before_install:
     - sudo add-apt-repository --yes ppa:chewing/chewing
     - sudo add-apt-repository --yes ppa:chewing/travis-ci
     - sudo apt-get update
-    - sudo apt-get install -qq cmake gcc-4.8 g++-4.8 help2man libchewing3-dev pkg-config qt5-default qttools5-dev-tools
+      # FIXME: We need to instal cmake-data manually to prevent cmake upgrade fails.
+    - sudo apt-get install --yes cmake-data cmake gcc-4.8 g++-4.8 help2man libchewing3-dev pkg-config qt5-default qttools5-dev-tools
     - sudo ln -fs /usr/bin/gcc-4.8 /usr/bin/gcc
     - gcc --version
     - sudo ln -fs /usr/bin/g++-4.8 /usr/bin/g++
