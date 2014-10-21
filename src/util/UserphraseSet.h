@@ -33,13 +33,13 @@ public:
     UserphraseSet& operator=(const UserphraseSet&) = default;
     virtual ~UserphraseSet() = default;
 
-    typedef std::vector<Userphrase>::iterator iterator;
+    typedef std::vector<Userphrase>::const_iterator iterator;
 
     bool insert(Userphrase&& userphrase);
     void erase(iterator it);
 
-    iterator begin();
-    iterator end();
+    iterator begin() const;
+    iterator end() const;
     size_t size() const;
     bool empty() { return userphrase_.empty(); }
 

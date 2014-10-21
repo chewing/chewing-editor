@@ -41,12 +41,12 @@ void UserphraseSet::erase(iterator it)
     userphrase_.erase(it);
 }
 
-UserphraseSet::iterator UserphraseSet::begin()
+UserphraseSet::iterator UserphraseSet::begin() const
 {
     return userphrase_.begin();
 }
 
-UserphraseSet::iterator UserphraseSet::end()
+UserphraseSet::iterator UserphraseSet::end() const
 {
     return userphrase_.end();
 }
