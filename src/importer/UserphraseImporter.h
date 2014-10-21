@@ -29,7 +29,7 @@
 
 class UserphraseImporter {
 public:
-    explicit UserphraseImporter(const QString& path):path_{path}, supportedFormat_(false), userphrase_() {}
+    explicit UserphraseImporter(const QString& path):path_{path}, supportedFormat_{false}, userphrase_{} {}
     UserphraseImporter(const UserphraseImporter&) = delete;
     UserphraseImporter& operator=(const UserphraseImporter&) = delete;
     virtual ~UserphraseImporter() = default;
