@@ -19,7 +19,31 @@
 
 #include "HashImporter.h"
 
+#include <cstring>
+#include <vector>
+
+#include <QDataStream>
+#include <QDebug>
+#include <QFile>
+
 HashImporter::HashImporter(const QString& path)
 :UserphraseImporter{path}
 {
+    QFile file(path);
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "Cannot open file" << path_;
+        return;
+    }
+
+    QDataStream data(&file);
+
+    std::vector<char> buffer(150);
+
+    data.readRawData(&buffer[0], 4);
+
+    if (memcmp(&buffer[0], "CBiH", 4) != 0) {
+        qWarning() << "Cannot find signature `CBiH`" << path_;
+        return;
+    }
 }
