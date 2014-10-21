@@ -34,6 +34,9 @@ public:
     UserphraseImporter& operator=(const UserphraseImporter&) = delete;
     virtual ~UserphraseImporter() = default;
 
+    bool isSupportedFormat() { return supportedFormat_; }
+    const UserphraseSet& getUserphraseSet() { return userphrase_; }
+
     std::pair<bool, UserphraseSet> load() { return loadImpl(); }
 
     const QString getPath() {
