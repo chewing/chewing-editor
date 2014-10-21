@@ -41,6 +41,16 @@ void UserphraseSet::erase(iterator it)
     userphrase_.erase(it);
 }
 
+UserphraseSet::iterator UserphraseSet::begin()
+{
+    return userphrase_.begin();
+}
+
+UserphraseSet::iterator UserphraseSet::end()
+{
+    return userphrase_.end();
+}
+
 UserphraseSet::const_iterator UserphraseSet::begin() const
 {
     return userphrase_.begin();

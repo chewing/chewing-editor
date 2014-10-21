@@ -39,6 +39,9 @@ public:
     bool insert(Userphrase&& userphrase);
     void erase(iterator it);
 
+    iterator begin();
+    iterator end();
+
     const_iterator begin() const;
     const_iterator end() const;
     size_t size() const;
