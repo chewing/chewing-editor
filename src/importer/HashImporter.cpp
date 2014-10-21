@@ -30,6 +30,7 @@ HashImporter::HashImporter(const QString& path)
 :UserphraseImporter{path}
 {
     QFile file(path);
+    int ret;
 
     if (!file.open(QIODevice::ReadOnly)) {
         qWarning() << "Cannot open file" << path_;
@@ -40,7 +41,11 @@ HashImporter::HashImporter(const QString& path)
 
     std::vector<char> buffer(150);
 
-    data.readRawData(&buffer[0], 4);
+    ret = data.readRawData(&buffer[0], 4);
+    if (ret != 4) {
+        qWarning() << "File size is less then 4" << path_;
+        return;
+    }
 
     if (memcmp(&buffer[0], "CBiH", 4) != 0) {
         qWarning() << "Cannot find signature `CBiH`" << path_;
