@@ -39,9 +39,8 @@ TEST_F(ChewingImporterTest, ReadNoUserphrase)
     foreach(auto file, list) {
         auto path = QString("%1/%2").arg(TESTDATA "/import/broken").arg(file);
         ChewingImporter importer{path};
-        auto result = importer.load();
-        EXPECT_FALSE(result.first);
-        ASSERT_EQ(0, result.second.size());
+        EXPECT_FALSE(importer.isSupportedFormat());
+        EXPECT_TRUE(importer.getUserphraseSet().empty());
     }
 }
 
@@ -49,24 +48,23 @@ TEST_F(ChewingImporterTest, ReadOneUserphrase)
 {
     ChewingImporter importer{QString(TESTDATA "/import/chewing_one_valid_phrase.json")};
 
-    auto result = importer.load();
+    EXPECT_TRUE(importer.isSupportedFormat());
 
-    EXPECT_TRUE(result.first);
-    ASSERT_EQ(1, result.second.size());
+    auto result = importer.getUserphraseSet();
+
+    ASSERT_EQ(1, result.size());
     EXPECT_EQ(0, QString::compare(
         QString("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */),
-        result.second[0].phrase_));
+        result[0].phrase_));
     EXPECT_EQ(0, QString::compare(
         QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */),
-        result.second[0].bopomofo_));
+        result[0].bopomofo_));
 }
 
 TEST_F(ChewingImporterTest, PathError)
 {
     ChewingImporter importer{TESTDATA "/NoSuchPath/chewing.json"};
 
-    auto result = importer.load();
-
-    EXPECT_FALSE(result.first);
-    ASSERT_EQ(0, result.second.size());
+    EXPECT_FALSE(importer.isSupportedFormat());
+    EXPECT_TRUE(importer.getUserphraseSet().empty());
 }

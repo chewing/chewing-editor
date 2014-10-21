@@ -78,8 +78,3 @@ ChewingImporter::ChewingImporter(const QString& path)
     std::swap(userphrase_, result);
     supportedFormat_ = true;
 }
-
-std::pair<bool, UserphraseSet> ChewingImporter::loadImpl()
-{
-    return std::make_pair(supportedFormat_, userphrase_);
-}

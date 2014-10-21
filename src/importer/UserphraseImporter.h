@@ -38,16 +38,12 @@ public:
     bool isSupportedFormat() { return supportedFormat_; }
     const UserphraseSet& getUserphraseSet() { return userphrase_; }
 
-    std::pair<bool, UserphraseSet> load() { return loadImpl(); }
-
     const QString getPath() {
         QFileInfo info{path_};
         return info.fileName();
     }
 
 protected:
-    virtual std::pair<bool, UserphraseSet> loadImpl() = 0;
-
     QString path_;
     bool supportedFormat_;
     UserphraseSet userphrase_;

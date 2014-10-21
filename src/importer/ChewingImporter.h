@@ -27,7 +27,4 @@ public:
     ChewingImporter(const ChewingImporter&) = delete;
     ChewingImporter& operator=(const ChewingImporter&) = delete;
     virtual ~ChewingImporter() = default;
-
-protected:
-    virtual std::pair<bool, UserphraseSet> loadImpl();
 };
