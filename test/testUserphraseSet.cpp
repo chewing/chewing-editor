@@ -25,10 +25,10 @@
 #    pragma execution_character_set("utf-8")
 #endif
 
-class UserphraseSetTest : public ::testing::Test {
+class TestUserphraseSet : public ::testing::Test {
 protected:
-    UserphraseSetTest() = default;
-    virtual ~UserphraseSetTest() = default;
+    TestUserphraseSet() = default;
+    virtual ~TestUserphraseSet() = default;
 
     UserphraseSet set_;
 };
@@ -42,7 +42,7 @@ protected:
     EXPECT_EQ(0, QString::compare((bopomofo), (it)->bopomofo_)); \
 } while (0)
 
-TEST_F(UserphraseSetTest, InsertDuplicated)
+TEST_F(TestUserphraseSet, InsertDuplicated)
 {
     ASSERT_TRUE(set_.insert(Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")}));
     ASSERT_FALSE(set_.insert(Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")}));
@@ -52,7 +52,7 @@ TEST_F(UserphraseSetTest, InsertDuplicated)
     COMPARE_USERPHRASE(set_.begin(), "測試", "ㄘㄜˋ ㄕˋ");
 }
 
-TEST_F(UserphraseSetTest, IndexOperator)
+TEST_F(TestUserphraseSet, IndexOperator)
 {
     ASSERT_TRUE(set_.insert(Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")}));
 
@@ -62,7 +62,7 @@ TEST_F(UserphraseSetTest, IndexOperator)
     EXPECT_EQ(0, QString::compare("ㄘㄜˋ ㄕˋ", set_[0].bopomofo_));
 }
 
-TEST_F(UserphraseSetTest, Enumerate)
+TEST_F(TestUserphraseSet, Enumerate)
 {
     Userphrase data[] = {
         Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")},
@@ -80,7 +80,7 @@ TEST_F(UserphraseSetTest, Enumerate)
     }
 }
 
-TEST_F(UserphraseSetTest, Erase)
+TEST_F(TestUserphraseSet, Erase)
 {
     ASSERT_TRUE(set_.insert(Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")}));
     ASSERT_TRUE(set_.insert(Userphrase{QString("一下"), QString("ㄧˊ ㄒㄧㄚˋ")}));
@@ -94,7 +94,7 @@ TEST_F(UserphraseSetTest, Erase)
     COMPARE_USERPHRASE(set_.begin(), "一下", "ㄧˊ ㄒㄧㄚˋ");
 }
 
-TEST_F(UserphraseSetTest, SamePhraseDifferentBopomofo)
+TEST_F(TestUserphraseSet, SamePhraseDifferentBopomofo)
 {
     ASSERT_TRUE(set_.insert(Userphrase{QString("什麼"), QString("ㄕㄣˊ ㄇㄜ˙")}));
     ASSERT_TRUE(set_.insert(Userphrase{QString("什麼"), QString("ㄕㄜˊ ㄇㄜ˙")}));
@@ -111,7 +111,7 @@ TEST_F(UserphraseSetTest, SamePhraseDifferentBopomofo)
     COMPARE_USERPHRASE(set_.begin(), "什麼", "ㄕㄜˊ ㄇㄜ˙");
 }
 
-TEST_F(UserphraseSetTest, DifferentPhraseSameBopomofo)
+TEST_F(TestUserphraseSet, DifferentPhraseSameBopomofo)
 {
     ASSERT_TRUE(set_.insert(Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")}));
     ASSERT_TRUE(set_.insert(Userphrase{QString("策試"), QString("ㄘㄜˋ ㄕˋ")}));
@@ -128,7 +128,7 @@ TEST_F(UserphraseSetTest, DifferentPhraseSameBopomofo)
     COMPARE_USERPHRASE(set_.begin(), "測試", "ㄘㄜˋ ㄕˋ");
 }
 
-TEST_F(UserphraseSetTest, Swap)
+TEST_F(TestUserphraseSet, Swap)
 {
     ASSERT_TRUE(set_.insert(Userphrase{QString("測試"), QString("ㄘㄜˋ ㄕˋ")}));
     ASSERT_EQ(1, set_.size());
