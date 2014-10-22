@@ -20,6 +20,7 @@
 #include "UserphraseImporter.h"
 
 #include "ChewingImporter.h"
+#include "HashImporter.h"
 
 std::unique_ptr<UserphraseImporter> createUserphraseImporter(const QString& path)
 {
@@ -31,6 +32,11 @@ std::unique_ptr<UserphraseImporter> createUserphraseImporter(const QString& path
      */
 
     ptr.reset(new ChewingImporter(path));
+    if (ptr.get()->isSupportedFormat()) {
+        return ptr;
+    }
+
+    ptr.reset(new HashImporter(path));
     if (ptr.get()->isSupportedFormat()) {
         return ptr;
     }

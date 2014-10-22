@@ -36,7 +36,41 @@ TEST_F(TestHashImporter, ReadUserphrase)
 {
     HashImporter importer{QString(TESTDATA "/import/uhash.dat/uhash.dat")};
 
-    // FIXME: Implement this test cases.
+    EXPECT_TRUE(importer.isSupportedFormat());
+
+    auto result = importer.getUserphraseSet();
+
+    EXPECT_EQ(2, result.size());
+
+    EXPECT_EQ(0, QString::compare(
+        QString("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */),
+        result[0].phrase_));
+
+//  FIXME: Not implemented yet.
+//    EXPECT_EQ(0, QString::compare(
+//        QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */),
+//        result[0].bopomofo_));
+
+    EXPECT_EQ(0, QString::compare(
+        QString("\xE4\xB8\x80\xE4\xB8\x8B" /* 一下 */),
+        result[1].phrase_));
+
+//  FIXME: Not implemented yet.
+//    EXPECT_EQ(0, QString::compare(
+//        QString("\xE3\x84\xA7\xCB\x8A \xE3\x84\x92\xE3\x84\xA7\xE3\x84\x9A\xCB\x8B" /* ㄧˊ ㄒㄧㄚˋ */),
+//        result[1].bopomofo_));
+}
+
+TEST_F(TestHashImporter, ReadBrokenHash)
+{
+    auto list = QDir{TESTDATA "/import/uhash.dat/broken"}.entryList(QDir::Files);
+
+    foreach(auto file, list) {
+        auto path = QString("%1/%2").arg(TESTDATA "/import/uhash.dat/broken").arg(file);
+        HashImporter importer{path};
+        EXPECT_FALSE(importer.isSupportedFormat());
+        EXPECT_TRUE(importer.getUserphraseSet().empty());
+    }
 }
 
 TEST_F(TestHashImporter, PathError)

@@ -25,10 +25,26 @@
 #include <QDataStream>
 #include <QDebug>
 #include <QFile>
+#include <QString>
 
 const size_t SIGNATURE_SIZE        = 4;
 const size_t CHEWING_LIFETIME_SIZE = 4;
 const size_t USERPHRASE_SIZE       = 125;
+
+const size_t USERPHRASE_LEN_OFFSET   = 16;
+
+static uint16_t getUint16(const char *ptr)
+{
+    auto uptr = reinterpret_cast<const unsigned char *>(ptr);
+
+    return (uptr[0] << 0) | (uptr[1] << 8);
+}
+
+static QString getBopomofoFromPhoneArray(const std::vector<uint16_t> &phone_array)
+{
+    // FIXME: Not implemented.
+    return QString();
+}
 
 HashImporter::HashImporter(const QString& path)
 :UserphraseImporter{path}
@@ -62,9 +78,31 @@ HashImporter::HashImporter(const QString& path)
         return;
     }
 
+    UserphraseSet result;
+
     while (data.readRawData(&buffer[0], USERPHRASE_SIZE) == USERPHRASE_SIZE) {
-        // FIXME: Read userphrase here.
+        size_t pos = USERPHRASE_LEN_OFFSET;
+
+        int phone_len = static_cast<unsigned char>(buffer[pos]);
+        ++pos;
+
+        std::vector<uint16_t> phone_array(phone_len);
+        for (int i = 0; i < phone_len; ++i) {
+            phone_array.push_back(getUint16(&buffer[pos]));
+            pos += 2;
+        }
+
+        int phrase_len = static_cast<unsigned char>(buffer[pos]);
+        ++pos;
+
+        buffer[pos + phrase_len] = 0;
+
+        result.insert(Userphrase{
+            QString{&buffer[pos]},
+            getBopomofoFromPhoneArray(phone_array)
+        });
     }
 
+    std::swap(userphrase_, result);
     supportedFormat_ = true;
 }
