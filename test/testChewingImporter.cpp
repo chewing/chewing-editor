@@ -24,15 +24,15 @@
 
 #include "ChewingImporter.h"
 
-class ChewingImporterTest : public ::testing::Test {
+class TestChewingImporter : public ::testing::Test {
 protected:
-    ChewingImporterTest() = default;
-    virtual ~ChewingImporterTest() = default;
+    TestChewingImporter() = default;
+    virtual ~TestChewingImporter() = default;
     virtual void SetUp() {}
     virtual void TearDown() {}
 };
 
-TEST_F(ChewingImporterTest, ReadNoUserphrase)
+TEST_F(TestChewingImporter, ReadNoUserphrase)
 {
     auto list = QDir{TESTDATA "/import/broken"}.entryList();
 
@@ -44,7 +44,7 @@ TEST_F(ChewingImporterTest, ReadNoUserphrase)
     }
 }
 
-TEST_F(ChewingImporterTest, ReadOneUserphrase)
+TEST_F(TestChewingImporter, ReadOneUserphrase)
 {
     ChewingImporter importer{QString(TESTDATA "/import/chewing_one_valid_phrase.json")};
 
@@ -61,7 +61,7 @@ TEST_F(ChewingImporterTest, ReadOneUserphrase)
         result[0].bopomofo_));
 }
 
-TEST_F(ChewingImporterTest, PathError)
+TEST_F(TestChewingImporter, PathError)
 {
     ChewingImporter importer{TESTDATA "/NoSuchPath/chewing.json"};
 
