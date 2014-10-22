@@ -21,10 +21,16 @@
 
 #include "gtest/gtest.h"
 
+bool verbose = false;
+
 void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
 {
     auto msg = message.toUtf8();
     auto file = QFileInfo{context.file}.fileName().toUtf8();
+
+    if (!verbose) {
+        return;
+    }
 
     switch(type) {
     case QtDebugMsg:
@@ -47,6 +53,18 @@ void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
+
     qInstallMessageHandler(debugMessageHandler);
+
+    for (int i = 0; i < argc; ++i) {
+        if (strcmp(argv[i], "-v") == 0) {
+            verbose = true;
+        }
+
+        if (strcmp(argv[i], "-s") == 0) {
+            verbose = false;
+        }
+    }
+
     return RUN_ALL_TESTS();
 }
