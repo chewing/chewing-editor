@@ -37,7 +37,7 @@ TEST_F(TestChewingImporter, ReadNoUserphrase)
     auto list = QDir{TESTDATA "/import/broken"}.entryList(QDir::Files);
 
     foreach(auto file, list) {
-        auto path = QString("%1/%2").arg(TESTDATA "/import/broken").arg(file);
+        auto path = QString("%1/%2").arg(TESTDATA "/import/json/broken").arg(file);
         ChewingImporter importer{path};
         EXPECT_FALSE(importer.isSupportedFormat());
         EXPECT_TRUE(importer.getUserphraseSet().empty());
@@ -46,7 +46,7 @@ TEST_F(TestChewingImporter, ReadNoUserphrase)
 
 TEST_F(TestChewingImporter, ReadOneUserphrase)
 {
-    ChewingImporter importer{QString(TESTDATA "/import/chewing_one_valid_phrase.json")};
+    ChewingImporter importer{QString(TESTDATA "/import/json/chewing_one_valid_phrase.json")};
 
     EXPECT_TRUE(importer.isSupportedFormat());
 
