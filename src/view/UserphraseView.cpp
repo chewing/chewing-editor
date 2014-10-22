@@ -22,6 +22,12 @@
 
 #include <QDebug>
 
+UserphraseView::UserphraseView(QWidget *parent)
+:QListView(parent)
+{
+        setupContextMenu();
+}
+
 void UserphraseView::remove()
 {
     auto selection = selectionModel();
@@ -32,4 +38,17 @@ void UserphraseView::remove()
 void UserphraseView::setFilterString(const QString& text)
 {
     model()->setFilterWildcard(text);
+}
+
+void UserphraseView::setupContextMenu()
+{
+    setContextMenuPolicy(Qt::CustomContextMenu);
+
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
+        this, SLOT(showContextMenu(const QPoint&)));
+}
+
+void UserphraseView::showContextMenu(const QPoint& point)
+{
+    qDebug() << __func__;
 }

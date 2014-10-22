@@ -27,7 +27,7 @@ class UserphraseView final : public QListView {
     Q_OBJECT
 
 public:
-    explicit UserphraseView(QWidget *parent = 0) :QListView(parent) {}
+    explicit UserphraseView(QWidget *parent = 0);
     UserphraseView(const UserphraseView&) = delete;
     UserphraseView& operator=(const UserphraseView&) = delete;
     virtual ~UserphraseView() = default;
@@ -38,9 +38,13 @@ public:
 public slots:
     void remove();
     void setFilterString(const QString& text);
+    void showContextMenu(const QPoint& point);
 
 protected:
     UserphraseSortFilterProxyModel* model() const {
         return dynamic_cast<UserphraseSortFilterProxyModel*>(QListView::model());
     }
+
+private:
+    void setupContextMenu();
 };
