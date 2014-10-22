@@ -177,6 +177,6 @@ void ChewingEditor::setupFilter()
 void ChewingEditor::setupAboutWidget()
 {
    connect(
-        ui_.get()->actionAbout_Qt, SIGNAL( triggered() ), qApp, SLOT( aboutQt() )
+        ui_.get()->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt())
    );
 }
