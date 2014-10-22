@@ -45,7 +45,7 @@ HashImporter::HashImporter(const QString& path)
 
     ret = data.readRawData(&buffer[0], 4);
     if (ret != 4) {
-        qWarning() << "File size is less then 4" << path_;
+        qWarning() << "Cannot read signature" << path_;
         return;
     }
 
