@@ -46,7 +46,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     setupRemove();
     setupRefresh();
     setupFilter();
-    aboutWidget();
+    setupAboutWidget();
 }
 
 ChewingEditor::~ChewingEditor()
@@ -174,7 +174,7 @@ void ChewingEditor::setupFilter()
     );
 }
 
-void ChewingEditor::aboutWidget()
+void ChewingEditor::setupAboutWidget()
 {
    connect(
         ui_.get()->actionAbout_Qt, SIGNAL( triggered() ), qApp, SLOT( aboutQt() )

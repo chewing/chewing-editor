@@ -54,7 +54,7 @@ private:
     void setupRemove();
     void setupRefresh();
     void setupFilter();
-    void aboutWidget();
+    void setupAboutWidget();
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
 
