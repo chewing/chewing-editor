@@ -26,6 +26,8 @@
 #include <QDebug>
 #include <QFile>
 
+const int FIELD_SIZE = 125;
+
 HashImporter::HashImporter(const QString& path)
 :UserphraseImporter{path}
 {
@@ -39,7 +41,7 @@ HashImporter::HashImporter(const QString& path)
 
     QDataStream data{&file};
 
-    std::vector<char> buffer(150);
+    std::vector<char> buffer(FIELD_SIZE);
 
     ret = data.readRawData(&buffer[0], 4);
     if (ret != 4) {
