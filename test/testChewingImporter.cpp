@@ -34,7 +34,7 @@ protected:
 
 TEST_F(TestChewingImporter, ReadNoUserphrase)
 {
-    auto list = QDir{TESTDATA "/import/broken"}.entryList();
+    auto list = QDir{TESTDATA "/import/broken"}.entryList(QDir::Files);
 
     foreach(auto file, list) {
         auto path = QString("%1/%2").arg(TESTDATA "/import/broken").arg(file);
