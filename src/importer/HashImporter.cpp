@@ -26,7 +26,9 @@
 #include <QDebug>
 #include <QFile>
 
-const int FIELD_SIZE = 125;
+const size_t SIGNATURE_SIZE        = 4;
+const size_t CHEWING_LIFETIME_SIZE = 4;
+const size_t USERPHRASE_SIZE       = 125;
 
 HashImporter::HashImporter(const QString& path)
 :UserphraseImporter{path}
@@ -41,26 +43,26 @@ HashImporter::HashImporter(const QString& path)
 
     QDataStream data{&file};
 
-    std::vector<char> buffer(FIELD_SIZE);
+    std::vector<char> buffer(USERPHRASE_SIZE);
 
-    ret = data.readRawData(&buffer[0], 4);
-    if (ret != 4) {
+    ret = data.readRawData(&buffer[0], SIGNATURE_SIZE);
+    if (ret != SIGNATURE_SIZE) {
         qWarning() << "Cannot read signature" << path_;
         return;
     }
 
-    if (memcmp(&buffer[0], "CBiH", 4) != 0) {
+    if (memcmp(&buffer[0], "CBiH", CHEWING_LIFETIME_SIZE) != 0) {
         qWarning() << "Cannot find signature `CBiH`" << path_;
         return;
     }
 
-    ret = data.readRawData(&buffer[0], 4);
-    if (ret != 4) {
+    ret = data.readRawData(&buffer[0], CHEWING_LIFETIME_SIZE);
+    if (ret != CHEWING_LIFETIME_SIZE) {
         qWarning() << "Cannot read chewing_lifetime" << path_;
         return;
     }
 
-    while (data.readRawData(&buffer[0], FIELD_SIZE) == FIELD_SIZE) {
+    while (data.readRawData(&buffer[0], USERPHRASE_SIZE) == USERPHRASE_SIZE) {
         // FIXME: Read userphrase here.
     }
 
