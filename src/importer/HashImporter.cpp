@@ -53,4 +53,16 @@ HashImporter::HashImporter(const QString& path)
         qWarning() << "Cannot find signature `CBiH`" << path_;
         return;
     }
+
+    ret = data.readRawData(&buffer[0], 4);
+    if (ret != 4) {
+        qWarning() << "Cannot read chewing_lifetime" << path_;
+        return;
+    }
+
+    while (data.readRawData(&buffer[0], FIELD_SIZE) == FIELD_SIZE) {
+        // FIXME: Read userphrase here.
+    }
+
+    supportedFormat_ = true;
 }
