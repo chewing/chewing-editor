@@ -39,6 +39,18 @@ TEST_F(HashImporterTest, ReadUserphrase)
     // FIXME: Implement this test cases.
 }
 
+TEST_F(HashImporterTest, ReadBrokenHash)
+{
+    auto list = QDir{TESTDATA "/import/uhash.dat/broken"}.entryList(QDir::Files);
+
+    foreach(auto file, list) {
+        auto path = QString("%1/%2").arg(TESTDATA "/import/uhash.dat/broken").arg(file);
+        HashImporter importer{path};
+        EXPECT_FALSE(importer.isSupportedFormat());
+        EXPECT_TRUE(importer.getUserphraseSet().empty());
+    }
+}
+
 TEST_F(HashImporterTest, PathError)
 {
     HashImporter importer{TESTDATA "/NoSuchPath/uhash.dat"};
