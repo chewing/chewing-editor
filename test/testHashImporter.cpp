@@ -24,22 +24,22 @@
 
 #include "HashImporter.h"
 
-class HashImporterTest : public ::testing::Test {
+class TestHashImporter : public ::testing::Test {
 protected:
-    HashImporterTest() = default;
-    virtual ~HashImporterTest() = default;
+    TestHashImporter() = default;
+    virtual ~TestHashImporter() = default;
     virtual void SetUp() {}
     virtual void TearDown() {}
 };
 
-TEST_F(HashImporterTest, ReadUserphrase)
+TEST_F(TestHashImporter, ReadUserphrase)
 {
     HashImporter importer{QString(TESTDATA "/import/uhash.dat/uhash.dat")};
 
     // FIXME: Implement this test cases.
 }
 
-TEST_F(HashImporterTest, PathError)
+TEST_F(TestHashImporter, PathError)
 {
     HashImporter importer{TESTDATA "/NoSuchPath/uhash.dat"};
 
