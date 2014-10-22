@@ -28,10 +28,10 @@
 
 #include "ChewingExporter.h"
 
-class ChewingExporterTest : public ::testing::Test {
+class TestChewingExporter : public ::testing::Test {
 protected:
-    ChewingExporterTest();
-    virtual ~ChewingExporterTest() = default;
+    TestChewingExporter();
+    virtual ~TestChewingExporter() = default;
     virtual void SetUp() {}
     virtual void TearDown() {}
 
@@ -39,7 +39,7 @@ protected:
     QString path_;
 };
 
-ChewingExporterTest::ChewingExporterTest()
+TestChewingExporter::TestChewingExporter()
     :dir_()
     ,path_()
 {
@@ -47,7 +47,7 @@ ChewingExporterTest::ChewingExporterTest()
     //dir_.setAutoRemove(false);
 }
 
-TEST_F(ChewingExporterTest, WriteNoUserphrase)
+TEST_F(TestChewingExporter, WriteNoUserphrase)
 {
     ASSERT_TRUE(dir_.isValid());
 
@@ -66,7 +66,7 @@ TEST_F(ChewingExporterTest, WriteNoUserphrase)
     ASSERT_EQ(0, array.size());
 }
 
-TEST_F(ChewingExporterTest, WriteOneUserphrase)
+TEST_F(TestChewingExporter, WriteOneUserphrase)
 {
     ASSERT_TRUE(dir_.isValid());
 
@@ -99,7 +99,7 @@ TEST_F(ChewingExporterTest, WriteOneUserphrase)
         obj["bopomofo"]);
 }
 
-TEST_F(ChewingExporterTest, PathError)
+TEST_F(TestChewingExporter, PathError)
 {
     ASSERT_TRUE(dir_.isValid());
 
