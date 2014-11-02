@@ -22,6 +22,7 @@
 #include <cstring>
 #include <vector>
 
+#include <QByteArray>
 #include <QDataStream>
 #include <QDebug>
 #include <QFile>
@@ -33,6 +34,27 @@ const size_t USERPHRASE_SIZE       = 125;
 
 const size_t USERPHRASE_LEN_OFFSET   = 16;
 
+const size_t BOPOMOFO_SIZE = 4;
+const int BOPOMOFO_SHIFT[] = { 9, 7, 3, 0 };
+const int BOPOMOFO_MASK[] = { 0x1F, 0x3, 0xF, 0x7 };
+const int BOPOMOFO_LEN[] = { 3, 3, 3, 2 };
+const char *const BOPOMOFO_TABLE[] = {               /* number of bits */
+    "\xE3\x84\x85\xE3\x84\x86\xE3\x84\x87\xE3\x84\x88\xE3\x84\x89"
+    "\xE3\x84\x8A\xE3\x84\x8B\xE3\x84\x8C\xE3\x84\x8D\xE3\x84\x8E"
+    "\xE3\x84\x8F\xE3\x84\x90\xE3\x84\x91\xE3\x84\x92\xE3\x84\x93"
+    "\xE3\x84\x94\xE3\x84\x95\xE3\x84\x96\xE3\x84\x97\xE3\x84\x98"
+    "\xE3\x84\x99",                             /* 5 */
+    /* ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙ */
+    "\xE3\x84\xA7\xE3\x84\xA8\xE3\x84\xA9",   /* 2 */
+    /* ㄧㄨㄩ */
+    "\xE3\x84\x9A\xE3\x84\x9B\xE3\x84\x9C\xE3\x84\x9D\xE3\x84\x9E"
+    "\xE3\x84\x9F\xE3\x84\xA0\xE3\x84\xA1\xE3\x84\xA2\xE3\x84\xA3"
+    "\xE3\x84\xA4\xE3\x84\xA5\xE3\x84\xA6",     /* 4 */
+    /* ㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦ */
+    "\xCB\x99\xCB\x8A\xCB\x87\xCB\x8B"        /* 3 */
+    /* ˙ˊˇˋ */
+};
+
 static uint16_t getUint16(const char *ptr)
 {
     auto uptr = reinterpret_cast<const unsigned char *>(ptr);
@@ -43,7 +65,25 @@ static uint16_t getUint16(const char *ptr)
 static QString getBopomofoFromPhoneArray(const std::vector<uint16_t> &phone_array)
 {
     // FIXME: Not implemented.
-    return QString();
+    QByteArray buf;
+
+    for (auto it = phone_array.begin(); it != phone_array.end(); ++it) {
+        qDebug() << "*it = " << *it;
+        for (size_t i = 0; i < BOPOMOFO_SIZE; ++i) {
+            size_t idx = ((*it >> BOPOMOFO_SHIFT[i]) & BOPOMOFO_MASK[i]);
+            if (idx == 0) {
+                continue;
+            }
+
+            buf.append(&BOPOMOFO_TABLE[i][(idx - 1)* BOPOMOFO_LEN[i]], BOPOMOFO_LEN[i]);
+        }
+        buf.append(' ');
+    }
+    buf[buf.length()-1] = 0;
+
+    qDebug() << "buf = " << buf;
+
+    return QString(buf);
 }
 
 HashImporter::HashImporter(const QString& path)
@@ -86,7 +126,7 @@ HashImporter::HashImporter(const QString& path)
         int phone_len = static_cast<unsigned char>(buffer[pos]);
         ++pos;
 
-        std::vector<uint16_t> phone_array(phone_len);
+        std::vector<uint16_t> phone_array;
         for (int i = 0; i < phone_len; ++i) {
             phone_array.push_back(getUint16(&buffer[pos]));
             pos += 2;
