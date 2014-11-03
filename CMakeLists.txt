@@ -103,6 +103,9 @@ file(GLOB_RECURSE importer_src ${PROJECT_SOURCE_DIR}/src/importer/*)
 add_library(importer STATIC ${importer_src})
 qt5_use_modules(importer Widgets)
 
+# qml
+file(GLOB qml_src ${PROJECT_SOURCE_DIR}/qml/*.qml)
+
 # ui
 file(GLOB ui_src ${PROJECT_SOURCE_DIR}/src/ui/*.ui)
 qt5_wrap_ui(ui ${ui_src})
