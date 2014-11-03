@@ -104,7 +104,7 @@ add_library(importer STATIC ${importer_src})
 qt5_use_modules(importer Widgets)
 
 # ui
-file(GLOB ui_src ${PROJECT_SOURCE_DIR}/src/ui/*)
+file(GLOB ui_src ${PROJECT_SOURCE_DIR}/src/ui/*.ui)
 qt5_wrap_ui(ui ${ui_src})
 
 # util
