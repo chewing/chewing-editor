@@ -18,10 +18,15 @@
  */
 
 #include "UserphraseViewMenu.h"
+#include "ui_UserphraseViewMenu.h"
 
 UserphraseViewMenu::UserphraseViewMenu(QWidget *parent)
 :QMenu(parent)
 ,ui_{new Ui::UserphraseViewMenu}
 {
     ui_.get()->setupUi(this);
+}
+
+UserphraseViewMenu::~UserphraseViewMenu()
+{
 }

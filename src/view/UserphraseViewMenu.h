@@ -23,7 +23,9 @@
 
 #include <QMenu>
 
-#include "ui_UserphraseViewMenu.h"
+namespace Ui {
+    class UserphraseViewMenu;
+}
 
 class UserphraseViewMenu final : public QMenu {
     Q_OBJECT
@@ -32,7 +34,7 @@ public:
     explicit UserphraseViewMenu(QWidget *parent = 0);
     UserphraseViewMenu(const UserphraseViewMenu&) = delete;
     UserphraseViewMenu& operator=(const UserphraseViewMenu&) = delete;
-    virtual ~UserphraseViewMenu() = default;
+    virtual ~UserphraseViewMenu();
 
 private:
     std::unique_ptr<Ui::UserphraseViewMenu> ui_;
