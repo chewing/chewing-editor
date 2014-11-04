@@ -47,7 +47,7 @@ static QString getBopomofoFromPhoneArray(const std::vector<uint16_t> &phone_arra
 }
 
 HashImporter::HashImporter(const QString& path)
-:UserphraseImporter{path}
+    :UserphraseImporter{path}
 {
     QFile file{path};
     int ret;

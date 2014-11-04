@@ -23,7 +23,7 @@
 #include <QDebug>
 
 UserphraseView::UserphraseView(QWidget *parent)
-    :QListView(parent)
+    :QListView{parent}
     ,menu_(new UserphraseViewMenu{this})
 {
         setupContextMenu();

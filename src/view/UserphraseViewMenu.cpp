@@ -21,7 +21,7 @@
 #include "ui_UserphraseViewMenu.h"
 
 UserphraseViewMenu::UserphraseViewMenu(QWidget *parent)
-    :QMenu(parent)
+    :QMenu{parent}
     ,ui_{new Ui::UserphraseViewMenu}
 {
     ui_.get()->setupUi(this);
