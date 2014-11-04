@@ -41,5 +41,6 @@ public:
         return dynamic_cast<UserphraseModel*>(QSortFilterProxyModel::sourceModel());
     }
 
-    void remove(QModelIndexList &&indexList);
+public slots:
+    void remove(QModelIndexList indexList);
 };
