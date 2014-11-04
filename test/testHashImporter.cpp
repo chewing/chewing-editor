@@ -46,19 +46,17 @@ TEST_F(TestHashImporter, ReadUserphrase)
         QString("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */),
         result[0].phrase_));
 
-//  FIXME: Not implemented yet.
-//    EXPECT_EQ(0, QString::compare(
-//        QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */),
-//        result[0].bopomofo_));
+    EXPECT_EQ(0, QString::compare(
+        QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */),
+        result[0].bopomofo_));
 
     EXPECT_EQ(0, QString::compare(
         QString("\xE4\xB8\x80\xE4\xB8\x8B" /* 一下 */),
         result[1].phrase_));
 
-//  FIXME: Not implemented yet.
-//    EXPECT_EQ(0, QString::compare(
-//        QString("\xE3\x84\xA7\xCB\x8A \xE3\x84\x92\xE3\x84\xA7\xE3\x84\x9A\xCB\x8B" /* ㄧˊ ㄒㄧㄚˋ */),
-//        result[1].bopomofo_));
+    EXPECT_EQ(0, QString::compare(
+        QString("\xE3\x84\xA7\xCB\x8A \xE3\x84\x92\xE3\x84\xA7\xE3\x84\x9A\xCB\x8B" /* ㄧˊ ㄒㄧㄚˋ */),
+        result[1].bopomofo_));
 }
 
 TEST_F(TestHashImporter, ReadBrokenHash)

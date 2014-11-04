@@ -78,7 +78,7 @@ QVariant UserphraseModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void UserphraseModel::remove(QModelIndexList &&indexList)
+void UserphraseModel::remove(QModelIndexList indexList)
 {
     if (indexList.empty()) {
         qDebug() << "indexList is empty";
@@ -156,7 +156,7 @@ void UserphraseModel::refresh()
     emit refreshCompleted(userphrase_.size());
 }
 
-bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
+void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 {
     auto ret = chewing_userphrase_add(
         ctx_.get(),
@@ -174,11 +174,9 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
     } else {
         qWarning() << "chewing_userphrase_add() returns" << ret;
     }
-
-    return ret > 0;
 }
 
-void UserphraseModel::importUserphrase(std::unique_ptr<UserphraseImporter> importer)
+void UserphraseModel::importUserphrase(std::shared_ptr<UserphraseImporter> importer)
 {
     size_t old_count = userphrase_.size();
 
@@ -198,15 +196,15 @@ void UserphraseModel::importUserphrase(std::unique_ptr<UserphraseImporter> impor
     emit importCompleted(true, importer.get()->getPath(), new_count - old_count, new_count);
 }
 
-void UserphraseModel::exportUserphrase(UserphraseExporter& exporter)
+void UserphraseModel::exportUserphrase(std::shared_ptr<UserphraseExporter> exporter)
 {
     size_t exported = userphrase_.size();
 
     for (auto& i: userphrase_) {
-        exporter.addUserphrase(i.phrase_, i.bopomofo_);
+        exporter.get()->addUserphrase(i.phrase_, i.bopomofo_);
     }
 
-    bool result = exporter.save();
+    bool result = exporter.get()->save();
 
-    emit exportCompleted(result, exporter.getPath(), exported);
+    emit exportCompleted(result, exporter.get()->getPath(), exported);
 }

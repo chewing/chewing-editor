@@ -32,7 +32,7 @@ UserphraseView::UserphraseView(QWidget *parent)
 void UserphraseView::remove()
 {
     auto selection = selectionModel();
-    model()->remove(selection->selectedIndexes());
+    emit model()->remove(selection->selectedIndexes());
     selection->reset();
 }
 

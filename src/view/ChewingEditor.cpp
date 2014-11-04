@@ -62,19 +62,19 @@ void ChewingEditor::addNewPhrase(int result)
 
     qDebug() << phrase << bopomofo;
 
-    model_->add(phrase, bopomofo);
+    emit model_->add(phrase, bopomofo);
 }
 
 void ChewingEditor::importUserphrase(const QString& file)
 {
-    model_->importUserphrase(createUserphraseImporter(file));
+    emit model_->importUserphrase(createUserphraseImporter(file));
 }
 
 void ChewingEditor::exportUserphrase(const QString& file)
 {
     // TODO: Find a suitable exporter
-    ChewingExporter exporter(file);
-    model_->exportUserphrase(exporter);
+    std::shared_ptr<ChewingExporter> exporter(new ChewingExporter{file});
+    emit model_->exportUserphrase(exporter);
 }
 
 void ChewingEditor::setupImport()
@@ -163,7 +163,7 @@ void ChewingEditor::setupRefresh()
         ui_.get()->notification, SLOT(notifyRefreshCompleted(size_t))
     );
 
-    model_->refresh();
+    emit model_->refresh();
 }
 
 void ChewingEditor::setupFilter()
