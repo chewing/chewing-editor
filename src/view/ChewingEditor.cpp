@@ -73,8 +73,8 @@ void ChewingEditor::importUserphrase(const QString& file)
 void ChewingEditor::exportUserphrase(const QString& file)
 {
     // TODO: Find a suitable exporter
-    ChewingExporter exporter(file);
-    model_->exportUserphrase(exporter);
+    std::shared_ptr<ChewingExporter> exporter(new ChewingExporter{file});
+    emit model_->exportUserphrase(exporter);
 }
 
 void ChewingEditor::setupImport()

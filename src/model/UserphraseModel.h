@@ -44,7 +44,6 @@ public:
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void remove(QModelIndexList &&indexList);
-    void exportUserphrase(UserphraseExporter& exporter);
 
 signals:
     void importCompleted(
@@ -64,6 +63,7 @@ public slots:
     void refresh();
     void add(const QString &phrase, const QString &bopomofo);
     void importUserphrase(std::shared_ptr<UserphraseImporter> importer);
+    void exportUserphrase(std::shared_ptr<UserphraseExporter> exporter);
 
 private:
 
