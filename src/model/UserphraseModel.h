@@ -43,7 +43,7 @@ public:
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-    void remove(QModelIndexList &&indexList);
+
 
 signals:
     void importCompleted(
@@ -64,6 +64,7 @@ public slots:
     void add(const QString &phrase, const QString &bopomofo);
     void importUserphrase(std::shared_ptr<UserphraseImporter> importer);
     void exportUserphrase(std::shared_ptr<UserphraseExporter> exporter);
+    void remove(QModelIndexList indexList);
 
 private:
 

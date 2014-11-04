@@ -163,7 +163,7 @@ void ChewingEditor::setupRefresh()
         ui_.get()->notification, SLOT(notifyRefreshCompleted(size_t))
     );
 
-    model_->refresh();
+    emit model_->refresh();
 }
 
 void ChewingEditor::setupFilter()

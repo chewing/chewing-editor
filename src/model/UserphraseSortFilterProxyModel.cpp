@@ -23,7 +23,7 @@
 
 #include <QDebug>
 
-void UserphraseSortFilterProxyModel::remove(QModelIndexList &&indexList)
+void UserphraseSortFilterProxyModel::remove(QModelIndexList indexList)
 {
     if (indexList.empty()) {
         qDebug() << "indexList is empty";

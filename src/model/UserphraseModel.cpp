@@ -78,7 +78,7 @@ QVariant UserphraseModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void UserphraseModel::remove(QModelIndexList &&indexList)
+void UserphraseModel::remove(QModelIndexList indexList)
 {
     if (indexList.empty()) {
         qDebug() << "indexList is empty";
