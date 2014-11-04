@@ -30,3 +30,14 @@ UserphraseViewMenu::UserphraseViewMenu(QWidget *parent)
 UserphraseViewMenu::~UserphraseViewMenu()
 {
 }
+
+QAction *UserphraseViewMenu::getActionAddPhrase()
+{
+    return ui_.get()->actionAddPhrase;
+}
+
+
+QAction *UserphraseViewMenu::getActionRemovePhrase()
+{
+    return ui_.get()->actionRemovePhrase;
+}

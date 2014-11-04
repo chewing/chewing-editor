@@ -36,6 +36,9 @@ public:
     UserphraseViewMenu& operator=(const UserphraseViewMenu&) = delete;
     virtual ~UserphraseViewMenu();
 
+    QAction *getActionAddPhrase();
+    QAction *getActionRemovePhrase();
+
 private:
     std::unique_ptr<Ui::UserphraseViewMenu> ui_;
 };

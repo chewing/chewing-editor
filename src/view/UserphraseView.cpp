@@ -49,6 +49,11 @@ void UserphraseView::setupContextMenu()
         this, SIGNAL(customContextMenuRequested(const QPoint&)),
         this, SLOT(showContextMenu(const QPoint&))
     );
+
+    connect(
+        menu_->getActionRemovePhrase(), SIGNAL(triggered()),
+        this, SLOT(remove())
+    );
 }
 
 void UserphraseView::showContextMenu(const QPoint& point)
