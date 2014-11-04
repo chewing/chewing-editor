@@ -22,6 +22,7 @@
 #include <QListView>
 
 #include "UserphraseSortFilterProxyModel.h"
+#include "UserphraseViewMenu.h"
 
 class UserphraseView final : public QListView {
     Q_OBJECT
@@ -47,4 +48,6 @@ protected:
 
 private:
     void setupContextMenu();
+
+    UserphraseViewMenu *menu_;
 };

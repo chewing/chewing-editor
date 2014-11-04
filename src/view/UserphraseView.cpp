@@ -17,13 +17,14 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "UserphraseView.h"
 #include "UserphraseModel.h"
+#include "UserphraseView.h"
 
 #include <QDebug>
 
 UserphraseView::UserphraseView(QWidget *parent)
 :QListView(parent)
+,menu_(new UserphraseViewMenu{this})
 {
         setupContextMenu();
 }
