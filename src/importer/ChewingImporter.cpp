@@ -28,7 +28,7 @@
 #include <QJsonParseError>
 
 ChewingImporter::ChewingImporter(const QString& path)
-:UserphraseImporter{path}
+    :UserphraseImporter(path)
 {
     UserphraseSet result;
 
