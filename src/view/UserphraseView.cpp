@@ -45,11 +45,13 @@ void UserphraseView::setupContextMenu()
 {
     setContextMenuPolicy(Qt::CustomContextMenu);
 
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
-        this, SLOT(showContextMenu(const QPoint&)));
+    connect(
+        this, SIGNAL(customContextMenuRequested(const QPoint&)),
+        this, SLOT(showContextMenu(const QPoint&))
+    );
 }
 
 void UserphraseView::showContextMenu(const QPoint& point)
 {
-    qDebug() << __func__;
+    emit menu_->exec(mapToGlobal(point));
 }
