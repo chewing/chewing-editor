@@ -156,7 +156,7 @@ void UserphraseModel::refresh()
     emit refreshCompleted(userphrase_.size());
 }
 
-bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
+void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 {
     auto ret = chewing_userphrase_add(
         ctx_.get(),
@@ -174,8 +174,6 @@ bool UserphraseModel::add(const QString &phrase, const QString &bopomofo)
     } else {
         qWarning() << "chewing_userphrase_add() returns" << ret;
     }
-
-    return ret > 0;
 }
 
 void UserphraseModel::importUserphrase(std::unique_ptr<UserphraseImporter> importer)

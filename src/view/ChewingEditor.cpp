@@ -62,7 +62,7 @@ void ChewingEditor::addNewPhrase(int result)
 
     qDebug() << phrase << bopomofo;
 
-    model_->add(phrase, bopomofo);
+    emit model_->add(phrase, bopomofo);
 }
 
 void ChewingEditor::importUserphrase(const QString& file)

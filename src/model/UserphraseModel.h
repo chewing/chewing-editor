@@ -44,13 +44,10 @@ public:
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void remove(QModelIndexList &&indexList);
-    bool add(const QString &phrase, const QString &bopomofo);
-
     void importUserphrase(std::unique_ptr<UserphraseImporter> importer);
     void exportUserphrase(UserphraseExporter& exporter);
 
 signals:
-
     void importCompleted(
         bool result,
         const QString& file,
@@ -66,6 +63,7 @@ signals:
 
 public slots:
     void refresh();
+    void add(const QString &phrase, const QString &bopomofo);
 
 private:
 
