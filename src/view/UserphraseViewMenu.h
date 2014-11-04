@@ -19,7 +19,11 @@
 
 #pragma once
 
+#include <memory>
+
 #include <QMenu>
+
+#include "ui_UserphraseViewMenu.h"
 
 class UserphraseViewMenu final : public QMenu {
     Q_OBJECT
@@ -29,4 +33,7 @@ public:
     UserphraseViewMenu(const UserphraseViewMenu&) = delete;
     UserphraseViewMenu& operator=(const UserphraseViewMenu&) = delete;
     virtual ~UserphraseViewMenu() = default;
+
+private:
+    std::unique_ptr<Ui::UserphraseViewMenu> ui_;
 };

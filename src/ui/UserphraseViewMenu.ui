@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ui version="4.0">
+ <class>UserphraseViewMenu</class>
+ <widget class="QMenu" name="UserphraseViewMenu">
+ </widget>
+</ui>
