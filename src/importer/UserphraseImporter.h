@@ -49,4 +49,4 @@ protected:
     UserphraseSet userphrase_;
 };
 
-std::unique_ptr<UserphraseImporter> createUserphraseImporter(const QString& path);
+std::shared_ptr<UserphraseImporter> createUserphraseImporter(const QString& path);

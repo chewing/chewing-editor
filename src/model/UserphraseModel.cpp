@@ -176,7 +176,7 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
     }
 }
 
-void UserphraseModel::importUserphrase(std::unique_ptr<UserphraseImporter> importer)
+void UserphraseModel::importUserphrase(std::shared_ptr<UserphraseImporter> importer)
 {
     size_t old_count = userphrase_.size();
 

@@ -22,9 +22,9 @@
 #include "ChewingImporter.h"
 #include "HashImporter.h"
 
-std::unique_ptr<UserphraseImporter> createUserphraseImporter(const QString& path)
+std::shared_ptr<UserphraseImporter> createUserphraseImporter(const QString& path)
 {
-    std::unique_ptr<UserphraseImporter> ptr;
+    std::shared_ptr<UserphraseImporter> ptr;
 
     /*
      * FIXME: We shall check file type before creating UserphraseImporter

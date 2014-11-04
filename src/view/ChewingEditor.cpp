@@ -67,7 +67,7 @@ void ChewingEditor::addNewPhrase(int result)
 
 void ChewingEditor::importUserphrase(const QString& file)
 {
-    model_->importUserphrase(createUserphraseImporter(file));
+    emit model_->importUserphrase(createUserphraseImporter(file));
 }
 
 void ChewingEditor::exportUserphrase(const QString& file)
