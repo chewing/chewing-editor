@@ -67,7 +67,6 @@ static uint16_t getUint16(const char *ptr)
 
 static QString getBopomofoFromPhoneArray(const std::vector<uint16_t> &phone_array)
 {
-    // FIXME: Not implemented.
     QByteArray buf;
 
     for (auto it = phone_array.begin(); it != phone_array.end(); ++it) {
