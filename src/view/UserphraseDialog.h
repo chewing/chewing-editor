@@ -1,3 +1,4 @@
+
 /*
  * chewing-editor: Chewing userphrase editor
  * Copyright (C) 2014 Chewing Development Team
@@ -23,18 +24,18 @@
 #include <QDialog>
 
 namespace Ui {
-    class AddNewPhraseDialog;
+    class UserphraseDialog;
 }
 
-class AddNewPhraseDialog final: public QDialog
+class UserphraseDialog final: public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit AddNewPhraseDialog(QWidget *parent = 0);
-    AddNewPhraseDialog(const AddNewPhraseDialog&) = delete;
-    AddNewPhraseDialog& operator=(const AddNewPhraseDialog&) = delete;
-    ~AddNewPhraseDialog(); // = default;
+    explicit UserphraseDialog(QWidget *parent = 0);
+    UserphraseDialog(const UserphraseDialog&) = delete;
+    UserphraseDialog& operator=(const UserphraseDialog&) = delete;
+    ~UserphraseDialog(); // = default;
 
     QString getPhrase() const;
     QString getBopomofo() const;
@@ -43,5 +44,5 @@ public:
 
 private:
     void setupConnect();
-    std::unique_ptr<Ui::AddNewPhraseDialog> ui_;
+    std::unique_ptr<Ui::UserphraseDialog> ui_;
 };

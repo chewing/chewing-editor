@@ -24,7 +24,7 @@
 #include <QFileDialog>
 #include <QMainWindow>
 
-#include "AddNewPhraseDialog.h"
+#include "UserphraseDialog.h"
 #include "Notification.h"
 #include "UserphraseSortFilterProxyModel.h"
 

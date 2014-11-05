@@ -21,7 +21,7 @@
 
 #include <QListView>
 
-#include "AddNewPhraseDialog.h"
+#include "UserphraseDialog.h"
 #include "UserphraseSortFilterProxyModel.h"
 #include "UserphraseViewMenu.h"
 
@@ -60,7 +60,7 @@ private:
     void setupContextMenu();
     void setupAddUserphraseDialog();
 
-    AddNewPhraseDialog *addNewPhraseDialog_;
+    UserphraseDialog *UserphraseDialog_;
     UserphraseViewMenu *menu_;
 
     bool dialogType_;

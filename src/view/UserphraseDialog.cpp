@@ -17,22 +17,22 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "AddNewPhraseDialog.h"
-#include "ui_AddNewPhraseDialog.h"
+#include "UserphraseDialog.h"
+#include "ui_UserphraseDialog.h"
 
-AddNewPhraseDialog::AddNewPhraseDialog(QWidget *parent)
+UserphraseDialog::UserphraseDialog(QWidget *parent)
     :QDialog{parent}
-    ,ui_{new Ui::AddNewPhraseDialog}
+    ,ui_{new Ui::UserphraseDialog}
 {
     ui_.get()->setupUi(this);
     setupConnect();
 }
 
-AddNewPhraseDialog::~AddNewPhraseDialog()
+UserphraseDialog::~UserphraseDialog()
 {
 }
 
-void AddNewPhraseDialog::setupConnect()
+void UserphraseDialog::setupConnect()
 {
     connect(
         ui_.get()->buttonBox, SIGNAL(accepted()),
@@ -45,17 +45,17 @@ void AddNewPhraseDialog::setupConnect()
     );
 }
 
-QString AddNewPhraseDialog::getPhrase() const
+QString UserphraseDialog::getPhrase() const
 {
     return ui_.get()->phrase->text();
 }
 
-QString AddNewPhraseDialog::getBopomofo() const
+QString UserphraseDialog::getBopomofo() const
 {
     return ui_.get()->bopomofo->text();
 }
 
-void AddNewPhraseDialog::setText(const QString& phrase, const QString& bopomofo)
+void UserphraseDialog::setText(const QString& phrase, const QString& bopomofo)
 {
     ui_.get()->phrase->setText(phrase);
     ui_.get()->bopomofo->setText(bopomofo);

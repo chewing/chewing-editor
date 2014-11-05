@@ -24,7 +24,7 @@
 
 UserphraseView::UserphraseView(QWidget *parent)
     :QListView{parent}
-    ,addNewPhraseDialog_{new AddNewPhraseDialog{this}}
+    ,UserphraseDialog_{new UserphraseDialog{this}}
     ,menu_(new UserphraseViewMenu{this})
 {
     setupContextMenu();
@@ -34,8 +34,8 @@ UserphraseView::UserphraseView(QWidget *parent)
 void UserphraseView::showAddUserphraseDialog()
 {
     dialogType_ = DIALOG_ADD;
-    addNewPhraseDialog_->setText("", "");
-    emit addNewPhraseDialog_->exec();
+    UserphraseDialog_->setText("", "");
+    emit UserphraseDialog_->exec();
 }
 
 void UserphraseView::showModifyUserphraseDialog()
@@ -46,9 +46,9 @@ void UserphraseView::showModifyUserphraseDialog()
 
     auto userphrase = model()->getUserphrase(*selectionModel()->selectedIndexes().begin());
 
-    addNewPhraseDialog_->setText(userphrase->phrase_, userphrase->bopomofo_);
+    UserphraseDialog_->setText(userphrase->phrase_, userphrase->bopomofo_);
 
-    emit addNewPhraseDialog_->exec();
+    emit UserphraseDialog_->exec();
 }
 
 void UserphraseView::addNewPhrase(int result)
@@ -57,8 +57,8 @@ void UserphraseView::addNewPhrase(int result)
         return;
     }
 
-    std::shared_ptr<QString> phrase{new QString(addNewPhraseDialog_->getPhrase())};
-    std::shared_ptr<QString> bopomofo{new QString(addNewPhraseDialog_->getBopomofo())};
+    std::shared_ptr<QString> phrase{new QString(UserphraseDialog_->getPhrase())};
+    std::shared_ptr<QString> bopomofo{new QString(UserphraseDialog_->getBopomofo())};
 
     qDebug() << "Add" << *phrase.get() << "(" << *bopomofo.get() << ")";
 
@@ -114,7 +114,7 @@ void UserphraseView::setupAddUserphraseDialog()
     );
 
     connect(
-        addNewPhraseDialog_, SIGNAL(finished(int)),
+        UserphraseDialog_, SIGNAL(finished(int)),
         this, SLOT(addNewPhrase(int))
     );
 }
