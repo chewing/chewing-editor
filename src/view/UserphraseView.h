@@ -40,7 +40,7 @@ public:
 public slots:
     void showAddUserphraseDialog();
     void showModifyUserphraseDialog();
-    void addNewPhrase(int result);
+    void addPhrase(int result);
     void remove();
     void setFilterString(const QString& text);
     void showContextMenu(const QPoint& point);

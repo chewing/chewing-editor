@@ -51,7 +51,7 @@ void UserphraseView::showModifyUserphraseDialog()
     emit UserphraseDialog_->exec();
 }
 
-void UserphraseView::addNewPhrase(int result)
+void UserphraseView::addPhrase(int result)
 {
     if (result != QDialog::Accepted) {
         return;
@@ -115,6 +115,6 @@ void UserphraseView::setupAddUserphraseDialog()
 
     connect(
         UserphraseDialog_, SIGNAL(finished(int)),
-        this, SLOT(addNewPhrase(int))
+        this, SLOT(addPhrase(int))
     );
 }
