@@ -39,6 +39,9 @@ public:
     QAction *getActionAddPhrase();
     QAction *getActionRemovePhrase();
 
+public slots:
+    void execWithSelectInfo(const QPoint &point, int selected);
+
 private:
     std::unique_ptr<Ui::UserphraseViewMenu> ui_;
 };

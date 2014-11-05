@@ -80,7 +80,7 @@ void UserphraseView::setupContextMenu()
 
 void UserphraseView::showContextMenu(const QPoint& point)
 {
-    emit menu_->exec(mapToGlobal(point));
+    emit menu_->execWithSelectInfo(mapToGlobal(point), selectionModel()->selectedIndexes().size());
 }
 
 void UserphraseView::setupAddUserphraseDialog()
