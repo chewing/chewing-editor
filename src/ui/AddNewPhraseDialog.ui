@@ -6,21 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>240</height>
+    <width>250</width>
+    <height>100</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>320</width>
-    <height>240</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>320</width>
-    <height>240</height>
-   </size>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Add new user phrase</string>
@@ -30,8 +24,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>181</width>
-     <height>79</height>
+     <width>250</width>
+     <height>100</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
