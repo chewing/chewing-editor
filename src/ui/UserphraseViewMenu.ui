@@ -7,12 +7,18 @@
     <string>Add</string>
    </property>
   </action>
+  <action name="actionModifyPhrase">
+   <property name="text">
+    <string>Modify</string>
+   </property>
+  </action>
   <action name="actionRemovePhrase">
    <property name="text">
     <string>Remove</string>
    </property>
   </action>
   <addaction name="actionAddPhrase"/>
+  <addaction name="actionModifyPhrase"/>
   <addaction name="actionRemovePhrase"/>
  </widget>
 </ui>

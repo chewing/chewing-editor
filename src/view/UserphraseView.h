@@ -39,6 +39,7 @@ public:
 
 public slots:
     void showAddUserphraseDialog();
+    void showModifyUserphraseDialog();
     void addNewPhrase(int result);
     void remove();
     void setFilterString(const QString& text);
@@ -51,9 +52,16 @@ protected:
     }
 
 private:
+    enum DialogType {
+        DIALOG_ADD,
+        DIALOG_MODIFY,
+    };
+
     void setupContextMenu();
     void setupAddUserphraseDialog();
 
     AddNewPhraseDialog *addNewPhraseDialog_;
     UserphraseViewMenu *menu_;
+
+    bool dialogType_;
 };

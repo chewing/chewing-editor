@@ -35,10 +35,17 @@ void UserphraseViewMenu::execWithSelectInfo(const QPoint &point, int selected)
 {
     switch (selected) {
     case 0:
+        ui_.get()->actionModifyPhrase->setEnabled(false);
         ui_.get()->actionRemovePhrase->setEnabled(false);
         break;
 
+    case 1:
+        ui_.get()->actionModifyPhrase->setEnabled(true);
+        ui_.get()->actionRemovePhrase->setEnabled(true);
+        break;
+
     default:
+        ui_.get()->actionModifyPhrase->setEnabled(false);
         ui_.get()->actionRemovePhrase->setEnabled(true);
         break;
     }
@@ -51,6 +58,10 @@ QAction *UserphraseViewMenu::getActionAddPhrase()
     return ui_.get()->actionAddPhrase;
 }
 
+QAction *UserphraseViewMenu::getActionModifyPhrase()
+{
+    return ui_.get()->actionModifyPhrase;
+}
 
 QAction *UserphraseViewMenu::getActionRemovePhrase()
 {

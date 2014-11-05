@@ -33,7 +33,15 @@ UserphraseView::UserphraseView(QWidget *parent)
 
 void UserphraseView::showAddUserphraseDialog()
 {
+    dialogType_ = DIALOG_ADD;
     addNewPhraseDialog_->cleanText();
+    emit addNewPhraseDialog_->exec();
+}
+
+void UserphraseView::showModifyUserphraseDialog()
+{
+    dialogType_ = DIALOG_MODIFY;
+    // FIXME: Set dialog text;
     emit addNewPhraseDialog_->exec();
 }
 
@@ -47,6 +55,10 @@ void UserphraseView::addNewPhrase(int result)
     std::shared_ptr<QString> bopomofo{new QString(addNewPhraseDialog_->getBopomofo())};
 
     qDebug() << "Add" << *phrase.get() << "(" << *bopomofo.get() << ")";
+
+    if (dialogType_ == DIALOG_MODIFY) {
+        remove();
+    }
 
     emit model()->add(phrase, bopomofo);
 }
@@ -88,6 +100,11 @@ void UserphraseView::setupAddUserphraseDialog()
     connect(
         menu_->getActionAddPhrase(), SIGNAL(triggered()),
         this, SLOT(showAddUserphraseDialog())
+    );
+
+    connect(
+        menu_->getActionModifyPhrase(), SIGNAL(triggered()),
+        this, SLOT(showModifyUserphraseDialog())
     );
 
     connect(

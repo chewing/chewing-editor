@@ -37,6 +37,7 @@ public:
     virtual ~UserphraseViewMenu();
 
     QAction *getActionAddPhrase();
+    QAction *getActionModifyPhrase();
     QAction *getActionRemovePhrase();
 
 public slots:
