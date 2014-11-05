@@ -63,16 +63,16 @@
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="actionAdd_phrase"/>
-    <addaction name="actionRemove_phrase"/>
+    <addaction name="actionAddPhrase"/>
+    <addaction name="actionRemovePhrase"/>
     <addaction name="actionRefresh"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionAbout_Chewing_editor"/>
-    <addaction name="actionAbout_Qt"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAboutQt"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -88,12 +88,12 @@
     <string>Export</string>
    </property>
   </action>
-  <action name="actionAdd_phrase">
+  <action name="actionAddPhrase">
    <property name="text">
     <string>Add phrase</string>
    </property>
   </action>
-  <action name="actionRemove_phrase">
+  <action name="actionRemovePhrase">
    <property name="text">
     <string>Remove phrase</string>
    </property>
@@ -103,12 +103,12 @@
     <string>Refresh</string>
    </property>
   </action>
-  <action name="actionAbout_Chewing_editor">
+  <action name="actionAbout">
    <property name="text">
     <string>About Chewing editor</string>
    </property>
   </action>
-  <action name="actionAbout_Qt">
+  <action name="actionAboutQt">
    <property name="text">
     <string>About Qt</string>
    </property>

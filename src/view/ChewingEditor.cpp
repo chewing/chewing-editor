@@ -111,7 +111,7 @@ void ChewingEditor::setupExport()
 void ChewingEditor::setupAdd()
 {
     connect(
-        ui_.get()->actionAdd_phrase, SIGNAL(triggered()),
+        ui_.get()->actionAddPhrase, SIGNAL(triggered()),
         ui_.get()->userphraseView, SLOT(showAddUserphraseDialog())
     );
 
@@ -124,7 +124,7 @@ void ChewingEditor::setupAdd()
 void ChewingEditor::setupRemove()
 {
     connect(
-        ui_.get()->actionRemove_phrase, SIGNAL(triggered()),
+        ui_.get()->actionRemovePhrase, SIGNAL(triggered()),
         ui_.get()->userphraseView, SLOT(remove())
     );
 
@@ -160,6 +160,6 @@ void ChewingEditor::setupFilter()
 void ChewingEditor::setupAboutWidget()
 {
    connect(
-        ui_.get()->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt())
+        ui_.get()->actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt())
    );
 }
