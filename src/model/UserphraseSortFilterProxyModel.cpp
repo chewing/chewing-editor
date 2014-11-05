@@ -23,6 +23,11 @@
 
 #include <QDebug>
 
+void UserphraseSortFilterProxyModel::add(std::shared_ptr<QString> phrase, std::shared_ptr<QString> bopomofo)
+{
+    sourceModel()->add(phrase, bopomofo);
+}
+
 void UserphraseSortFilterProxyModel::remove(QModelIndexList indexList)
 {
     if (indexList.empty()) {

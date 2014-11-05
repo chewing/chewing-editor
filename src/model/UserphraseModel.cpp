@@ -156,24 +156,9 @@ void UserphraseModel::refresh()
     emit refreshCompleted(userphrase_.size());
 }
 
-void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
+void UserphraseModel::add(std::shared_ptr<QString> phrase, std::shared_ptr<QString> bopomofo)
 {
-    auto ret = chewing_userphrase_add(
-        ctx_.get(),
-        phrase.toUtf8().constData(),
-        bopomofo.toUtf8().constData());
-
-    if (ret > 0) {
-        emit beginResetModel();
-        userphrase_.insert(Userphrase{
-            phrase,
-            bopomofo
-        });
-        emit endResetModel();
-        emit addNewPhraseCompleted(userphrase_[userphrase_.size()-1]);
-    } else {
-        qWarning() << "chewing_userphrase_add() returns" << ret;
-    }
+    add(*phrase.get(), *bopomofo.get());
 }
 
 void UserphraseModel::importUserphrase(std::shared_ptr<UserphraseImporter> importer)
@@ -207,4 +192,24 @@ void UserphraseModel::exportUserphrase(std::shared_ptr<UserphraseExporter> expor
     bool result = exporter.get()->save();
 
     emit exportCompleted(result, exporter.get()->getPath(), exported);
+}
+
+void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
+{
+    auto ret = chewing_userphrase_add(
+        ctx_.get(),
+        phrase.toUtf8().constData(),
+        bopomofo.toUtf8().constData());
+
+    if (ret > 0) {
+        emit beginResetModel();
+        userphrase_.insert(Userphrase{
+            phrase,
+            bopomofo
+        });
+        emit endResetModel();
+        emit addNewPhraseCompleted(userphrase_[userphrase_.size()-1]);
+    } else {
+        qWarning() << "chewing_userphrase_add() returns" << ret;
+    }
 }

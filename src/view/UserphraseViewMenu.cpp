@@ -17,46 +17,42 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "AddNewPhraseDialog.h"
-#include "ui_AddNewPhraseDialog.h"
+#include "UserphraseViewMenu.h"
+#include "ui_UserphraseViewMenu.h"
 
-AddNewPhraseDialog::AddNewPhraseDialog(QWidget *parent)
-    :QDialog{parent}
-    ,ui_{new Ui::AddNewPhraseDialog}
+UserphraseViewMenu::UserphraseViewMenu(QWidget *parent)
+    :QMenu{parent}
+    ,ui_{new Ui::UserphraseViewMenu}
 {
     ui_.get()->setupUi(this);
-    setupConnect();
 }
 
-AddNewPhraseDialog::~AddNewPhraseDialog()
+UserphraseViewMenu::~UserphraseViewMenu()
 {
 }
 
-void AddNewPhraseDialog::setupConnect()
+void UserphraseViewMenu::execWithSelectInfo(const QPoint &point, int selected)
 {
-    connect(
-        ui_.get()->buttonBox, SIGNAL(accepted()),
-        this, SLOT(accept())
-    );
+    switch (selected) {
+    case 0:
+        ui_.get()->actionRemovePhrase->setEnabled(false);
+        break;
 
-    connect(
-        ui_.get()->buttonBox, SIGNAL(rejected()),
-        this, SLOT(reject())
-    );
+    default:
+        ui_.get()->actionRemovePhrase->setEnabled(true);
+        break;
+    }
+
+    exec(point);
 }
 
-QString AddNewPhraseDialog::getPhrase() const
+QAction *UserphraseViewMenu::getActionAddPhrase()
 {
-    return ui_.get()->phrase->text();
+    return ui_.get()->actionAddPhrase;
 }
 
-QString AddNewPhraseDialog::getBopomofo() const
-{
-    return ui_.get()->bopomofo->text();
-}
 
-void AddNewPhraseDialog::cleanText()
+QAction *UserphraseViewMenu::getActionRemovePhrase()
 {
-    ui_.get()->phrase->setText("");
-    ui_.get()->bopomofo->setText("");
+    return ui_.get()->actionRemovePhrase;
 }

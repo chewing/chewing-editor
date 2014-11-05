@@ -31,7 +31,6 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ,ui_{new Ui::ChewingEditor}
     ,model_{new UserphraseModel{this}}
     ,proxyModel_{new UserphraseSortFilterProxyModel{this}}
-    ,addNewPhraseDialog_{new AddNewPhraseDialog{this}}
     ,importDialog_{new QFileDialog{this}}
     ,exportDialog_{new QFileDialog{this}}
 {
@@ -53,17 +52,6 @@ ChewingEditor::~ChewingEditor()
 {
 }
 
-void ChewingEditor::addNewPhrase(int result)
-{
-    if (result != QDialog::Accepted) { return; }
-
-    auto phrase = addNewPhraseDialog_->getPhrase();
-    auto bopomofo = addNewPhraseDialog_->getBopomofo();
-
-    qDebug() << phrase << bopomofo;
-
-    emit model_->add(phrase, bopomofo);
-}
 
 void ChewingEditor::importUserphrase(const QString& file)
 {
@@ -124,12 +112,7 @@ void ChewingEditor::setupAdd()
 {
     connect(
         ui_.get()->actionAdd_phrase, SIGNAL(triggered()),
-        addNewPhraseDialog_, SLOT(exec())
-    );
-
-    connect(
-        addNewPhraseDialog_, SIGNAL(finished(int)),
-        this, SLOT(addNewPhrase(int))
+        ui_.get()->userphraseView, SLOT(showAddUserphraseDialog())
     );
 
     connect(

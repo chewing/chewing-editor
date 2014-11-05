@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ui version="4.0">
+ <class>UserphraseViewMenu</class>
+ <widget class="QMenu" name="UserphraseViewMenu">
+  <action name="actionAddPhrase">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionRemovePhrase">
+   <property name="text">
+    <string>Remove</string>
+   </property>
+  </action>
+  <addaction name="actionAddPhrase"/>
+  <addaction name="actionRemovePhrase"/>
+ </widget>
+</ui>
