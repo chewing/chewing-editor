@@ -23,6 +23,11 @@
 
 #include <QDebug>
 
+void UserphraseSortFilterProxyModel::add(const QString &phrase, const QString &bopomofo)
+{
+    sourceModel()->add(phrase, bopomofo);
+}
+
 void UserphraseSortFilterProxyModel::remove(QModelIndexList indexList)
 {
     if (indexList.empty()) {

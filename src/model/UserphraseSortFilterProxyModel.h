@@ -42,5 +42,6 @@ public:
     }
 
 public slots:
+    void add(const QString &phrase, const QString &bopomofo);
     void remove(QModelIndexList indexList);
 };

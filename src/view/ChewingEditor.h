@@ -43,7 +43,6 @@ public:
     ~ChewingEditor(); // = default;
 
 public slots:
-    void addNewPhrase(int result);
     void importUserphrase(const QString& file);
     void exportUserphrase(const QString& file);
 
@@ -61,7 +60,6 @@ private:
     UserphraseModel *model_;
     UserphraseSortFilterProxyModel *proxyModel_;
 
-    AddNewPhraseDialog *addNewPhraseDialog_;
     QFileDialog *importDialog_;
     QFileDialog *exportDialog_;
 };

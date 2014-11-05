@@ -24,9 +24,32 @@
 
 UserphraseView::UserphraseView(QWidget *parent)
     :QListView{parent}
+    ,addNewPhraseDialog_{new AddNewPhraseDialog{this}}
     ,menu_(new UserphraseViewMenu{this})
 {
-        setupContextMenu();
+    setupContextMenu();
+    setupAddUserphraseDialog();
+}
+
+void UserphraseView::showAddUserphraseDialog()
+{
+    emit addNewPhraseDialog_->exec();
+}
+
+void UserphraseView::addNewPhrase(int result)
+{
+    qDebug() << "result = " << result;
+
+    if (result != QDialog::Accepted) {
+        return;
+    }
+
+    auto phrase = addNewPhraseDialog_->getPhrase();
+    auto bopomofo = addNewPhraseDialog_->getBopomofo();
+
+    qDebug() << phrase << bopomofo;
+
+    emit model()->add(phrase, bopomofo);
 }
 
 void UserphraseView::remove()
@@ -59,4 +82,12 @@ void UserphraseView::setupContextMenu()
 void UserphraseView::showContextMenu(const QPoint& point)
 {
     emit menu_->exec(mapToGlobal(point));
+}
+
+void UserphraseView::setupAddUserphraseDialog()
+{
+    connect(
+        addNewPhraseDialog_, SIGNAL(finished(int)),
+        this, SLOT(addNewPhrase(int))
+    );
 }
