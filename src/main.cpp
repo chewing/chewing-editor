@@ -26,12 +26,12 @@
 
 #include "ChewingEditor.h"
 
-void emptyMessageHandler(QtMsgType, const QMessageLogContext&, const QString&)
+void messageHandlerHelper(QtMsgType type, const QMessageLogContext& context, const QString& message, QtMsgType level)
 {
-}
+    if (type < level) {
+        return;
+    }
 
-void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
-{
     auto msg = message.toUtf8();
     auto file = QFileInfo{context.file}.fileName().toUtf8();
 
@@ -52,6 +52,16 @@ void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
     default:
         break;
     }
+}
+
+void emptyMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
+{
+    messageHandlerHelper(type, context, message, QtWarningMsg);
+}
+
+void debugMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& message)
+{
+    messageHandlerHelper(type, context, message, QtDebugMsg);
 }
 
 void loadTranslation(QApplication &app, QTranslator &qtTranslator, QTranslator &chewingTranslator)
