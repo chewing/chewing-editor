@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="en_US">
-<context>
-    <name>AddNewPhraseDialog</name>
-    <message>
-        <location filename="../src/ui/AddNewPhraseDialog.ui" line="26"/>
-        <source>Add new user phrase</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/AddNewPhraseDialog.ui" line="44"/>
-        <source>phrase</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/AddNewPhraseDialog.ui" line="54"/>
-        <source>bopomofo</source>
-        <translation></translation>
-    </message>
-</context>
+<TS version="2.1" language="en_US">
 <context>
     <name>ChewingEditor</name>
     <message>
@@ -27,28 +9,58 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="27"/>
-        <source>import</source>
+        <location filename="../src/ui/ChewingEditor.ui" line="40"/>
+        <source>Filter</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="34"/>
-        <source>export</source>
+        <location filename="../src/ui/ChewingEditor.ui" line="57"/>
+        <source>File</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="41"/>
-        <source>add</source>
+        <location filename="../src/ui/ChewingEditor.ui" line="64"/>
+        <source>Edit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="48"/>
-        <source>remove</source>
+        <location filename="../src/ui/ChewingEditor.ui" line="72"/>
+        <source>Help</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="55"/>
-        <source>refresh</source>
+        <location filename="../src/ui/ChewingEditor.ui" line="83"/>
+        <source>Import</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="88"/>
+        <source>Export</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="93"/>
+        <source>Add phrase</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="98"/>
+        <source>Remove phrase</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="103"/>
+        <source>Refresh</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="108"/>
+        <source>About Chewing editor</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="113"/>
+        <source>About Qt</source>
         <translation></translation>
     </message>
 </context>
@@ -128,6 +140,86 @@
             <numerusform>Refresh completed. Total %n user phrase.</numerusform>
             <numerusform>Refresh completed. Total %n user phrases.</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>UserphraseDialog</name>
+    <message>
+        <location filename="../src/ui/UserphraseDialog.ui" line="20"/>
+        <source>Add new user phrase</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/UserphraseDialog.ui" line="38"/>
+        <source>phrase</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/UserphraseDialog.ui" line="48"/>
+        <source>bopomofo</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>UserphraseViewMenu</name>
+    <message>
+        <location filename="../src/ui/UserphraseViewMenu.ui" line="7"/>
+        <source>Add</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/UserphraseViewMenu.ui" line="12"/>
+        <source>Modify</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/UserphraseViewMenu.ui" line="17"/>
+        <source>Remove</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <location filename="../src/main.cpp" line="88"/>
+        <source>%1
+</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="101"/>
+        <source>chewing-editor is a cross platform chewing user phrase editor written in Qt5. It provides a user friendly GUI to manage user phrase. With it, user can customize user phrase to enhance chewing input performance.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="109"/>
+        <source>-d, --debug</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="110"/>
+        <source>Enable debug message.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="113"/>
+        <source>-v, --version</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="114"/>
+        <source>Print program version.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="117"/>
+        <source>-h, --help</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="118"/>
+        <source>Print help message.</source>
+        <translation></translation>
     </message>
 </context>
 </TS>
