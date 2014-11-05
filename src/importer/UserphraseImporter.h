@@ -30,18 +30,14 @@
 
 class UserphraseImporter {
 public:
-    explicit UserphraseImporter(const QString& path):path_{path}, supportedFormat_{false}, userphrase_{} {}
+    explicit UserphraseImporter(const QString& path);
     UserphraseImporter(const UserphraseImporter&) = delete;
     UserphraseImporter& operator=(const UserphraseImporter&) = delete;
     virtual ~UserphraseImporter() = default;
 
-    bool isSupportedFormat() { return supportedFormat_; }
-    const UserphraseSet& getUserphraseSet() { return userphrase_; }
-
-    const QString getPath() {
-        QFileInfo info{path_};
-        return info.fileName();
-    }
+    bool isSupportedFormat();
+    const UserphraseSet& getUserphraseSet();
+    const QString getPath();
 
 protected:
     QString path_;

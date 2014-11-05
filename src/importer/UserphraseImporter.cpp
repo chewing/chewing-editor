@@ -22,6 +22,28 @@
 #include "ChewingImporter.h"
 #include "HashImporter.h"
 
+UserphraseImporter::UserphraseImporter(const QString& path)
+    :path_{path}
+    ,supportedFormat_{false}
+    ,userphrase_{}
+{
+}
+
+bool UserphraseImporter::isSupportedFormat()
+{
+    return supportedFormat_;
+}
+
+const UserphraseSet& UserphraseImporter::getUserphraseSet()
+{
+    return userphrase_;
+}
+
+const QString UserphraseImporter::getPath() {
+    QFileInfo info{path_};
+    return info.fileName();
+}
+
 std::shared_ptr<UserphraseImporter> createUserphraseImporter(const QString& path)
 {
     std::shared_ptr<UserphraseImporter> ptr;
