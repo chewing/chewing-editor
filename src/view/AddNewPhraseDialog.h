@@ -39,7 +39,7 @@ public:
     QString getPhrase() const;
     QString getBopomofo() const;
 
-    void cleanText();
+    void setText(const QString& phrase, const QString& bopomofo);
 
 private:
     void setupConnect();

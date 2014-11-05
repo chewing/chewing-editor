@@ -213,3 +213,8 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         qWarning() << "chewing_userphrase_add() returns" << ret;
     }
 }
+
+const Userphrase *UserphraseModel::getUserphrase(const QModelIndex& idx)
+{
+    return &userphrase_[idx.row()];
+}

@@ -43,3 +43,8 @@ void UserphraseSortFilterProxyModel::remove(QModelIndexList indexList)
 
     sourceModel()->remove(std::move(sourceIndexList));
 }
+
+const Userphrase *UserphraseSortFilterProxyModel::getUserphrase(const QModelIndex& idx)
+{
+    return sourceModel()->getUserphrase(mapToSource(idx));
+}

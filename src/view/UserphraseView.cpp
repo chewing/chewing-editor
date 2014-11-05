@@ -34,14 +34,20 @@ UserphraseView::UserphraseView(QWidget *parent)
 void UserphraseView::showAddUserphraseDialog()
 {
     dialogType_ = DIALOG_ADD;
-    addNewPhraseDialog_->cleanText();
+    addNewPhraseDialog_->setText("", "");
     emit addNewPhraseDialog_->exec();
 }
 
 void UserphraseView::showModifyUserphraseDialog()
 {
     dialogType_ = DIALOG_MODIFY;
-    // FIXME: Set dialog text;
+
+    Q_ASSERT(selectionModel()->selectedIndexes().size() == 1);
+
+    auto userphrase = model()->getUserphrase(*selectionModel()->selectedIndexes().begin());
+
+    addNewPhraseDialog_->setText(userphrase->phrase_, userphrase->bopomofo_);
+
     emit addNewPhraseDialog_->exec();
 }
 
