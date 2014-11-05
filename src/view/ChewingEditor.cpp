@@ -31,14 +31,14 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ,ui_{new Ui::ChewingEditor}
     ,model_{new UserphraseModel{this}}
     ,proxyModel_{new UserphraseSortFilterProxyModel{this}}
-    ,importDialog_{new QFileDialog{this}}
-    ,exportDialog_{new QFileDialog{this}}
+    ,fileDialog_{new QFileDialog{this}}
 {
     ui_.get()->setupUi(this);
 
     proxyModel_->setSourceModel(model_);
     ui_.get()->userphraseView->setModel(proxyModel_);
 
+    setupFileSelection();
     setupImport();
     setupExport();
     setupAdd();
@@ -52,6 +52,45 @@ ChewingEditor::~ChewingEditor()
 {
 }
 
+void ChewingEditor::selectImportFile()
+{
+    fileDialog_->setAcceptMode(QFileDialog::AcceptOpen);
+    fileDialog_->setFileMode(QFileDialog::ExistingFile);
+    fileDialog_->setConfirmOverwrite(false);
+
+    dialogType_ = DIALOG_IMPORT;
+
+    emit fileDialog_->exec();
+}
+
+void ChewingEditor::selectExportFile()
+{
+    fileDialog_->setAcceptMode(QFileDialog::AcceptSave);
+    fileDialog_->setFileMode(QFileDialog::AnyFile);
+    fileDialog_->setConfirmOverwrite(true);
+
+    dialogType_ = DIALOG_EXPORT;
+
+    emit fileDialog_->exec();
+}
+
+void ChewingEditor::finishFileSelection(const QString& file)
+{
+    qDebug() << "dialogType_ = " << dialogType_;
+
+    switch (dialogType_) {
+    case DIALOG_IMPORT:
+        importUserphrase(file);
+        break;
+
+    case DIALOG_EXPORT:
+        exportUserphrase(file);
+        break;
+
+    default:
+        Q_ASSERT(!"NOTREACHED");
+    }
+}
 
 void ChewingEditor::importUserphrase(const QString& file)
 {
@@ -65,19 +104,19 @@ void ChewingEditor::exportUserphrase(const QString& file)
     emit model_->exportUserphrase(exporter);
 }
 
+void ChewingEditor::setupFileSelection()
+{
+    connect(
+        fileDialog_, SIGNAL(fileSelected(const QString&)),
+        this, SLOT(finishFileSelection(const QString &))
+    );
+}
+
 void ChewingEditor::setupImport()
 {
-    importDialog_->setAcceptMode(QFileDialog::AcceptOpen);
-    exportDialog_->setFileMode(QFileDialog::ExistingFile);
-
     connect(
         ui_.get()->actionImport, SIGNAL(triggered()),
-        importDialog_, SLOT(exec())
-    );
-
-    connect(
-        importDialog_, SIGNAL(fileSelected(const QString&)),
-        this, SLOT(importUserphrase(const QString&))
+        this, SLOT(selectImportFile())
     );
 
     connect(
@@ -88,18 +127,9 @@ void ChewingEditor::setupImport()
 
 void ChewingEditor::setupExport()
 {
-    exportDialog_->setAcceptMode(QFileDialog::AcceptSave);
-    exportDialog_->setFileMode(QFileDialog::AnyFile);
-    exportDialog_->setConfirmOverwrite(true);
-
     connect(
         ui_.get()->actionExport, SIGNAL(triggered()),
-        exportDialog_, SLOT(exec())
-    );
-
-    connect(
-        exportDialog_, SIGNAL(fileSelected(const QString&)),
-        this, SLOT(exportUserphrase(const QString&))
+        this, SLOT(selectExportFile())
     );
 
     connect(

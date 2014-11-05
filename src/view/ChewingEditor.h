@@ -43,10 +43,17 @@ public:
     ~ChewingEditor(); // = default;
 
 public slots:
-    void importUserphrase(const QString& file);
-    void exportUserphrase(const QString& file);
+    void selectImportFile();
+    void selectExportFile();
+    void finishFileSelection(const QString& file);
 
 private:
+    enum DialogType {
+        DIALOG_IMPORT,
+        DIALOG_EXPORT,
+    };
+
+    void setupFileSelection();
     void setupImport();
     void setupExport();
     void setupAdd();
@@ -54,12 +61,14 @@ private:
     void setupRefresh();
     void setupFilter();
     void setupAboutWidget();
+    void importUserphrase(const QString& file);
+    void exportUserphrase(const QString& file);
 
     std::unique_ptr<Ui::ChewingEditor> ui_;
 
     UserphraseModel *model_;
     UserphraseSortFilterProxyModel *proxyModel_;
 
-    QFileDialog *importDialog_;
-    QFileDialog *exportDialog_;
+    QFileDialog *fileDialog_;
+    DialogType dialogType_;
 };
