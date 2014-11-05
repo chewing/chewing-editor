@@ -23,6 +23,11 @@
 
 #include <QDebug>
 
+UserphraseSortFilterProxyModel::UserphraseSortFilterProxyModel(QObject *parent)
+    :QSortFilterProxyModel{parent}
+{
+}
+
 void UserphraseSortFilterProxyModel::add(std::shared_ptr<QString> phrase, std::shared_ptr<QString> bopomofo)
 {
     sourceModel()->add(phrase, bopomofo);

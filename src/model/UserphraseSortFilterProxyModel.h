@@ -27,11 +27,10 @@ class UserphraseSortFilterProxyModel final : public QSortFilterProxyModel {
     Q_OBJECT
 
 public:
-    explicit UserphraseSortFilterProxyModel(QObject * parent = 0):QSortFilterProxyModel(parent) {}
+    explicit UserphraseSortFilterProxyModel(QObject * parent = 0);
     UserphraseSortFilterProxyModel(const UserphraseSortFilterProxyModel& x) = delete;
     UserphraseSortFilterProxyModel& operator=(const UserphraseSortFilterProxyModel& x) = delete;
     virtual ~UserphraseSortFilterProxyModel() = default;
-
 
     virtual void setSourceModel(UserphraseModel* model) {
         QSortFilterProxyModel::setSourceModel(model);
