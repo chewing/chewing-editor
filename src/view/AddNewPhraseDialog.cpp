@@ -54,3 +54,9 @@ QString AddNewPhraseDialog::getBopomofo() const
 {
     return ui_.get()->bopomofo->text();
 }
+
+void AddNewPhraseDialog::cleanText()
+{
+    ui_.get()->phrase->setText("");
+    ui_.get()->bopomofo->setText("");
+}

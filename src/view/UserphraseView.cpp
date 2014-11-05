@@ -33,6 +33,7 @@ UserphraseView::UserphraseView(QWidget *parent)
 
 void UserphraseView::showAddUserphraseDialog()
 {
+    addNewPhraseDialog_->cleanText();
     emit addNewPhraseDialog_->exec();
 }
 

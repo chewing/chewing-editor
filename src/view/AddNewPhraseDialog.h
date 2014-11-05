@@ -39,6 +39,8 @@ public:
     QString getPhrase() const;
     QString getBopomofo() const;
 
+    void cleanText();
+
 private:
     void setupConnect();
     std::unique_ptr<Ui::AddNewPhraseDialog> ui_;
