@@ -61,12 +61,13 @@ signals:
 
 public slots:
     void refresh();
-    void add(const QString &phrase, const QString &bopomofo);
+    void add(std::shared_ptr<QString> phrase, std::shared_ptr<QString> bopomofo);
     void importUserphrase(std::shared_ptr<UserphraseImporter> importer);
     void exportUserphrase(std::shared_ptr<UserphraseExporter> exporter);
     void remove(QModelIndexList indexList);
 
 private:
+    void add(const QString &phrase, const QString &bopomofo);
 
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
     UserphraseSet userphrase_;

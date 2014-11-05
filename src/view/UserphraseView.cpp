@@ -38,16 +38,14 @@ void UserphraseView::showAddUserphraseDialog()
 
 void UserphraseView::addNewPhrase(int result)
 {
-    qDebug() << "result = " << result;
-
     if (result != QDialog::Accepted) {
         return;
     }
 
-    auto phrase = addNewPhraseDialog_->getPhrase();
-    auto bopomofo = addNewPhraseDialog_->getBopomofo();
+    std::shared_ptr<QString> phrase{new QString(addNewPhraseDialog_->getPhrase())};
+    std::shared_ptr<QString> bopomofo{new QString(addNewPhraseDialog_->getBopomofo())};
 
-    qDebug() << phrase << bopomofo;
+    qDebug() << "Add" << *phrase.get() << "(" << *bopomofo.get() << ")";
 
     emit model()->add(phrase, bopomofo);
 }

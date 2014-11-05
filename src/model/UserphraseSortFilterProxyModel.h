@@ -42,6 +42,6 @@ public:
     }
 
 public slots:
-    void add(const QString &phrase, const QString &bopomofo);
+    void add(std::shared_ptr<QString> phrase, std::shared_ptr<QString> bopomofo);
     void remove(QModelIndexList indexList);
 };

@@ -54,8 +54,6 @@ private:
     void setupContextMenu();
     void setupAddUserphraseDialog();
 
-
-
     AddNewPhraseDialog *addNewPhraseDialog_;
     UserphraseViewMenu *menu_;
 };
