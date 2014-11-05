@@ -85,6 +85,11 @@ void UserphraseView::showContextMenu(const QPoint& point)
 void UserphraseView::setupAddUserphraseDialog()
 {
     connect(
+        menu_->getActionAddPhrase(), SIGNAL(triggered()),
+        this, SLOT(showAddUserphraseDialog())
+    );
+
+    connect(
         addNewPhraseDialog_, SIGNAL(finished(int)),
         this, SLOT(addNewPhrase(int))
     );
