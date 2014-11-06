@@ -64,6 +64,8 @@ private:
     void importUserphrase(const QString& file);
     void exportUserphrase(const QString& file);
 
+    void execFileDialog(DialogType type);
+
     std::unique_ptr<Ui::ChewingEditor> ui_;
 
     UserphraseModel *model_;

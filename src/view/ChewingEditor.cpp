@@ -52,26 +52,40 @@ ChewingEditor::~ChewingEditor()
 {
 }
 
-void ChewingEditor::selectImportFile()
+void ChewingEditor::execFileDialog(DialogType type)
 {
-    fileDialog_->setAcceptMode(QFileDialog::AcceptOpen);
-    fileDialog_->setFileMode(QFileDialog::ExistingFile);
-    fileDialog_->setConfirmOverwrite(false);
+    qDebug() << "dialogType_ = " << dialogType_;
 
-    dialogType_ = DIALOG_IMPORT;
+    dialogType_ = type;
+
+    switch (dialogType_) {
+    case DIALOG_IMPORT:
+        fileDialog_->setAcceptMode(QFileDialog::AcceptOpen);
+        fileDialog_->setFileMode(QFileDialog::ExistingFile);
+        fileDialog_->setConfirmOverwrite(false);
+        break;
+
+    case DIALOG_EXPORT:
+        fileDialog_->setAcceptMode(QFileDialog::AcceptSave);
+        fileDialog_->setFileMode(QFileDialog::AnyFile);
+        fileDialog_->setConfirmOverwrite(true);
+        break;
+
+    default:
+        Q_ASSERT(!"Unknown DialogType");
+    }
 
     emit fileDialog_->exec();
 }
 
+void ChewingEditor::selectImportFile()
+{
+    execFileDialog(DIALOG_IMPORT);
+}
+
 void ChewingEditor::selectExportFile()
 {
-    fileDialog_->setAcceptMode(QFileDialog::AcceptSave);
-    fileDialog_->setFileMode(QFileDialog::AnyFile);
-    fileDialog_->setConfirmOverwrite(true);
-
-    dialogType_ = DIALOG_EXPORT;
-
-    emit fileDialog_->exec();
+    execFileDialog(DIALOG_EXPORT);
 }
 
 void ChewingEditor::finishFileSelection(const QString& file)
@@ -88,7 +102,7 @@ void ChewingEditor::finishFileSelection(const QString& file)
         break;
 
     default:
-        Q_ASSERT(!"NOTREACHED");
+        Q_ASSERT(!"Unknown DialogType");
     }
 }
 
