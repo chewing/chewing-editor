@@ -80,6 +80,16 @@ configure_file(
     ${PROJECT_BINARY_DIR}/include/config.h
 )
 
+configure_file(
+    ${PROJECT_SOURCE_DIR}/chewing-editor.desktop.in
+    ${PROJECT_BINARY_DIR}/chewing-editor.desktop
+)
+
+install(
+    FILES ${PROJECT_BINARY_DIR}/chewing-editor.desktop
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/application
+)
+
 include_directories(
     ${PROJECT_BINARY_DIR}/include
     ${PROJECT_SOURCE_DIR}/gmock/gtest/include

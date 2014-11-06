@@ -1,0 +1,6 @@
+[Desktop Entry]
+Version=@PROJECT_VERSION@
+Type=Application
+Name=Chewing Editor
+Comment=Chewing Userphrase Editor
+Exec=chewing-editor
