@@ -34,9 +34,11 @@ protected:
 
 TEST_F(TestHashImporter, ReadUserphrase)
 {
-    HashImporter importer{QString(TESTDATA "/import/uhash.dat/uhash.dat")};
+    QString path{TESTDATA "/import/uhash.dat/uhash.dat"};
+    HashImporter importer{path};
 
     EXPECT_TRUE(importer.isSupportedFormat());
+    EXPECT_EQ(QFileInfo{path}.fileName(), importer.getPath());
 
     auto result = importer.getUserphraseSet();
 

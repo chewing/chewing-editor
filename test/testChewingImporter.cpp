@@ -46,9 +46,12 @@ TEST_F(TestChewingImporter, ReadNoUserphrase)
 
 TEST_F(TestChewingImporter, ReadOneUserphrase)
 {
-    ChewingImporter importer{QString(TESTDATA "/import/json/chewing_one_valid_phrase.json")};
+    QString path{TESTDATA "/import/json/chewing_one_valid_phrase.json"};
+
+    ChewingImporter importer{path};
 
     EXPECT_TRUE(importer.isSupportedFormat());
+    EXPECT_EQ(QFileInfo{path}.fileName(), importer.getPath());
 
     auto result = importer.getUserphraseSet();
 
