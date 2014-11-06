@@ -120,6 +120,8 @@ void ChewingEditor::exportUserphrase(const QString& file)
 
 void ChewingEditor::setupFileSelection()
 {
+    fileDialog_->selectFile(tr("chewing.json"));
+
     connect(
         fileDialog_, SIGNAL(fileSelected(const QString&)),
         this, SLOT(finishFileSelection(const QString &))
