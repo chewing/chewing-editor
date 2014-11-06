@@ -54,7 +54,7 @@ TEST_F(TestChewingExporter, WriteNoUserphrase)
     ChewingExporter exporter(path_);
     ASSERT_TRUE(exporter.save());
 
-    QFile file{QString(path_)};
+    QFile file{QString{path_}};
     ASSERT_TRUE(file.open(QIODevice::ReadOnly | QIODevice::Text));
 
     auto root = QJsonDocument::fromJson(file.readAll()).object();
