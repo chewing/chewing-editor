@@ -2,21 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
-    <name>AddNewPhraseDialog</name>
-    <message>
-        <source>Add new user phrase</source>
-        <translation type="vanished">新增詞彙</translation>
-    </message>
-    <message>
-        <source>phrase</source>
-        <translation type="vanished">詞彙</translation>
-    </message>
-    <message>
-        <source>bopomofo</source>
-        <translation type="vanished">注音</translation>
-    </message>
-</context>
-<context>
     <name>ChewingEditor</name>
     <message>
         <location filename="../src/ui/ChewingEditor.ui" line="20"/>
@@ -77,26 +62,6 @@
         <location filename="../src/ui/ChewingEditor.ui" line="113"/>
         <source>About Qt</source>
         <translation>關於 Qt</translation>
-    </message>
-    <message>
-        <source>import</source>
-        <translation type="vanished">匯入</translation>
-    </message>
-    <message>
-        <source>export</source>
-        <translation type="vanished">匯出</translation>
-    </message>
-    <message>
-        <source>add</source>
-        <translation type="vanished">新增</translation>
-    </message>
-    <message>
-        <source>remove</source>
-        <translation type="vanished">刪除</translation>
-    </message>
-    <message>
-        <source>refresh</source>
-        <translation type="vanished">更新</translation>
     </message>
 </context>
 <context>
