@@ -65,6 +65,8 @@ TEST_F(TestHashImporter, ReadBrokenHash)
 {
     auto list = QDir{TESTDATA "/import/uhash.dat/broken"}.entryList(QDir::Files);
 
+    ASSERT_GT(list.size(), 0);
+
     foreach(auto file, list) {
         auto path = QString("%1/%2").arg(TESTDATA "/import/uhash.dat/broken").arg(file);
         HashImporter importer{path};

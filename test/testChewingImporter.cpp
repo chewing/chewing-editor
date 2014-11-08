@@ -36,6 +36,8 @@ TEST_F(TestChewingImporter, ReadNoUserphrase)
 {
     auto list = QDir{TESTDATA "/import/json/broken"}.entryList(QDir::Files);
 
+    ASSERT_GT(list.size(), 0);
+
     foreach(auto file, list) {
         auto path = QString("%1/%2").arg(TESTDATA "/import/json/broken").arg(file);
         ChewingImporter importer{path};
