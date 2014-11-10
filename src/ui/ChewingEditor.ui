@@ -104,12 +104,12 @@
   </action>
   <action name="actionAddPhrase">
    <property name="text">
-    <string>Add phrase</string>
+    <string>Add</string>
    </property>
   </action>
   <action name="actionRemovePhrase">
    <property name="text">
-    <string>Remove phrase</string>
+    <string>Remove</string>
    </property>
   </action>
   <action name="actionRefresh">
