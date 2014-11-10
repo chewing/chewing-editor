@@ -162,6 +162,11 @@ void ChewingEditor::setupAdd()
     );
 
     connect(
+        ui_.get()->addButton, SIGNAL(pressed()),
+        ui_.get()->userphraseView, SLOT(showAddUserphraseDialog())
+    );
+
+    connect(
         model_, SIGNAL(addNewPhraseCompleted(const Userphrase&)),
         ui_.get()->notification, SLOT(notifyAddNewPhraseCompleted(const Userphrase&))
     );
@@ -175,6 +180,11 @@ void ChewingEditor::setupRemove()
     );
 
     connect(
+        ui_.get()->removeButton, SIGNAL(pressed()),
+        ui_.get()->userphraseView, SLOT(remove())
+    );
+
+    connect(
         model_, SIGNAL(removePhraseCompleted(size_t)),
         ui_.get()->notification, SLOT(notifyRemovePhraseCompleted(size_t))
     );
@@ -184,6 +194,11 @@ void ChewingEditor::setupRefresh()
 {
     connect(
         ui_.get()->actionRefresh, SIGNAL(triggered()),
+        model_, SLOT(refresh())
+    );
+
+    connect(
+        ui_.get()->refreshButton, SIGNAL(pressed()),
         model_, SLOT(refresh())
     );
 
