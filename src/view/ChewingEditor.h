@@ -61,7 +61,7 @@ private:
     void setupRemove();
     void setupRefresh();
     void setupFilter();
-    void setupAboutWidget();
+    void setupAbout();
     void importUserphrase(const QString& file);
     void exportUserphrase(const QString& file);
 
