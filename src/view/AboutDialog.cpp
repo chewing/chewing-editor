@@ -22,12 +22,22 @@
 #include "ui_AboutDialog.h"
 
 AboutDialog::AboutDialog(QWidget *parent)
-    :QWidget{parent}
+    :QDialog{parent}
     ,ui_{new Ui::AboutDialog}
 {
     ui_.get()->setupUi(this);
+
+    setupConnection();
 }
 
 AboutDialog::~AboutDialog()
 {
+}
+
+void AboutDialog::setupConnection()
+{
+    connect(
+        ui_.get()->buttonBox, SIGNAL(rejected()),
+        this, SLOT(reject())
+    );
 }

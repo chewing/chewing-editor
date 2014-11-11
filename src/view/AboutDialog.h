@@ -21,20 +21,24 @@
 
 #include <memory>
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
     class AboutDialog;
 }
 
-class AboutDialog : public QWidget
+class AboutDialog : public QDialog
 {
     Q_OBJECT
 
 public:
     explicit AboutDialog(QWidget *parent = 0);
+    AboutDialog(const AboutDialog&) = delete;
+    AboutDialog& operator=(const AboutDialog&) = delete;
     ~AboutDialog();
 
 private:
+    void setupConnection();
+
     std::unique_ptr<Ui::AboutDialog> ui_;
 };
