@@ -24,6 +24,7 @@
 #include <QFileDialog>
 #include <QMainWindow>
 
+#include "AboutDialog.h"
 #include "UserphraseDialog.h"
 #include "Notification.h"
 #include "UserphraseSortFilterProxyModel.h"
@@ -73,4 +74,6 @@ private:
 
     QFileDialog *fileDialog_;
     DialogType dialogType_;
+
+    AboutDialog *aboutDialog_;
 };

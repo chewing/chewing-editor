@@ -32,6 +32,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     ,model_{new UserphraseModel{this}}
     ,proxyModel_{new UserphraseSortFilterProxyModel{this}}
     ,fileDialog_{new QFileDialog{this}}
+    ,aboutDialog_{new AboutDialog{this}}
 {
     ui_.get()->setupUi(this);
 
@@ -45,7 +46,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     setupRemove();
     setupRefresh();
     setupFilter();
-    setupAboutWidget();
+    setupAbout();
 }
 
 ChewingEditor::~ChewingEditor()
@@ -203,9 +204,15 @@ void ChewingEditor::setupFilter()
     );
 }
 
-void ChewingEditor::setupAboutWidget()
+void ChewingEditor::setupAbout()
 {
-   connect(
-        ui_.get()->actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt())
-   );
+    connect(
+        ui_.get()->actionAboutQt, SIGNAL(triggered()),
+        qApp, SLOT(aboutQt())
+    );
+
+    connect(
+        ui_.get()->actionAbout,  SIGNAL(triggered()),
+        aboutDialog_, SLOT(show())
+    );
 }
