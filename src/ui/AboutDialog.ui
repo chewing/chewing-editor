@@ -24,7 +24,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QTextEdit" name="textEdit">
       <property name="text">
        <string>TextLabel</string>
       </property>
