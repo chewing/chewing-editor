@@ -141,7 +141,7 @@ qt5_use_modules(chewing-editor Widgets)
 install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 # icon
-install(FILES ${CMAKE_SOURCE_DIR}/share/icon/icon.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps/chewing-editor.svg)
+install(FILES ${CMAKE_SOURCE_DIR}/share/icons/chewing-editor.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
 
 # i18n
 set(TS_DIR "${PROJECT_SOURCE_DIR}/ts")
