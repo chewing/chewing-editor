@@ -4,3 +4,4 @@ Type=Application
 Name=Chewing Editor
 Comment=Chewing Userphrase Editor
 Exec=chewing-editor
+Icon=chewing-editor

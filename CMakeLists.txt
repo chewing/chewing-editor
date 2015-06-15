@@ -140,6 +140,9 @@ target_link_libraries(chewing-editor
 qt5_use_modules(chewing-editor Widgets)
 install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})
 
+# icon
+install(FILES ${CMAKE_SOURCE_DIR}/icon/icon.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps/chewing-editor.svg)
+
 # i18n
 set(TS_DIR "${PROJECT_SOURCE_DIR}/ts")
 set(QM_DIR "${PROJECT_BINARY_DIR}/qm")
