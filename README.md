@@ -81,6 +81,7 @@ Please report any bug & featureq request to <https://github.com/chewing/chewing-
 # Author & Contributor
 
 *   ChangZhuo Chen (陳昌倬)
+*   鄭鴻旗
 
 # License
 
