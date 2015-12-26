@@ -16,7 +16,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 cmake_minimum_required(VERSION 3.0.0)
-project(chewing-editor VERSION 0.0.0)
+project(chewing-editor VERSION 0.0.1)
 
 set(TRANSLATION_LIST en_US zh_TW)
 
