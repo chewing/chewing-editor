@@ -9,7 +9,7 @@ git:
   depth: 1
 
 before_install:
-    - sudo pip install cpp-coveralls --use-mirrors
+    - sudo pip install cpp-coveralls
     - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
     - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
     - sudo add-apt-repository --yes ppa:chewing/chewing
