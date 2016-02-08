@@ -86,5 +86,5 @@ Please report any bug & feature request to <https://github.com/chewing/chewing-e
 
 # Licenses
 
-*   This project is licensed under [GPL-2.0](https://opensource.org/licenses/GPL-2.0)
+*   This project is licensed under [GPL-2.0](https://opensource.org/licenses/GPL-2.0) or any later version.
 *   [Google C++ Mocking Framework](https://code.google.com/p/googlemock/) is licensed under [New BSD License](https://opensource.org/licenses/BSD-3-Clause)
