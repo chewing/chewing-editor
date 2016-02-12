@@ -63,12 +63,14 @@ void ChewingEditor::execFileDialog(DialogType type)
         fileDialog_->setAcceptMode(QFileDialog::AcceptOpen);
         fileDialog_->setFileMode(QFileDialog::ExistingFile);
         fileDialog_->setConfirmOverwrite(false);
+        fileDialog_->selectFile("");
         break;
 
     case DIALOG_EXPORT:
         fileDialog_->setAcceptMode(QFileDialog::AcceptSave);
         fileDialog_->setFileMode(QFileDialog::AnyFile);
         fileDialog_->setConfirmOverwrite(true);
+        fileDialog_->selectFile("chewing.json");
         break;
 
     default:
@@ -120,7 +122,7 @@ void ChewingEditor::exportUserphrase(const QString& file)
 
 void ChewingEditor::setupFileSelection()
 {
-    fileDialog_->selectFile(tr("chewing.json"));
+    fileDialog_->setNameFilter("*.json");
 
     connect(
         fileDialog_, SIGNAL(fileSelected(const QString&)),
