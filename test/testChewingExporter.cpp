@@ -92,11 +92,11 @@ TEST_F(TestChewingExporter, WriteOneUserphrase)
 
     auto obj = array.at(0).toObject();
     EXPECT_EQ(
-        QJsonValue(QString("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */)),
-        obj["phrase"]);
-    EXPECT_EQ(QJsonValue(
-        QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */)),
-        obj["bopomofo"]);
+        QString("\xE6\xB8\xAC\xE8\xA9\xA6" /* 測試 */),
+        obj["phrase"].toString());
+    EXPECT_EQ(
+        QString("\xE3\x84\x98\xE3\x84\x9C\xCB\x8B \xE3\x84\x95\xCB\x8B" /* ㄘㄜˋ ㄕˋ */),
+        obj["bopomofo"].toString());
 }
 
 TEST_F(TestChewingExporter, PathError)
