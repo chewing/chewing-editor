@@ -60,12 +60,14 @@ void ChewingEditor::execFileDialog(DialogType type)
 
     switch (dialogType_) {
     case DIALOG_IMPORT:
+        fileDialog_->setWindowTitle(tr("Import"));
         fileDialog_->setAcceptMode(QFileDialog::AcceptOpen);
         fileDialog_->setFileMode(QFileDialog::ExistingFile);
         fileDialog_->setConfirmOverwrite(false);
         break;
 
     case DIALOG_EXPORT:
+        fileDialog_->setWindowTitle(tr("Export"));
         fileDialog_->setAcceptMode(QFileDialog::AcceptSave);
         fileDialog_->setFileMode(QFileDialog::AnyFile);
         fileDialog_->setConfirmOverwrite(true);
