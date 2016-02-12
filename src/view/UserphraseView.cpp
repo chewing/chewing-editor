@@ -35,6 +35,7 @@ void UserphraseView::showAddUserphraseDialog()
 {
     dialogType_ = DIALOG_ADD;
     UserphraseDialog_->setText("", "");
+    UserphraseDialog_->setWindowTitle("Add new phrase");
     emit UserphraseDialog_->exec();
 }
 
@@ -48,6 +49,7 @@ void UserphraseView::showModifyUserphraseDialog()
 
     UserphraseDialog_->setText(userphrase->phrase_, userphrase->bopomofo_);
 
+    UserphraseDialog_->setWindowTitle("Modify phrase");
     emit UserphraseDialog_->exec();
 }
 
