@@ -223,6 +223,7 @@ target_link_libraries(run-test
     exporter
     importer
     util
+    pthread
 )
 qt5_use_modules(run-test Widgets)
 
