@@ -29,25 +29,33 @@ UserphraseView::UserphraseView(QWidget *parent)
 {
     setupContextMenu();
     setupAddUserphraseDialog();
+    // setup double click
+    connect(
+        this, SIGNAL(doubleClicked(const QModelIndex &)),
+        this, SLOT(showModifyUserphraseDialog())
+    );
 }
 
 void UserphraseView::showAddUserphraseDialog()
 {
     dialogType_ = DIALOG_ADD;
     UserphraseDialog_->setText("", "");
+    UserphraseDialog_->setWindowTitle("Add new phrase");
     emit UserphraseDialog_->exec();
 }
 
 void UserphraseView::showModifyUserphraseDialog()
 {
+    if (selectionModel()->selectedIndexes().size() != 1) {
+        return;
+    }
+
     dialogType_ = DIALOG_MODIFY;
 
-    Q_ASSERT(selectionModel()->selectedIndexes().size() == 1);
-
-    auto userphrase = model()->getUserphrase(*selectionModel()->selectedIndexes().begin());
+    auto userphrase = model()->getUserphrase(selectionModel()->selectedIndexes().first());
 
     UserphraseDialog_->setText(userphrase->phrase_, userphrase->bopomofo_);
-
+    UserphraseDialog_->setWindowTitle("Modify phrase");
     emit UserphraseDialog_->exec();
 }
 
