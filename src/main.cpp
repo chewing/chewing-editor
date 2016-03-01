@@ -24,6 +24,11 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 
+#ifdef _MSC_VER
+#include <QtPlugin>
+Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
+#endif
+
 #include "ChewingEditor.h"
 
 void messageHandlerHelper(QtMsgType type, const QMessageLogContext& context, const QString& message, QtMsgType level)

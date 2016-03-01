@@ -146,6 +146,8 @@ if(MSVC)
         "${_qt5Widgets_install_prefix}/lib/qtpcre.lib"
         "${_qt5Widgets_install_prefix}/lib/qtfreetype.lib"
         "${_qt5Widgets_install_prefix}/lib/qtharfbuzzng.lib"
+        "${_qt5Widgets_install_prefix}/lib/Qt5PlatformSupport.lib"
+        "${_qt5Widgets_install_prefix}/plugins/platforms/qwindows.lib"
         imm32.lib
         winmm.lib
         Ws2_32.lib
