@@ -15,6 +15,10 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+# override default c/c++ flags, add /MT to link VC++ runtime statically.
+set(CMAKE_USER_MAKE_RULES_OVERRIDE	${CMAKE_CURRENT_SOURCE_DIR}/cmake/c_flag_overrides.cmake)
+set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX	${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_flag_overrides.cmake)
+
 cmake_minimum_required(VERSION 3.0.0)
 project(chewing-editor VERSION 0.0.1)
 
@@ -136,6 +140,18 @@ target_link_libraries(chewing-editor
     importer
     util
 )
+if(MSVC)
+    target_link_libraries(chewing-editor  # append libraries
+        Qt5::Widgets
+        "${_qt5Widgets_install_prefix}/lib/qtpcre.lib"
+        "${_qt5Widgets_install_prefix}/lib/qtfreetype.lib"
+        "${_qt5Widgets_install_prefix}/lib/qtharfbuzzng.lib"
+        imm32.lib
+        winmm.lib
+        Ws2_32.lib
+    )
+endif()
+
 qt5_use_modules(chewing-editor Widgets)
 install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})
 
