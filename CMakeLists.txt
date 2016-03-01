@@ -36,19 +36,18 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
     if (VALGRIND)
         option(USE_VALGRIND "Use valgrind when testing" true)
     endif()
-
-    set(TRANSLATION_PATH ${CMAKE_INSTALL_DATADIR}/chewing-editor/translations)
-
-    add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
-else()
-    # FIXME: Windows TRANSLATION_PATH path is?
-    #add_definitions(-DTRANSLATION_PATH="???")
 endif()
+
+set(TRANSLATION_PATH ${CMAKE_INSTALL_DATADIR}/chewing-editor/translations)
+add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
+
 add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
 
 find_package(PkgConfig)
 
+# MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/lib/*.lib
 set(CHEWING_LIBRARIES )
+# MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/include/chewing
 set(CHEWING_INCLUDE_DIRS )
 
 if (CHEWING_INCLUDE_DIRS AND CHEWING_LIBRARIES)
