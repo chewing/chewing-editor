@@ -22,6 +22,11 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX	${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_fla
 cmake_minimum_required(VERSION 3.0.0)
 project(chewing-editor VERSION 0.0.1)
 
+if(MSVC)
+    # MBCS is the default in msvc, overwrite to unicode
+    add_definitions(-DUNICODE -D_UNICODE)
+endif()
+
 set(TRANSLATION_LIST en_US zh_TW)
 
 cmake_policy(SET CMP0020 NEW)
