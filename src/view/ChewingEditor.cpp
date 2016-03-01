@@ -46,6 +46,12 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     setupRefresh();
     setupFilter();
     setupAboutWidget();
+
+    // exit action
+    connect(
+        ui_.get()->actionExit, SIGNAL(triggered()),
+        SLOT(close())
+    );
 }
 
 ChewingEditor::~ChewingEditor()

@@ -72,6 +72,8 @@
     </property>
     <addaction name="actionImport"/>
     <addaction name="actionExport"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -101,6 +103,11 @@
   <action name="actionAboutQt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>E&amp;xit</string>
    </property>
   </action>
  </widget>
