@@ -1,4 +1,4 @@
-/*
+﻿/*
  * chewing-editor: Chewing userphrase editor
  * Copyright (C) 2014 Chewing Development Team
 
