@@ -15,8 +15,17 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+# override default c/c++ flags, add /MT to link VC++ runtime statically.
+set(CMAKE_USER_MAKE_RULES_OVERRIDE	${CMAKE_CURRENT_SOURCE_DIR}/cmake/c_flag_overrides.cmake)
+set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX	${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_flag_overrides.cmake)
+
 cmake_minimum_required(VERSION 3.0.0)
 project(chewing-editor VERSION 0.0.1)
+
+if(MSVC)
+    # MBCS is the default in msvc, overwrite to unicode
+    add_definitions(-DUNICODE -D_UNICODE)
+endif()
 
 set(TRANSLATION_LIST en_US zh_TW)
 
@@ -36,19 +45,18 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
     if (VALGRIND)
         option(USE_VALGRIND "Use valgrind when testing" true)
     endif()
-
-    set(TRANSLATION_PATH ${CMAKE_INSTALL_DATADIR}/chewing-editor/translations)
-
-    add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
-else()
-    # FIXME: Windows TRANSLATION_PATH path is?
-    #add_definitions(-DTRANSLATION_PATH="???")
 endif()
+
+set(TRANSLATION_PATH ${CMAKE_INSTALL_DATADIR}/chewing-editor/translations)
+add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
+
 add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
 
 find_package(PkgConfig)
 
+# MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/lib/*.lib
 set(CHEWING_LIBRARIES )
+# MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/include/chewing
 set(CHEWING_INCLUDE_DIRS )
 
 if (CHEWING_INCLUDE_DIRS AND CHEWING_LIBRARIES)
@@ -137,6 +145,20 @@ target_link_libraries(chewing-editor
     importer
     util
 )
+if(MSVC)
+    target_link_libraries(chewing-editor  # append libraries
+        Qt5::Widgets
+        "${_qt5Widgets_install_prefix}/lib/qtpcre.lib"
+        "${_qt5Widgets_install_prefix}/lib/qtfreetype.lib"
+        "${_qt5Widgets_install_prefix}/lib/qtharfbuzzng.lib"
+        "${_qt5Widgets_install_prefix}/lib/Qt5PlatformSupport.lib"
+        "${_qt5Widgets_install_prefix}/plugins/platforms/qwindows.lib"
+        imm32.lib
+        winmm.lib
+        Ws2_32.lib
+    )
+endif()
+
 qt5_use_modules(chewing-editor Widgets)
 install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})
 
