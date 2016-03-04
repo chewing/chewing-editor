@@ -22,13 +22,6 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX	${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_fla
 cmake_minimum_required(VERSION 3.0.0)
 project(chewing-editor VERSION 0.0.1)
 
-if(MSVC)
-    # MBCS is the default in msvc, overwrite to unicode
-    add_definitions(-DUNICODE -D_UNICODE)
-endif()
-
-set(TRANSLATION_LIST en_US zh_TW)
-
 cmake_policy(SET CMP0020 NEW)
 
 include(GNUInstallDirs)
@@ -45,15 +38,26 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
     if (VALGRIND)
         option(USE_VALGRIND "Use valgrind when testing" true)
     endif()
+elseif(MSVC)
+    # MBCS is the default in msvc, overwrite to unicode
+    add_definitions(-DUNICODE -D_UNICODE)
 endif()
-
-set(TRANSLATION_PATH ${CMAKE_INSTALL_DATADIR}/chewing-editor/translations)
-add_definitions(-DTRANSLATION_PATH="${TRANSLATION_PATH}")
 
 add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
 
 find_package(PkgConfig)
+find_package(Qt5Widgets REQUIRED)
 
+find_program(LUPDATE lupdate)
+if (NOT LUPDATE)
+    message(SEND_ERROR "Cannot find lupdate")
+endif()
+find_program(LRELEASE lrelease)
+if (NOT LRELEASE)
+    message(SEND_ERROR "Cannot find lrelease")
+endif()
+
+# libchewing
 # MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/lib/*.lib
 set(CHEWING_LIBRARIES )
 # MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/include/chewing
@@ -67,21 +71,10 @@ else()
     pkg_check_modules(CHEWING REQUIRED chewing>=0.4.0)
 endif()
 
-
+# Qt library
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt5Widgets REQUIRED)
-
-find_program(LUPDATE lupdate)
-if (NOT LUPDATE)
-    message(SEND_ERROR "Cannot find lupdate")
-endif()
-
-find_program(LRELEASE lrelease)
-if (NOT LRELEASE)
-    message(SEND_ERROR "Cannot find lrelease")
-endif()
 
 configure_file(
     ${PROJECT_SOURCE_DIR}/config.h.in
@@ -111,63 +104,11 @@ include_directories(
     ${Qt5Widgets_INCLUDES}
 )
 
-# exporter
-file(GLOB_RECURSE exporter_src ${PROJECT_SOURCE_DIR}/src/exporter/*)
-add_library(exporter STATIC ${exporter_src})
-qt5_use_modules(exporter Widgets)
-
-# importer
-file(GLOB_RECURSE importer_src ${PROJECT_SOURCE_DIR}/src/importer/*)
-add_library(importer STATIC ${importer_src})
-qt5_use_modules(importer Widgets)
-
-# ui
-file(GLOB ui_src ${PROJECT_SOURCE_DIR}/src/ui/*)
-qt5_wrap_ui(ui ${ui_src})
-
-# util
-file(GLOB util_src ${PROJECT_SOURCE_DIR}/src/util/*)
-add_library(util STATIC ${util_src})
-qt5_use_modules(util Widgets)
-
-# chewing-editor
-file(GLOB chewing-editor_src
-    ${PROJECT_SOURCE_DIR}/src/*
-    ${PROJECT_SOURCE_DIR}/src/model/*
-    ${PROJECT_SOURCE_DIR}/src/ui/*
-    ${PROJECT_SOURCE_DIR}/src/view/*
-    ${ui}
-)
-add_executable(chewing-editor ${chewing-editor_src})
-target_link_libraries(chewing-editor
-    ${CHEWING_LIBRARIES}
-    exporter
-    importer
-    util
-)
-if(MSVC)
-    target_link_libraries(chewing-editor  # append libraries
-        Qt5::Widgets
-        "${_qt5Widgets_install_prefix}/lib/qtpcre.lib"
-        "${_qt5Widgets_install_prefix}/lib/qtfreetype.lib"
-        "${_qt5Widgets_install_prefix}/lib/qtharfbuzzng.lib"
-        "${_qt5Widgets_install_prefix}/lib/Qt5PlatformSupport.lib"
-        "${_qt5Widgets_install_prefix}/plugins/platforms/qwindows.lib"
-        imm32.lib
-        winmm.lib
-        Ws2_32.lib
-    )
-endif()
-
-qt5_use_modules(chewing-editor Widgets)
-install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})
-
-# icon
-install(FILES ${CMAKE_SOURCE_DIR}/share/icons/chewing-editor.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
-
 # i18n
+set(TRANSLATION_LIST en_US zh_TW)
+
 set(TS_DIR "${PROJECT_SOURCE_DIR}/ts")
-set(QM_DIR "${PROJECT_BINARY_DIR}/qm")
+set(QM_DIR "${PROJECT_SOURCE_DIR}/ts")
 
 add_custom_target(prepare_lupdate
     COMMAND ${CMAKE_COMMAND} -E make_directory ${TS_DIR}
@@ -200,7 +141,61 @@ foreach(TRANSLATION ${TRANSLATION_LIST})
 endforeach()
 
 add_custom_target(lrelease ALL DEPENDS ${QM_FILES})
-install(FILES ${QM_FILES} DESTINATION ${TRANSLATION_PATH})
+QT5_ADD_RESOURCES(qt_resources ${PROJECT_SOURCE_DIR}/ts/ts.qrc)
+
+# exporter
+file(GLOB_RECURSE exporter_src ${PROJECT_SOURCE_DIR}/src/exporter/*)
+add_library(exporter STATIC ${exporter_src})
+qt5_use_modules(exporter Widgets)
+
+# importer
+file(GLOB_RECURSE importer_src ${PROJECT_SOURCE_DIR}/src/importer/*)
+add_library(importer STATIC ${importer_src})
+qt5_use_modules(importer Widgets)
+
+# ui
+file(GLOB ui_src ${PROJECT_SOURCE_DIR}/src/ui/*)
+qt5_wrap_ui(ui ${ui_src})
+
+# util
+file(GLOB util_src ${PROJECT_SOURCE_DIR}/src/util/*)
+add_library(util STATIC ${util_src})
+qt5_use_modules(util Widgets)
+
+# chewing-editor
+file(GLOB chewing-editor_src
+    ${PROJECT_SOURCE_DIR}/src/*
+    ${PROJECT_SOURCE_DIR}/src/model/*
+    ${PROJECT_SOURCE_DIR}/src/ui/*
+    ${PROJECT_SOURCE_DIR}/src/view/*
+    ${ui}
+)
+add_executable(chewing-editor ${chewing-editor_src} ${qt_resources})
+target_link_libraries(chewing-editor
+    ${CHEWING_LIBRARIES}
+    exporter
+    importer
+    util
+)
+if(MSVC)
+    target_link_libraries(chewing-editor  # append libraries
+        Qt5::Widgets
+        "${_qt5Widgets_install_prefix}/lib/qtpcre.lib"
+        "${_qt5Widgets_install_prefix}/lib/qtfreetype.lib"
+        "${_qt5Widgets_install_prefix}/lib/qtharfbuzzng.lib"
+        "${_qt5Widgets_install_prefix}/lib/Qt5PlatformSupport.lib"
+        "${_qt5Widgets_install_prefix}/plugins/platforms/qwindows.lib"
+        imm32.lib
+        winmm.lib
+        Ws2_32.lib
+    )
+endif()
+
+qt5_use_modules(chewing-editor Widgets)
+install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+# icon
+install(FILES ${CMAKE_SOURCE_DIR}/share/icons/chewing-editor.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
 
 # manpage
 find_program(HELP2MAN help2man)
