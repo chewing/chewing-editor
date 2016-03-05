@@ -170,7 +170,7 @@ file(GLOB chewing-editor_src
     ${PROJECT_SOURCE_DIR}/src/view/*
     ${ui}
 )
-add_executable(chewing-editor ${chewing-editor_src} ${qt_resources})
+add_executable(chewing-editor WIN32 ${chewing-editor_src} ${qt_resources}) # on Windows, remove "WIN32" for a console window
 target_link_libraries(chewing-editor
     ${CHEWING_LIBRARIES}
     exporter
