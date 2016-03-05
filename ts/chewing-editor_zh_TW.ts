@@ -9,57 +9,70 @@
         <translation>新酷音詞庫編輯器</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="40"/>
         <source>Filter</source>
-        <translation>過濾</translation>
+        <translation type="vanished">過濾</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="57"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="71"/>
         <source>File</source>
         <translation>檔案</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="64"/>
         <source>Edit</source>
-        <translation>修改</translation>
+        <translation type="vanished">修改</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="72"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="27"/>
+        <source>Add</source>
+        <translation>新增</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="34"/>
+        <source>Remove</source>
+        <translation>刪除</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="48"/>
+        <source>Search</source>
+        <translation>搜尋</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="78"/>
         <source>Help</source>
         <translation>求助</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="83"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="88"/>
+        <location filename="../src/view/ChewingEditor.cpp" line="63"/>
         <source>Import</source>
         <translation>匯入</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="88"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="93"/>
+        <location filename="../src/view/ChewingEditor.cpp" line="71"/>
         <source>Export</source>
         <translation>匯出</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="93"/>
         <source>Add phrase</source>
-        <translation>新增詞彙</translation>
+        <translation type="vanished">新增詞彙</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="98"/>
         <source>Remove phrase</source>
-        <translation>刪除詞彙</translation>
+        <translation type="vanished">刪除詞彙</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="103"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="41"/>
         <source>Refresh</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="108"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="98"/>
         <source>About Chewing editor</source>
         <translation>關於新酷音詞庫編輯器</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="113"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="103"/>
         <source>About Qt</source>
         <translation>關於 Qt</translation>
     </message>
@@ -140,19 +153,31 @@
 <context>
     <name>UserphraseDialog</name>
     <message>
-        <location filename="../src/ui/UserphraseDialog.ui" line="20"/>
         <source>Add new user phrase</source>
+        <translation type="vanished">新增詞彙</translation>
+    </message>
+    <message>
+        <source>phrase</source>
+        <translation type="vanished">詞彙</translation>
+    </message>
+    <message>
+        <source>bopomofo</source>
+        <translation type="vanished">注音</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/UserphraseDialog.ui" line="14"/>
+        <source>Add new phrase</source>
         <translation>新增詞彙</translation>
     </message>
     <message>
-        <location filename="../src/ui/UserphraseDialog.ui" line="38"/>
-        <source>phrase</source>
-        <translation>詞彙</translation>
+        <location filename="../src/ui/UserphraseDialog.ui" line="25"/>
+        <source>Phrase:</source>
+        <translation>詞彙:</translation>
     </message>
     <message>
-        <location filename="../src/ui/UserphraseDialog.ui" line="48"/>
-        <source>bopomofo</source>
-        <translation>注音</translation>
+        <location filename="../src/ui/UserphraseDialog.ui" line="35"/>
+        <source>Bopomofo:</source>
+        <translation>注音:</translation>
     </message>
 </context>
 <context>
@@ -176,43 +201,43 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../src/main.cpp" line="88"/>
+        <location filename="../src/main.cpp" line="93"/>
         <source>%1
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="101"/>
+        <location filename="../src/main.cpp" line="106"/>
         <source>chewing-editor is a cross platform chewing user phrase editor written in Qt5. It provides a user friendly GUI to manage user phrase. With it, user can customize user phrase to enhance chewing input performance.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="109"/>
+        <location filename="../src/main.cpp" line="114"/>
         <source>-d, --debug</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="110"/>
+        <location filename="../src/main.cpp" line="115"/>
         <source>Enable debug message.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="113"/>
+        <location filename="../src/main.cpp" line="118"/>
         <source>-v, --version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="114"/>
+        <location filename="../src/main.cpp" line="119"/>
         <source>Print program version.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="117"/>
+        <location filename="../src/main.cpp" line="122"/>
         <source>-h, --help</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="118"/>
+        <location filename="../src/main.cpp" line="123"/>
         <source>Print help message.</source>
         <translation></translation>
     </message>
