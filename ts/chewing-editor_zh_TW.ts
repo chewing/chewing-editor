@@ -181,6 +181,19 @@
     </message>
 </context>
 <context>
+    <name>UserphraseView</name>
+    <message>
+        <location filename="../src/view/UserphraseView.cpp" line="43"/>
+        <source>Add new phrase</source>
+        <translation>新增詞彙</translation>
+    </message>
+    <message>
+        <location filename="../src/view/UserphraseView.cpp" line="58"/>
+        <source>Modify phrase</source>
+        <translation>修改詞彙</translation>
+    </message>
+</context>
+<context>
     <name>UserphraseViewMenu</name>
     <message>
         <location filename="../src/ui/UserphraseViewMenu.ui" line="7"/>
@@ -201,43 +214,43 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../src/main.cpp" line="93"/>
+        <location filename="../src/main.cpp" line="92"/>
         <source>%1
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="106"/>
+        <location filename="../src/main.cpp" line="105"/>
         <source>chewing-editor is a cross platform chewing user phrase editor written in Qt5. It provides a user friendly GUI to manage user phrase. With it, user can customize user phrase to enhance chewing input performance.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="114"/>
+        <location filename="../src/main.cpp" line="113"/>
         <source>-d, --debug</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="115"/>
+        <location filename="../src/main.cpp" line="114"/>
         <source>Enable debug message.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="118"/>
+        <location filename="../src/main.cpp" line="117"/>
         <source>-v, --version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="119"/>
+        <location filename="../src/main.cpp" line="118"/>
         <source>Print program version.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="122"/>
+        <location filename="../src/main.cpp" line="121"/>
         <source>-h, --help</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="123"/>
+        <location filename="../src/main.cpp" line="122"/>
         <source>Print help message.</source>
         <translation></translation>
     </message>
