@@ -47,12 +47,12 @@ void UserphraseDialog::setupConnect()
 
 QString UserphraseDialog::getPhrase() const
 {
-    return ui_.get()->phrase->text();
+    return ui_.get()->phrase->text().trimmed();
 }
 
 QString UserphraseDialog::getBopomofo() const
 {
-    return ui_.get()->bopomofo->text();
+    return ui_.get()->bopomofo->text().trimmed();
 }
 
 void UserphraseDialog::setText(const QString& phrase, const QString& bopomofo)
