@@ -40,7 +40,7 @@ void UserphraseView::showAddUserphraseDialog()
 {
     dialogType_ = DIALOG_ADD;
     UserphraseDialog_->setText("", "");
-    UserphraseDialog_->setWindowTitle("Add new phrase");
+    UserphraseDialog_->setWindowTitle(tr("Add new phrase"));
     emit UserphraseDialog_->exec();
 }
 
@@ -55,7 +55,7 @@ void UserphraseView::showModifyUserphraseDialog()
     auto userphrase = model()->getUserphrase(selectionModel()->selectedIndexes().first());
 
     UserphraseDialog_->setText(userphrase->phrase_, userphrase->bopomofo_);
-    UserphraseDialog_->setWindowTitle("Modify phrase");
+    UserphraseDialog_->setWindowTitle(tr("Modify phrase"));
     emit UserphraseDialog_->exec();
 }
 
