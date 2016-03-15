@@ -13,7 +13,7 @@ increase input performance.
 
 *   [CMake](https://www.cmake.org/) >= 3.0.0
 *   gcc >= 4.8 or Visual Studio Express 2012
-*   [libchewing](https://github.com/chewing/libchewing)
+*   [libchewing](https://github.com/chewing/libchewing) >= 0.4.0
 *   Qt = 5
 *   Editor with [EditorConfig](http://editorconfig.org/) support
 
