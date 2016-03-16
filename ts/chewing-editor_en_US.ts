@@ -36,13 +36,18 @@
     <message>
         <location filename="../src/ui/ChewingEditor.ui" line="88"/>
         <location filename="../src/view/ChewingEditor.cpp" line="63"/>
-        <source>Import</source>
+        <source>&amp;Import</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../src/ui/ChewingEditor.ui" line="93"/>
         <location filename="../src/view/ChewingEditor.cpp" line="71"/>
-        <source>Export</source>
+        <source>&amp;Export</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="108"/>
+        <source>E&amp;xit</source>
         <translation></translation>
     </message>
     <message>
@@ -58,6 +63,17 @@
     <message>
         <location filename="../src/ui/ChewingEditor.ui" line="103"/>
         <source>About Qt</source>
+        <translation></translation>
+    </message>
+    <!-- Dialog -->
+    <message>
+        <location filename="../src/view/ChewingEditor.cpp" line="63"/>
+        <source>Import</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/ChewingEditor.cpp" line="71"/>
+        <source>Export</source>
         <translation></translation>
     </message>
 </context>
