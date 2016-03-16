@@ -43,15 +43,18 @@
     </message>
     <message>
         <location filename="../src/ui/ChewingEditor.ui" line="88"/>
-        <location filename="../src/view/ChewingEditor.cpp" line="63"/>
-        <source>Import</source>
-        <translation>匯入</translation>
+        <source>&amp;Import</source>
+        <translation>匯入(&amp;I)</translation>
     </message>
     <message>
         <location filename="../src/ui/ChewingEditor.ui" line="93"/>
-        <location filename="../src/view/ChewingEditor.cpp" line="71"/>
-        <source>Export</source>
-        <translation>匯出</translation>
+        <source>&amp;Export</source>
+        <translation>匯出(&amp;E)</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="108"/>
+        <source>E&amp;xit</source>
+        <translation>離開(&amp;X)</translation>
     </message>
     <message>
         <source>Add phrase</source>
@@ -75,6 +78,17 @@
         <location filename="../src/ui/ChewingEditor.ui" line="103"/>
         <source>About Qt</source>
         <translation>關於 Qt</translation>
+    </message>
+    <!-- Dialog -->
+    <message>
+        <location filename="../src/view/ChewingEditor.cpp" line="63"/>
+        <source>Import</source>
+        <translation>匯入</translation>
+    </message>
+    <message>
+        <location filename="../src/view/ChewingEditor.cpp" line="71"/>
+        <source>Export</source>
+        <translation>匯出</translation>
     </message>
 </context>
 <context>
