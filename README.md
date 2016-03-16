@@ -7,6 +7,9 @@ chewing-editor is a cross platform chewing user phrase editor. It provides a
 easy way to manage user phrase. With it, user can customize their user phrase to
 increase input performance.
 
+# Install
+* Arch Linux: install from AUR: [Stable release](https://aur.archlinux.org/packages/chewing-editor/), [Development](https://aur.archlinux.org/packages/chewing-editor-git/)
+
 # Development
 
 ## Tools Requirement
