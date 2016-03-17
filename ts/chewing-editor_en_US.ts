@@ -29,24 +29,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="78"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="80"/>
         <source>Help</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="88"/>
-        <location filename="../src/view/ChewingEditor.cpp" line="63"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="90"/>
         <source>&amp;Import</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="93"/>
-        <location filename="../src/view/ChewingEditor.cpp" line="71"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="95"/>
         <source>&amp;Export</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="108"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="110"/>
         <source>E&amp;xit</source>
         <translation></translation>
     </message>
@@ -56,23 +54,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="98"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="100"/>
         <source>About Chewing editor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="103"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="105"/>
         <source>About Qt</source>
         <translation></translation>
     </message>
-    <!-- Dialog -->
     <message>
-        <location filename="../src/view/ChewingEditor.cpp" line="63"/>
+        <location filename="../src/view/ChewingEditor.cpp" line="69"/>
         <source>Import</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/view/ChewingEditor.cpp" line="71"/>
+        <location filename="../src/view/ChewingEditor.cpp" line="77"/>
         <source>Export</source>
         <translation></translation>
     </message>

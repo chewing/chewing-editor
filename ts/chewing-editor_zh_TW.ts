@@ -37,22 +37,22 @@
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="78"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="80"/>
         <source>Help</source>
         <translation>求助</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="88"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="90"/>
         <source>&amp;Import</source>
         <translation>匯入(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="93"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="95"/>
         <source>&amp;Export</source>
         <translation>匯出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="108"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="110"/>
         <source>E&amp;xit</source>
         <translation>離開(&amp;X)</translation>
     </message>
@@ -70,23 +70,22 @@
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="98"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="100"/>
         <source>About Chewing editor</source>
         <translation>關於新酷音詞庫編輯器</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="103"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="105"/>
         <source>About Qt</source>
         <translation>關於 Qt</translation>
     </message>
-    <!-- Dialog -->
     <message>
-        <location filename="../src/view/ChewingEditor.cpp" line="63"/>
+        <location filename="../src/view/ChewingEditor.cpp" line="69"/>
         <source>Import</source>
         <translation>匯入</translation>
     </message>
     <message>
-        <location filename="../src/view/ChewingEditor.cpp" line="71"/>
+        <location filename="../src/view/ChewingEditor.cpp" line="77"/>
         <source>Export</source>
         <translation>匯出</translation>
     </message>
