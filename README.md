@@ -19,6 +19,7 @@ increase input performance.
 *   [libchewing](https://github.com/chewing/libchewing) >= 0.4.0
 *   Qt = 5
 *   Editor with [EditorConfig](http://editorconfig.org/) support
+*   [lcov](http://ltp.sourceforge.net/coverage/lcov.php) for coverage testing
 
 ## Build
 
