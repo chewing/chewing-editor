@@ -235,7 +235,7 @@
     <message>
         <location filename="../src/main.cpp" line="105"/>
         <source>chewing-editor is a cross platform chewing user phrase editor written in Qt5. It provides a user friendly GUI to manage user phrase. With it, user can customize user phrase to enhance chewing input performance.</source>
-        <translation></translation>
+        <translation>新酷音詞庫編輯器是一個使用 Qt5 撰寫的跨平台新酷音詞彙編輯器。他提供了友善的圖形化使用者界面讓使用者管理詞彙，讓使用者可以自行客製化詞庫以提昇新酷音輸入法的表現。</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="113"/>
@@ -245,7 +245,7 @@
     <message>
         <location filename="../src/main.cpp" line="114"/>
         <source>Enable debug message.</source>
-        <translation></translation>
+        <translation>啟用偵錯資訊</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="117"/>
@@ -265,7 +265,7 @@
     <message>
         <location filename="../src/main.cpp" line="122"/>
         <source>Print help message.</source>
-        <translation></translation>
+        <translation>顯示說明訊息</translation>
     </message>
 </context>
 </TS>
