@@ -53,7 +53,11 @@
      <widget class="Notification" name="notification"/>
     </item>
     <item row="2" column="0" colspan="4">
-     <widget class="UserphraseView" name="userphraseView"/>
+     <widget class="UserphraseView" name="userphraseView">
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ExtendedSelection</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
