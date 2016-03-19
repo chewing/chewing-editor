@@ -1,4 +1,5 @@
 /CMake*
+!/CMakeLists.txt
 /*.cmake
 /Makefile
 /gmock/
