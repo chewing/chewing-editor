@@ -20,6 +20,7 @@ increase input performance.
 *   Qt = 5
 *   Editor with [EditorConfig](http://editorconfig.org/) support
 *   [lcov](http://ltp.sourceforge.net/coverage/lcov.php) for coverage testing
+*   [googletest](https://github.com/google/googletest) as testing framework
 
 ## Build
 
