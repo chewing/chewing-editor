@@ -19,7 +19,7 @@
 #include <QApplication>
 #include <QFileInfo>
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 bool verbose = false;
 
