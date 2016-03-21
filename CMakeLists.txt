@@ -199,9 +199,10 @@ install(FILES ${CMAKE_SOURCE_DIR}/share/icons/chewing-editor.svg DESTINATION ${C
 
 # manpage
 find_program(HELP2MAN help2man)
+find_program(GZIP gzip)
 
 if (HELP2MAN)
-    set(manpage ${PROJECT_BINARY_DIR}/chewing-editor.1.gz)
+    set(manpage ${PROJECT_BINARY_DIR}/chewing-editor.1)
     set(h2m ${PROJECT_SOURCE_DIR}/chewing-editor.h2m)
 
     add_custom_command(
@@ -218,6 +219,19 @@ if (HELP2MAN)
             chewing-editor
             ${h2m}
     )
+
+    if (GZIP)
+        add_custom_command(
+            OUTPUT
+                ${manpage}.gz
+            COMMAND ${GZIP}
+                ${manpage}
+            DEPENDS
+                ${manpage}
+        )
+
+        set(manpage ${manpage}.gz)
+    endif()
 
     add_custom_target(manpage ALL DEPENDS ${manpage})
 
