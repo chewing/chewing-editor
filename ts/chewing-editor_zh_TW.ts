@@ -13,13 +13,13 @@
         <translation type="vanished">過濾</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="71"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="75"/>
         <source>File</source>
         <translation>檔案</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="vanished">修改</translation>
+        <translation type="vanished">編輯</translation>
     </message>
     <message>
         <location filename="../src/ui/ChewingEditor.ui" line="27"/>
@@ -37,22 +37,22 @@
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="80"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="84"/>
         <source>Help</source>
         <translation>求助</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="90"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="94"/>
         <source>&amp;Import</source>
         <translation>匯入(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="95"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="99"/>
         <source>&amp;Export</source>
         <translation>匯出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="110"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="114"/>
         <source>E&amp;xit</source>
         <translation>離開(&amp;X)</translation>
     </message>
@@ -70,12 +70,12 @@
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="100"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="104"/>
         <source>About Chewing editor</source>
         <translation>關於新酷音詞庫編輯器</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="105"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="109"/>
         <source>About Qt</source>
         <translation>關於 Qt</translation>
     </message>
@@ -98,9 +98,8 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/view/Notification.cpp" line="40"/>
         <source>Import %1 successful.</source>
-        <translation>匯入 「%1」成功。</translation>
+        <translation type="vanished">匯入 &quot;%1&quot; 成功。</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/view/Notification.cpp" line="41"/>
@@ -117,19 +116,9 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/view/Notification.cpp" line="44"/>
-        <source>Import %1 failed.</source>
-        <translation>無法匯入 %1。</translation>
-    </message>
-    <message>
         <location filename="../src/view/Notification.cpp" line="57"/>
         <source>%1 %2</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/view/Notification.cpp" line="58"/>
-        <source>Export %1 successful.</source>
-        <translation>匯出 %1 成功。</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/view/Notification.cpp" line="59"/>
@@ -139,9 +128,24 @@
         </translation>
     </message>
     <message>
+        <location filename="../src/view/Notification.cpp" line="40"/>
+        <source>Import &quot;%1&quot; successful.</source>
+        <translation>匯入 &quot;%1&quot; 成功。</translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="44"/>
+        <source>Import &quot;%1&quot; failed.</source>
+        <translation>無法匯入 &quot;%1&quot;。</translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="58"/>
+        <source>Export &quot;%1&quot; successful.</source>
+        <translation>匯出 &quot;%1&quot; 成功。</translation>
+    </message>
+    <message>
         <location filename="../src/view/Notification.cpp" line="61"/>
-        <source>Export %1 failed.</source>
-        <translation>匯出 %1 失敗。</translation>
+        <source>Export &quot;%1&quot; failed.</source>
+        <translation>匯出 &quot;%1&quot; 失敗。</translation>
     </message>
     <message>
         <location filename="../src/view/Notification.cpp" line="69"/>

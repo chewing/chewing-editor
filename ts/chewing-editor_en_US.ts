@@ -9,7 +9,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="71"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="75"/>
         <source>File</source>
         <translation></translation>
     </message>
@@ -29,22 +29,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="80"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="84"/>
         <source>Help</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="90"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="94"/>
         <source>&amp;Import</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="95"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="99"/>
         <source>&amp;Export</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="110"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="114"/>
         <source>E&amp;xit</source>
         <translation></translation>
     </message>
@@ -54,12 +54,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="100"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="104"/>
         <source>About Chewing editor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="105"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="109"/>
         <source>About Qt</source>
         <translation></translation>
     </message>
@@ -82,18 +82,8 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/view/Notification.cpp" line="44"/>
-        <source>Import %1 failed.</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../src/view/Notification.cpp" line="57"/>
         <source>%1 %2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/view/Notification.cpp" line="40"/>
-        <source>Import %1 successful.</source>
         <translation></translation>
     </message>
     <message numerus="yes">
@@ -112,11 +102,6 @@
             <numerusform>Total %n user phrases.</numerusform>
         </translation>
     </message>
-    <message>
-        <location filename="../src/view/Notification.cpp" line="58"/>
-        <source>Export %1 successful.</source>
-        <translation></translation>
-    </message>
     <message numerus="yes">
         <location filename="../src/view/Notification.cpp" line="59"/>
         <source>%n phrase(s) are exported.</source>
@@ -126,8 +111,23 @@
         </translation>
     </message>
     <message>
+        <location filename="../src/view/Notification.cpp" line="40"/>
+        <source>Import &quot;%1&quot; successful.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="44"/>
+        <source>Import &quot;%1&quot; failed.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="58"/>
+        <source>Export &quot;%1&quot; successful.</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../src/view/Notification.cpp" line="61"/>
-        <source>Export %1 failed.</source>
+        <source>Export &quot;%1&quot; failed.</source>
         <translation></translation>
     </message>
     <message>
