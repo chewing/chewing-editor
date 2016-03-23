@@ -75,6 +75,24 @@ endif()
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# Git describe
+find_package(Git)
+if (GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git/HEAD")
+    execute_process(
+        COMMAND
+            ${GIT_EXECUTABLE}
+            describe
+            --tags
+        WORKING_DIRECTORY
+            ${PROJECT_SOURCE_DIR}
+        RESULT_VARIABLE
+            git_describe_result
+        OUTPUT_VARIABLE
+            PROJECT_GIT_VERSION
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+endif()
 
 configure_file(
     ${PROJECT_SOURCE_DIR}/config.h.in
@@ -103,6 +121,9 @@ include_directories(
     ${CHEWING_INCLUDE_DIRS}
     ${Qt5Widgets_INCLUDES}
 )
+
+# resources
+QT5_ADD_RESOURCES(qt_resources ${PROJECT_SOURCE_DIR}/rc/resources.qrc)
 
 # i18n
 set(TRANSLATION_LIST en_US zh_TW)
