@@ -59,4 +59,6 @@ void UserphraseDialog::setText(const QString& phrase, const QString& bopomofo)
 {
     ui_.get()->phrase->setText(phrase);
     ui_.get()->bopomofo->setText(bopomofo);
+
+    ui_->phrase->setFocus(Qt::PopupFocusReason);
 }
