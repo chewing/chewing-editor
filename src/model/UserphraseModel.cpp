@@ -52,6 +52,7 @@ UserphraseModel::UserphraseModel(QObject *parent, const char *path)
     :QAbstractListModel{parent}
     ,ctx_{chewing_new2(nullptr, path, logger, nullptr), chewing_delete}
     ,userphrase_{}
+    ,addresult_(1)
 {
     if (!ctx_) {
         // FIXME: Report error here
@@ -199,7 +200,7 @@ QString UserphraseModel::checkBopomofo(const QString &bopomofo) const
     QString replaceBopomofo = bopomofo;
     replaceBopomofo.replace(QString::fromUtf8("ㄧ"),QString::fromUtf8("ㄧ"));
     replaceBopomofo.replace(QString::fromUtf8("Y"),QString::fromUtf8("ㄚ"));
-    
+
     return replaceBopomofo;
 }
 
@@ -210,6 +211,8 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         ctx_.get(),
         phrase.toUtf8().constData(),
         replaceBopomofo.toUtf8().constData());
+
+    addresult_ = ret;
 
     if (ret > 0) {
         emit beginResetModel();

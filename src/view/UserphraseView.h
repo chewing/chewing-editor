@@ -64,4 +64,7 @@ private:
     UserphraseViewMenu *menu_;
 
     bool dialogType_;
+
+    std::shared_ptr<QString> originalPhrase;
+    std::shared_ptr<QString> originalBopomofo;
 };

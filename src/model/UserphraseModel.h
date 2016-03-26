@@ -45,6 +45,7 @@ public:
 
     const Userphrase *getUserphrase(const QModelIndex& idx);
 
+    int getAddResult() const {return addresult_;}
 signals:
     void importCompleted(
         bool result,
@@ -72,4 +73,5 @@ private:
 
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
     UserphraseSet userphrase_;
+    int addresult_;
 };
