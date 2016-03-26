@@ -20,7 +20,7 @@
 #include "UserphraseModel.h"
 
 #include <QDebug>
-
+#include <qmessagebox.h>
 static void logger(void *data, int level, const char *fmt, ...)
 {
     va_list ap;
@@ -211,6 +211,9 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         emit addNewPhraseCompleted(userphrase_[userphrase_.size()-1]);
     } else {
         qWarning() << "chewing_userphrase_add() returns" << ret;
+		QMessageBox msgBox;
+		msgBox.setText("Please use Chinese (Chewing) as your input method.");
+		msgBox.exec();
     }
 }
 
