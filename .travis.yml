@@ -16,8 +16,8 @@ before_install:
     - sudo add-apt-repository --yes ppa:chewing/chewing
     - sudo add-apt-repository --yes ppa:chewing/travis-ci
     - sudo apt-get update
-      # FIXME: We need to instal cmake-data manually to prevent cmake upgrade fails.
-    - sudo apt-get install --yes cmake-data cmake gcc-4.8 g++-4.8 help2man libchewing3-dev pkg-config qt5-default qttools5-dev-tools
+      # FIXME: We need to install cmake-data manually to prevent cmake upgrade fails.
+    - sudo apt-get install --yes cmake-data cmake gcc-4.8 g++-4.8 help2man libchewing3-dev pkg-config qt5-default qttools5-dev-tools libgtest-dev
     - sudo ln -fs /usr/bin/gcc-4.8 /usr/bin/gcc
     - gcc --version
     - sudo ln -fs /usr/bin/g++-4.8 /usr/bin/g++
@@ -25,10 +25,14 @@ before_install:
     - sudo ln -fs /usr/bin/gcov-4.8 /usr/bin/gcov
     - gcov --version
 
+    # building libgtest on ubuntu
+    # ref: https://github.com/travis-ci/travis-ci/issues/1294
+    - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
+
 script:
     - cmake $OPTION .
     - make -j2
     - make -j2 check
 
 after_success:
-    - if [ x$COVERALLS == xyes ]; then coveralls --exclude gmock --exclude test --exclude-pattern '.*CMake[^/]+\.c(?:pp)?' --exclude-pattern '.*_automoc.cpp'; fi
+    - if [ x$COVERALLS == xyes ]; then coveralls --exclude test --exclude-pattern '.*CMake[^/]+\.c(?:pp)?' --exclude-pattern '.*_automoc.cpp'; fi

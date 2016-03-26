@@ -2,7 +2,6 @@
 !/CMakeLists.txt
 /*.cmake
 /Makefile
-/gmock/
 /*.cpp
 /include/
 /ts/ts.qrc.depends
