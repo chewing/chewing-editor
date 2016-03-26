@@ -181,7 +181,7 @@ void ChewingEditor::setupRemove()
 {
     connect(
         ui_.get()->removeButton, SIGNAL(pressed()),
-        ui_.get()->userphraseView, SLOT(remove())
+        ui_.get()->userphraseView, SLOT(showDeleteUserphraseDialog())
     );
 
     connect(
