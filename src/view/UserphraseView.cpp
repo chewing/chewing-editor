@@ -25,6 +25,7 @@
 UserphraseView::UserphraseView(QWidget *parent)
     :QListView{parent}
     ,UserphraseDialog_{new UserphraseDialog{this}}
+    ,UserphraseDeleteDialog_{new UserphraseDeleteDialog{this}}
     ,menu_(new UserphraseViewMenu{this})
 {
     setupContextMenu();
@@ -59,6 +60,13 @@ void UserphraseView::showModifyUserphraseDialog()
     emit UserphraseDialog_->exec();
 }
 
+void UserphraseView::showDeleteUserphraseDialog()
+{
+  dialogType_ = DIALOG_ADD;
+  UserphraseDeleteDialog_->setWindowTitle(tr("Delete phrase"));
+  emit UserphraseDeleteDialog_->exec();
+}
+
 void UserphraseView::addPhrase(int result)
 {
     if (result != QDialog::Accepted) {
@@ -71,14 +79,18 @@ void UserphraseView::addPhrase(int result)
     qDebug() << "Add" << *phrase.get() << "(" << *bopomofo.get() << ")";
 
     if (dialogType_ == DIALOG_MODIFY) {
-        remove();
+        remove(QDialog::Accepted);
     }
 
     emit model()->add(phrase, bopomofo);
 }
 
-void UserphraseView::remove()
+void UserphraseView::remove(int result)
 {
+    if (result != QDialog::Accepted) {
+        return;
+    }
+
     auto selection = selectionModel();
     emit model()->remove(selection->selectedIndexes());
     selection->reset();
@@ -100,7 +112,7 @@ void UserphraseView::setupContextMenu()
 
     connect(
         menu_->getActionRemovePhrase(), SIGNAL(triggered()),
-        this, SLOT(remove())
+        this, SLOT(showDeleteUserphraseDialog())
     );
 }
 
@@ -124,5 +136,10 @@ void UserphraseView::setupAddUserphraseDialog()
     connect(
         UserphraseDialog_, SIGNAL(finished(int)),
         this, SLOT(addPhrase(int))
+    );
+
+    connect(
+        UserphraseDeleteDialog_, SIGNAL(finished(int)),
+        this, SLOT(remove(int))
     );
 }
