@@ -99,7 +99,7 @@
     </message>
     <message>
         <source>Import %1 successful.</source>
-        <translation type="vanished">匯入 &quot;%1&quot; 成功。</translation>
+        <translation type="vanished">成功匯入 &quot;%1&quot; 。</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/view/Notification.cpp" line="41"/>
@@ -130,7 +130,7 @@
     <message>
         <location filename="../src/view/Notification.cpp" line="40"/>
         <source>Import &quot;%1&quot; successful.</source>
-        <translation>匯入 &quot;%1&quot; 成功。</translation>
+        <translation>成功匯入 &quot;%1&quot; 。</translation>
     </message>
     <message>
         <location filename="../src/view/Notification.cpp" line="44"/>
@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/view/Notification.cpp" line="58"/>
         <source>Export &quot;%1&quot; successful.</source>
-        <translation>匯出 &quot;%1&quot; 成功。</translation>
+        <translation>成功匯出 &quot;%1&quot; 。</translation>
     </message>
     <message>
         <location filename="../src/view/Notification.cpp" line="61"/>
@@ -150,13 +150,13 @@
     <message>
         <location filename="../src/view/Notification.cpp" line="69"/>
         <source>Add new phrase %1 successful.</source>
-        <translation>新增 「%1」成功。</translation>
+        <translation>成功新增 「%1」。</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/view/Notification.cpp" line="77"/>
         <source>Remove %n phrase(s) successful.</source>
         <translation>
-            <numerusform>移除 %n 個詞彙成功。</numerusform>
+            <numerusform>成功移除 %n 個詞彙。</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -259,7 +259,7 @@
     <message>
         <location filename="../src/main.cpp" line="118"/>
         <source>Print program version.</source>
-        <translation></translation>
+        <translation>顯示程式版本資訊</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="121"/>
