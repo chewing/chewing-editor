@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>chewing-editor.ico</file>
+    </qresource>
+</RCC>

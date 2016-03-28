@@ -7,7 +7,7 @@ gmock/
 
 *moc*
 qrc*
-ts.qrc.depends
+*.qrc.depends
 
 chewing-editor
 chewing-editor.exe

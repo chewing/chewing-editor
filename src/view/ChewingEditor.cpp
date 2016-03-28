@@ -19,9 +19,11 @@
 
 #include "ChewingEditor.h"
 #include "ui_ChewingEditor.h"
+#include "config.h"
 
 #include <QtGui>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "ChewingImporter.h"
 #include "ChewingExporter.h"
@@ -138,6 +140,42 @@ void ChewingEditor::exportUserphrase(const QString& file)
     // TODO: Find a suitable exporter
     std::shared_ptr<ChewingExporter> exporter(new ChewingExporter{file});
     emit model_->exportUserphrase(exporter);
+}
+
+void ChewingEditor::showAbout()
+{
+    QString caption = QString("<h3>%1</h3><p>%2</p>")
+        .arg(tr("About Chewing Editor"))
+#ifdef PROJECT_GIT_VERSION
+        .arg(tr("Version %1 (%2).").arg(PROJECT_VERSION).arg(PROJECT_GIT_VERSION));
+#else
+        .arg(tr("Version %1.").arg(PROJECT_VERSION));
+#endif
+    QString text = QString("<p style=\"white-space: pre-wrap;\">%1\n\n%2\n\n%3\n\n%4\n\n%5\n\n%6</p>")
+        .arg("Chewing editor is a cross platform Chewing user phrase editor. "
+        "It provides a easy way to manage user phrase. With it, user can "
+        "customize their user phrase to increase input performance.")
+        .arg("Chewing editor is licensed under the GNU GPL version 2.0 or later version.")
+        .arg("Please see <a href=\"https://github.com/chewing/chewing-editor/blob/master/COPYING\">COPYING</a> "
+        "for detail of Chewing editor licensing.")
+        .arg("Copyright&copy; 2004–2016 by Chewing Core Team and contributors on "
+        "<a href=\"https://github.com/chewing/chewing-editor/graphs/contributors\">GitHub</a>.")
+        .arg("Chewing editor is developed as an open source project on "
+        "<a href=\"https://github.com/chewing/chewing-editor\">https://github.com/chewing/chewing-editor</a>.")
+        .arg("Any suggestions are welcomed on "
+        "<a href=\"https://github.com/chewing/chewing-editor/issues\">https://github.com/chewing/chewing-editor/issues</a>");
+    QMessageBox aboutBox(this);
+    aboutBox.setWindowTitle(tr("About Chewing Editor"));
+    aboutBox.setText(caption);
+    aboutBox.setInformativeText(text);
+    aboutBox.setStandardButtons(QMessageBox::Ok);
+    aboutBox.setDefaultButton(QMessageBox::Ok);
+
+    QPixmap pm(QLatin1String(":/chewing-editor.ico"));
+    if (!pm.isNull())
+        aboutBox.setIconPixmap(pm);
+
+    aboutBox.exec();
 }
 
 void ChewingEditor::setupFileSelection()
@@ -259,5 +297,9 @@ void ChewingEditor::setupAboutWidget()
 {
    connect(
         ui_.get()->actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt())
+   );
+
+   connect(
+        ui_.get()->actionAbout, SIGNAL(triggered()), this, SLOT(showAbout())
    );
 }
