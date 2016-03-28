@@ -122,6 +122,8 @@ include_directories(
     ${Qt5Widgets_INCLUDES}
 )
 
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/platform_apple.cmake)
+
 # resources
 QT5_ADD_RESOURCES(qt_resources ${PROJECT_SOURCE_DIR}/rc/resources.qrc)
 
@@ -191,7 +193,7 @@ file(GLOB chewing-editor_src
     ${PROJECT_SOURCE_DIR}/src/view/*
     ${ui}
 )
-add_executable(chewing-editor WIN32 ${chewing-editor_src} ${qt_resources} ${PROJECT_SOURCE_DIR}/rc/chewing-editor.rc) # on Windows, remove "WIN32" for a console window
+add_executable(chewing-editor WIN32 ${MACOSX_APP} ${chewing-editor_src} ${qt_resources} ${PROJECT_SOURCE_DIR}/rc/chewing-editor.rc) # on Windows, remove "WIN32" for a console window
 target_link_libraries(chewing-editor
     ${CHEWING_LIBRARIES}
     exporter
