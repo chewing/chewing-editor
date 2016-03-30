@@ -171,7 +171,7 @@ void ChewingEditor::showAbout()
     aboutBox.setStandardButtons(QMessageBox::Ok);
     aboutBox.setDefaultButton(QMessageBox::Ok);
 
-    QPixmap pm(QLatin1String(":/chewing-editor.ico"));
+    QPixmap pm(QLatin1String(":/chewing-editor.png"));
     if (!pm.isNull())
         aboutBox.setIconPixmap(pm);
 
