@@ -158,7 +158,7 @@ void ChewingEditor::showAbout()
         .arg("Chewing editor is licensed under the GNU GPL version 2.0 or later version.")
         .arg("Please see <a href=\"https://github.com/chewing/chewing-editor/blob/master/COPYING\">COPYING</a> "
         "for detail of Chewing editor licensing.")
-        .arg("Copyright&copy; 2004–2016 by Chewing Core Team and contributors on "
+        .arg("Copyright&copy; 2004-2016 by Chewing Core Team and contributors on "
         "<a href=\"https://github.com/chewing/chewing-editor/graphs/contributors\">GitHub</a>.")
         .arg("Chewing editor is developed as an open source project on "
         "<a href=\"https://github.com/chewing/chewing-editor\">https://github.com/chewing/chewing-editor</a>.")
