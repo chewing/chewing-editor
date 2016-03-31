@@ -87,6 +87,11 @@ Please report any bug & feature request to <https://github.com/chewing/chewing-e
 
 *   ChangZhuo Chen (陳昌倬)
 *   鄭鴻旗
+*   Mike Tzou
+*   Yao-Po Wang
+*   Peter Dave Hello
+*   David Kuo
+*   Bruce Liu
 
 # Licenses
 
