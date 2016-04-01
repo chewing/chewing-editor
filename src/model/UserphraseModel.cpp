@@ -205,7 +205,6 @@ QString UserphraseModel::checkBopomofo(const QString &bopomofo) const
 
 void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 {
-    
     QString replaceBopomofo = checkBopomofo(bopomofo);
     auto ret = chewing_userphrase_add(
         ctx_.get(),
