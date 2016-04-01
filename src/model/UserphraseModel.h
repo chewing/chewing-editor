@@ -68,6 +68,7 @@ public slots:
 
 private:
     void add(const QString &phrase, const QString &bopomofo);
+    QString checkBopomofo(const QString &bopomofo) const;
 
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
     UserphraseSet userphrase_;

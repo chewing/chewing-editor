@@ -194,12 +194,23 @@ void UserphraseModel::exportUserphrase(std::shared_ptr<UserphraseExporter> expor
     emit exportCompleted(result, exporter.get()->getPath(), exported);
 }
 
+QString UserphraseModel::checkBopomofo(const QString &bopomofo) const
+{
+    QString replaceBopomofo = bopomofo;
+    replaceBopomofo.replace(QString::fromUtf8("ㄧ"),QString::fromUtf8("ㄧ"));
+    replaceBopomofo.replace(QString::fromUtf8("Y"),QString::fromUtf8("ㄚ"));
+    
+    return replaceBopomofo;
+}
+
 void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 {
+    
+    QString replaceBopomofo = checkBopomofo(bopomofo);
     auto ret = chewing_userphrase_add(
         ctx_.get(),
         phrase.toUtf8().constData(),
-        bopomofo.toUtf8().constData());
+        replaceBopomofo.toUtf8().constData());
 
     if (ret > 0) {
         emit beginResetModel();
@@ -211,6 +222,7 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         emit addNewPhraseCompleted(userphrase_[userphrase_.size()-1]);
     } else {
         qWarning() << "chewing_userphrase_add() returns" << ret;
+        refresh();
     }
 }
 
