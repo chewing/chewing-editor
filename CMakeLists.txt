@@ -106,7 +106,7 @@ configure_file(
 
 install(
     FILES ${PROJECT_BINARY_DIR}/chewing-editor.desktop
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/application
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications
 )
 
 include_directories(
@@ -219,6 +219,7 @@ install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_
 
 # icon
 install(FILES ${CMAKE_SOURCE_DIR}/share/icons/chewing-editor.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
+install(FILES ${CMAKE_SOURCE_DIR}/rc/chewing-editor.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/256/apps)
 
 # manpage
 find_program(HELP2MAN help2man)
