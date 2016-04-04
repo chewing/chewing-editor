@@ -6,3 +6,7 @@ Comment=Chewing Userphrase Editor
 Exec=chewing-editor
 Icon=chewing-editor
 Categories=Utility;TextTools;Qt;
+
+# Translation
+Name[zh_TW]=Chewing Editor
+Comment[zh_TW]=新酷音詞庫編輯器
