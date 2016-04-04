@@ -106,7 +106,7 @@ configure_file(
 
 install(
     FILES ${PROJECT_BINARY_DIR}/chewing-editor.desktop
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/application
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications
 )
 
 include_directories(
