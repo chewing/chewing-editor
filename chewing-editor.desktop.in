@@ -5,3 +5,4 @@ Name=Chewing Editor
 Comment=Chewing Userphrase Editor
 Exec=chewing-editor
 Icon=chewing-editor
+Categories=Utility;TextTools;Qt;
