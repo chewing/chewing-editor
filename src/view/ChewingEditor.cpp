@@ -178,6 +178,24 @@ void ChewingEditor::showAbout()
     aboutBox.exec();
 }
 
+void ChewingEditor::showDeleteConfirmWindow()
+{
+    QString text = tr("Do you want to delete this phrase?");
+
+    QMessageBox deleteBox(this);
+    deleteBox.setWindowTitle(tr("Delete phrase"));
+    deleteBox.setText(text);
+    deleteBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    deleteBox.setDefaultButton(QMessageBox::No);
+
+    connect(
+        deleteBox.button(QMessageBox::Yes), SIGNAL(clicked()),
+        ui_.get()->userphraseView, SLOT(remove())
+    );
+
+    deleteBox.exec();
+}
+
 void ChewingEditor::setupFileSelection()
 {
     fileDialog_->setNameFilter("*.json");
@@ -250,12 +268,12 @@ void ChewingEditor::setupRemove()
     shortcut_remove_ = new QShortcut(QKeySequence::Delete, this);
     connect(
         shortcut_remove_, SIGNAL(activated()),
-        ui_.get()->userphraseView, SLOT(remove())
+        this, SLOT(showDeleteConfirmWindow())
     );
 
     connect(
         ui_.get()->removeButton, SIGNAL(pressed()),
-        ui_.get()->userphraseView, SLOT(remove())
+        this, SLOT(showDeleteConfirmWindow())
     );
 
     connect(

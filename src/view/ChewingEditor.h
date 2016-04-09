@@ -48,6 +48,7 @@ public slots:
     void selectExportFile();
     void finishFileSelection(const QString& file);
     void showAbout();
+    void showDeleteConfirmWindow();
 
 private:
     enum DialogType {
