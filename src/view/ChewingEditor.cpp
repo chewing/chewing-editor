@@ -261,6 +261,11 @@ void ChewingEditor::setupAdd()
         model_, SIGNAL(addNewPhraseCompleted(const Userphrase&)),
         ui_.get()->notification, SLOT(notifyAddNewPhraseCompleted(const Userphrase&))
     );
+
+    connect(
+        model_, SIGNAL(addNewPhraseFailed()),
+        ui_.get()->notification, SLOT(notifyAddNewPhraseFailed())
+    );
 }
 
 void ChewingEditor::setupRemove()

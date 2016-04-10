@@ -166,6 +166,11 @@
             <numerusform>更新完成。共有 %n 個詞彙。</numerusform>
         </translation>
     </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="89"/>
+        <source>Add new phrase failed. Please enter the bopomofo for each word and try again.</source>
+        <translation>新增詞彙失敗。請輸入每個字的注音後再試一次。</translation>
+    </message>
 </context>
 <context>
     <name>UserphraseDialog</name>

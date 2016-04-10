@@ -151,6 +151,11 @@
             <numerusform>Refresh completed. Total %n user phrases.</numerusform>
         </translation>
     </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="89"/>
+        <source>Add new phrase failed. Please enter the bopomofo for each word and try again.</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>UserphraseDialog</name>

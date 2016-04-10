@@ -83,3 +83,8 @@ void Notification::notifyRefreshCompleted(size_t count)
 
     setText(tr("Refresh completed. Total %n user phrase(s).", 0, count));
 }
+
+void Notification::notifyAddNewPhraseFailed()
+{
+    setText(tr("Add new phrase failed. Please enter the bopomofo for each word and try again."));
+}

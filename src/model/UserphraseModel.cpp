@@ -225,6 +225,7 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
     } else {
         qWarning() << "chewing_userphrase_add() returns" << ret;
         refresh();
+        emit addNewPhraseFailed();
     }
 }
 
