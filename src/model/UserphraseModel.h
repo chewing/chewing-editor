@@ -59,6 +59,7 @@ signals:
     void addNewPhraseCompleted(const Userphrase& userphrase);
     void removePhraseCompleted(size_t count);
     void refreshCompleted(size_t count);
+    void addNewPhraseFailed();
 
 public slots:
     void refresh();

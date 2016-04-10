@@ -39,4 +39,5 @@ public slots:
     void notifyAddNewPhraseCompleted(const Userphrase& userphrase);
     void notifyRemovePhraseCompleted(size_t count);
     void notifyRefreshCompleted(size_t count);
+    void notifyAddNewPhraseFailed();
 };
