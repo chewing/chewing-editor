@@ -28,6 +28,8 @@
 #include "ChewingImporter.h"
 #include "ChewingExporter.h"
 
+static int import_count;
+
 ChewingEditor::ChewingEditor(QWidget *parent)
     :QMainWindow{parent}
     ,ui_{new Ui::ChewingEditor}
@@ -104,6 +106,9 @@ void ChewingEditor::execFileDialog(DialogType type)
 
 void ChewingEditor::selectImportFile()
 {
+    // reset import_count
+    import_count = 0;
+    qDebug() << "import_count = " << import_count;
     execFileDialog(DIALOG_IMPORT);
 }
 
@@ -118,7 +123,12 @@ void ChewingEditor::finishFileSelection(const QString& file)
 
     switch (dialogType_) {
     case DIALOG_IMPORT:
-        importUserphrase(file);
+        // Do nothing after the first trigger
+        if(import_count++ == 1)
+            importUserphrase(file);
+
+        qDebug() << "import_count = " << import_count;
+
         break;
 
     case DIALOG_EXPORT:
@@ -223,6 +233,10 @@ void ChewingEditor::setupImport()
         model_, SIGNAL(importCompleted(bool, const QString&, size_t, size_t)),
         ui_.get()->notification, SLOT(notifyImportCompleted(bool, const QString&, size_t, size_t))
     );
+
+    // initialize import_count
+    import_count = 0;
+    qDebug() << "import_count = " << import_count;
 }
 
 void ChewingEditor::setupExport()
