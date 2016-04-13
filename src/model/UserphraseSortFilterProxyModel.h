@@ -43,6 +43,6 @@ public:
     const Userphrase *getUserphrase(const QModelIndex& idx);
 
 public slots:
-    void add(std::shared_ptr<QString> phrase, std::shared_ptr<QString> bopomofo);
+    void add(const QString &phrase, const QString &bopomofo);
     void remove(QModelIndexList indexList);
 };

@@ -26,8 +26,6 @@ UserphraseView::UserphraseView(QWidget *parent)
     :QListView{parent}
     ,UserphraseDialog_{new UserphraseDialog{this}}
     ,menu_(new UserphraseViewMenu{this})
-    ,originalPhrase{new QString()}
-    ,originalBopomofo{new QString()}
 {
     setupContextMenu();
     setupAddUserphraseDialog();
@@ -59,8 +57,8 @@ void UserphraseView::showModifyUserphraseDialog()
     UserphraseDialog_->setText(userphrase->phrase_, userphrase->bopomofo_);
     UserphraseDialog_->setWindowTitle(tr("Modify phrase"));
 
-    *originalPhrase = userphrase->phrase_;
-    *originalBopomofo = userphrase->bopomofo_;
+    originalphrase_ = userphrase->phrase_;
+    originalbopomofo_ = userphrase->bopomofo_;
 
     emit UserphraseDialog_->exec();
 }
@@ -71,10 +69,10 @@ void UserphraseView::addPhrase(int result)
         return;
     }
 
-    std::shared_ptr<QString> phrase{new QString(UserphraseDialog_->getPhrase())};
-    std::shared_ptr<QString> bopomofo{new QString(UserphraseDialog_->getBopomofo())};
+    QString phrase = UserphraseDialog_->getPhrase();
+    QString bopomofo = UserphraseDialog_->getBopomofo();
 
-    qDebug() << "Add" << *phrase.get() << "(" << *bopomofo.get() << ")";
+    qDebug() << "Add" << phrase << "(" << bopomofo << ")";
 
     if (dialogType_ == DIALOG_MODIFY) {
         remove();
@@ -84,7 +82,7 @@ void UserphraseView::addPhrase(int result)
 
     if (dialogType_ == DIALOG_MODIFY) {
         if (model()->sourceModel()->getAddResult() <= 0) {
-            emit model()->add(originalPhrase, originalBopomofo);
+            emit model()->add(originalphrase_, originalbopomofo_);
         }
     }
 }

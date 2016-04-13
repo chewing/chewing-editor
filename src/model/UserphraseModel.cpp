@@ -157,11 +157,6 @@ void UserphraseModel::refresh()
     emit refreshCompleted(userphrase_.size());
 }
 
-void UserphraseModel::add(std::shared_ptr<QString> phrase, std::shared_ptr<QString> bopomofo)
-{
-    add(*phrase.get(), *bopomofo.get());
-}
-
 void UserphraseModel::importUserphrase(std::shared_ptr<UserphraseImporter> importer)
 {
     size_t old_count = userphrase_.size();
