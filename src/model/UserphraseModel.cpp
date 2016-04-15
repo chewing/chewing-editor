@@ -105,6 +105,7 @@ void UserphraseModel::remove(QModelIndexList indexList)
             userphrase_[index].phrase_.toUtf8().constData(),
             userphrase_[index].bopomofo_.toUtf8().constData());
         if (ret > 0) {
+            removerecord_.push_back(Userphrase{userphrase_[index]});
             // FIXME: std::vector::erase is an inefficient operation.
             userphrase_.erase(userphrase_.begin() + index);
         } else {
@@ -227,4 +228,15 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 const Userphrase *UserphraseModel::getUserphrase(const QModelIndex& idx)
 {
     return &userphrase_[idx.row()];
+}
+
+void UserphraseModel::undo()
+{
+    if (!removerecord_.empty()) {
+        auto last = removerecord_.end() - 1;
+        const QString phrase = last->display_;
+        add(last->phrase_, last->bopomofo_);
+        removerecord_.erase(last);
+        emit undoCompleted(phrase);
+    }
 }

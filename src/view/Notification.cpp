@@ -88,3 +88,8 @@ void Notification::notifyAddNewPhraseFailed()
 {
     setText(tr("Add new phrase failed. Please enter the bopomofo for each word and try again."));
 }
+
+void Notification::notifyUndoCompleted(const QString &phrase)
+{
+    setText(tr("Undo completed. Revert %1.").arg(phrase));
+}

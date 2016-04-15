@@ -40,4 +40,5 @@ public slots:
     void notifyRemovePhraseCompleted(size_t count);
     void notifyRefreshCompleted(size_t count);
     void notifyAddNewPhraseFailed();
+    void notifyUndoCompleted(const QString &phrase);
 };

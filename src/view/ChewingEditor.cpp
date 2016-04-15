@@ -48,6 +48,7 @@ ChewingEditor::ChewingEditor(QWidget *parent)
     setupAdd();
     setupRemove();
     setupRefresh();
+    setupUndo();
     setupFilter();
     setupAboutWidget();
 
@@ -320,6 +321,19 @@ void ChewingEditor::setupRefresh()
     );
 
     emit model_->refresh();
+}
+
+void ChewingEditor::setupUndo()
+{
+    connect(
+        ui_.get()->undoButton, SIGNAL(pressed()),
+        model_, SLOT(undo())
+    );
+
+    connect(
+        model_, SIGNAL(undoCompleted(const QString&)),
+        ui_.get()->notification, SLOT(notifyUndoCompleted(const QString&))
+    );
 }
 
 void ChewingEditor::setupFilter()

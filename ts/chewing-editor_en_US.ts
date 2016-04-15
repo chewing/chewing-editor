@@ -9,7 +9,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="75"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="82"/>
         <source>File</source>
         <translation></translation>
     </message>
@@ -24,42 +24,47 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="48"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="55"/>
         <source>Search</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="84"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="91"/>
         <source>Help</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="94"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="101"/>
         <source>&amp;Import</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="99"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="106"/>
         <source>&amp;Export</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="114"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="127"/>
         <source>E&amp;xit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="41"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="48"/>
         <source>Refresh</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="104"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="41"/>
+        <source>Undo</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="111"/>
         <source>About Chewing editor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="109"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="119"/>
         <source>About Qt</source>
         <translation></translation>
     </message>
@@ -154,6 +159,11 @@
     <message>
         <location filename="../src/view/Notification.cpp" line="89"/>
         <source>Add new phrase failed. Please enter the bopomofo for each word and try again.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="94"/>
+        <source>Undo completed. Revert %1.</source>
         <translation></translation>
     </message>
 </context>

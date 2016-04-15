@@ -59,7 +59,8 @@ signals:
     void addNewPhraseCompleted(const Userphrase& userphrase);
     void removePhraseCompleted(size_t count);
     void refreshCompleted(size_t count);
-    void addNewPhraseFailed();
+    void addNewPhraseFailed();    
+    void undoCompleted(const QString &phrase);
 
 public slots:
     void refresh();
@@ -67,11 +68,13 @@ public slots:
     void importUserphrase(std::shared_ptr<UserphraseImporter> importer);
     void exportUserphrase(std::shared_ptr<UserphraseExporter> exporter);
     void remove(QModelIndexList indexList);
+    void undo();
 
 private:
     QString checkBopomofo(const QString &bopomofo) const;
 
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
     UserphraseSet userphrase_;
+    std::vector<Userphrase> removerecord_;
     int addresult_;
 };

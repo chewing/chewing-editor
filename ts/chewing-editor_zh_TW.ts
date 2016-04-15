@@ -13,7 +13,7 @@
         <translation type="vanished">過濾</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="75"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="82"/>
         <source>File</source>
         <translation>檔案</translation>
     </message>
@@ -32,27 +32,27 @@
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="48"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="55"/>
         <source>Search</source>
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="84"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="91"/>
         <source>Help</source>
         <translation>求助</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="94"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="101"/>
         <source>&amp;Import</source>
         <translation>匯入(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="99"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="106"/>
         <source>&amp;Export</source>
         <translation>匯出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="114"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="127"/>
         <source>E&amp;xit</source>
         <translation>離開(&amp;X)</translation>
     </message>
@@ -65,17 +65,22 @@
         <translation type="vanished">刪除詞彙</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="41"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="48"/>
         <source>Refresh</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="104"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="41"/>
+        <source>Undo</source>
+        <translation>復原</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/ChewingEditor.ui" line="111"/>
         <source>About Chewing editor</source>
         <translation>關於新酷音詞庫編輯器</translation>
     </message>
     <message>
-        <location filename="../src/ui/ChewingEditor.ui" line="109"/>
+        <location filename="../src/ui/ChewingEditor.ui" line="119"/>
         <source>About Qt</source>
         <translation>關於 Qt</translation>
     </message>
@@ -170,6 +175,11 @@
         <location filename="../src/view/Notification.cpp" line="89"/>
         <source>Add new phrase failed. Please enter the bopomofo for each word and try again.</source>
         <translation>新增詞彙失敗。請輸入每個字的注音後再試一次。</translation>
+    </message>
+    <message>
+        <location filename="../src/view/Notification.cpp" line="94"/>
+        <source>Undo completed. Revert %1.</source>
+        <translation>復原完成。復原 「%1」。</translation>
     </message>
 </context>
 <context>
