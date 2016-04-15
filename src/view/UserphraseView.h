@@ -65,6 +65,6 @@ private:
 
     bool dialogType_;
 
-    std::shared_ptr<QString> originalPhrase;
-    std::shared_ptr<QString> originalBopomofo;
+    QString originalphrase_;
+    QString originalbopomofo_;
 };

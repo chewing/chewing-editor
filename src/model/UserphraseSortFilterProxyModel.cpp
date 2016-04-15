@@ -28,7 +28,7 @@ UserphraseSortFilterProxyModel::UserphraseSortFilterProxyModel(QObject *parent)
 {
 }
 
-void UserphraseSortFilterProxyModel::add(std::shared_ptr<QString> phrase, std::shared_ptr<QString> bopomofo)
+void UserphraseSortFilterProxyModel::add(const QString &phrase, const QString &bopomofo)
 {
     sourceModel()->add(phrase, bopomofo);
 }
