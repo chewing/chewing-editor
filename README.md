@@ -9,6 +9,7 @@ increase input performance.
 
 # Install
 * Arch Linux: install from AUR: [Stable release](https://aur.archlinux.org/packages/chewing-editor/), [Development](https://aur.archlinux.org/packages/chewing-editor-git/)
+* Mageia: install from urpmi: available in cauldron, Mageia 6 and later. 
 
 # Development
 
