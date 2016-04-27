@@ -28,3 +28,5 @@ coverage*
 
 chewing-editor.dSYM/
 chewing-editor.app/
+
+Testing/
