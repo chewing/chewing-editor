@@ -20,17 +20,15 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-echo -n "Find lcov.........."
-if ! which lcov; then
-    echo "not found";
-    exit 1;
-fi
-
-echo -n "Find genhtml......."
-if ! which genhtml; then
-    echo "not found";
-    exit 1;
-fi
+DEPENDENCIES="lcov genhtml"
+for dep in $DEPENDENCIES
+do
+    echo -n "Find $dep.........."
+    if ! which $dep; then
+        echo "not found";
+        exit 1;
+    fi
+done
 
 #echo -n "Check directory...."
 #if [ ! -e "src" ]; then
