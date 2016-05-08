@@ -222,7 +222,59 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
         qWarning() << "chewing_userphrase_add() returns" << ret;
         refresh();
         emit addNewPhraseFailed();
-    }
+
+	int newCharacterPos = phrase.size()-1;
+        QString tmpBopomofo;
+        int phraseListIdx = userphrase_.size()-1;
+
+        bool foundMatchCharacter = false;
+
+        while( newCharacterPos >= 0 && phraseListIdx >= 0 ){
+			foundMatchCharacter = false;
+			phraseListIdx = userphrase_.size()-1;
+
+			while( foundMatchCharacter == false && phraseListIdx >=0 ){
+				QString cmpPhrase = userphrase_[phraseListIdx].phrase_ ;
+				QString cmpBopomofo = userphrase_[phraseListIdx].bopomofo_ ;
+				int cmpBopomofoIdx = cmpBopomofo.size()-1;
+
+				for( int cmpCharacterIdx =  cmpPhrase.size() -1 ;  cmpCharacterIdx >=0 && newCharacterPos >=0 ; --cmpCharacterIdx ) {
+
+					if( phrase[ newCharacterPos ]  == cmpPhrase[ cmpCharacterIdx ] ){
+
+						newCharacterPos--;
+						if( cmpBopomofo[ cmpBopomofoIdx ]==' ' )
+							cmpBopomofoIdx--;
+
+						while( cmpBopomofo[ cmpBopomofoIdx ] !=' '  && cmpBopomofoIdx >= 0 ){
+							tmpBopomofo = cmpBopomofo[ cmpBopomofoIdx ] +  tmpBopomofo;
+							cmpBopomofoIdx--;
+							foundMatchCharacter = true;
+						}
+
+						if( newCharacterPos != -1 )
+							tmpBopomofo = " "+tmpBopomofo;
+
+					}else{
+
+						if( cmpBopomofo[ cmpBopomofoIdx ]==' ' )
+							cmpBopomofoIdx-- ;
+
+						while( cmpBopomofo[ cmpBopomofoIdx ] !=' '  && cmpBopomofoIdx >= 0 ){
+							cmpBopomofoIdx--;
+						}
+					}
+				}
+
+				if( foundMatchCharacter == false )
+					phraseListIdx--;
+			}
+		}
+
+		if( newCharacterPos == - 1 && phrase.size() != 0 && foundMatchCharacter == true ){
+			add( phrase ,  tmpBopomofo );
+		}
+	}
 }
 
 const Userphrase *UserphraseModel::getUserphrase(const QModelIndex& idx)
