@@ -18,8 +18,7 @@ install:
     - sudo pip install cpp-coveralls
     - sudo add-apt-repository --yes ppa:chewing/chewing
     - sudo apt-get update
-      # FIXME: We need to instal cmake-data manually to prevent cmake upgrade fails.
-    - sudo apt-get install --yes cmake cmake-data pkg-config help2man qt5-default qttools5-dev-tools libchewing3-dev
+    - sudo apt-get install --yes cmake help2man qt5-default qttools5-dev-tools libchewing3-dev
     - ccache -V && ccache --show-stats && ccache --zero-stats && export use_ccache=true
     - gcc --version
     - g++ --version
