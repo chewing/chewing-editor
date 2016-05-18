@@ -9,20 +9,19 @@ matrix:
 git:
     depth: 1
 
-before_install:
+# opt-in Ubuntu Trusty
+sudo: required
+dist: trusty
+cache: ccache
+
+install:
     - sudo pip install cpp-coveralls
-    - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-    - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
     - sudo add-apt-repository --yes ppa:chewing/chewing
-    - sudo add-apt-repository --yes ppa:chewing/travis-ci
     - sudo apt-get update
-      # FIXME: We need to instal cmake-data manually to prevent cmake upgrade fails.
-    - sudo apt-get install --yes cmake-data cmake gcc-4.8 g++-4.8 help2man libchewing3-dev pkg-config qt5-default qttools5-dev-tools
-    - sudo ln -fs /usr/bin/gcc-4.8 /usr/bin/gcc
+    - sudo apt-get install --yes cmake help2man qt5-default qttools5-dev-tools libchewing3-dev
+    - ccache -V && ccache --show-stats && ccache --zero-stats && export use_ccache=true
     - gcc --version
-    - sudo ln -fs /usr/bin/g++-4.8 /usr/bin/g++
     - g++ --version
-    - sudo ln -fs /usr/bin/gcov-4.8 /usr/bin/gcov
     - gcov --version
 
 script:
@@ -32,3 +31,6 @@ script:
 
 after_success:
     - if [ x$COVERALLS == xyes ]; then coveralls --exclude gmock --exclude test --exclude-pattern '.*CMake[^/]+\.c(?:pp)?' --exclude-pattern '.*_automoc.cpp'; fi
+
+after_script:
+  - if [ "$use_ccache" = true ]; then ccache --show-stats ; fi
