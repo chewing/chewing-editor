@@ -10,6 +10,13 @@ increase input performance.
 # Install
 * Arch Linux: install from AUR: [Stable release](https://aur.archlinux.org/packages/chewing-editor/), [Development](https://aur.archlinux.org/packages/chewing-editor-git/)
 * Mageia: install via `urpmi chewing-editor` - available in cauldron, Mageia 6 and later.
+* Ubuntu Linux:
+  * install from Ubuntu [APT repository](http://packages.ubuntu.com/search?keywords=chewing-editor) since Ubuntu 16.04 LTS (Xenial Xerus)
+    * `# apt-get install chewing-editor`
+  * install from PPA [ppa:chewing/chewing](https://launchpad.net/~chewing/+archive/ubuntu/chewing) as development build, which currently supports Ubuntu 13.10 ~ 14.04
+    * `# add-apt-repository ppa:chewing/chewing`
+    * `# apt-get update`
+    * `# apt-get install chewing-editor`
 
 # Development
 
