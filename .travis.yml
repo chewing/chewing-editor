@@ -15,7 +15,7 @@ dist: trusty
 cache: ccache
 
 install:
-    - sudo pip install cpp-coveralls
+    - pip install --user cpp-coveralls
     - sudo add-apt-repository --yes ppa:chewing/chewing
     - sudo apt-get update
     - sudo apt-get install --yes cmake help2man qt5-default qttools5-dev-tools libchewing3-dev
@@ -33,4 +33,4 @@ after_success:
     - if [ x$COVERALLS == xyes ]; then coveralls --exclude gmock --exclude test --exclude-pattern '.*CMake[^/]+\.c(?:pp)?' --exclude-pattern '.*_automoc.cpp'; fi
 
 after_script:
-  - if [ "$use_ccache" = true ]; then ccache --show-stats ; fi
+    - if [ "$use_ccache" = true ]; then ccache --show-stats ; fi

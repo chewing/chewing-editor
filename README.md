@@ -1,7 +1,7 @@
 # Chewing Editor
 
 [![TravisCI Status](https://travis-ci.org/chewing/chewing-editor.svg?branch=master)](https://travis-ci.org/chewing/chewing-editor)
-[![Coveralls Status](https://img.shields.io/coveralls/chewing/chewing-editor.svg)](https://coveralls.io/r/chewing/chewing-editor)
+[![Coveralls Status](https://img.shields.io/coveralls/chewing/chewing-editor.svg)](https://coveralls.io/github/chewing/chewing-editor)
 
 chewing-editor is a cross platform chewing user phrase editor. It provides a
 easy way to manage user phrase. With it, user can customize their user phrase to

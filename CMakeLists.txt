@@ -31,7 +31,7 @@ if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Cla
 
     option(ENABLE_GCOV "Coverage support" false)
     if(ENABLE_GCOV)
-        set(CMAKE_CXX_FLAGS "-coverage ${CMAKE_CXX_FLAGS}")
+        set(CMAKE_CXX_FLAGS "--coverage ${CMAKE_CXX_FLAGS}")
     endif()
 
     find_program(VALGRIND valgrind)
