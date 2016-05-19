@@ -48,13 +48,9 @@ add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
 find_package(PkgConfig)
 find_package(Qt5Widgets REQUIRED)
 
-find_program(LUPDATE lupdate)
-if (NOT LUPDATE)
-    message(SEND_ERROR "Cannot find lupdate")
-endif()
-find_program(LRELEASE lrelease)
-if (NOT LRELEASE)
-    message(SEND_ERROR "Cannot find lrelease")
+find_program(QTCHOOSER qtchooser)
+if (NOT QTCHOOSER)
+    message(SEND_ERROR "Cannot find qtchooser")
 endif()
 
 # libchewing
@@ -74,6 +70,7 @@ endif()
 # Qt library
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(QT_VERSION 5)
 
 # Git describe
 find_package(Git)
@@ -147,7 +144,7 @@ foreach(TRANSLATION ${TRANSLATION_LIST})
     set(QM_FILE "${QM_DIR}/${CMAKE_PROJECT_NAME}_${TRANSLATION}.qm")
 
     add_custom_target("${TRANSLATION}-ts"
-        COMMAND ${LUPDATE} ${PROJECT_SOURCE_DIR}/src -ts ${TS_FILE}
+        COMMAND ${QTCHOOSER} -run-tool=lupdate -qt=${QT_VERSION} -${PROJECT_SOURCE_DIR}/src -ts ${TS_FILE}
         DEPENDS prepare_lupdate
     )
     add_dependencies(lupdate "${TRANSLATION}-ts")
@@ -155,7 +152,7 @@ foreach(TRANSLATION ${TRANSLATION_LIST})
     add_custom_command(
         OUTPUT
             ${QM_FILE}
-        COMMAND ${LRELEASE} ${TS_FILE} -qm ${QM_FILE}
+        COMMAND ${QTCHOOSER} -run-tool=lrelease -qt=${QT_VERSION} ${TS_FILE} -qm ${QM_FILE}
         DEPENDS
             prepare_lrelease
             ${TS_FILE}
