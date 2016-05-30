@@ -125,8 +125,10 @@ void ChewingEditor::finishFileSelection(const QString& file)
     switch (dialogType_) {
     case DIALOG_IMPORT:
         // Do nothing after the first trigger
-        if(import_count++ == 1)
+        if (import_count == 0) {
             importUserphrase(file);
+            import_count++;
+        }
 
         qDebug() << "import_count = " << import_count;
 
