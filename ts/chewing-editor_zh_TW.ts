@@ -94,6 +94,16 @@
         <source>Export</source>
         <translation>匯出</translation>
     </message>
+    <message>
+        <location filename="../src/view/ChewingEditor.cpp" line="196"/>
+        <source>Do you want to delete this phrase?</source>
+        <translation>你想要刪除這個詞彙嗎？</translation>
+    </message>
+    <message>
+        <location filename="../src/view/ChewingEditor.cpp" line="199"/>
+        <source>Delete phrase</source>
+        <translation>刪除詞彙</translation>
+    </message>
 </context>
 <context>
     <name>Notification</name>
