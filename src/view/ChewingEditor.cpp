@@ -77,9 +77,9 @@ ChewingEditor::~ChewingEditor()
 
 void ChewingEditor::execFileDialog(DialogType type)
 {
-    qDebug() << "dialogType_ = " << dialogType_;
-
     dialogType_ = type;
+
+    qDebug() << "dialogType_ = " << dialogType_;
 
     switch (dialogType_) {
     case DIALOG_IMPORT:
