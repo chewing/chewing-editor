@@ -1,10 +1,21 @@
 language: cpp
 
+os:
+    - linux
+    - osx
+
+env:
+    matrix:
+        - CTEST_OUTPUT_ON_FAILURE=1
+        - CTEST_OUTPUT_ON_FAILURE=1 CFLAGS='-fsanitize=address'
+        - CTEST_OUTPUT_ON_FAILURE=1 OPTION='-DCMAKE_CXX_FLAGS=-O0 -DENABLE_GCOV=yes' COVERALLS=yes
+
 matrix:
-    include:
-        - env: CTEST_OUTPUT_ON_FAILURE=1
-        - env: CTEST_OUTPUT_ON_FAILURE=1 CFLAGS='-fsanitize=address'
-        - env: CTEST_OUTPUT_ON_FAILURE=1 OPTION='-DCMAKE_CXX_FLAGS=-O0 -DENABLE_GCOV=yes' COVERALLS=yes
+    exclude:
+        - os: osx
+          env: CTEST_OUTPUT_ON_FAILURE=1 CFLAGS='-fsanitize=address'
+        - os: osx
+          env: CTEST_OUTPUT_ON_FAILURE=1 OPTION='-DCMAKE_CXX_FLAGS=-O0 -DENABLE_GCOV=yes' COVERALLS=yes
 
 git:
     depth: 1
@@ -15,16 +26,40 @@ dist: trusty
 cache: ccache
 
 install:
-    - pip install --user cpp-coveralls
-    - sudo add-apt-repository --yes ppa:chewing/chewing
-    - sudo apt-get update
-    - sudo apt-get install --yes cmake help2man qt5-default qttools5-dev-tools libchewing3-dev
+    - |
+      if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+          pip install --user cpp-coveralls
+          sudo add-apt-repository --yes ppa:chewing/chewing
+          sudo apt-get update
+          sudo apt-get install --yes cmake help2man qt5-default qttools5-dev-tools libchewing3-dev
+          gcc --version
+          g++ --version
+          gcov --version
+      fi
+    - |
+      if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+          export CC=gcc-4.8 CXX=g++-4.8
+
+          # dependencies
+          brew update > /dev/null && brew install ccache libchewing cmake qt5
+
+          # ccache
+          export PATH="/usr/local/opt/ccache/libexec:$PATH"
+
+          # Qt
+          brew link --force qt5
+          ln -s /usr/local/Cellar/qt5/5.6.0/mkspecs /usr/local/mkspecs && ln -s /usr/local/Cellar/qt5/5.6.0/plugins /usr/local/plugins
+
+          # qtchooser
+          cd "$HOME"
+          git clone --depth 1 https://code.qt.io/qt/qtchooser.git && cd qtchooser
+          make -j2 && sudo make install
+          qtchooser -install 5 /usr/local/bin/qmake
+      fi
     - ccache -V && ccache --show-stats && ccache --zero-stats && export use_ccache=true
-    - gcc --version
-    - g++ --version
-    - gcov --version
 
 script:
+    - cd "$TRAVIS_BUILD_DIR"
     - cmake $OPTION .
     - make -j2
     - make -j2 check
