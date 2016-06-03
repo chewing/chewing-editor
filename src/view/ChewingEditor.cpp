@@ -193,20 +193,22 @@ void ChewingEditor::showAbout()
 
 void ChewingEditor::showDeleteConfirmWindow()
 {
-    QString text = tr("Do you want to delete this phrase?");
+    if (model_->rowCount()){
+        QString text = tr("Do you want to delete this phrase?");
 
-    QMessageBox deleteBox(this);
-    deleteBox.setWindowTitle(tr("Delete phrase"));
-    deleteBox.setText(text);
-    deleteBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    deleteBox.setDefaultButton(QMessageBox::No);
-
-    connect(
-        deleteBox.button(QMessageBox::Yes), SIGNAL(clicked()),
-        ui_.get()->userphraseView, SLOT(remove())
-    );
-
-    deleteBox.exec();
+        QMessageBox deleteBox(this);
+        deleteBox.setWindowTitle(tr("Delete phrase"));
+        deleteBox.setText(text);
+        deleteBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        deleteBox.setDefaultButton(QMessageBox::No);
+    
+        connect(
+            deleteBox.button(QMessageBox::Yes), SIGNAL(clicked()),
+            ui_.get()->userphraseView, SLOT(remove())
+        );
+    
+        deleteBox.exec();
+    }
 }
 
 void ChewingEditor::setupFileSelection()
