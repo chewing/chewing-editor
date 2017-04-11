@@ -194,7 +194,7 @@ void UserphraseModel::exportUserphrase(std::shared_ptr<UserphraseExporter> expor
 QString UserphraseModel::checkBopomofo(const QString &bopomofo) const
 {
     QString replaceBopomofo = bopomofo;
-    replaceBopomofo.replace(QString::fromUtf8("ㄧ"),QString::fromUtf8("ㄧ"));
+    replaceBopomofo.replace(QString::fromUtf8("一"),QString::fromUtf8("ㄧ"));
     replaceBopomofo.replace(QString::fromUtf8("Y"),QString::fromUtf8("ㄚ"));
 
     return replaceBopomofo;
