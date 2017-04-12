@@ -95,6 +95,7 @@ void UserphraseModel::remove(QModelIndexList indexList)
 
     emit beginRemoveRows(indexList.first().parent(), first, last);
 
+    unsigned int _cnt = 0;
     foreach(auto item, indexList) {
         auto index = item.row();
 
@@ -106,6 +107,7 @@ void UserphraseModel::remove(QModelIndexList indexList)
             userphrase_[index].bopomofo_.toUtf8().constData());
         if (ret > 0) {
             removerecord_.push_back(Userphrase{userphrase_[index]});
+            _cnt++;
             // FIXME: std::vector::erase is an inefficient operation.
             userphrase_.erase(userphrase_.begin() + index);
         } else {
@@ -113,6 +115,7 @@ void UserphraseModel::remove(QModelIndexList indexList)
         }
         // FIXME: Handle chewing_userphrase_remove fails.
     }
+    removecount_.push_back(_cnt);
 
     emit endRemoveRows();
 
@@ -232,11 +235,15 @@ const Userphrase *UserphraseModel::getUserphrase(const QModelIndex& idx)
 
 void UserphraseModel::undo()
 {
-    if (!removerecord_.empty()) {
-        auto last = removerecord_.end() - 1;
-        const QString phrase = last->display_;
-        add(last->phrase_, last->bopomofo_);
-        removerecord_.erase(last);
-        emit undoCompleted(phrase);
+    if (!removecount_.empty() && !removerecord_.empty()) {
+        unsigned int remove_n = *(removecount_.end()-1) ;
+        removecount_.pop_back();
+        for(unsigned int i = 0 ;i < remove_n ; i ++){
+            auto last = removerecord_.end() -1;
+            const QString phrase = last->display_;
+            add(last->phrase_, last->bopomofo_);
+            removerecord_.erase(last);
+            emit undoCompleted(phrase);
+        }
     }
 }
