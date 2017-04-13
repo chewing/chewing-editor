@@ -31,7 +31,7 @@ install:
           pip install --user cpp-coveralls
           sudo add-apt-repository --yes ppa:chewing/chewing
           sudo apt-get update
-          sudo apt-get install --yes cmake help2man qt5-default qttools5-dev-tools libchewing3-dev
+          sudo apt-get install --yes cmake help2man qt5-default qttools5-dev qttools5-dev-tools libchewing3-dev
           gcc --version
           g++ --version
           gcov --version
@@ -41,19 +41,22 @@ install:
           export CC=gcc-4.8 CXX=g++-4.8
 
           # dependencies
-          brew update > /dev/null && brew install ccache libchewing cmake qt5
+          brew update > /dev/null && brew install ccache libchewing cmake qt5 gcc@4.8
 
           # ccache
           export PATH="/usr/local/opt/ccache/libexec:$PATH"
 
           # Qt
           brew link --force qt5
-          ln -s /usr/local/Cellar/qt5/5.6.0/mkspecs /usr/local/mkspecs && ln -s /usr/local/Cellar/qt5/5.6.0/plugins /usr/local/plugins
+          brew linkapps qt5
+          export HOMEBREW_QT5_VERSION=$(brew list --versions qt5 | rev | cut -d' ' -f1 | rev)
+          ln -s /usr/local/Cellar/qt5/$HOMEBREW_QT5_VERSION/mkspecs /usr/local/mkspecs && ln -s /usr/local/Cellar/qt5/$HOMEBREW_QT5_VERSION/plugins /usr/local/plugins
       fi
     - ccache -V && ccache --show-stats && ccache --zero-stats && export use_ccache=true
 
 script:
     - cd "$TRAVIS_BUILD_DIR"
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export CMAKE_PREFIX_PATH=$(brew --prefix qt5)/lib/cmake; fi
     - cmake $OPTION .
     - make -j2
     - make -j2 check
