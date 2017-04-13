@@ -49,12 +49,6 @@ install:
           # Qt
           brew link --force qt5
           ln -s /usr/local/Cellar/qt5/5.6.0/mkspecs /usr/local/mkspecs && ln -s /usr/local/Cellar/qt5/5.6.0/plugins /usr/local/plugins
-
-          # qtchooser
-          cd "$HOME"
-          git clone --depth 1 https://code.qt.io/qt/qtchooser.git && cd qtchooser
-          make -j2 && sudo make install
-          qtchooser -install 5 /usr/local/bin/qmake
       fi
     - ccache -V && ccache --show-stats && ccache --zero-stats && export use_ccache=true
 
