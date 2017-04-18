@@ -193,6 +193,8 @@ void ChewingEditor::showAbout()
 
 void ChewingEditor::showDeleteConfirmWindow()
 {
+    if(!ui_.get()->userphraseView->selectionModel()->selectedIndexes().size()) return;
+    
     QString text = tr("Do you want to delete this phrase?");
 
     QMessageBox deleteBox(this);
