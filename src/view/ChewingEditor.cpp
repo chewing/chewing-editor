@@ -193,6 +193,8 @@ void ChewingEditor::showAbout()
 
 void ChewingEditor::showDeleteConfirmWindow()
 {
+    if ( !model_->rowCount() ) return;
+    
     QString text = tr("Do you want to delete this phrase?");
 
     QMessageBox deleteBox(this);
