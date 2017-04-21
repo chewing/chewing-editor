@@ -193,6 +193,8 @@ void ChewingEditor::showAbout()
 
 void ChewingEditor::showDeleteConfirmWindow()
 {
+    if ( !model_->rowCount() ) return;
+    
     QString text = tr("Do you want to delete this phrase?");
 
     QMessageBox deleteBox(this);
@@ -200,12 +202,12 @@ void ChewingEditor::showDeleteConfirmWindow()
     deleteBox.setText(text);
     deleteBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     deleteBox.setDefaultButton(QMessageBox::No);
-
+    
     connect(
         deleteBox.button(QMessageBox::Yes), SIGNAL(clicked()),
         ui_.get()->userphraseView, SLOT(remove())
     );
-
+    
     deleteBox.exec();
 }
 
