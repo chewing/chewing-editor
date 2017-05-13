@@ -1,4 +1,5 @@
 /*
+
  * chewing-editor: Chewing userphrase editor
  * Copyright (C) 2014 Chewing Development Team
 
@@ -18,7 +19,7 @@
  */
 
 #include "UserphraseModel.h"
-
+#include <string>
 #include <QDebug>
 
 static void logger(void *data, int level, const char *fmt, ...)
@@ -194,35 +195,57 @@ void UserphraseModel::exportUserphrase(std::shared_ptr<UserphraseExporter> expor
 QString UserphraseModel::checkBopomofo(const QString &bopomofo) const
 {
     QString replaceBopomofo = bopomofo;
+<<<<<<< HEAD
     replaceBopomofo.replace(QString::fromUtf8("一"),QString::fromUtf8("ㄧ"));
     replaceBopomofo.replace(QString::fromUtf8("丫"),QString::fromUtf8("ㄚ"));
-
+    replaceBopomofo= replaceBopomofo.simplified();
+=======
+    replaceBopomofo.replace(QString::fromUtf8("ㄧ"),QString::fromUtf8("ㄧ"));
+    replaceBopomofo.replace(QString::fromUtf8("Y"),QString::fromUtf8("ㄚ"));
+    replaceBopomofo = replaceBopomofo.simplified();
+<<<<<<< HEAD
+>>>>>>> b6e395e5ccd55fb0893a3a5a135af41348ee5dc4
+=======
+>>>>>>> b6e395e5ccd55fb0893a3a5a135af41348ee5dc4
     return replaceBopomofo;
 }
 
-void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
+
+QStringList UserphraseModel::splitPhrases(const QString &phrases)
 {
-    QString replaceBopomofo = checkBopomofo(bopomofo);
-    auto ret = chewing_userphrase_add(
-        ctx_.get(),
-        phrase.toUtf8().constData(),
-        replaceBopomofo.toUtf8().constData());
+	QStringList sections = phrases.split(QRegExp("[,/^]"));
+	qDebug() << "Section: " << sections << endl;
+	qDebug() << "size: " << sections.size() << endl << endl;
+	return sections;
+}
 
-    addresult_ = ret;
-
-    if (ret > 0) {
-        emit beginResetModel();
-        userphrase_.insert(Userphrase{
-            phrase,
-            bopomofo
-        });
-        emit endResetModel();
-        emit addNewPhraseCompleted(userphrase_[userphrase_.size()-1]);
-    } else {
-        qWarning() << "chewing_userphrase_add() returns" << ret;
-        refresh();
-        emit addNewPhraseFailed();
-    }
+void UserphraseModel::add(const QString &phrases, const QString &bopomofo)
+{
+	QStringList phraseList = splitPhrases(phrases);  
+	for(int i = 0 ; i < phraseList.size() ; i++)
+	{
+		QString phrase = QString(phraseList.at(i).toLocal8Bit().constData());
+		qDebug() << "+++++++++PHRASE:" << phrase <<endl;
+    		QString replaceBopomofo = checkBopomofo(bopomofo);
+    		auto ret = chewing_userphrase_add(
+      	 	ctx_.get(),
+        	phrase.toUtf8().constData(),
+        	replaceBopomofo.toUtf8().constData());
+    		addresult_ = ret;
+    		if (ret > 0) {	
+        	emit beginResetModel();
+        	userphrase_.insert(Userphrase{
+            		phrase,
+            		bopomofo
+       		 });
+        	emit endResetModel();
+        	emit addNewPhraseCompleted(userphrase_[userphrase_.size()-1]);
+    		} else {
+        	qWarning() << "chewing_userphrase_add() returns" << ret;
+        	refresh();
+        	emit addNewPhraseFailed();
+    		}	
+	}
 }
 
 const Userphrase *UserphraseModel::getUserphrase(const QModelIndex& idx)
