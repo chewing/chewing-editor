@@ -207,8 +207,6 @@ QString UserphraseModel::checkBopomofo(const QString &bopomofo) const
 QStringList UserphraseModel::splitPhrases(const QString &phrases)
 {
 	QStringList sections = phrases.split(QRegExp("[,/^]"));
-	qDebug() << "Section: " << sections << endl;
-	qDebug() << "size: " << sections.size() << endl << endl;
 	return sections;
 }
 
@@ -218,7 +216,6 @@ void UserphraseModel::add(const QString &phrases, const QString &bopomofo)
 	for(int i = 0 ; i < phraseList.size() ; i++)
 	{
 		QString phrase = QString(phraseList.at(i).toLocal8Bit().constData());
-		qDebug() << "+++++++++PHRASE:" << phrase <<endl;
     		QString replaceBopomofo = checkBopomofo(bopomofo);
     		auto ret = chewing_userphrase_add(
       	 	ctx_.get(),
