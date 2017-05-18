@@ -77,4 +77,5 @@ private:
     UserphraseSet userphrase_;
     std::vector<Userphrase> removerecord_;
     int addresult_;
+	int maxundocnt;
 };
