@@ -94,8 +94,7 @@ void UserphraseModel::remove(QModelIndexList indexList)
     auto last = indexList.first().row();
 
     emit beginRemoveRows(indexList.first().parent(), first, last);
-	
-	int remove_cnt = 0;
+    int remove_cnt = 0;
     foreach(auto item, indexList) {
         auto index = item.row();
 
@@ -115,7 +114,7 @@ void UserphraseModel::remove(QModelIndexList indexList)
         }
         // FIXME: Handle chewing_userphrase_remove fails.
     }
-	maxundocnt = remove_cnt;
+    maxundocnt.push_back(remove_cnt);
     emit endRemoveRows();
 
     emit removePhraseCompleted(indexList.size());
@@ -234,14 +233,15 @@ const Userphrase *UserphraseModel::getUserphrase(const QModelIndex& idx)
 
 void UserphraseModel::undo()
 {
-    if (!removerecord_.empty() && maxundocnt>0) {
-		while(maxundocnt--){
-			auto last = removerecord_.end() - 1;
-			const QString phrase = last->display_;
-			add(last->phrase_, last->bopomofo_);
-			removerecord_.erase(last);
-			emit undoCompleted(phrase);
-		}
-		maxundocnt = 1;
+    int cnt = *(maxundocnt.end() -1);
+    if (!removerecord_.empty() && cnt>0) {
+        while (cnt--) {
+            auto last = removerecord_.end() -1;
+            const QString phrase = last->display_;
+            add(last->phrase_, last->bopomofo_);
+            removerecord_.erase(last);
+            emit undoCompleted(phrase);
+        }
+        maxundocnt.pop_back();
     }
 }
