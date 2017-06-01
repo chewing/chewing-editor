@@ -196,6 +196,7 @@ QString UserphraseModel::checkBopomofo(const QString &bopomofo) const
     QString replaceBopomofo = bopomofo;
     replaceBopomofo.replace(QString::fromUtf8("一"),QString::fromUtf8("ㄧ"));
     replaceBopomofo.replace(QString::fromUtf8("丫"),QString::fromUtf8("ㄚ"));
+    replaceBopomofo.replace(QString::fromUtf8("Y"),QString::fromUtf8("ㄚ"));
 
     return replaceBopomofo;
 }
