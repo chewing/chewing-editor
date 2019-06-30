@@ -237,7 +237,7 @@ if (HELP2MAN)
             OUTPUT
                 ${manpage}.gz
             COMMAND ${GZIP}
-                -f
+                -n -f
                 ${manpage}
             DEPENDS
                 ${manpage}
