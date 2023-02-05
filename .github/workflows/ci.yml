@@ -1,0 +1,72 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  CFLAGS: -fsanitize=address
+  CXXFLAGS: -fsanitize=address
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'true'
+
+    - name: Install dependencies for Ubuntu
+      run: |
+          sudo apt-get update
+          sudo apt-get install --yes help2man qtbase5-dev qttools5-dev qttools5-dev-tools libchewing3-dev lcov
+          gcc --version
+          g++ --version
+          gcov --version
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+
+    - name: Install dependencies for macOS
+      run: |
+          # dependencies
+          brew update
+          brew install libchewing qt@5
+
+          # Qt
+          brew link --force qt@5
+          # Homebrew does not link mkspecs and plugins https://github.com/Homebrew/homebrew-core/issues/93056
+          export HOMEBREW_QT5_VERSION=$(brew list --versions qt@5 | rev | cut -d' ' -f1 | rev)
+          sudo ln -s /usr/local/Cellar/qt@5/$HOMEBREW_QT5_VERSION/mkspecs /usr/local/mkspecs
+          sudo ln -s /usr/local/Cellar/qt@5/$HOMEBREW_QT5_VERSION/plugins /usr/local/plugins
+      if: ${{ matrix.os == 'macos-latest' }}
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DENABLE_GCOV=yes
+
+    - name: Show config
+      run: cmake -B ${{github.workspace}}/build -LA
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build -v --config ${{env.BUILD_TYPE}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C ${{env.BUILD_TYPE}} --output-on-failure
+
+    - name: Collect coverage stats
+      run: scripts/lcov.sh
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@1.1.3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: coverage.info
+      if: ${{ matrix.os == 'ubuntu-latest' }}
