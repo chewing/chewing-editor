@@ -50,12 +50,14 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5LinguistTools)
 
 # libchewing
+# MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/lib/
+set(CHEWING_LIBRARY_DIRS )
 # MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/lib/*.lib
 set(CHEWING_LIBRARIES )
 # MODIFY IF NEEDED, e.g. ${CMAKE_CURRENT_SOURCE_DIR}/libchewing/include/chewing
 set(CHEWING_INCLUDE_DIRS )
 
-if (CHEWING_INCLUDE_DIRS AND CHEWING_LIBRARIES)
+if (CHEWING_INCLUDE_DIRS AND CHEWING_LIBRARIES AND CHEWING_LIBRARY_DIRS)
     # if all listed variables are TRUE
     find_package_handle_standard_args(chewing DEFAULT_MSG CHEWING_LIBRARIES CHEWING_INCLUDE_DIRS)
     mark_as_advanced(CHEWING_LIBRARIES CHEWING_INCLUDE_DIRS)
@@ -109,6 +111,8 @@ include_directories(
     ${CHEWING_INCLUDE_DIRS}
     ${Qt5Widgets_INCLUDES}
 )
+
+link_directories(${CHEWING_LIBRARY_DIRS})
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/platform_apple.cmake)
 
