@@ -76,5 +76,6 @@ private:
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
     UserphraseSet userphrase_;
     std::vector<Userphrase> removerecord_;
+    std::vector<unsigned int> removecount_;
     int addresult_;
 };
