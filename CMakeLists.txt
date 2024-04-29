@@ -43,7 +43,7 @@ elseif(MSVC)
     add_definitions(-DUNICODE -D_UNICODE)
 endif()
 
-add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data")
+add_definitions(-DTESTDATA="${PROJECT_SOURCE_DIR}/test/data" -DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
 
 find_package(PkgConfig)
 find_package(Qt5Widgets REQUIRED)

@@ -20,6 +20,8 @@
 #include "UserphraseModel.h"
 
 #include <QDebug>
+#include <algorithm>
+#include <functional>
 
 static void logger(void *data, int level, const char *fmt, ...)
 {
@@ -86,7 +88,10 @@ void UserphraseModel::remove(QModelIndexList indexList)
         return;
     }
 
-    qSort(indexList.begin(), indexList.end(), qGreater<QModelIndex>());
+    std::sort(indexList.begin(), indexList.end(), [] (const QModelIndex& a, const QModelIndex& b) {
+        // QModelIndex provides operator< but no operator>
+        return !(a < b);
+    });
 
     // XXX: indexList is in revsrsed order, so first is actual last, and vice
     // verse.
