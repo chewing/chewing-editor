@@ -161,12 +161,12 @@ QT5_ADD_RESOURCES(qt_resources ${PROJECT_SOURCE_DIR}/ts/ts.qrc)
 # exporter
 file(GLOB_RECURSE exporter_src ${PROJECT_SOURCE_DIR}/src/exporter/*)
 add_library(exporter STATIC ${exporter_src})
-qt5_use_modules(exporter Widgets)
+target_link_libraries(exporter Qt5::Widgets)
 
 # importer
 file(GLOB_RECURSE importer_src ${PROJECT_SOURCE_DIR}/src/importer/*)
 add_library(importer STATIC ${importer_src})
-qt5_use_modules(importer Widgets)
+target_link_libraries(importer Qt5::Widgets)
 
 # ui
 file(GLOB ui_src ${PROJECT_SOURCE_DIR}/src/ui/*)
@@ -175,7 +175,7 @@ qt5_wrap_ui(ui ${ui_src})
 # util
 file(GLOB util_src ${PROJECT_SOURCE_DIR}/src/util/*)
 add_library(util STATIC ${util_src})
-qt5_use_modules(util Widgets)
+target_link_libraries(util Qt5::Widgets)
 
 # chewing-editor
 file(GLOB chewing-editor_src
@@ -206,7 +206,7 @@ if(MSVC)
     )
 endif()
 
-qt5_use_modules(chewing-editor Widgets)
+target_link_libraries(chewing-editor Qt5::Widgets)
 install(PROGRAMS ${CMAKE_BINARY_DIR}/chewing-editor DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 # icon
@@ -273,7 +273,7 @@ target_link_libraries(run-test
     util
     pthread
 )
-qt5_use_modules(run-test Widgets)
+target_link_libraries(run-test Qt5::Widgets)
 
 add_test(test run-test)
 
