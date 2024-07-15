@@ -39,12 +39,8 @@ jobs:
           brew update
           brew install libchewing qt@5
 
-          # Qt
-          brew link --force qt@5
-          # Homebrew does not link mkspecs and plugins https://github.com/Homebrew/homebrew-core/issues/93056
-          export HOMEBREW_QT5_VERSION=$(brew list --versions qt@5 | rev | cut -d' ' -f1 | rev)
-          sudo ln -s /usr/local/Cellar/qt@5/$HOMEBREW_QT5_VERSION/mkspecs /usr/local/mkspecs
-          sudo ln -s /usr/local/Cellar/qt@5/$HOMEBREW_QT5_VERSION/plugins /usr/local/plugins
+          # Allow CMake to find qt@5 by passing down the environment variable
+          echo "CMAKE_PREFIX_PATH=$(brew --prefix qt@5)" >> $GITHUB_ENV
       if: ${{ matrix.os == 'macos-latest' }}
 
     - name: Configure CMake
