@@ -208,6 +208,16 @@ QString UserphraseModel::checkBopomofo(const QString &bopomofo) const
 void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 {
     QString replaceBopomofo = checkBopomofo(bopomofo);
+
+    const QString BopomofoRange(QString::fromUtf8("ㄅㄩ"));
+    if ( phrase.size() == 1 && replaceBopomofo.size() == 1 && phrase[0] != replaceBopomofo[0]
+            && phrase[0] >= BopomofoRange[0] && phrase[0] <= BopomofoRange[1] ){
+        qWarning() << "trying to modify the pronunciation of an alphabet!";
+        refresh();
+        emit addNewPhraseFailed();
+        return;
+    }
+
     auto ret = chewing_userphrase_add(
         ctx_.get(),
         phrase.toUtf8().constData(),
