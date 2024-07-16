@@ -2,6 +2,7 @@
 
 *   Please check if this issue is already reported by using the search feature in Github.
 *   Please read [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/).
+*   Please notice that chewing-editor doesn't handle the input event, that is, some input-relatived features/issues (like phrase auto-recording) are should be requested to [libchewing](https://github.com/chewing/libchewing) or [implements](http://chewing.im/projects.html).
 
 # Known Issue
 
