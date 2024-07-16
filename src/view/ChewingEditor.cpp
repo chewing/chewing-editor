@@ -24,6 +24,7 @@
 #include <QtGui>
 #include <QDebug>
 #include <QMessageBox>
+#include <QDesktopServices>
 
 #include "ChewingImporter.h"
 #include "ChewingExporter.h"
@@ -191,6 +192,10 @@ void ChewingEditor::showAbout()
     aboutBox.exec();
 }
 
+void ChewingEditor::showDocumentation(){
+    QDesktopServices::openUrl(QUrl("https://github.com/chewing/chewing-editor/wiki"));
+}
+
 void ChewingEditor::showDeleteConfirmWindow()
 {
     if(ui_.get()->userphraseView->selectionModel()->selectedIndexes().size() == 0) return;
@@ -356,5 +361,8 @@ void ChewingEditor::setupAboutWidget()
 
    connect(
         ui_.get()->actionAbout, SIGNAL(triggered()), this, SLOT(showAbout())
+   );
+   connect(
+        ui_.get()->actionDocumentation, SIGNAL(triggered()), this, SLOT(showDocumentation())
    );
 }
