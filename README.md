@@ -78,8 +78,7 @@ with `QT_HARFBUZZ=old`.
 
 See also:
 *   <https://github.com/chewing/chewing-editor/issues/7>
-*   <https://codereview.qt-project.org/80505>
-*   <https://qt.gitorious.org/qt/qtbase/commit/b7f013bf1919486dab56a4436a17a3878341a1d5>
+*   <https://codereview.qt-project.org/c/qt/qtbase/+/80505>
 
 # Bugs & Feature Request
 
