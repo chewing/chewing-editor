@@ -217,11 +217,13 @@ void UserphraseModel::add(const QString &phrase, const QString &bopomofo)
 
     if (ret > 0) {
         emit beginResetModel();
-        userphrase_.insert(Userphrase{
+        bool result = userphrase_.insert(Userphrase{
             phrase,
             bopomofo
         });
         emit endResetModel();
+        if (!result)
+            refresh();
         emit addNewPhraseCompleted(userphrase_[userphrase_.size()-1]);
     } else {
         qWarning() << "chewing_userphrase_add() returns" << ret;
