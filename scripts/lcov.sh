@@ -38,7 +38,7 @@ done
 #echo "ok"
 
 ABSPATH=$(cd "$(dirname "$0")/.."; pwd)
-lcov --directory $PWD --capture --output-file coverage.info --no-checksum --compat-libtool
-lcov --remove coverage.info "/usr/include/*" "$ABSPATH/gmock/*" "$ABSPATH/test/*" --output-file coverage.info
+lcov --ignore-errors empty,mismatch --directory $PWD --capture --output-file coverage.info --no-checksum --compat-libtool
+lcov --ignore-errors empty,mismatch --remove coverage.info "/usr/include/*" "$ABSPATH/gmock/*" "$ABSPATH/test/*" --output-file coverage.info
 LANG=C genhtml --prefix $ABSPATH --output-directory coveragereport \
-    --title "Code Coverage" --legend --show-details coverage.info
+    --title "Code Coverage" --legend --ignore-errors empty,mismatch --show-details coverage.info

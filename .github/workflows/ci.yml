@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies for Ubuntu
       run: |
           sudo apt-get update
-          sudo apt-get install --yes help2man qtbase5-dev qttools5-dev qttools5-dev-tools libchewing3-dev lcov
+          sudo apt-get install --yes help2man qtbase5-dev qttools5-dev qttools5-dev-tools libchewing3-dev lcov libgtest-dev
           gcc --version
           g++ --version
           gcov --version
@@ -37,7 +37,7 @@ jobs:
       run: |
           # dependencies
           brew update
-          brew install libchewing qt@5
+          brew install libchewing qt@5 googletest
 
           # Allow CMake to find qt@5 by passing down the environment variable
           echo "CMAKE_PREFIX_PATH=$(brew --prefix qt@5)" >> $GITHUB_ENV
