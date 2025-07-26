@@ -288,6 +288,8 @@ add_dependencies(check chewing-editor run-test)
 set(CPACK_SOURCE_GENERATOR TGZ)
 set(CPACK_SOURCE_IGNORE_FILES
     "^${PROJECT_SOURCE_DIR}/.git"
+    "^${PROJECT_SOURCE_DIR}/.jj"
+    "^${PROJECT_SOURCE_DIR}/build"
 )
 
 set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
