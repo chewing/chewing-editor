@@ -22,7 +22,7 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX	${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_fla
 cmake_minimum_required(VERSION 3.10.0...3.31.6)
 project(chewing-editor VERSION 0.1.2 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 include(GNUInstallDirs)
 
@@ -65,7 +65,7 @@ else()
     pkg_check_modules(CHEWING REQUIRED chewing>=0.4.0)
 endif()
 
-pkg_check_modules(GTEST REQUIRED gtest>=1.7.0)
+pkg_check_modules(GTEST REQUIRED gtest>=1.7.0 IMPORTED_TARGET)
 
 # Qt library
 set(CMAKE_AUTOMOC ON)
@@ -266,7 +266,7 @@ add_executable(run-test
     ${run-test_src}
 )
 target_link_libraries(run-test
-    gtest
+    PkgConfig::GTEST
 
     exporter
     importer
