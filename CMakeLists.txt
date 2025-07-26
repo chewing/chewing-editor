@@ -20,12 +20,14 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE	${CMAKE_CURRENT_SOURCE_DIR}/cmake/c_flag_over
 set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX	${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_flag_overrides.cmake)
 
 cmake_minimum_required(VERSION 3.10.0...3.31.6)
-project(chewing-editor VERSION 0.1.2)
+project(chewing-editor VERSION 0.1.2 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 14)
 
 include(GNUInstallDirs)
 
-if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
-    set(CMAKE_CXX_FLAGS "-std=c++11 -g -O2 ${CMAKE_CXX_FLAGS}")
+if(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+    set(CMAKE_CXX_FLAGS "-g -O2 ${CMAKE_CXX_FLAGS}")
 
     option(ENABLE_GCOV "Coverage support" false)
     if(ENABLE_GCOV)
@@ -63,6 +65,8 @@ else()
     pkg_check_modules(CHEWING REQUIRED chewing>=0.4.0)
 endif()
 
+pkg_check_modules(GTEST REQUIRED gtest>=1.7.0)
+
 # Qt library
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -99,7 +103,6 @@ install(
 
 include_directories(
     ${PROJECT_BINARY_DIR}/include
-    ${PROJECT_SOURCE_DIR}/gmock/gtest/include
     ${PROJECT_SOURCE_DIR}/src/exporter
     ${PROJECT_SOURCE_DIR}/src/importer
     ${PROJECT_SOURCE_DIR}/src/model
@@ -255,7 +258,6 @@ endif()
 
 # testing
 enable_testing()
-add_subdirectory(gmock)
 
 file(GLOB run-test_src
     test/*.cpp
@@ -264,7 +266,7 @@ add_executable(run-test
     ${run-test_src}
 )
 target_link_libraries(run-test
-    gmock
+    gtest
 
     exporter
     importer
