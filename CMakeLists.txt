@@ -19,8 +19,8 @@
 set(CMAKE_USER_MAKE_RULES_OVERRIDE	${CMAKE_CURRENT_SOURCE_DIR}/cmake/c_flag_overrides.cmake)
 set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX	${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx_flag_overrides.cmake)
 
-project(chewing-editor VERSION 0.1.1)
 cmake_minimum_required(VERSION 3.10.0...3.31.6)
+project(chewing-editor VERSION 0.1.2)
 
 include(GNUInstallDirs)
 
