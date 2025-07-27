@@ -30,6 +30,7 @@
 #include "UserphraseExporter.h"
 #include "UserphraseImporter.h"
 #include "UserphraseSet.h"
+#include "BopomofoUtil.hpp"
 
 class UserphraseModel final: public QAbstractListModel {
     Q_OBJECT
@@ -71,8 +72,6 @@ public slots:
     void undo();
 
 private:
-    QString checkBopomofo(const QString &bopomofo) const;
-
     std::unique_ptr<ChewingContext, void (*)(ChewingContext*)> ctx_;
     UserphraseSet userphrase_;
     std::vector<Userphrase> removerecord_;
